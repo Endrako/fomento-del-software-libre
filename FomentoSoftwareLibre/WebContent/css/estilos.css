@@ -1,0 +1,3549 @@
+[disabled] {
+	color:#AAA !important;
+}
+
+.tituloDatoPasivo {
+	color:#FCED98;
+}
+
+.nuevocolor {
+	color:#633232;
+}
+
+body {
+  margin:0px;
+  padding:0px;
+  scrollbar-face-color:#EBEBEB;
+  scrollbar-arrow-color:#1B6572;
+  scrollbar-track-color:#F9F9F6;
+  scrollbar-highlight-color:'#FFFFFF';
+  scrollbar-3dlight-color:'';
+  scrollbar-darkshadow-Color:'#D6D6D6';
+
+}
+body.circulos{
+	margin:0px;
+	padding-top:0px;
+  	border-left:solid 1px #dcdcdc;
+  	scrollbar-face-color:#EBEBEB;
+  	scrollbar-arrow-color:#1B6572;
+  	scrollbar-track-color:#F9F9F6;
+  	scrollbar-shadow-color:'F7F7F7';
+  	scrollbar-highlight-color:'#FFFFFF';
+  	scrollbar-3dlight-color:'';
+  	scrollbar-darkshadow-Color:'#D6D6D6';
+	background-image: url(../images/bg_rayas.gif);
+	background-position: bottom;
+	background-repeat: repeat-x;
+	overflow:auto;	
+}
+
+body.circulos_firefox{
+	margin:0px;
+	padding-top:0px;
+  	border-left:solid 1px #dcdcdc;
+  	scrollbar-face-color:#EBEBEB;
+  	scrollbar-arrow-color:#1B6572;
+  	scrollbar-track-color:#F9F9F6;
+  	scrollbar-shadow-color:'F7F7F7';
+  	scrollbar-highlight-color:'#FFFFFF';
+  	scrollbar-3dlight-color:'';
+  	scrollbar-darkshadow-Color:'#D6D6D6';
+	background-image: url(../images/bg_rayas.gif);
+	background-position: bottom;
+	background-repeat: repeat-x;
+	overflow: visible !important;
+}
+
+
+
+body.circulos_BI{
+	margin:0px;
+	padding-top:0px;
+  	border-left:solid 1px #dcdcdc;
+  	scrollbar-face-color:#EBEBEB;
+  	scrollbar-arrow-color:#1B6572;
+  	scrollbar-track-color:#F9F9F6;
+  	scrollbar-shadow-color:'F7F7F7';
+  	scrollbar-highlight-color:'#FFFFFF';
+  	scrollbar-3dlight-color:'';
+  	scrollbar-darkshadow-Color:'#D6D6D6';
+	background-image: url(../images/bg_rayas.gif);
+	background-position: bottom;
+	background-repeat: repeat-x;
+}
+
+body.circulos_provisional{
+	margin:0px;
+	padding-top:0px;
+  	border-left:solid 1px #dcdcdc;
+  	scrollbar-face-color:#EBEBEB;
+  	scrollbar-arrow-color:#1B6572;
+  	scrollbar-track-color:#F9F9F6;
+  	scrollbar-shadow-color:'F7F7F7';
+  	scrollbar-highlight-color:'#FFFFFF';
+  	scrollbar-3dlight-color:'';
+  	scrollbar-darkshadow-Color:'#D6D6D6';
+	background-image: url(../images/bg_rayas.gif);
+	background-position: bottom;
+	background-repeat: repeat-x;
+}
+
+body.azul_claro{
+	background-color: #ECF1F5;	
+}
+
+form{
+margin:0px;
+padding:0px;
+}
+
+legend{
+	padding: 6px 6px
+}
+
+fieldset.bloque{	
+	border:solid 1px #aeccda;	
+	padding-top:2px;
+	padding-left:22px;
+	padding-right:22px;
+	padding-bottom:10px;
+	margin-bottom:5px;
+}
+
+.tooltip {
+	visibility:hidden; 
+	font-size: 9px; 
+	font-family: Tahoma,Arial, Helvetica, Geneva; 
+	padding:0 5px; 
+	margin-left:0px; 
+	z-index:5;
+	background:infobackground; 
+	border:1px solid infotext;	
+	}
+
+
+hr{
+	color:#aeccda;
+	height:1px;	
+}
+
+table.bloque_blanco_sin_espacio{
+	background-color: #ffffff;
+	padding-top:4px;
+	padding-left:20px;
+	padding-right:20px;
+	padding-bottom:4px;
+	border:solid 1px #dcdcdc;	
+}
+
+table.tabla_contenedora{		
+	margin:0px;	
+	padding:20px;
+}
+
+table.tabla_contenedora_citas{		
+	margin:0px;	
+	padding:20px;
+}
+
+table.tabla_principal{
+	border:solid 1px #dcdcdc;
+	padding:0px;
+	background-color:#FFFFFF;
+}
+
+table.contorno{
+    border:solid 1px #dcdcdc;
+}
+table.contornoImpresion{
+    border:solid 0px #dcdcdc;
+}
+/*-------------------------- Estilos de fondos -----------------------*/
+body.degradado_verde{
+  margin:0px;
+  padding:0px;
+  scrollbar-face-color:#EBEBEB;
+  scrollbar-arrow-color:#1B6572;
+  scrollbar-track-color:#F9F9F6;
+  scrollbar-shadow-color:'F7F7F7';
+  scrollbar-highlight-color:'#FFFFFF';
+  scrollbar-3dlight-color:'';
+  scrollbar-darkshadow-Color:'#D6D6D6';
+  background-image: url(../images/bg_contenedora.gif);
+  background-position: bottom;
+  background-repeat: repeat-x;
+ }
+ body.blanca{
+  margin:0px;
+  padding:0px;
+  scrollbar-face-color:#EBEBEB;
+  scrollbar-arrow-color:#1B6572;
+  scrollbar-track-color:#F9F9F6;
+  scrollbar-shadow-color:'F7F7F7';
+  scrollbar-highlight-color:'#FFFFFF';
+  scrollbar-3dlight-color:'';
+  scrollbar-darkshadow-Color:'#D6D6D6';
+  background-position: bottom;
+  background-repeat: repeat-x;
+ }
+  body.entrada {
+  margin:0px;
+  padding:0px;
+  scrollbar-face-color:#EBEBEB;
+  scrollbar-arrow-color:#1B6572;
+  scrollbar-track-color:#F9F9F6;
+  scrollbar-shadow-color:'F7F7F7';
+  scrollbar-highlight-color:'#FFFFFF';
+  scrollbar-3dlight-color:'';
+  scrollbar-darkshadow-Color:'#D6D6D6';
+  background-image: url(../images/bg_entrada.gif);
+}
+ body.blanca_con_padding{
+  margin:0px;
+  padding:10px;
+  scrollbar-face-color:#EBEBEB;
+  scrollbar-arrow-color:#1B6572;
+  scrollbar-track-color:#F9F9F6;
+  scrollbar-shadow-color:'F7F7F7';
+  scrollbar-highlight-color:'#FFFFFF';
+  scrollbar-3dlight-color:'';
+  scrollbar-darkshadow-Color:'#D6D6D6';
+  background-position: bottom;
+  background-repeat: repeat-x;
+ }
+
+
+
+
+/*-------------------------- Estilos de fuentes-----------------------*/
+font.entrada_opcion{
+color: #387895; 
+font-size: 11px; 
+font-family: Tahoma,Arial, Helvetica, Geneva; 
+}
+font.entrada_detalle{
+color: #387895; 
+font-size: 6px; 
+font-family: Tahoma,Arial, Helvetica, Geneva; 
+}
+
+
+font.top_user{
+color: #416474; 
+font-size: 11px; 
+font-family: Tahoma,Arial, Helvetica, Geneva; 
+}
+
+font.user{
+color: #626C71; 
+font-size: 11px; 
+font-family: Tahoma,Arial, Helvetica, Geneva; 
+}
+
+font.pie{
+color: #626C71; 
+font-size: 9px; 
+font-family: Tahoma,Arial, Helvetica, Geneva; 
+}
+
+font.pie_azul{
+color: #387895; 
+font-size: 9px; 
+font-family: Tahoma,Arial, Helvetica, Geneva; 
+}
+
+font.gris{
+color: #626C71; 
+font-size: 11px; 
+font-family: Tahoma,Arial, Helvetica, Geneva; 
+}
+
+font.gris_listado{
+color: #000000; 
+font-size: 12px; 
+font-family: Tahoma,Arial, Helvetica, Geneva; 
+}
+
+/*Este estilo muestra el texto en pantalla pero no en papel */
+font.gris_web{
+color: #626C71; 
+font-size: 11px; 
+font-family: Tahoma,Arial, Helvetica, Geneva; 
+}
+
+font.blanca{
+color: #FFFFFF; 
+font-size: 11px; 
+font-family: Tahoma,Arial, Helvetica, Geneva; 
+}
+
+font.verde{
+color: #00CC00;
+font-size: 11px; 
+font-family: Tahoma,Arial, Helvetica, Geneva; 
+}
+
+font.verde_2{
+color: #708849; 
+font-size: 11px; 
+font-family: Tahoma,Arial, Helvetica, Geneva; 
+}
+
+font.azul_paginacion{
+color: #387895; 
+font-size: 9px; 
+font-family: Tahoma,Arial, Helvetica, Geneva; 
+font-weight: bold;  
+text-decoration: none;
+}
+
+font.rojo_paginacion{
+color: #B22520; 
+font-size: 9px; 
+font-family: Tahoma,Arial, Helvetica, Geneva; 
+font-weight: bold;  
+text-decoration: none;
+}
+
+font.azul{
+color: #387895; 
+font-size: 11px; 
+font-family: Tahoma,Arial, Helvetica, Geneva; 
+}
+
+font.blancoNormal{
+color: #FFFFFF; 
+font-size: 11px; 
+font-family: Tahoma,Arial, Helvetica, Geneva; 
+}
+
+font.azul_peq{
+color: #387895; 
+font-size: 9px; 
+font-family: Tahoma,Arial, Helvetica, Geneva; 
+}
+
+font.azulBold{
+color: #387895; 
+font-size: 11px; 
+font-family: Tahoma,Arial, Helvetica, Geneva;
+font-weight: bold; 
+}
+
+font.gris_enlace {
+color: #D8D7D7; 
+font-size: 11px; 
+font-family: Tahoma,Arial, Helvetica, Geneva; 
+}
+
+font.azul_pruebas{
+color: #387895; 
+font-size: 11px; 
+font-family: Tahoma,Arial, Helvetica, Geneva; 
+}
+
+font.azul_tablas{ /* Se usa para poner texto dentro de tablas de datos*/
+color: #387895; 
+font-size: 11px; 
+font-family: Tahoma,Arial, Helvetica, Geneva; 
+}
+
+
+font.azul_seccion{ /* Para las secciones de las pruebas */
+color: #387895; 
+font-size: 12px; 
+font-family: Tahoma,Arial, Helvetica, Geneva; 
+}
+
+font.azul_12{
+color: #387895; 
+font-size: 12px; 
+font-family: Tahoma,Arial, Helvetica, Geneva; 
+}
+
+font.azul_mediano{
+color: #387895; 
+font-size: 14px; 
+font-family: Tahoma,Arial, Helvetica, Geneva; 
+}
+font.azul_oscuro{
+color: #215770; 
+font-size: 11px; 
+font-family: Tahoma,Arial, Helvetica, Geneva; 
+}
+font.azul_oscuro2{
+color: #215770; 
+font-size: 13px; 
+font-family: Tahoma,Arial, Helvetica, Geneva; 
+}
+
+font.azul_pie_pagina{
+color: #387895; 
+font-size: 9px; 
+font-family: Tahoma,Arial, Helvetica, Geneva; 
+}
+
+font.rojo{
+color: #B22520; 
+font-size: 11px; 
+font-family: Tahoma,Arial, Helvetica, Geneva; 
+}
+
+font.rojoBold{
+color: #B22520; 
+font-size: 11px; 
+font-family: Tahoma,Arial, Helvetica, Geneva; 
+font-weight: bold;
+}
+
+font.rojo_mediano{
+color: #B22520; 
+font-size: 14px; 
+font-family: Tahoma,Arial, Helvetica, Geneva; 
+}
+
+font.rojo_negrita{
+color: #B22520; 
+font-size: 11px; 
+font-family: Tahoma,Arial, Helvetica, Geneva;
+font-weight:bold;
+}
+
+font.rojo_error{
+color: #B22520; 
+font-size: 11px; 
+font-family: Tahoma,Arial, Helvetica, Geneva; 
+}
+
+font.titular1{
+color: #387895;
+font-size: 18px;  
+font-family: Tahoma,Arial, Helvetica, Geneva; 
+}
+
+font.titular1_pruebas{
+color: #387895;
+font-size: 18px;  
+font-family: Tahoma,Arial, Helvetica, Geneva;
+text-decoration:underline;
+}
+
+
+font.titular1_blanca{
+color: #FFFFFF;
+font-size: 18px;  
+font-family: Tahoma,Arial, Helvetica, Geneva; 
+}
+
+font.titular2{
+color: #176E70; 
+font-size: 16px; 
+font-family: Tahoma,Arial, Helvetica, Geneva; 
+}
+
+
+font.titular_azul_2{
+color: #387895;
+font-size: 15px;  
+font-family: Tahoma,Arial, Helvetica, Geneva; 
+}
+
+font.titular_rojo{
+color: #C4110C;
+font-size: 18px;  
+font-family: Tahoma,Arial, Helvetica, Geneva; 
+}
+
+font.titular_rojo_2{
+color: #C4110C;
+font-size: 15px;  
+font-family: Tahoma,Arial, Helvetica, Geneva; 
+}
+
+font.titular_azul_2{
+color: #387895;
+font-size: 15px;  
+font-family: Tahoma,Arial, Helvetica, Geneva; 
+}
+
+font.titular_azul_grande{
+color: #387895;
+font-size: 20px;  
+font-family: Tahoma,Arial, Helvetica, Geneva; 
+}
+
+font.letras_cabecera_1{
+color: #ffffff; 
+font-size: 16px; 
+font-family: Tahoma,Arial, Helvetica, Geneva; 
+}
+font.letras_cabecera_2{
+color: #ffffff; 
+font-size: 12px; 
+font-family: Tahoma,Arial, Helvetica, Geneva; 
+}
+
+font.notaPieEstandar{
+color: #387895;
+font-size: 12px;  
+font-family: Tahoma,Arial, Helvetica, Geneva;
+font-weight:bold;
+}
+
+/*-------------------------- Estilos de inputs-----------------------*/
+
+input.azul_nobordes{
+border:0px solid #387895;
+color: #FFFFFF; 
+height:16px;
+font-size: 11px; 
+font-weight:bold;
+font-family: Tahoma,Arial, Helvetica, Geneva; 
+padding:0px;
+margin:0px;
+background-color:#387895;
+}
+HTML>BODY input.azul_nobordes{
+border:0px solid #387895;
+color: #FFFFFF; 
+height:16px;
+font-size: 11px; 
+font-weight:bold;
+font-family: Tahoma,Arial, Helvetica, Geneva; 
+padding:0px;
+margin:0px;
+background-color:#387895;
+}
+
+input.bg_input_1{
+cursor:pointer;
+border:solid 1px #ff9d33;
+color: #FFFFFF; 
+height:16px;
+font-size: 11px; 
+font-weight:bold;
+font-family: Tahoma,Arial, Helvetica, Geneva; 
+padding-top:0px;
+padding-bottom:3px;
+margin:0px;
+background-color:#FF9D33;
+background-image: url(../images/bg_input_1.gif);
+background-repeat: repeat-x;
+background-position: 0px 0px;
+cursor:pointer;
+}
+HTML>BODY input.bg_input_1{
+padding-left:10px;
+padding-right:10px;
+padding-bottom:3px;
+height:16px;
+cursor:pointer;
+}
+
+input.bg_input_2{
+border:solid 1px #387895;
+color: #FFFFFF; 
+height:16px;
+font-size: 11px; 
+font-weight:bold;
+font-family: Tahoma,Arial, Helvetica, Geneva; 
+padding:0px;
+padding-bottom:3px;
+margin:0px;
+background-color:#387895;
+background-image: url(../images/bg_input_2.gif);
+background-repeat: repeat-x;
+background-position: 0px 0px;
+cursor:pointer;
+}
+
+input.bg_input_3{
+border:solid 1px #387895;
+color: #FFFFFF; 
+height:18px;
+font-size: 11px; 
+font-weight:bold;
+font-family: Tahoma,Arial, Helvetica, Geneva; 
+padding:0px;
+padding-bottom:3px;
+margin:0px;
+background-color:#387895;
+background-image: url(../images/bg_input_2.gif);
+background-repeat: repeat-x;
+background-position: 0px 0px;
+cursor:pointer;
+}
+HTML>BODY input.bg_input_2{
+cursor:pointer;
+padding-left:10px;
+padding-right:10px;
+padding-bottom:3px;
+height:18px;
+}
+
+HTML>BODY input.bg_input_3{
+cursor:pointer;
+padding-left:10px;
+padding-right:10px;
+padding-bottom:3px;
+height:18px;
+}
+
+
+.selectgrande{
+	border:1px solid #C7C7C7;
+	background-image: url(../images/bg_input_text.gif);
+	font-size: 11px; 
+	font-family: Tahoma,Arial, Helvetica, Geneva; 
+	padding-left:10px;
+	color:#333333;
+}
+
+input.gris{
+	border:1px solid #C7C7C7;
+	height:19px;
+	background-image: url(../images/bg_input_text.gif);
+	font-size: 11px; 
+	font-family: Tahoma,Arial, Helvetica, Geneva; 
+	padding-left:10px;
+	color:#333333;
+}
+input.gris1{
+	border:1px solid #C7C7C7;
+	height:19px;
+	background-image: url(../images/bg_input_text.gif);
+	font-size: 11px; 
+	font-family: Tahoma,Arial, Helvetica, Geneva; 
+	padding-left:10px;
+	color:#333333;
+	size:90;
+}
+
+
+input.gris_centrado{
+	border:1px solid #C7C7C7;
+	height:19px;
+	background-image: url(../images/bg_input_text.gif);
+	font-size: 11px; 
+	font-family: Tahoma,Arial, Helvetica, Geneva;
+	text-align:center;
+	color:#333333;		
+}
+
+input.deshabilitado{
+	border:1px solid #C7C7C7;
+	height:19px;
+	font-size: 11px; 
+	font-family: Tahoma,Arial, Helvetica, Geneva; 
+	padding-left:10px;
+	background-color: #E2E2E2;
+	color:#E2E2E2;
+}
+input.rojo{
+	border:0px solid #FFFFFF;
+	height:19px;
+	background-image: url(../images/bg_input_rojo.gif);
+	font-size: 11px; 
+	font-family: Tahoma,Arial, Helvetica, Geneva; 
+	font-weight:bold;
+	padding-left:10px;
+	padding-right:10px;
+	color:#FFFFFF;
+}
+
+
+/* Este estilo muestra el bot�n en pantalla pero no en papel */
+input.rojo_web{
+	border:0px solid #FFFFFF;
+	height:19px;
+	background-image: url(../images/bg_input_rojo.gif);
+	font-size: 11px; 
+	font-family: Tahoma,Arial, Helvetica, Geneva; 
+	font-weight:bold;
+	padding-left:10px;
+	padding-right:10px;
+	color:#FFFFFF;
+}
+
+select.gris{
+	
+	border:1px solid #C7C7C7;
+	height:19px;
+	font-size: 11px; 
+	font-family: Tahoma,Arial, Helvetica, Geneva; 
+	color:#333333;
+}
+select.grisMultiple{
+        width:180px;
+        size:6;
+	border:1px solid #C7C7C7;
+	font-size: 11px; 
+	font-family: Tahoma,Arial, Helvetica, Geneva; 
+	color:#333333;
+}
+select.grisMultiple_15{
+        width:180px;
+        size:15;
+	border:1px solid #C7C7C7;
+	font-size: 11px; 
+	font-family: Tahoma,Arial, Helvetica, Geneva; 
+	color:#333333;
+}
+select.grisMultipleLargo{
+        width:305px;
+        size:6;
+	border:1px solid #C7C7C7;
+	background-image: url(../images/bg_input_text.gif);
+	font-size: 11px; 
+	font-family: Tahoma,Arial, Helvetica, Geneva; 
+	padding-left:10px;
+	color:#333333;
+}
+select.grisMultipleLargo1{
+        width:400px;
+        size:11px;
+	border:1px solid #C7C7C7;
+	background-image: url(../images/bg_input_text.gif);
+	font-size: 11px; 
+	font-family: Tahoma,Arial, Helvetica, Geneva; 
+	padding-left:10px;
+	color:#333333;
+}
+textarea.gris{
+	border:1px solid #C7C7C7;
+	background-image: url(../images/bg_input_text.gif);
+        background-attachment:fixed;
+	font-size: 11px; 
+	font-family: Tahoma,Arial, Helvetica, Geneva; 
+	padding-left:10px;
+	padding-top:5px;
+	color:#333333;
+}
+textarea.deshabilitado{
+	border:1px solid #C7C7C7;
+	font-size: 11px; 
+	font-family: Tahoma,Arial, Helvetica, Geneva; 
+	padding-left:10px;
+	padding-top:5px;
+	background-color:#E2E2E2;
+	color:#E2E2E2;
+}
+/*-------------------------- Estilos de enlaces-----------------------*/
+
+.azul_paginacion{
+color: #387895; 
+font-size: 9px; 
+font-family: Tahoma,Arial, Helvetica, Geneva; 
+font-weight: bold;  
+text-decoration: none;
+}
+
+a.rojo_paginacion{
+color: #B22520; 
+font-size: 9px; 
+font-family: Tahoma,Arial, Helvetica, Geneva; 
+font-weight: bold;  
+text-decoration: none;
+}
+
+a.negro_paginacion{
+color: #387895; 
+font-size: 9px; 
+font-family: Tahoma,Arial, Helvetica, Geneva; 
+font-weight: bold;  
+text-decoration: none;
+}
+
+a.azul_paginacion:hover{
+color: #387895; 
+font-size: 11px; 
+font-family: Tahoma,Arial, Helvetica, Geneva; 
+font-weight: bold;  
+text-decoration: none;
+}
+
+a.negro_paginacion:hover{
+color: black; 
+font-size: 9px; 
+font-family: Tahoma,Arial, Helvetica, Geneva; 
+font-weight: bold;  
+text-decoration: none;
+}
+
+a.rojo_paginacion:hover{
+color: #B22520; 
+font-size: 11px; 
+font-family: Tahoma,Arial, Helvetica, Geneva; 
+font-weight: bold;  
+text-decoration: none;
+}
+a.gris{
+	font-family: Tahoma,Arial, Helvetica, Geneva; 
+	font-size: 11px;
+	color: #333333;
+	font-weight: normal;
+	text-decoration: none;
+}
+
+a.azul_enlace{
+	font-family: Tahoma,Arial, Helvetica, Geneva; 
+	font-size: 11px;
+	color: #387895;
+	text-decoration:none;
+	font-weight: normal;
+}
+
+a.rojo_enlace{
+	font-family: Tahoma,Arial, Helvetica, Geneva; 
+	font-size: 11px;
+	color: #FF0000;
+	font-weight: normal;
+	text-decoration:none;
+}
+
+a.verde_enlace{
+	font-family: Tahoma,Arial, Helvetica, Geneva; 
+	font-size: 11px;
+	color: #00CC00;
+	font-weight: normal;
+	text-decoration:none;
+}
+
+a.gris_enlace{
+	font-family: Tahoma,Arial, Helvetica, Geneva; 
+	font-size: 11px;
+	color: #ABABAB;
+	text-decoration:none;
+	font-weight: normal;
+}
+
+a.gris_enlace:hover{
+	font-family: Tahoma,Arial, Helvetica, Geneva; 
+	font-size: 11px;
+	color: #EBEBEB;
+	text-decoration:underline;
+	font-weight: normal;
+}
+
+a.azul_enlace:hover{
+	font-family: Tahoma,Arial, Helvetica, Geneva; 
+	font-size: 11px;
+	color: #387895;
+	text-decoration:underline;
+	font-weight: normal;
+}
+
+a.verde_enlace_12{
+	font-family: Tahoma,Arial, Helvetica, Geneva; 
+	font-size: 12px;
+	color: #00CC00;
+	font-weight: normal;
+	text-decoration:none;
+}
+
+a.azul_enlace_12{
+	font-family: Tahoma,Arial, Helvetica, Geneva; 
+	font-size: 12px;
+	color: #387895;
+	text-decoration:none;
+	font-weight: normal;
+}
+
+a.azul_enlace_12:hover{
+	font-family: Tahoma,Arial, Helvetica, Geneva; 
+	font-size: 11px;
+	color: #387895;
+	text-decoration:underline;
+	font-weight: normal;
+}
+
+a.azul_enlace_grande{
+	font-family: Tahoma,Arial, Helvetica, Geneva; 
+	font-size: 12px;
+	color: #387895;
+	text-decoration:none;
+	font-weight: normal;
+}
+
+a.azul_enlace_grande:hover{
+	font-family: Tahoma,Arial, Helvetica, Geneva; 
+	font-size: 12px;
+	color: #387895;
+	text-decoration:underline;
+	font-weight: normal;
+}
+
+a.azul_enlace_14{
+	font-family: Tahoma,Arial, Helvetica, Geneva; 
+	font-size: 13px;
+	color: #387895;
+	text-decoration:none;
+	font-weight: normal;
+}
+
+a.azul_enlace_14:hover{
+	font-family: Tahoma,Arial, Helvetica, Geneva; 
+	font-size: 13px;
+	color: #387895;
+	text-decoration:underline;
+	font-weight: normal;
+}
+
+a.rojo_enlace:hover{
+	font-family: Tahoma,Arial, Helvetica, Geneva; 
+	font-size: 11px;
+	color: #FF0000;
+	font-weight: normal;
+	text-decoration:underline;
+}
+
+a.verde_enlace:hover{
+	font-family: Tahoma,Arial, Helvetica, Geneva; 
+	font-size: 11px;
+	color: #00CC00;
+	font-weight: normal;
+	text-decoration:underline;
+}
+
+a.gris:hover{
+	font-family: Tahoma,Arial, Helvetica, Geneva; 
+	font-size: 11px;
+	color: #333333;
+	font-weight: normal;
+	text-decoration: underline;
+}
+
+
+a.verde{
+	font-family: Tahoma,Arial, Helvetica, Geneva; 
+	font-size: 11px;
+	color: #00CC00;
+	font-weight: normal;
+	text-decoration: none;
+}
+a.azul{
+	font-family: Tahoma,Arial, Helvetica, Geneva; 
+	font-size: 11px;
+	color: #387895;
+	font-weight: normal;
+	text-decoration: none;
+}
+
+a.azul_pruebas{
+	font-family: Tahoma,Arial, Helvetica, Geneva; 
+	font-size: 11px;
+	color: #387895;
+	font-weight: normal;
+	text-decoration: none;
+}
+
+a.azul_tablas{ /* Se usa cuando hay un enlace dentro de tablas de datos (tiene menor tama�o en impresion) */
+	font-family: Tahoma,Arial, Helvetica, Geneva; 
+	font-size: 11px;
+	color: #387895;
+	font-weight: normal;
+	text-decoration: none;
+}
+
+a.azul:hover{
+	font-family: Tahoma,Arial, Helvetica, Geneva; 
+	font-size: 11px;
+	color: #387895;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+
+a.verde:hover{
+	font-family: Tahoma,Arial, Helvetica, Geneva; 
+	font-size: 11px;
+	color: #00CC00;
+	font-weight: normal;
+	text-decoration: underline;
+}
+a.verde2{
+	font-family: Tahoma,Arial, Helvetica, Geneva; 
+	font-size: 11px;
+	color: #478B8E;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+a.verde2:hover{
+	font-family: Tahoma,Arial, Helvetica, Geneva; 
+	font-size: 11px;
+	color: #ffc233;
+	font-weight: bold;
+	text-decoration: underline;
+}
+a.blanca{
+	font-family: Tahoma,Arial, Helvetica, Geneva; 
+	font-size: 11px;
+	color: #FFFFFF;
+	font-weight: normal;
+	text-decoration: none;
+}
+
+a.blanca:hover{
+	font-family: Tahoma,Arial, Helvetica, Geneva; 
+	font-size: 11px;
+	color: #FFFFFF;
+	font-weight: normal;
+	text-decoration: underline;
+}
+
+a.blanca2{
+	font-family: Tahoma,Arial, Helvetica, Geneva; 
+	font-size: 11px;
+	color: #FFFFFF;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+a.blanca2:hover{
+	font-family: Tahoma,Arial, Helvetica, Geneva; 
+	font-size: 11px;
+	color: #fcb714;
+	font-weight: bold;
+	text-decoration: underline;
+}
+a.rojo{
+	font-family: Tahoma,Arial, Helvetica, Geneva; 
+	font-size: 11px;
+	color: #FF2305;
+	font-weight: normal;
+	text-decoration: none;
+}
+
+a.rojo:hover{
+	font-family: Tahoma,Arial, Helvetica, Geneva; 
+	font-size: 11px;
+	color: #A80F0B;
+	font-weight: normal;
+	text-decoration: underline;
+}
+
+a.rojo_enlace_grande{
+	font-family: Tahoma,Arial, Helvetica, Geneva; 
+	font-size: 14px;
+	color: #A80F0B;
+	font-weight: normal;
+	text-decoration: underline;
+}
+
+a.rojo_enlace_grande:hover{
+	font-family: Tahoma,Arial, Helvetica, Geneva; 
+	font-size: 14px;
+	color: #A80F0B;
+	font-weight: normal;
+	text-decoration: none;
+}
+
+
+a.negro{
+	font-family: Tahoma,Arial, Helvetica, Geneva; 
+	font-size: 11px;
+	color: black;
+	font-weight: normal;
+	text-decoration: none;
+}
+
+a.negro:hover{
+	font-family: Tahoma,Arial, Helvetica, Geneva; 
+	font-size: 11px;
+	color: black;
+	font-weight: normal;
+	text-decoration: underline;
+}
+
+a.naranja{
+	font-family: Tahoma,Arial, Helvetica, Geneva; 
+	font-size: 11px;
+	color: orange;
+	font-weight: normal;
+	text-decoration: none;
+}
+
+a.naranja:hover{
+	font-family: Tahoma,Arial, Helvetica, Geneva; 
+	font-size: 11px;
+	color: orange;
+	font-weight: normal;
+	text-decoration: underline;
+}
+
+a.azul_oscuro{
+	font-family: Tahoma,Arial, Helvetica, Geneva; 
+	font-size: 11px;
+	color: #215770;
+	font-weight: normal;
+	text-decoration: none;	
+}
+
+
+
+a.azul_oscuro:hover{
+	font-family: Tahoma,Arial, Helvetica, Geneva; 
+	font-size: 11px;
+	color: #215770;
+	font-weight: normal;	
+	text-decoration:underline;
+}
+
+/*-------------------------- Estilos de celdas-----------------------*/
+
+td.menu_item2{
+	background-color:#6496ac;
+	background-image: url(../images/bg_titular_tabla.gif);
+	padding-top:0px;
+	padding-bottom:3px;
+	padding-left:6px;
+	padding-right:6px;
+	
+}
+
+td.menu_item3{
+	padding-top:4px;
+	padding-bottom:3px;
+	padding-left:6px;
+	padding-right:6px;
+	
+}
+
+td.menu_item4{
+	padding-top:3px;
+	padding-bottom:7px;
+	padding-left:6px;
+	padding-right:6px;
+	
+}
+
+td.menu_item{
+	background-color:#6496ac;
+	background-image: url(../images/bg_titular_tabla.gif);
+	padding-top:2px;
+	padding-bottom:2px;
+	padding-left:1px;
+	padding-right:1px;
+	border:solid 0px #76AAA8;
+	text-align:center;
+	border-right:solid 0px #FFFFFF;
+	
+}
+
+
+td.menu_subitem{
+	text-align:center;
+	background-color:#ecf3f6;
+	background-image: url(../images/pestana_bg_celeste3.gif);
+	padding-top:2px;
+	padding-bottom:2px;
+	border-left:none ;
+	border-right:none ;
+	border-bottom:none ;
+	border-top:none ;
+}
+td.menu_subitem2{
+	text-align:center;
+	background-color:#C9DDDC;
+	
+	padding-top:2px;
+	padding-bottom:2px;
+	border-left:solid 1px #76AAA8;
+	border-right:solid 1px #76AAA8;
+	border-bottom:solid 1px #76AAA8;
+}
+
+td.logo_sas{
+	background-image: url(../images/top_logo_sas.gif);
+	background-repeat: no-repeat;
+	background-position: right;
+	width:239px;
+}
+td.separador{
+	
+	padding-left:15px;
+	border-left:solid 1px #4f87a1;
+}
+
+
+
+td.letras_cabecera{
+	background-image: url(../images/top_centro.gif);
+	background-repeat: no-repeat;
+	background-position: 0px 0px;
+	width:531px;	
+	padding-left:105px;
+	padding-top:0px;
+	
+}
+td.pestana{
+	padding-left:0px;
+	padding-right:0px;
+	padding-top:2px;
+}
+
+td.amarillo{
+	
+	background-color: #FFFFCC;
+	padding-left:0px;
+	padding-top:2px;
+	padding-bottom:2px;
+}
+
+html>Body td.pestana{
+	padding-left:4px;
+	padding-right:4px;
+}
+td.pestana_azul{
+	padding-left:0px;
+	padding-right:0px;
+	padding-top:2px;
+}
+html>Body td.pestana_azul{
+	padding-left:4px;
+	padding-right:4px;
+}
+
+td.verde{
+	
+	background-color: #EBF2E2;
+	padding-left:10px;
+	padding-top:2px;
+	padding-bottom:2px;
+}
+td.azul_claro{
+	
+	background-color: #d0dfe5;
+	padding-left:10px;
+	padding-top:2px;
+	padding-bottom:2px;  
+}
+td.azul{
+	
+	background-color: #E2EAED;
+	padding-left:10px;
+	padding-top:2px;
+	padding-bottom:2px;
+}
+td.usuario{
+padding-top:11px;
+padding-left:10px;
+}
+
+
+td.cerrar_frame{
+	padding-top:22px;
+	padding-right:6px;
+	padding-LEFT:6px;
+	vertical-align: top;
+	
+}
+html>body td.cerrar_frame{
+	padding-right:6px;
+}
+
+td.celda_arbol{
+	
+	padding-left:20px;
+	padding-top:20px;
+	padding-right:0px;
+	padding-bottom:20px;
+}
+
+td.fotografia_1{
+	background-image: url(../images/fotografia_1.gif);
+	background-position: bottom;
+	background-repeat: no-repeat;
+}
+td.fotografia_2{
+	background-image: url(../images/fotografia_2.gif);
+	background-position: bottom;
+	background-repeat: no-repeat;
+}
+td.fotografia_3{
+	background-image: url(../images/fotografia_3.gif);
+	background-position: bottom;
+	background-repeat: no-repeat;
+}
+td.fotografia_4{
+	background-image: url(../images/fotografia_4.gif);
+	background-position: bottom;
+	background-repeat: no-repeat;
+}
+td.fotografia_5{
+	background-image: url(../images/fotografia_5.gif);
+	background-position: bottom;
+	background-repeat: no-repeat;
+}
+td.flecha{
+padding-right:3px;
+padding-top:0px;
+}
+td.fecha{
+padding-top:15px;
+padding-right:15px;
+}
+td.pie{
+padding-top:15px;
+padding-left:29px;
+}
+td.pie2{
+padding-bottom:7px;
+padding-left:29px;
+color: #626C71; 
+font-size: 9px; 
+font-family: Tahoma,Arial, Helvetica, Geneva; 
+}
+td.centrada{
+color: #B22520;
+padding-left:6px;
+padding-right:6px;
+padding-top:2px;
+padding-bottom:2px;
+border-bottom:solid 1px #e3e3e3;
+}
+td.centrada2{
+align:right
+padding-left:0px;
+padding-right:0px;
+padding-top:2px;
+padding-bottom:2px;
+border-bottom:solid 1px #e3e3e3;
+}
+td.centrada3{
+padding-bottom:3px;
+border-bottom:solid 1px #e3e3e3;
+border-right:solid 1px #e3e3e3;
+border-left:solid 1px #e3e3e3;
+}
+
+td.centrada_con_separador{
+padding-left:6px;
+padding-right:6px;
+padding-top:2px;
+padding-bottom:2px;
+border-bottom:solid 1px #e3e3e3;
+border-right:solid 1px #e3e3e3;
+}
+td.centrada_con_separador_2{
+padding-left:12px;
+padding-right:12px;
+padding-top:2px;
+padding-bottom:2px;
+border-bottom:solid 1px #e3e3e3;
+border-right:solid 1px #e3e3e3;
+border-left:solid 1px #e3e3e3;
+}
+td.con_separador{
+
+padding-left:0px;
+padding-right:2px;
+padding-top:2px;
+padding-bottom:2px;
+border-bottom:solid 1px #e3e3e3;
+border-right:solid 1px #e3e3e3;
+}
+td.centrada_con_separador2{
+padding-left:12px;
+padding-right:12px;
+padding-top:2px;
+padding-bottom:2px;
+
+border-right:solid 1px #e3e3e3;
+}
+td.centrada_final{
+padding-left:12px;
+padding-right:12px;
+padding-top:2px;
+padding-bottom:2px;
+
+}
+
+td.centrada_2{
+padding-top:5px;
+padding-bottom:2px;
+}
+td.centrada_3{
+padding-left:32px;
+padding-top:2px;
+padding-bottom:2px;
+}
+
+td.centrada_4{
+padding-left:15px;
+padding-top:2px;
+padding-bottom:2px;
+}
+td.centrada_resultados_titulos{
+padding-left:16px;
+padding-right:16px;
+padding-top:2px;
+padding-bottom:2px;
+background-color: #cbdbe2;
+}
+
+td.centrada_resultados_cambio{
+	padding-left:16px;
+	padding-right:16px;
+	padding-top:2px;
+	padding-bottom:2px;	
+	background-color: #D3FFDD;	
+}
+
+td.centrada_amarilla{
+	background-color:#FAFC98;
+	cursor:pointer;
+	padding-left:16px;
+	padding-right:16px;
+	padding-top:2px;
+	padding-bottom:2px;
+}
+
+td.filtrado_genetica {
+	background-color:#f0f0ea;
+}
+
+td.centrada_resultados_ciclo1{
+	padding-left:16px;
+	padding-right:16px;
+	padding-top:2px;
+	padding-bottom:2px;	
+	background-color: #FFAAAA;	
+}
+
+td.centrada_resultados_ciclo2{
+	padding-left:16px;
+	padding-right:16px;
+	padding-top:2px;
+	padding-bottom:2px;	
+	background-color: #FF9900;	
+}
+
+td.centrada_resultados_ciclo3{
+	padding-left:16px;
+	padding-right:16px;
+	padding-top:2px;
+	padding-bottom:2px;	
+	background-color: #CC48E7;	
+}
+
+td.centrada_resultados_convertida{
+	padding-left:16px;
+	padding-right:16px;
+	padding-top:2px;
+	padding-bottom:2px;	
+	background-color: #737373;	
+}
+
+td.centrada_resultados_iac{
+	padding-left:16px;
+	padding-right:16px;
+	padding-top:2px;
+	padding-bottom:2px;	
+	background-color: #BAB9B9;	
+}
+
+
+td.centrada_resultados_titulos_2{
+/* Se utiliza en la cabecera de la tabla que genera una b�squeda inteligente */
+                    padding-left:5px;
+                    padding-right:5px;
+                    padding-top:2px;
+                    padding-bottom:2px;
+                    background-color: #cbdbe2;
+		}
+		
+td.centrada_resultados_titulos_3{
+padding-left:16px;
+padding-right:16px;
+padding-top:2px;
+padding-bottom:2px;
+background-color: #e4eff4;
+}
+
+td.centrada_resultados_titulos_4{
+padding-left:16px;
+padding-right:16px;
+padding-top:10px;
+padding-bottom:8px;
+background-color: #e4eff4;
+}
+
+td.centrada_resultados_titulos_5{
+padding-left:16px;
+padding-right:16px;
+padding-top:2px;
+padding-bottom:2px;
+background-color: #badbff;
+}
+
+td.centrada_resultados_titulos_6{
+padding-left:16px;
+padding-right:16px;
+padding-top:2px;
+padding-bottom:2px;
+background-color: #558ba4;
+}
+
+td.centrada_resultados_titulos_7{
+padding-left:16px;
+padding-right:16px;
+padding-top:6px;
+padding-bottom:6px;
+background-color: #cbdbe2;
+}
+
+td.centrada_resultados_titulos_8{
+padding-left:16px;
+padding-right:16px;
+padding-top:8px;
+padding-bottom:4px;
+background-color: #bdbdbd;
+}
+
+td.centrada_resultados_papelera{
+padding-left:2px;
+padding-right:2px;
+padding-top:2px;
+padding-bottom:2px;
+background-color: #cbdbe2;
+}
+
+td.centrada_resultados_alterno_1_papelera{
+padding-left:2px;
+padding-right:2px;
+padding-top:2px;
+padding-bottom:2px;
+background-color: #ECF1F5;	
+}
+td.centrada_resultados_alterno_2_papelera{
+padding-left:2px;
+padding-right:2px;
+padding-top:2px;
+padding-bottom:2px;	
+}
+
+td.centrada_resultados_total{
+padding-left:16px;
+padding-right:16px;
+padding-top:2px;
+padding-bottom:2px;
+background-color: #cbdbe2;
+}
+td.centrada_resultados_verde{
+padding-left:16px;
+padding-right:16px;
+padding-top:2px;
+padding-bottom:2px;
+background-color: #A0FFA0;
+}
+
+td.centrada_resultados_alterno_0{
+padding-left:16px;
+padding-right:16px;
+padding-top:2px;
+padding-bottom:2px;
+}
+
+td.centrada_resultados_alterno_1{
+padding-left:16px;
+padding-right:16px;
+padding-top:2px;
+padding-bottom:2px;
+background-color: #ECF1F5;	
+}
+td.centrada_resultados_alerta{
+padding-left:16px;
+padding-right:16px;
+padding-top:2px;
+padding-bottom:2px;
+background-color: #FF6666;	
+}
+
+td.centrada_resultados_alterno_2{
+padding-left:16px;
+padding-right:16px;
+padding-top:2px;
+padding-bottom:2px;	
+}
+
+td.centrada_resultados_alterno_3{
+/* Se utiliza en las filas impares de la tabla que genera una b�squeda inteligente */
+padding-left:5px;
+padding-right:5px;
+padding-top:2px;
+padding-bottom:2px;
+background-color: #ECF1F5;	
+}
+
+td.centrada_resultados_alterno_4{
+/* Se utiliza en las filas pares de la tabla que genera una b�squeda inteligente */
+padding-left:5px;
+padding-right:5px;
+padding-top:2px;
+padding-bottom:2px;
+background-color: #FFFFFF;		
+}
+
+td.centrada_resultados_alterno_5{
+padding-left:5px;
+padding-right:5px;
+padding-top:2px;
+padding-bottom:2px;
+background-color: #4793B4;		
+}
+
+tr.resultados_estado_0 {
+padding-left:16px;
+padding-right:16px;
+padding-top:2px;
+padding-bottom:2px;
+background-color: #FFFFFF;	
+}
+
+tr.resultados_estado_1{
+padding-left:16px;
+padding-right:16px;
+padding-top:2px;
+padding-bottom:2px;
+background-color: #ECF1F5;	
+}
+
+tr.resultados_estado_2{
+padding-left:16px;
+padding-right:16px;
+padding-top:2px;
+padding-bottom:2px;
+background-color: #FF9E9E;	
+}
+
+tr.resultados_estado_3{
+padding-left:16px;
+padding-right:16px;
+padding-top:2px;
+padding-bottom:2px;
+background-color: #FFFFCC;	
+}
+
+td.centrada_resultados_alterno_azul_1{
+padding-left:16px;
+padding-right:16px;
+padding-top:2px;
+padding-bottom:2px;
+background-color: #e4eff4;	
+}
+
+td.centrada_resultados_alterno_azul_2{
+padding-left:16px;
+padding-right:16px;
+padding-top:2px;
+padding-bottom:2px;	
+}
+
+
+
+td.centrada_resultados_titulos_pequeño{
+	/* Se utiliza en las cabeceras de la tablas que aparecen dentro de bloques como en hojas y vie*/
+                    padding-left:2px;
+                    padding-right:2px;
+                    padding-top:2px;
+                    padding-bottom:2px;
+                    background-color: #cbdbe2;
+		}
+
+
+
+
+/*-------------------------- celdas para mostrar las pesta�as-----------------------*/		
+		
+td.pestana{
+	padding-left:0px;
+	padding-right:0px;
+	padding-top:2px;
+}
+html>Body td.pestana{
+	padding-left:4px;
+	padding-right:4px;
+}
+td.pestana2{
+	padding-left:8px;
+	padding-right:8px;
+	padding-top:2px;
+}
+html>Body td.pestana2{
+	padding-left:8px;
+	padding-right:8px;
+}
+td.pestana_azul{
+	padding-left:0px;
+	padding-right:0px;
+	padding-top:2px;
+}
+html>Body td.pestana_azul{
+	padding-left:4px;
+	padding-right:4px;
+}
+td.contiene_pestana {
+bgcolor:#FFFFFF;
+padding:4px;
+vertical-align:top;
+}
+			
+/*-------------------------- celdas para mostrar las estadisticas-----------------------*/
+td.estadisticas_resultados_titulos{
+padding-left:3px;
+padding-right:3px;
+padding-top:2px;
+padding-bottom:2px;
+background-color: #cbdbe2;
+}
+td.estadisticas_resultados_total{
+padding-left:3px;
+padding-right:3px;
+padding-top:2px;
+padding-bottom:2px;
+background-color: #cbdbe2;
+}
+td.estadisticas_resultados_alterno_1{
+padding-left:3px;
+padding-right:3px;
+padding-top:2px;
+padding-bottom:2px;
+background-color: #ECF1F5;	
+}
+td.estadisticas_resultados_alterno_2{
+padding-left:3px;
+padding-right:3px;
+padding-top:2px;
+padding-bottom:2px;	
+}
+
+
+td.centrada_buscador{
+padding-left:32px;
+padding-right:32px;
+padding-top:2px;
+padding-bottom:2px;
+background-color: #ECF1F5;
+}
+
+td.centrada_tabla{
+background-color: #ECF1F5;
+}
+
+td.centrada_buscador2{
+padding-left:10px;
+padding-right:10px;
+padding-top:5px;
+padding-bottom:10px;
+background-color: #ECF1F5;
+}
+
+td.subicono{
+	width:36px;
+	background-image: url(../images/bg_subtitular_tabla.gif);
+		
+}
+td.icono_1{
+	width:35px;
+	background-image: url(../images/ico_seccion_buscador.gif);
+	border-bottom:solid 2px #FFFFFF;
+	height:33px;
+}
+td.icono_2{
+	width:35px;
+	height:33px;
+	background-image: url(../images/ico_seccion_historial.gif);
+}
+td.icono_3{
+	width:35px;
+	height:33px;
+	background-image: url(../images/ico_seccion_login.gif);
+}
+td.icono_4{
+	width:35px;
+	height:33px;
+	background-image: url(../images/ico_imprimir.gif);
+       
+}
+td.dde{
+	background-color: #f2f6f8;
+	padding-left:10px;
+	padding-right:10px;
+	padding-top:5px;
+	padding-bottom:5px;
+	border-left:solid 1px #FFFFFF;
+}
+
+td.unidad_hospital{
+	padding-left:20px;
+	padding-right:20px;
+	padding-top:15px;
+	padding-bottom:15px;
+	background-image: url(../images/franja_blanca_grande.gif);
+	
+}
+
+td.noticias{
+	background-color:#EBF1F4;
+	padding-left:32px;
+	padding-right:32px;
+	padding-top:10px;
+	padding-bottom:10px;
+	
+}
+td.raya{
+padding-top:15px;
+padding-right:15px;
+border-bottom: solid 1px #DBE7EC;
+}
+
+td.franja_verde_oscura_popup{
+	background-image: url(../images/bg_franja_verde_popup.gif);
+	padding-left:30px;
+	padding-top:4px;
+	padding-bottom:4px;
+}
+td.franja_verde_oscura_2_popup{
+	background-image: url(../images/bg_franja_verde_popup.gif);
+	padding-left:15px;
+	padding-top:4px;
+	padding-bottom:4px;
+}
+
+td.franja_clara_oscura_popup{
+	background-color:#EEF4E6;
+	padding-left:30px;
+	padding-top:4px;
+	padding-bottom:4px;
+	border-top:solid 3px #FFFFFF;
+}
+
+
+td.listado_celeste_resultados_popup{
+	background-color: #f7fafc;
+	padding:4px;
+	padding-left:15px;
+	padding-right:15px;
+}
+
+td.listado_blanco_resultados_popup{
+	padding:4px;
+	padding-left:15px;
+	padding-right:15px;
+	border-collapse: collapse;
+	border-left:2px #f7fafc;
+	border-right:2px #f7fafc;
+	border-top:2px #f7fafc;
+	border-bottom: 2px #f7fafc;
+	
+}
+
+td.listado_verde_resultados_popup{
+	background-color: #F6F9F0;
+	padding:4px;
+	padding-left:15px;
+	padding-right:15px;
+}
+td.listado_gris_resultados_popup{
+	background-color: #f1f1f1;
+	padding:4px;
+	padding-left:15px;
+	padding-right:15px;
+}
+td.listado_azul_resultados_popup{
+	background-color: #e4eff4;
+	padding:4px;
+	padding-left:15px;
+	padding-right:15px;
+}
+td.espacio_blanco_popup{
+	padding-left:2px;
+	padding-right:2px;
+	border-top:solid 1px #509291;
+	border:solid 1px #509291;
+}
+TR.titular_seccion{
+	background-image: url(../images/bg_titular_tabla.gif);
+	border-bottom:solid 2px #FFFFFF;
+	height:33px;
+}
+TD.titular_seccion{
+	background-image: url(../images/bg_titular_tabla.gif);
+	border-bottom:solid 2px #FFFFFF;
+	height:33px;
+}
+TD.subtitular_seccion{
+	background-image: url(../images/bg_subtitular_tabla.gif);
+}
+
+td.reloj {
+        width:100%;
+        align:center;
+}
+
+td.ico_mensaje{
+	padding-top:15px;
+}
+td.ico_mensaje_no{
+	padding-top:11px;
+}
+
+/*-------------------------- Estilos celendario-----------------------*/
+
+td.calendario_dia{
+	color: #387895; 
+ 	font-size: 11px; 
+ 	font-family: Tahoma,Arial, Helvetica, Geneva; 
+	font-weight:bold;
+	text-align:center;
+	background-color:#cadde6;
+	padding-top:2px;
+	padding-bottom:3px;
+}
+td.calendario_dia_inactivo{
+	color: #333333; 
+ 	font-size: 11px; 
+ 	font-family: Tahoma,Arial, Helvetica, Geneva; 
+	font-weight:bold;
+	text-align:center;
+	border-bottom:solid 1px #e5e5e6;
+	border-right:solid 1px #e5e5e6;
+	padding-top:2px;
+	padding-bottom:3px;
+	
+}
+td.calendario_dia_inactivo2{
+	color: #333333; 
+ 	font-size: 11px; 
+ 	font-family: Tahoma,Arial, Helvetica, Geneva; 
+	font-weight:bold;
+	text-align:center;
+	border-bottom:solid 1px #e5e5e6;
+	padding-top:2px;
+	padding-bottom:3px;
+	
+}
+td.calendario_dia_inactivo3{
+	color: #333333; 
+ 	font-size: 11px; 
+ 	font-family: Tahoma,Arial, Helvetica, Geneva; 
+	font-weight:bold;
+	text-align:center;
+	border-right:solid 1px #e5e5e6;
+	padding-top:2px;
+	padding-bottom:3px;
+	
+}
+td.calendario_dia_inactivo4{
+	color: #333333; 
+ 	font-size: 11px; 
+ 	font-family: Tahoma,Arial, Helvetica, Geneva; 
+	font-weight:bold;
+	text-align:center;
+	padding-top:2px;
+	padding-bottom:3px;
+	
+}
+td.calendario_dia_inactivo5{
+	color: #333333; 
+ 	font-size: 11px; 
+ 	font-family: Tahoma,Arial, Helvetica, Geneva; 
+	text-align:center;
+	border-bottom:solid 1px #e5e5e6;
+	border-right:solid 1px #e5e5e6;
+	padding-top:2px;
+	padding-bottom:3px;
+	
+}
+td.calendario_dia_actual{
+	color: #333333; 
+ 	font-size: 11px; 
+ 	font-family: Tahoma,Arial, Helvetica, Geneva; 
+	font-weight:bold;
+	text-align:center;
+	border-bottom:solid 1px #e5e5e6;
+	border-left:solid 1px #e5e5e6;
+	padding-top:2px;
+	padding-bottom:3px;
+	background-color:#dbebf3;
+	border:solid 1px #8ab1c3;
+	
+}
+td.calendario_dia_senalado{
+	color: #333333; 
+ 	font-size: 11px; 
+ 	font-family: Tahoma,Arial, Helvetica, Geneva; 
+	font-weight:bold;
+	text-align:center;
+	border-bottom:solid 1px #e5e5e6;
+	border-left:solid 1px #e5e5e6;
+	padding-top:2px;
+	padding-bottom:3px;
+	background-color:#ffc233;
+	border:solid 1px #ff9d33;
+	
+}
+
+td.inicio_top{		
+	text-align:center;        
+	height: 204px;
+	
+}
+td.inicio_entrada{		
+	text-align:center;        
+	height: 169px;
+	
+}
+td.inicio_acceso{		
+	text-align:center;        
+	height: 50px;
+	
+}
+td.inicio_pie{		
+	text-align:center;        
+	height: 100px;
+	
+}
+table.flechas_calendario{
+	margin-bottom:5px;
+}
+a.calendario{
+	font-family: Tahoma,Arial, Helvetica, Geneva; 
+	font-size: 11px;
+	color: #333333;
+	font-weight: normal;
+	text-decoration: underline;
+}
+
+a.calendario:hover{
+	font-family: Tahoma,Arial, Helvetica, Geneva; 
+	font-size: 11px;
+	color: #387895;
+	font-weight: bold;
+	text-decoration: underline;
+}
+
+
+
+
+
+/*-------------------------- Estilos de tablas-----------------------*/
+
+table.franja_blanca_2{
+	background-image: url(../images/franja_blanca.gif);
+	border:solid 1px #dcdcdc;
+	padding-left:30px;
+	padding-top:2px;
+	padding-bottom:2px;
+}
+
+table.franja_blanca_3{
+	background-image: url(../images/franja_blanca.gif);
+	border:solid 1px #dcdcdc;
+	padding-top:2px;
+	padding-bottom:2px;
+}
+table.top{
+	
+	width:100%;
+	height:93px;
+	border:0px;
+	padding:0px;
+	background-image: url(../images/bg_top.gif);
+	background-repeat: repeat-x;
+	margin:0px;
+}
+table.franja_blanca{
+	background-image: url(../images/franja_blanca.gif);
+	border-top:solid 1px #d9d9d9;
+	border-bottom:solid 1px #d9d9d9;
+}
+table.franja_blanca_informe{
+	background-image: url(../images/franja_blanca.gif);
+	border-top:solid 1px #d9d9d9;
+	border-bottom:solid 1px #d9d9d9;
+	margin-bottom:10px;
+}
+table.degradado_verde{
+ background-image: url(../images/bg_contenedora.gif);
+ background-position: bottom;
+ background-repeat: repeat-x;
+ border-left:solid 1px #DCDCDC;
+ 
+}
+HTML>BODY table.degradado_verde{
+background-image: url(../images/bg_contenedora.gif);
+ background-position: bottom;
+ background-repeat: repeat-x;
+border-left:solid 1px #DCDCDC;
+}
+
+table.blanca{
+ 
+ background-position: bottom;
+ background-repeat: repeat-x;
+ 
+}
+HTML>BODY table.blanca{
+
+ background-position: bottom;
+ background-repeat: repeat-x;
+ border-left:solid 1px #DCDCDC;
+}
+table.marco_tabla{
+	border:solid 1px #c9dae2;
+	background-color:#FFFFFF;
+	padding:0px;
+}
+
+table.marco_tabla2{
+	border:solid 0px #c9dae2;
+	background-color:#FFFFFF;
+	padding:0px;
+}
+
+table.marco_tabla3{
+	border:solid 1px #c9dae2;
+	background-color:#ECF1F5;
+	padding:5px;
+}
+
+table.pestanas{
+	margin-left:5px;
+	margin-top:5px;
+}
+HTML>BODY table.pestanas{
+margin-left:3px;
+}
+table.pestanas_hojas{
+	margin-left:12px;
+	
+}
+HTML>BODY table.pestanas_hojas{
+margin-left:30px;
+}
+
+table.franja_verde{
+	margin-top:15px;
+	background-color: #EAF1E0;
+
+}
+table.hoja{
+	padding:0px;
+	border:solid 1px #dcdcdc;
+}
+
+html>body table.hoja{
+padding:0px; 
+	
+}
+table.titular_hoja{		
+	margin-bottom:10px;
+}
+table.titular_hoja_2{
+	
+	
+	margin-bottom:0px;
+}
+table.datos_destacados{
+	border-top:solid 1px #dcdcdc;
+	border-bottom:solid 1px #dcdcdc;
+	margin-top:10px;
+	margin-bottom:10px;
+	
+}
+table.verde{
+		background-image: url(../images/relieve_verde.gif);
+ 		background-position: bottom;
+ 		background-repeat: repeat-x;
+		padding-left:15px;
+		padding-top:2px;
+		padding-bottom:2px;
+
+		border-bottom:solid 1px #FFFFFF;
+}
+table.sub_pestanas{
+		background-image: url(../images/relieve_azul.gif);
+ 		background-position: bottom;
+ 		background-repeat: repeat-x;
+		padding-left:15px;
+		padding-top:2px;
+		padding-bottom:2px;
+		border-bottom:solid 1px #FFFFFF;
+}
+table.celeste{
+		background-color: #EBF1F4;
+		padding-left:15px;
+		padding-top:2px;
+		padding-bottom:2px;
+}
+table.celeste_2{
+		background-color: #EBF1F4;
+		padding-right:15px;
+}
+table.titular_raya_bloque{
+	border-bottom:solid 1px #aeccda;
+}
+table.bloque{
+	
+	padding-top:5px;
+	padding-left:22px;
+	padding-right:22px;
+	padding-bottom:10px;
+	margin-bottom:10px;
+}
+table.bloque_verde{
+	background-color: #F3F7ED;
+	margin-top:5px;
+	padding:10px;
+	
+}
+table.bloque_azul{
+	background-color: #f7fafc;
+	margin-top:5px;
+	padding:10px;
+	border:solid 1px #aeccda;	
+}
+
+
+table.bloque_blanco_marco{
+	background-color: #ffffff;
+	margin-top:5px;
+	padding:10px;
+	border:solid 1px #aeccda;	
+    }
+
+table.bloque_blanco_pruebas{
+	background-color: #ffffff;
+	margin-top:5px;
+	border:solid 1px #aeccda;	
+}
+
+table.bloque_blanco_codigo {
+	background-color: #ffffff;
+	margin-top:5px;
+	padding-left:10px;	
+	border:solid 1px #aeccda;	
+}
+
+table.bloque_blanco_dosis {
+	background-color: #ffffff;
+	padding-left:8px;
+	padding-right:8px;		
+	border:solid 1px #aeccda;	
+}
+
+table.bloque_blanco{
+	background-color: #ffffff;
+	margin-top:5px;
+	padding:10px;
+	border:solid 1px #aeccda;	
+}
+
+table.bloque_blanco_nopadding{
+	background-color: #ffffff;
+	margin-top:5px;
+	padding:0px;
+	border:solid 1px #aeccda;	
+}
+
+table.bloque_blanco_localizacion{
+	background-color: #ffffff;
+	margin-top:5px;
+	padding-top:5px;
+	padding-bottom:5px;
+	padding-left:10px;
+	border:solid 1px #aeccda;	
+}
+
+table.boton{
+        width:100%;
+	height:100%;
+	border:0px;
+	padding:0px;
+	background-image: url(../images/bg_boton.gif);
+	background-repeat: repeat-x;
+	margin:0px;
+}
+table.reloj{
+        cellSpacing:0px; 
+        cellPadding:0px; 
+        width:100%;
+        border:0px;
+        align:center;
+}
+
+table.gris{
+    background-color:#F8F8F8;
+}
+
+table.gris_oscuro{
+    background-color:#E3E3E3;
+}
+
+table.bloque_datos{
+	border:solid 1px #aeccda;
+	border-collapse: collapse;	
+}
+
+
+/*-------------------------- Estilos para las tablas de las pesta�as -----------------------*/
+
+td.fondo_naranja{
+	background-image: url(../images/fondo_naranja.gif);
+ 	background-position:top;
+ 	background-repeat: repeat-x;
+ 	border-top:solid 1px #ffc233;
+ 	border-bottom:solid 1px #ffc233;
+}
+
+.fondo_verde{
+	background-image: url(../images/fondo_verde.gif);
+ 	background-position:top;
+ 	background-repeat: repeat-x;
+ 	border-top:solid 1px #8cb14d;
+ 	border-bottom:solid 1px #8cb14d;
+}
+
+
+td.fondo_violeta{
+	background-image: url(../images/fondo_violeta.gif);
+ 	background-position:top;
+ 	background-repeat: repeat-x;
+ 	border-top:solid 1px #b179a6;
+ 	border-bottom:solid 1px #b179a6;
+}
+td.fondo_rojo{
+
+	background-image: url(../images/fondo_rojo.gif);
+ 	background-position:top;
+ 	background-repeat: repeat-x;
+ 	border-top:solid 1px #b86256;
+ 	border-bottom:solid 1px #b86256;
+}
+td.fondo_celeste{
+
+	background-image: url(../images/fondo_celeste.gif);
+ 	background-position:top;
+ 	background-repeat: repeat-x;
+ 	border-top:solid 1px #6495b6;
+ 	border-bottom:solid 1px #6495b6;
+}
+table.borde_naranja{
+
+	border:solid 1px #ffc233;
+}
+table.borde_verde{
+
+	border:solid 1px #8cb14d;
+}
+
+td.borde_verde{
+
+	border:solid 1px #8cb14d;
+}
+
+table.borde_violeta{
+
+	border:solid 1px #b179a6;
+}
+table.borde_rojo{
+
+	border:solid 1px #b86256;
+}
+table.borde_celeste{
+
+	border:solid 1px #6495b6;
+}
+  table.marco_interior{
+                border:solid 1px  #c9dae2;
+                border-top:solid 1px #d9d9d9;
+                border-bottom:solid 1px #d9d9d9;
+                background-color:#FFFFFF;
+	
+        }
+
+/*-------------------------- Estilos para los botones que aparezcan a la izquierda de una lista de resultados -----------------------*/
+
+td.izq_resultados_alterno_1{   
+padding-left:2px;
+padding-right:32px;
+padding-top:2px;
+padding-bottom:2px;
+background-color: #ECF1F5;	
+}
+td.izq_resultados_alterno_2{
+padding-left:2px;
+padding-right:32px;
+padding-top:2px;
+padding-bottom:2px;	
+}
+
+
+
+
+
+/*-------------------------- Estilos heredados de la hoja de estilos antigua, para los informes -----------------------*/
+.text10 {
+	font-family: Verdana, Arial, Helvetica, sans-serif; 
+	font-size: 10px;  
+	color: #374E60;
+}
+
+.text10bold {
+	font-family: Verdana, Arial, Helvetica, sans-serif; 
+	font-size: 10px; 
+	font-weight: bold;  
+	color: #374E60;
+}
+
+.title20bold {
+	font-family: Verdana, Arial, Helvetica, sans-serif; 
+	font-weight: bold; 
+	font-size: 20px;  
+	color: #374E60;
+}
+
+.title16bold {
+	font-family: Verdana, Arial, Helvetica, sans-serif; 
+	font-weight: bold; 
+	font-size: 16px;  
+	color: #374E60;
+}
+
+
+
+
+/*---------------- Estilos para el arbol ------------------------------------*/
+
+.dtree {   
+	position:relative;
+	font-size: 11px; 
+	font-family: Tahoma,Arial, Helvetica, Geneva; 
+    color: #374E60;
+	font-weight: bold;
+	white-space: nowrap;		
+}
+
+
+.dtree img {
+	border: 0px;
+	vertical-align: text-bottom;
+}
+.dtree a {
+	text-decoration: none;
+	color: #374E60;
+}
+
+.dtree a:hover {
+	
+	text-decoration: none;
+}
+
+.dtree .node {
+	position: relative;
+	top: -2px;
+	padding: 1px;
+	color: #374E60;	
+}
+
+.dtree .nodeSel {
+	position: relative;
+	top: -2px;
+	padding: 1px;
+	color: #374E60;
+}
+
+.dtree .node_sel {
+	position: relative;
+	top: -2px;
+	padding: 1px;
+	color: #374E60; 
+}
+
+.dtree .node_red {
+	position: relative;
+	.top: -2px;
+	padding: 1px;
+	color: #ff0000;
+}
+
+.dtree .node_red_sel {
+	position: relative;
+	top: -2px;
+	padding: 1px;
+	color: #ff0000;
+  background-color: #c0d2ec;
+}
+
+.dtree .node_black {
+	position: relative;
+	top: -2px;
+	padding: 1px;
+	color: #000000;
+}
+
+.dtree .node_black_sel {
+	position: relative;
+	top: -2px;
+	padding: 1px;
+	color: #000000;
+  background-color: #c0d2ec;
+}
+
+.dtree .node_blue {
+	position: relative;
+	top: -2px;
+	padding: 1px;
+	color: blue;
+}
+
+.dtree .node_blue_sel {
+	position: relative;
+	top: -2px;
+	padding: 1px;
+	color: blue;
+  background-color: #c0d2ec;
+}
+
+.dtree .node_orange {
+	position: relative;
+	top: -2px;
+	padding: 1px;
+	color: orange;
+}
+
+.dtree .node_orange_sel {
+	position: relative;
+	top: -2px;
+	padding: 1px;
+	color: orange;
+  background-color: #c0d2ec;
+}
+
+.dtree .node_green {
+	position: relative;
+	top: -2px;
+	padding: 1px;
+	color: #00CC00;
+}
+
+.dtree .node_green_sel {
+	position: relative;
+	top: -2px;
+	padding: 1px;
+	color: #00CC00;
+  background-color: #c0d2ec;
+}
+
+.dtree .clip {
+	overflow: hidden;
+}
+/* ----------------- Estilo para el reloj de cuenta atras -----------------------*/
+.cuenta_atras {
+	border-color:#FFFFFF;
+	display:inline;
+	background-color:#387895;
+	position:absolute; 
+	left: 20 px; 
+	top: 10 px;
+}
+
+/* ------------------ Estilos para imprimir / no imprimir ------------------ */
+
+.web{
+}
+
+.impresion{
+	display:none;
+}
+
+.impresion_bloque{
+	display:none;
+}
+
+.contraido{display:none;}
+.expandido{}
+div.tiempo_inactividad{
+	font-family: Tahoma,Arial, Helvetica, Geneva; 
+	font-size: 11px;
+	color: #FFFFFF;
+	background-image: url(../images/ico_reloj.gif);
+ 	background-position:2px 1px;
+ 	background-repeat: no-repeat;
+ 	background-color:#6697ae;
+ 	padding:6px;
+ 	padding-left:30px;
+}
+div.tiempo_inactividad2{
+ 	font-family: Tahoma,Arial, Helvetica, Geneva; 
+	font-size: 11px;
+	color: #FFFFFF;
+	background-image: url(../images/ico_reloj.gif);
+	background-repeat: no-repeat;
+	background-color:#6697ae;
+	display:inline;
+	position:absolute; 
+	left: 20 px; 
+	top: 10 px;
+	background-position:2px 1px;
+	padding:6px;
+ 	padding-left:30px;
+}
+
+div.tiempo_cargando{
+ 	font-family: Tahoma,Arial, Helvetica, Geneva; 
+	font-size: 11px;
+	color: #FFFFFF;
+	background-repeat: no-repeat;
+	background-color:#6697ae;
+	display:inline;
+	position:absolute; 
+	left: 20 px; 
+	top: 40 px;
+	background-position:2px 1px;
+	padding:6px;
+}
+
+div.tiempo_cargando_centrado{
+ 	font-family: Tahoma,Arial, Helvetica, Geneva; 
+	font-size: 11px;
+	color: #FFFFFF;
+	background-repeat: no-repeat;
+	background-color:#6697ae;
+	display:inline;
+	background-position:2px 1px;
+	padding:6px;
+}
+
+	.salto{
+			display:none;
+		}
+		
+	.saltoLinea{
+		display: inline;
+	}	
+
+img.mano{
+    cursor:pointer;
+}
+
+
+
+/*---------------- Estilos para imagenes ------------------------------------*/
+
+.entrada_imagen{
+
+width: 436px;
+height: 204px;
+
+
+}
+
+.entrada_documentos{
+
+width: 549px;
+height: 169px;
+
+}
+.entrada_raya{
+
+width: 10px;
+height: 44px;
+
+}
+.entrada_pie{
+
+width: 215px;
+height: 55px;
+
+}
+
+.cama{
+	border:solid 2px #c9dae2;
+	background-repeat:no-repeat;
+	padding-right:9px;
+	padding-left:9px;
+	padding-top:2px;
+}
+
+.skin0{
+	position:absolute;
+	width:250px;
+	border:2px solid white;
+	background-color: #ECF1F5;
+	font-family:Verdana;
+	font-size: 10px;
+	line-height:15px;
+	cursor:default;
+	visibility:hidden;
+}
+
+
+/*
+	ESTILOS PARA ADAPTACION CON FIREFOX
+*/
+div.con_margen {
+	margin:10px;
+}
+
+
+/*
+	FIN ESTILOS PARA ADAPTACION CON FIREFOX
+*/
+
+/*---------------- Estilos para imprimir ------------------------------------*/
+.arrow {display:inline;}
+
+@media print
+	{
+
+			hr{
+				color:#000000;
+				height:1px;	
+			}
+
+			div.tiempo_inactividad{
+                    display:none;
+                }  
+
+td.icono_4{
+	width:35px;
+	height:30px;
+	background-image: url(../images/ico_imprimir.gif);
+        display:none;
+}
+                div.tiempo_inactividad2{
+                    display:none;
+                }       
+
+                table.titular_raya_bloque{
+			border-bottom:solid 0px #aeccda;
+		}
+		
+		a.azul{
+			font-family: Tahoma,Arial, Helvetica, Geneva; 
+			font-size: 12px;
+			color: #000000;
+			font-weight: normal;
+			text-decoration: none;
+		}
+
+		a.azul_pruebas{
+			font-family: Tahoma,Arial, Helvetica, Geneva; 
+			font-size: 10px;
+			color: #000000;
+			font-weight: normal;
+			text-decoration: none;
+		}
+
+		a.azul_tablas{ /* Se usa cuando hay enlaces en tablas (menor tama�o en impresion) */
+			font-family: Tahoma,Arial, Helvetica, Geneva; 
+			font-size: 10px;
+			color: #000000;
+			font-weight: normal;
+			text-decoration: none;
+		}
+
+		a.azul_enlace{
+			font-family: Verdana, Arial, Helvetica, sans-serif;
+			font-size: 12px;
+			color: #000000;
+			font-weight: normal;
+		}
+	
+
+		font.azul_mediano {
+			color:#000000;
+			font-family: Verdana, Arial, Helvetica, sans-serif;
+			font-size: 14px;
+		}
+
+                font.gris_web{
+                    display:none;
+                }
+
+		font.titular1{
+			font-family: Verdana, Arial, Helvetica, sans-serif; 
+			font-weight: bold; 
+			font-size: 16px;  
+			color: #000000;
+		}
+
+		font.notaPieEstandar{
+			color: #000000;
+			font-size: 12px;  
+			font-family: Tahoma,Arial, Helvetica, Geneva;
+			font-weight:bold;
+		}
+	
+		.cuenta_atras {
+			display:none;
+		}
+		
+		fieldset.bloque{	
+			border:solid 0px;	
+			padding-top:2px;
+			padding-left:2px;
+			padding-right:2px;
+			padding-bottom:2px;
+			margin-bottom:5px;
+		}
+
+        table.tabla_contenedora{	
+			vertical-align:top;	
+            margin-left:0px;	
+            margin-right:0px;	
+            padding:0px;
+            border:solid 0px #c9dae2;
+        }
+  
+        table.contorno{
+            border:solid 1px #000000;
+        }
+
+		table.contornoImpresion{
+            border:solid 1px #000000;
+        }
+        
+        table.gris{
+            background-color:#ffffff;
+        }
+
+        table.gris_oscuro{
+            background-color:#ffffff;
+        }
+
+
+        table.tabla_principal{
+			vertical-align:top;	
+            padding:0px;
+            border:solid 0px #c9dae2;
+			background: transparent;
+        }
+            
+
+		.arrow {display:none;}
+		
+		table.pestanas_hojas{
+			display:none;
+		}
+
+		table.franja_blanca{
+			background-image:none;
+			border-bottom:solid 1px #000000;
+			border-top:none;
+			border-left:none;
+			border-right:none;
+		}	
+                 table.marco_interior{
+                border:solid 1px #000000;
+                border-top:solid 1px #000000;
+                border-bottom:solid 1px #000000;
+                background-color:#FFFFFF;
+	
+        }
+		table.franja_blanca_2{
+			background-image:none;
+			border-bottom:none;
+			border-top:none;
+			border-left:none;
+			border-right:none;
+			padding-left:30px;
+			padding-top:2px;
+			padding-bottom:2px;
+		}
+
+		table.franja_blanca_informe{
+			display:none;
+		}
+
+		table.sub_pestanas{
+			display:none;
+		}
+		
+		table.marco_tabla{
+			border:solid 0px #c9dae2;
+			background-color:#FFFFFF;
+			padding:0px;
+		}
+
+		table{
+			page-break-before:auto;
+			page-break-after:auto;
+			border-color:#000000;
+			
+		}
+
+		.salto{
+			display:inline;
+			page-break-after:always;
+		}
+		
+		.saltoLinea{
+			display: none;
+		}	
+		
+		.bg_input_2{
+			display:none;
+		}
+
+
+                .bg_input_3{
+			display:none;
+		}
+		
+		.web{
+			display:none;
+		}
+
+		.impresion{
+			display:inline;
+		}
+		
+		.impresion_bloque{
+			display:block;
+		}
+		
+		table.datos_destacados{
+			border-top:solid 1px #000000;
+			border-bottom:solid 0px #000000;	
+			margin-bottom:0px;
+			margin-top:0px;
+		}
+
+		td.centrada{
+			border-width:0px;
+			padding-left:3px;
+			padding-right:3px;
+		}
+		
+		td.centrada_final{
+			border-width:0px;
+		}
+		
+		table.bloque_azul{
+			border-width:0px;
+			padding:0px;
+			background-color: #FFFFFF;
+		}
+
+		table.bloque{	
+			padding-top:5px;
+			padding-left:5px;
+			padding-right:5px;
+			padding-bottom:5px;
+			margin-bottom:1px;
+		}
+
+
+		
+		td.centrada_con_separador{
+			border-width:0px;
+			padding-left:3px;
+			padding-right:3px;
+		}
+		
+		td.centrada_con_separador2{
+
+
+
+			border-width:0px;
+		}
+
+		td.centrada_resultados_titulos_2{
+		/* Se utiliza en la cabecera de la tabla que genera una b�squeda inteligente */
+                    padding-left:2px;
+                    padding-right:2px;
+                    padding-top:2px;
+                    padding-bottom:2px;
+                    background-color: #FFFFFF;
+					border:1px solid #000000;
+		}
+		
+		table.hoja{	
+			border-width:0px;		
+		}
+		
+		table.franja_blanca{
+			border-width:0px;	
+		}
+		
+		
+		td.unidad_hospital{
+			border-width:0px;
+		}
+		
+		td.unidad_hospital{
+			padding-left:20px;
+			padding-right:20px;
+			padding-top:15px;
+			padding-bottom:15px;
+			background-image: none;
+		}
+
+		body.circulos{
+	  		margin:20px;
+			padding-top:5px;
+			border-width:0px;
+		  	background-image: none;
+			background-position: bottom;
+			background-repeat: repeat-x;
+		}
+  	
+  		body.circulos_firefox{
+	  		margin:20px;
+			padding-top:5px;
+			border-width:0px;
+		  	background-image: none;
+			background-position: bottom;
+			background-repeat: repeat-x;
+		}
+  	
+  	
+		body.circulos_provisional{
+	  		margin:20px;
+			padding-top:5px;
+			border-width:0px;
+		  	background-image: none;
+			background-position: center;
+			background-repeat: no-repeat;
+			background-image: url(../images/provisional.jpg);
+		}
+  	
+		font.azul{
+			font-family: Verdana, Arial, Helvetica, sans-serif;
+			color:#000000;
+			font-size: 12px;
+		}
+		
+		font.azul_peq{
+			color: #000000; 
+			font-size: 9px; 
+			font-family: Verdana, Arial, Helvetica, sans-serif; 
+		}
+
+		font.azulBold{
+			font-family: Verdana, Arial, Helvetica, sans-serif;
+			color:#000000;
+			font-size: 12px;
+			font-weight:bold;
+		}
+		
+		font.azul_12{
+			font-family: Verdana, Arial, Helvetica, sans-serif;
+			color:#000000;
+			font-size: 12px;
+		}		
+
+		font.azul_seccion{ /* Para las secciones de las pruebas */
+			font-family: Verdana, Arial, Helvetica, sans-serif;
+			color:#000000;
+			font-size: 12px;
+			text-decoration:underline;
+		}		
+
+		font.azul_pruebas{
+			font-family: Verdana, Arial, Helvetica, sans-serif;
+			color:#000000;
+			font-size: 10px;
+		}				
+
+		font.azul_pie_pagina{
+			font-family: Verdana, Arial, Helvetica, sans-serif;
+			color:#000000;
+			font-size: 9px;
+		}
+		
+		font.azul_tablas{  /* Se usa para cuando el texto aparezca dentro de una tabla de datos, ya que tiene menor tama�o de impresion */
+			font-family: Verdana, Arial, Helvetica, sans-serif;
+			color:#000000;
+			font-size: 10px;
+		}				
+
+		font.rojo{
+			font-family: Verdana, Arial, Helvetica, sans-serif;
+			color:#000000;
+			font-size: 12px;
+			font-weight:bold;
+		}
+		
+		font.rojoBold{
+			font-family: Verdana, Arial, Helvetica, sans-serif;
+			color:#000000;
+			font-size: 12px;
+			font-weight:bold;
+		}
+		
+		font.titular1_blanca{
+			text-align:center;
+			color:#000000;
+			font-weight:bold;
+			font-family: Verdana, Arial, Helvetica, sans-serif; 
+			font-size: 16px;  			
+		}
+
+		TR.titular_seccion{
+			background-image: none;
+			text-align:center;
+		}
+
+		TD.titular_seccion{
+			background-image: none;
+			text-align:center;
+		}
+
+		TD.subtitular_seccion{
+			background-image: none;
+			text-align:center;
+		}
+
+		td.fotografia_1{
+			background-image: none;
+		}
+
+		td.fotografia_2{
+			background-image: none;
+		}
+
+		td.fotografia_3{
+			background-image: none;
+		}
+
+		td.fotografia_4{
+			background-image: none;
+		}
+		td.fotografia_5{
+			background-image: none;
+		}
+
+		td.icono_1{
+			display:none;
+		}
+
+		td.icono_2{
+			display:none;
+		}
+                td.icono_3{
+			display:none;
+		}
+
+                td.menu_item{
+                        display:none;
+                }
+
+		input.gris{
+			background-image: none;		
+			border:1px solid #000000;
+	
+		}
+
+                input.rojo_web{
+                    display:none;
+                }
+
+		td.azul{	
+			background-color: #FFFFFF;
+			padding-left:10px;
+			padding-top:2px;
+			padding-bottom:2px;
+		}
+
+		td.azul_claro{	
+			background-color: #FFFFFF;
+			padding-left:10px;
+			padding-top:2px;
+			padding-bottom:2px;  
+		}
+
+		select.gris{
+			background-image: none;		
+			border:1px solid #000000;	
+		}
+
+		select.grisMultiple{
+			background-image: none;		
+			border:1px solid #000000;		
+		}
+
+		textarea.gris{
+			background-image:none;
+			border:1px solid #000000;
+		}
+
+		table.bloque_blanco{
+			border:solid 0px #000000;
+			background: transparent;
+			margin-top:1px;
+			padding:3px;
+	    }
+	    
+	    table.bloque_blanco_nopadding{
+	    	border:solid 0px #000000;
+			background: transparent;
+			margin-top:1px;
+			padding:0px;
+		}
+	    
+
+		table.bloque_blanco_pruebas{
+			border:solid 0px #000000;
+			background: transparent;
+			margin-top:1px;
+			padding:3px;
+	    }
+
+		table.bloque_blanco_codigo{
+			border:solid 0px #000000;
+			background: transparent;
+			margin-top:1px;
+			padding:3px;
+	    }
+	    table.bloque_blanco_dosis {
+			background-color: #ffffff;
+			padding-left:8px;
+			padding-right:8px;		
+			border:solid 1px #000000;	
+		}
+
+		table.bloque_blanco_localizacion{
+			border:solid 0px #000000;
+			background: transparent;
+			margin-top:1px;
+			padding:3px;
+	    }
+
+		table.bloque_blanco_marco{
+			border:solid 1px #000000;
+			background: transparent;
+			margin-top:5px;
+			padding:3px;
+	    }
+
+        td.centrada_resultados_titulos{
+                    padding-left:16px;
+                    padding-right:16px;
+                    padding-top:2px;
+                    padding-bottom:2px;
+                    background-color: #FFFFFF;
+					border:1px solid #000000;
+					font-size:10px;
+		}
+
+	   	table.bloque_datos {
+					border-color: #000000;
+					border:solid 1px #000000;					
+		}
+		
+		
+		table.titular_hoja{		
+			margin-bottom:20px;
+		}
+		table.titular_hoja_2{
+			margin-bottom:20px;
+		}
+
+	td.centrada_resultados_titulos_pequeño{
+	/* Se utiliza en las cabeceras de la tablas que aparecen dentro de bloques como en hojas y vie*/
+                    padding-left:2px;
+                    padding-right:2px;
+                    padding-top:2px;
+                    padding-bottom:2px;
+                    background-color: #FFFFFF;
+					border:1px solid #000000;
+					font-size:8px;
+		}
+
+	td.centrada_resultados_papelera{
+		padding-left:2px;
+		padding-right:2px;
+		padding-top:2px;
+		padding-bottom:2px;
+		background-color: #FFFFFF;
+	}
+
+td.centrada_resultados_verde{
+	padding-left:16px;
+	padding-right:16px;
+	padding-top:2px;
+	padding-bottom:2px;
+	border-bottom:solid 1px #000000;
+	border-top:solid 1px #000000;
+	border-right:solid 1px #000000;
+	border-left:solid 1px #000000;
+	background-color:#FFFFFF;
+	font-size:10px;
+}
+td.centrada_resultados_alterno_0{
+	padding-left:16px;
+	padding-right:16px;
+	padding-top:2px;
+	padding-bottom:2px;
+	border-bottom:solid 1px #000000;
+	border-top:solid 1px #000000;
+	border-right:solid 1px #000000;
+	border-left:solid 1px #000000;
+	background-color:#FFFFFF;
+	font-size:10px;
+}
+td.centrada_resultados_alterno_1{
+	padding-left:16px;
+	padding-right:16px;
+	padding-top:2px;
+	padding-bottom:2px;
+	border-bottom:solid 1px #000000;
+	border-top:solid 1px #000000;
+	border-right:solid 1px #000000;
+	border-left:solid 1px #000000;
+	background-color:#FFFFFF;
+	font-size:10px;
+}
+
+td.centrada_resultados_alterno_2{
+	padding-left:16px;
+	padding-right:16px;
+	padding-top:2px;
+	padding-bottom:2px;
+	border-bottom:solid 1px #000000;
+	border-top:solid 1px #000000;
+	border-right:solid 1px #000000;
+	border-left:solid 1px #000000;
+	font-size:10px;	
+}
+
+/*---------------- Estilos para filas ------------------------------------*/
+td.centrada_resultados_alterno_3{
+/* Se utiliza en las filas impares de la tabla que genera las estadisticas episodios */
+padding-left:2px;
+padding-right:2px;
+padding-top:2px;
+padding-bottom:2px;
+background-color: #FFFFFF;	
+border-bottom:solid 1px #000000;
+border-top:solid 1px #000000;
+border-right:solid 1px #000000;
+border-left:solid 1px #000000;	
+font-size:10px;
+}
+
+td.centrada_resultados_alterno_4{
+/* Se utiliza en las filas pares de la tabla que genera las estadisticas episodios */
+padding-left:2px;
+padding-right:2px;
+padding-top:2px;
+padding-bottom:2px;
+background-color: #FFFFFF;	
+border-bottom:solid 1px #000000;
+border-top:solid 1px #000000;
+border-right:solid 1px #000000;
+border-left:solid 1px #000000;	
+font-size:10px;
+}
+
+td.centrada_resultados_alterno_5{
+padding-left:2px;
+padding-right:2px;
+padding-top:2px;
+padding-bottom:2px;
+border-bottom:solid 1px #000000;
+border-top:solid 1px #000000;
+border-right:solid 1px #000000;
+border-left:solid 1px #000000;	
+font-size:10px;	
+background-color: #4793B4;		
+}	
+	
+td.centrada_resultados_total{
+/* Se utiliza en las filas total de la tabla que genera las estadisticas episodios */
+padding-left:2px;
+padding-right:2px;
+padding-top:2px;
+padding-bottom:2px;
+background-color: #E0E0E0;
+border-bottom:solid 1px #000000;
+border-top:solid 1px #000000;
+border-right:solid 1px #000000;
+border-left:solid 1px #000000;	
+font-size:10px;
+}
+		fieldset.bloque_fieldset {
+			border-bottom:0px;
+			border-top:0px;
+			border-right:0px;
+			border-left:0px;	
+			}
+}
+
+
+/*-------------------------- Estilos drag&drop -----------------------*/
+
+.DragContainer {
+	BORDER-RIGHT: #669999 1px solid; BORDER-TOP: #669999 1px solid;  BORDER-LEFT: #669999 1px solid; BORDER-BOTTOM: #669999 1px solid
+}
+
+.DragContainer td {
+	padding-left:5px;
+}
+
+table.DragContainer:hover {
+	BACKGROUND-COLOR: #eee; BORDER-RIGHT: #669999 1px solid ; BORDER-TOP: #669999 1px solid; PADDING-BOTTOM: 0px; BORDER-LEFT: #669999 1px solid; BORDER-BOTTOM: #669999 1px solid
+}
+
+table.OverDragContainer {
+	BACKGROUND-COLOR: #eee; BORDER-RIGHT: #669999 1px solid ; BORDER-TOP: #669999 1px solid; PADDING-BOTTOM: 0px; BORDER-LEFT: #669999 1px solid; BORDER-BOTTOM: #669999 1px solid
+}
+
+.ContainerAlerta {
+	BORDER-RIGHT: #669999 2px solid; BORDER-TOP: #669999 2px solid;  BORDER-LEFT: #669999 2px solid; BORDER-BOTTOM: #669999 2px solid;
+	BACKGROUND-COLOR: #ffff99
+}
+
+.DragBox {
+	height:61px;
+	width: 185px;
+	border:solid 2px #c9dae2;
+	background-repeat:no-repeat;
+	padding-right:9px;
+	padding-left:9px;
+	padding-top:2px;
+	background-image:url(../images/pacienteUrgencias.gif)
+}
+
+
+
+.OverDragBox {
+	height:61px;
+	width: 185px;
+	border:solid 2px #c9dae2;
+	background-repeat:no-repeat;
+	padding-right:9px;
+	padding-left:9px;
+	padding-top:2px;
+	background-image:url(../images/pacienteUrgenciasOver.gif);
+	FILTER: alpha(opacity=30);
+}
+
+.AlertaDragBox {
+	height:61px;
+	width: 185px;
+	border:solid 2px #c9dae2;
+	background-repeat:no-repeat;
+	padding-right:9px;
+	padding-left:9px;
+	padding-top:2px;
+	background-image:url(../images/pacienteUrgenciasOverRojo.gif);
+	FILTER: alpha(opacity=70);
+}
+
+
+.DragDragBox {
+	BACKGROUND-COLOR: #ffff99
+}
+.DragDragBox {
+	FILTER: alpha(opacity=50); BACKGROUND-COLOR: #ff99cc
+}
+
+#capaEstados {
+	 padding:5px;
+     position: absolute;
+     top: 50%;
+     left: 50%;
+     margin-top: -40px;
+     margin-left: -100px;
+	 z-index:20;
+}
+
+TD.titular_seccion_ventana{
+            background-image: url(../images/bg_titular_tabla.gif);
+            border-bottom:solid 2px #FFFFFF;
+            height:16px;
+}
+
+.tablaPacientesUrgencias td{
+	padding:3px;
+}
+
+.datoPacienteOscuro {
+color: #215770; 
+font-size: 9px; 
+font-family: Tahoma,Arial, Helvetica, Geneva; 
+}
+
+.datoPaciente {
+color: #387895; 
+font-size: 9px; 
+font-family: Tahoma,Arial, Helvetica, Geneva; 
+}
+
+table.tabla_contenedora_2{		
+	margin:0px;		
+}
+
+font.blanco{
+color:#FFFFFF;
+font-weight:bold;
+font-size: 12px; 
+font-family: Tahoma,Arial, Helvetica, Geneva; 
+}
+
+table.franja_blanca_4{
+	background-image: url(../images/franja_blanca.gif);
+	border:solid 1px #dcdcdc;
+	padding-left:30px;
+	padding-top:2px;
+}
+
+table.tabla_contenedora_2{		
+	margin:0px;	
+	padding-left:20px;
+	padding-right:20px;
+	padding-top:5px;
+	padding-bottom:5px;
+
+}
+
+.localizacionPaciente {
+	border: 2px solid #c9dae2;
+}
+
+#nodoAlta {
+	height: 60px;
+}
+
+.pacienteBusqueda {
+	border: 4px solid #387895;
+}
+
+font.nombreCama {
+	font-size: 12px;
+	font-weight: bold;
+	color: black;
+	font-family: Arial, Helvetica, Geneva;
+}
+
+
+div.triage {	
+    overflow: auto;
+    width: 100%;
+    height: 120px;
+}
+
+table.clasific_inicial {
+	border-collapse: collapse;
+	border-top:solid 1px #aeccda;
+ 	border-bottom:solid 1px #aeccda;
+	border-left:solid 1px #aeccda;
+ 	border-right:solid 1px #aeccda;
+}
+
+td.clasific_inicial {
+	border-collapse: collapse;
+	border-top:solid 1px #aeccda;
+ 	border-bottom:solid 1px #aeccda;
+	border-left:solid 1px #aeccda;
+ 	border-right:solid 1px #aeccda;
+}
+
