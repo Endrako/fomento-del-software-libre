@@ -1,0 +1,98 @@
+package pos.data;
+
+import java.util.Date;
+
+public class Usuario {
+
+	/**
+	 *	Atributo que guarda el nombre del usuario
+	 */
+	private String idUser = "";
+	
+	/**
+	 *  Atributo que guarda el email del usuario
+	 */
+	private String email = "";
+	
+	/**
+	 * Atributo que guarda la contrase–a del usuario
+	 */
+	private String contrase–a = "";
+	
+	/**
+	 * Atributo que guarda la fecha de registro del usuario
+	 */
+	private Date fechaRegistro = null ;
+	
+	/**
+	 * Atributo que guarda el id del perfil
+	 */
+	private String idPerfil = null ;
+
+	/**
+	 * Atributo que guarda el id del proyecto suscrito
+	 */
+	private String idProyecto;
+	
+	/**
+	 * CONSTRUCTOR DE LA CLASE
+	 */
+	public Usuario(){
+		
+	}
+	
+	/**
+	 * METODOS GETTERS AND SETTERS
+	 * 
+	 */
+	public String getNombreUsuario() {
+		return idUser;
+	}
+
+	public void setNombreUsuario(String idUser) {
+		this.idUser = idUser;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getContrase–a() {
+		return contrase–a;
+	}
+
+	public void setContrase–a(String contrase–a) {
+		this.contrase–a = contrase–a;
+	}
+
+	public Date getFechaRegistro() {
+		return fechaRegistro;
+	}
+
+	public void setFechaRegistro(Date fechaRegistro) {
+		this.fechaRegistro = fechaRegistro;
+	}
+
+	public String getIdPerfil() {
+		return idPerfil;
+	}
+
+	public void setIdPerfil(String idPerfil) {
+		this.idPerfil = idPerfil;
+	}
+
+	public String getIdProyecto() {
+		return idProyecto;
+	}
+
+	public void setIdProyecto(String idProyecto) {
+		this.idProyecto = idProyecto;
+	}
+	
+	
+
+}
