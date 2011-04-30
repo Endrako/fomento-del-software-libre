@@ -15,9 +15,9 @@ public class Usuario {
 	private String email = "";
 	
 	/**
-	 * Atributo que guarda la contrase–a del usuario
+	 * Atributo que guarda la contraseï¿½a del usuario
 	 */
-	private String contrase–a = "";
+	private String contrasena = "";
 	
 	/**
 	 * Atributo que guarda la fecha de registro del usuario
@@ -61,12 +61,12 @@ public class Usuario {
 		this.email = email;
 	}
 
-	public String getContrase–a() {
-		return contrase–a;
+	public String getContrasena() {
+		return contrasena;
 	}
 
-	public void setContrase–a(String contrase–a) {
-		this.contrase–a = contrase–a;
+	public void setContrasena(String contrasena) {
+		this.contrasena = contrasena;
 	}
 
 	public Date getFechaRegistro() {
