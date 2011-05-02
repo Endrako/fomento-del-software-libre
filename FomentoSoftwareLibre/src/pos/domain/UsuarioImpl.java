@@ -7,7 +7,7 @@ public class UsuarioImpl implements Usuario{
 	/**
 	 *	Atributo que guarda el nombre del usuario
 	 */
-	private String idUser = "";
+	private String nombreUsuario = null;
 	
 	/**
 	 *  Atributo que guarda el email del usuario
@@ -18,21 +18,6 @@ public class UsuarioImpl implements Usuario{
 	 * Atributo que guarda la contrase�a del usuario
 	 */
 	private String contrasena = "";
-	
-	/**
-	 * Atributo que guarda la fecha de registro del usuario
-	 */
-	private Date fechaRegistro = null ;
-	
-	/**
-	 * Atributo que guarda el id del perfil
-	 */
-	private String idPerfil = null ;
-
-	/**
-	 * Atributo que guarda el id del proyecto suscrito
-	 */
-	private String idProyecto;
 	
 	/**
 	 * CONSTRUCTOR DE LA CLASE
@@ -46,11 +31,11 @@ public class UsuarioImpl implements Usuario{
 	 * 
 	 */
 	public String getNombreUsuario() {
-		return idUser;
+		return nombreUsuario;
 	}
 
 	public void setNombreUsuario(String idUser) {
-		this.idUser = idUser;
+		this.nombreUsuario = idUser;
 	}
 
 	public String getEmail() {
@@ -68,31 +53,4 @@ public class UsuarioImpl implements Usuario{
 	public void setContrasena(String contrasena) {
 		this.contrasena = contrasena;
 	}
-
-	public Date getFechaRegistro() {
-		return fechaRegistro;
-	}
-
-	public void setFechaRegistro(Date fechaRegistro) {
-		this.fechaRegistro = fechaRegistro;
-	}
-
-	public String getIdPerfil() {
-		return idPerfil;
-	}
-
-	public void setIdPerfil(String idPerfil) {
-		this.idPerfil = idPerfil;
-	}
-
-	public String getIdProyecto() {
-		return idProyecto;
-	}
-
-	public void setIdProyecto(String idProyecto) {
-		this.idProyecto = idProyecto;
-	}
-	
-	
-
 }

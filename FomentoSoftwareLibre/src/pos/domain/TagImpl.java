@@ -19,21 +19,27 @@ public class TagImpl implements Tag{
 		
 	}
 
-	/**
-	 * GETTERS AND SETTERS
-	 */
 	public String getIdTag() {
 		return idTag;
 	}
 
+	/* (non-Javadoc)
+	 * @see pos.domain.Tag#setIdTag(java.lang.String)
+	 */
 	public void setIdTag(String idTag) {
 		this.idTag = idTag;
 	}
 
+	/* (non-Javadoc)
+	 * @see pos.domain.Tag#getIdAplicacion()
+	 */
 	public String getIdAplicacion() {
 		return idAplicacion;
 	}
 
+	/* (non-Javadoc)
+	 * @see pos.domain.Tag#setIdAplicacion(java.lang.String)
+	 */
 	public void setIdAplicacion(String idAplicacion) {
 		this.idAplicacion = idAplicacion;
 	}

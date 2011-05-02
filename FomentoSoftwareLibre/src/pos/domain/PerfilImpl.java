@@ -54,9 +54,6 @@ public class PerfilImpl implements Perfil{
 		
 	}
 
-	/** METODOS GETTERS AND SETTERS
-	 * 
-	 */
 	public String getIdUser() {
 		return idUser;
 	}
@@ -77,6 +74,9 @@ public class PerfilImpl implements Perfil{
 		return apellidos;
 	}
 
+	/* (non-Javadoc)
+	 * @see pos.domain.Perfil#setApellidos(java.lang.String)
+	 */
 	public void setApellidos(String apellidos) {
 		this.apellidos = apellidos;
 	}

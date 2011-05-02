@@ -1,6 +1,6 @@
 package pos.data;
 
-import pos.domain.Usuario;
+import pos.domain.UsuarioImpl;
 
 public class UsuarioStore {
 	
@@ -17,7 +17,7 @@ public class UsuarioStore {
 		return userDAO.comprobarUsuario(idUser,password);
 	}
 	
-	public Usuario recuperarUsuario(String idUser){
-		return userDAO.recuperarUsuario(idUser);
+	public UsuarioImpl recuperarUsuario(String idUser){
+		return (UsuarioImpl) userDAO.recuperarUsuario(idUser);
 	}
 }

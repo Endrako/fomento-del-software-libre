@@ -6,7 +6,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import pos.domain.UsuarioStore;
+import pos.data.UsuarioStore;
+import pos.domain.UsuarioImpl;
 
 /**
  * Servlet implementation class FrontController
@@ -52,7 +53,7 @@ public class FrontController extends HttpServlet {
 		UsuarioStore userBIZ = new UsuarioStore();
 		if ( idUser != null && password != null && !idUser.equals("") && !password.equals("") ){
 			if ( userBIZ.comprobarUsuario(idUser,password) ){
-			//	UsuarioBean user = userBIZ.recuperaUsuario(idUser);
+				UsuarioImpl user = userBIZ.recuperarUsuario(idUser);
 				request.getSession().setAttribute("usuario", idUser);
 				request.getRequestDispatcher("index2.html").include(request,response);
 			}else{
