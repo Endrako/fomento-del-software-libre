@@ -6,8 +6,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import pos.data.UsuarioBIZ;
-import pos.data.UsuarioBean;
+import pos.domain.UsuarioStore;
 
 /**
  * Servlet implementation class FrontController
@@ -50,7 +49,7 @@ public class FrontController extends HttpServlet {
 		String idUser = request.getParameter("user");
 		String password = request.getParameter("password");
 		
-		UsuarioBIZ userBIZ = new UsuarioBIZ();
+		UsuarioStore userBIZ = new UsuarioStore();
 		if ( idUser != null && password != null && !idUser.equals("") && !password.equals("") ){
 			if ( userBIZ.comprobarUsuario(idUser,password) ){
 			//	UsuarioBean user = userBIZ.recuperaUsuario(idUser);

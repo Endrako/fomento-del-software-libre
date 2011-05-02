@@ -1,13 +1,15 @@
-package pos.data;
+package pos.domain;
 
-public class UsuarioBIZ {
+import pos.data.JDBCUsuarioDAO;
+
+public class UsuarioStore {
 	
-	private UsuarioDAO userDAO;
+	private JDBCUsuarioDAO userDAO;
 	
 	/**
 	 * 	CONSTRUCTOR DE LA CLASE
 	 */
-	public UsuarioBIZ(){
+	public UsuarioStore(){
 		
 	}
 	

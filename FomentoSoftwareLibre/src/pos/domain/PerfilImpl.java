@@ -1,6 +1,6 @@
-package pos.data;
+package pos.domain;
 
-public class Perfil {
+public class PerfilImpl implements Perfil{
 
 	/**
 	 * Atributo que almacena el id del usuario
@@ -50,7 +50,7 @@ public class Perfil {
 	/**
 	 * Constructor de la clase
 	 */
-	public Perfil(){
+	public PerfilImpl(){
 		
 	}
 

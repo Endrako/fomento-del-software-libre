@@ -1,8 +1,8 @@
-package pos.data;
+package pos.domain;
 
 import java.util.Date;
 
-public class Comentario implements IComentario {
+public class ComentarioImpl implements Comentario {
 
 	/**
 	 * Atributo que almancena el id del comentario
@@ -33,7 +33,7 @@ public class Comentario implements IComentario {
 	 * Constructor de la clase
 	 * 
 	 */
-	public Comentario(){
+	public ComentarioImpl(){
 		
 	}
 

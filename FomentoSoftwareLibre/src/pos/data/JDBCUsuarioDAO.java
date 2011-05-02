@@ -4,7 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class UsuarioDAO {
+public class JDBCUsuarioDAO {
 
 	/**
 	 * Atributo que crea la conexion a la bd
@@ -14,7 +14,7 @@ public class UsuarioDAO {
 	/**
 	 * Constructor de la clase
 	 */
-	public UsuarioDAO(){
+	public JDBCUsuarioDAO(){
 		cm = ConnectionManager.getInstance();
 	}
 	

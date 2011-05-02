@@ -1,8 +1,8 @@
-package pos.data;
+package pos.domain;
 
 import java.util.Date;
 
-public interface IComentario {
+public interface Comentario {
 
 	/**
 	 * GETTERS AND SETTERS

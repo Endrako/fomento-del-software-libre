@@ -1,6 +1,6 @@
-package pos.data;
+package pos.domain;
 
-public class Tag {
+public class TagImpl implements Tag{
 
 	/**Atributo que almacena el id del tag
 	 * 
@@ -15,7 +15,7 @@ public class Tag {
 	/**
 	 * Constructor de la clase
 	 */
-	public Tag(){
+	public TagImpl(){
 		
 	}
 

@@ -1,8 +1,8 @@
-package pos.data;
+package pos.domain;
 
 import java.util.Date;
 
-public class Usuario {
+public class UsuarioImpl implements Usuario{
 
 	/**
 	 *	Atributo que guarda el nombre del usuario
@@ -37,7 +37,7 @@ public class Usuario {
 	/**
 	 * CONSTRUCTOR DE LA CLASE
 	 */
-	public Usuario(){
+	public UsuarioImpl(){
 		
 	}
 	
