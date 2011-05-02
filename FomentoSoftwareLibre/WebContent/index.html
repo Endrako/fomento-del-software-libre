@@ -7,20 +7,54 @@
 <script language="JavaScript" >
 			var css="css/estilos.css";
 		document.write("<link href='" + css + "' rel='stylesheet' type='text/css'>"); 
+		
+		function enviarFormulario(valor){
+			
+			if ( valor == "Entrar"){
+				document.formulario.action="FrontController?accion=entrar";
+				document.formulario.submit()
+			}else{
+				window.location="FrontController?accion=registrar";
+			}
+			
+		}
 </script>
 </head>
-<body background="Imagenes/linuxforce.jpeg">
-<table width="100%" height="100%" border="0">
-	<tr>
-		<td  align="right">
-			<font color="white" face="isocpeur,arial,verdana" size="4"><strong>Bienvenidos a la Web del Fomento Libre</strong></font><br>
-			<font color="white" face="isocpeur,arial,verdana" size="2"><strong>Por favor logueése o registrese para entrar</strong></font><br>
-			<font color="white" face="isocpeur,arial,verdana" size="2"><strong>Nick:</strong></font><input type="text" id="nick" class="gris" value=""><br>
-			<font color="white" face="isocpeur,arial,verdana" size="2"><strong>Password:</strong></font><input type="password" id="password" class="gris" value=""><br>
-			<input type="button" id="enviar" value="Entrar">
-		</td>
-	</tr>
-</table>
-
+<body background="Imagenes/linuxforce.jpg">
+<form id="formulario" name="formulario" action="" method="post">
+<div id="content">
+	<div id="arribaDcha">
+		<fieldset>
+			<legend  style="font-family: Arial,sans-serif; font-size: 18px; color: #FFFFFF">Datos de Usuario</legend>
+			
+			<table width="100%" height="100%" border="0">
+				<tr>
+					<td colspan="2" align="left" class="letra_principal">
+						Bienvenidos a la Web del Fomento Libre
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2" align="left" class="letra_secundaria">
+						Por favor logueése o registrese para entrar
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2"  class="letra_secundaria" align="left">
+						<font class="letra_secundaria"><strong>Nick:            </strong></font><input type="text" id="user" name="user" value="" size="10" ><br>
+						<font class="letra_secundaria"><strong>Password: </strong></font><input type="password" id="password" name="password" value="" size="10"><br>
+					</td>
+				<tr>
+					<td align="left">
+						<input type="button" id="enviar" value="Entrar" onclick="javascript:enviarFormulario(this.value);">
+					</td>
+					<td align="right">
+						<input type="button" id="registrar" value="Registrarse" onclick="javascript:enviarFormulario(this.value);">
+					</td>
+				</tr>
+			</table>
+		</fieldset>
+	</div>
+</div>
+</form>
 </body>
 </html>
