@@ -12,9 +12,6 @@ public interface Perfil {
 
 	public String getApellidos();
 
-	/* (non-Javadoc)
-	 * @see pos.domain.Perfil#setApellidos(java.lang.String)
-	 */
 	public void setApellidos(String apellidos);
 
 	public Integer getEdad();

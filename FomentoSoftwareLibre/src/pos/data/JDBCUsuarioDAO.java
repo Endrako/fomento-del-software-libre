@@ -55,7 +55,7 @@ public class JDBCUsuarioDAO implements IUsuarioDAO {
 		return res;
 	}
 	
-	 public Usuario recuperarUsuario(String idUser) {
+	 public UsuarioImpl recuperarUsuario(String idUser) {
 	        PreparedStatement stmt = null;
 	        ResultSet result = null;
 	        UsuarioImpl u = null;
@@ -90,13 +90,12 @@ public class JDBCUsuarioDAO implements IUsuarioDAO {
 	    }
 
 	@Override
-	public Usuario insertarUsuario(Usuario user) {
+	public void insertarUsuario(UsuarioImpl user) {
 		// TODO Auto-generated method stub
-		return null;
 	}
 
 	@Override
-	public List<Usuario> recuperarTODOS() {
+	public List<UsuarioImpl> recuperarTODOS() {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -1,7 +1,5 @@
 package pos.domain;
 
-import java.util.Date;
-
 public class UsuarioImpl implements Usuario{
 
 	/**
@@ -18,6 +16,11 @@ public class UsuarioImpl implements Usuario{
 	 * Atributo que guarda la contrase�a del usuario
 	 */
 	private String contrasena = "";
+	
+	/**
+	 * 	Atributo que almacena el perfil del usuario
+	 */
+	private Perfil perfilUser;
 	
 	/**
 	 * CONSTRUCTOR DE LA CLASE
@@ -53,4 +56,13 @@ public class UsuarioImpl implements Usuario{
 	public void setContrasena(String contrasena) {
 		this.contrasena = contrasena;
 	}
+
+	public Perfil getPerfil() {
+		return perfilUser;
+	}
+
+	public void setPerfil(Perfil perfilUser) {
+		this.perfilUser = perfilUser;
+	}
+	
 }

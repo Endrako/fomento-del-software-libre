@@ -54,7 +54,7 @@ public class FrontController extends HttpServlet {
 		if ( idUser != null && password != null && !idUser.equals("") && !password.equals("") ){
 			if ( userBIZ.comprobarUsuario(idUser,password) ){
 				UsuarioImpl user = userBIZ.recuperarUsuario(idUser);
-				request.getSession().setAttribute("usuario", idUser);
+				request.getSession().setAttribute("usuario", user);
 				request.getRequestDispatcher("index2.html").include(request,response);
 			}else{
 				request.getRequestDispatcher("falloUsuario.html").include(request,response);
