@@ -30,6 +30,18 @@ input[type=password], textarea {
 	
 }
 
+td.titular{
+	font-family: "lucida sans unicode","lucida grande",sans-serif;
+	font-size: 45px;
+	font-weight: bold;
+	font-variant: small-caps;
+	letter-spacing: 2.2pt;
+	line-height: 1.8;
+	color:#3B094E;
+	text-decoration: underline;
+	
+}
+
 .letra_secundaria{
 	font-family: "lucida sans unicode","lucida grande",sans-serif;
 	font-size: 10px;
@@ -41,7 +53,7 @@ input[type=password], textarea {
 }
 td.letra_secundariaWeb{
 	font-family: "lucida sans unicode","lucida grande",sans-serif;
-	font-size: 10px;
+	font-size: 20px;
 	font-variant: small-caps;
 	letter-spacing: 2.2pt;
 	line-height: 1.8;
