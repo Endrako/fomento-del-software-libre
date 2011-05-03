@@ -23,14 +23,15 @@ public class JDBCUsuarioDAO implements IUsuarioDAO {
 		cm = ConnectionManager.getInstance();
 	}
 	
-	public boolean comprobarUsuario(String idUser, String password){
+	public boolean comprobarUsuario(String nombreUsuario, String password){
 		boolean res = false;
 		        PreparedStatement stmt = null;
 		        ResultSet result = null;
-		        String sql = "SELECT * FROM usuarios";
+		        String sql = "SELECT * FROM usuarios WHERE ( nombreUsuario = ? )";
 
 		        try {
 		            stmt = cm.checkOut().prepareStatement(sql);
+		            stmt.setString(1, nombreUsuario);
 		            result = stmt.executeQuery();
 		            result.next();
 		            if ( result.getString("password").equals(password) ){

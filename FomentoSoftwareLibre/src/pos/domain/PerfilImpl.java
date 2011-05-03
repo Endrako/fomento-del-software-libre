@@ -10,7 +10,7 @@ public class PerfilImpl implements Perfil{
 	/**
 	 * Atributo que almacena el nombre del usuario
 	 */
-	private String nombreUsuario;
+	private String nombreReal;
 	
 	/**
 	 * Atributo que almacena el apellido del usuario
@@ -25,17 +25,17 @@ public class PerfilImpl implements Perfil{
 	/**
 	 * Atributo que almacena el pais del usuario
 	 */
-	private String idPais;
+	private String pais;
 	
 	/**
 	 * Atributo que almacena la ciudad del usuario
 	 */
-	private String idCiudad;
+	private String ciudad;
 	
 	/**
 	 * Atributo que almacena la poblacion del usuario
 	 */
-	private String idPoblacion;
+	private String poblacion;
 	
 	/**
 	 * Atributo que almancena el OS del pc
@@ -63,11 +63,11 @@ public class PerfilImpl implements Perfil{
 	}
 
 	public String getNombreUsuario() {
-		return nombreUsuario;
+		return nombreReal;
 	}
 
 	public void setNombreUsuario(String nombreUsuario) {
-		this.nombreUsuario = nombreUsuario;
+		this.nombreReal = nombreUsuario;
 	}
 
 	public String getApellidos() {
@@ -90,27 +90,27 @@ public class PerfilImpl implements Perfil{
 	}
 
 	public String getIdPais() {
-		return idPais;
+		return pais;
 	}
 
 	public void setIdPais(String idPais) {
-		this.idPais = idPais;
+		this.pais = idPais;
 	}
 
 	public String getIdCiudad() {
-		return idCiudad;
+		return ciudad;
 	}
 
 	public void setIdCiudad(String idCiudad) {
-		this.idCiudad = idCiudad;
+		this.ciudad = idCiudad;
 	}
 
 	public String getIdPoblacion() {
-		return idPoblacion;
+		return poblacion;
 	}
 
 	public void setIdPoblacion(String idPoblacion) {
-		this.idPoblacion = idPoblacion;
+		this.poblacion= idPoblacion;
 	}
 
 	public String getPcOS() {

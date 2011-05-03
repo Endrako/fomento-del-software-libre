@@ -29,6 +29,11 @@ input[type=password], textarea {
 	color:#FFFFFF;
 	
 }
+table.borde{
+border-style: solid;
+border-width: 1px;
+border-color: #3B094E;
+}
 
 td.titular{
 	font-family: "lucida sans unicode","lucida grande",sans-serif;
@@ -39,26 +44,38 @@ td.titular{
 	line-height: 1.8;
 	color:#3B094E;
 	text-decoration: underline;
-	
 }
 
-.letra_secundaria{
-	font-family: "lucida sans unicode","lucida grande",sans-serif;
-	font-size: 10px;
+td.letra_secundaria{
+	font-family: "isocpeur";
+	font-size: 13px;
+	font-weight: bold;
 	font-variant: small-caps;
-	letter-spacing: 2.2pt;
 	line-height: 1.8;
 	color:#FFFFFF;
-	
 }
-td.letra_secundariaWeb{
-	font-family: "lucida sans unicode","lucida grande",sans-serif;
-	font-size: 20px;
+
+td.tabla_principal{
+font-family: "isocpeur";
+	font-size: 30px;
+	font-weight: bold;
 	font-variant: small-caps;
-	letter-spacing: 2.2pt;
-	line-height: 1.8;
-	color:#3B094E;
-	
+color:#FFFFFF;
+background-color: #3B094E;	
+}
+
+td.datos_tabla{
+font-family: "isocpeur";
+	font-size: 20px;
+	font-weight: bold;
+	font-variant: small-caps;
+padding-left:16px;
+padding-right:16px;
+padding-top:2px;
+padding-bottom:2px;
+color:#3B094E;
+}
+
 }
 /* división de la página */
 #top{

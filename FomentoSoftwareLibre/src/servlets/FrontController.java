@@ -43,9 +43,18 @@ public class FrontController extends HttpServlet {
 	public void procesarAccion(String accion, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		if ( accion.equals("entrar") ){
 			entrar(request,response);
+		}else if ( accion.equals("registrar") ){
+			registrar(request,response);
 		}
 	}
 	
+	private void registrar(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		request.getRequestDispatcher("registroUsuario.jsp").include(request,response);
+		
+	}
+
 	public void entrar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		String idUser = request.getParameter("user");
 		String password = request.getParameter("password");
