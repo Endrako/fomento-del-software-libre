@@ -15,9 +15,9 @@ public interface Enfrentamiento {
 	public Date getFechaFin();
 	public void setFechaFin(Date fechaFin);
 	public Integer getVotosAplicacion1();
-	public void añadirVotoAplicacion1();
+	public void anadirVotoAplicacion1();
 	public Integer getVotosAplicacion2();
-	public void añadirVotoAplicacion2();
+	public void anadirVotoAplicacion2();
 	
 
 }

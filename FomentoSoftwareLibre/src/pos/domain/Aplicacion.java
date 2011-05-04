@@ -16,8 +16,8 @@ public interface Aplicacion {
 	public Proyecto getProyecto();
 	public void setProyecto(Proyecto proyecto);
 	public Integer getVotosAFavor();
-	public void añadirVotoAFavor();
+	public void anadirVotoAFavor();
 	public Integer getVotosEnContra();
-	public void añadirVotoEnContra();
+	public void anadirVotoEnContra();
 
 }
