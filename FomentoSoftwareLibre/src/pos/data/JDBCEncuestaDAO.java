@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.LinkedList;
 import java.util.List;
 
 import pos.domain.Encuesta;
@@ -17,8 +18,6 @@ public class JDBCEncuestaDAO implements IEncuestaDAO {
 	 
 	 public JDBCEncuestaDAO (){
 		 conn = ConnectionManager.getInstance().checkOut();
-		// edao = new JDBCEncuestaDAO();
-		 //pdao = new JDBCPreguntaDAO();
 	 }
 	 
 	 protected void finalize() {
@@ -31,8 +30,38 @@ public class JDBCEncuestaDAO implements IEncuestaDAO {
 
 	@Override
 	public List<Encuesta> seleccionarTodasEncuestas() {
-		
-		return null;
+		String sql = "SELECT * FROM encuestas";
+		PreparedStatement stmt = null;
+		ResultSet result = null;
+		List<Encuesta> res = new LinkedList<Encuesta>();
+
+		try {
+			stmt = conn.prepareStatement(sql);
+
+			result = stmt.executeQuery();
+
+			while(result.next()){
+			Encuesta e = new EncuestaImpl();
+			e.setTituloEncuesta(result.getString("nombre"));
+			res.add(e);
+			}
+		} catch (SQLException e) {
+			System.out.println("Message: " + e.getMessage());
+			System.out.println("SQLState: " + e.getSQLState());
+			System.out.println("ErrorCode: " + e.getErrorCode());
+		} finally {
+			try {
+				if (result != null) {
+					result.close();
+				}
+				if (stmt != null) {
+					stmt.close();
+				}
+			} catch (SQLException e) {
+			}
+		}
+
+		return res;
 	}
 
 	@Override
