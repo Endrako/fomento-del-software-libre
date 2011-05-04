@@ -8,5 +8,5 @@ public interface IEncuestaDAO {
     public void Borrar(String EncuestaID);
     public List<Encuesta> seleccionarTodasEncuestas();
     public void insertarEncuesta(Encuesta e);
-    public Encuesta recuperarEncuesta(Encuesta e);
+	public Encuesta recuperarEncuesta(Integer idEncuesta);
 }
