@@ -91,12 +91,12 @@ public class JDBCUsuarioDAO implements IUsuarioDAO {
 	    }
 
 	@Override
-	public void insertarUsuario(UsuarioImpl user) {
+	public void insertarUsuario(Usuario user) {
 		// TODO Auto-generated method stub
 	}
 
 	@Override
-	public List<UsuarioImpl> recuperarTODOS() {
+	public List<Usuario> recuperarTODOS() {
 		// TODO Auto-generated method stub
 		return null;
 	}

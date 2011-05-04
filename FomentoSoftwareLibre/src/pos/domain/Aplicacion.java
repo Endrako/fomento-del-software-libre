@@ -13,8 +13,6 @@ public interface Aplicacion {
 	public void setFechaPublicacion(Date fechaPublicacion);
 	public String getURLWeb();
 	public void setURLWeb(String URLWeb);
-	public Proyecto getProyecto();
-	public void setProyecto(Proyecto proyecto);
 	public Integer getVotosAFavor();
 	public void anadirVotoAFavor();
 	public Integer getVotosEnContra();

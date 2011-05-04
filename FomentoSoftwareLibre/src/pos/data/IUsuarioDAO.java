@@ -2,13 +2,13 @@ package pos.data;
 
 import java.util.List;
 
-import pos.domain.UsuarioImpl;
+import pos.domain.Usuario;
 
 public interface IUsuarioDAO {
 
 	public boolean comprobarUsuario(String idUser, String password);
-	public UsuarioImpl recuperarUsuario(String idUser);
-	public void insertarUsuario(UsuarioImpl user);
-	public List<UsuarioImpl> recuperarTODOS();
+	public Usuario recuperarUsuario(String idUser);
+	public void insertarUsuario(Usuario user);
+	public List<Usuario> recuperarTODOS();
 	
 }

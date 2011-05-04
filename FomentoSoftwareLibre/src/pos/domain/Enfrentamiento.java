@@ -9,7 +9,7 @@ public interface Enfrentamiento {
 	public Aplicacion getAplicacion2();
 	public void setAplicacion2(Aplicacion aplicacion2);
 	public String getDescripcion();
-	public void setDescripcion();
+	public void setDescripcion(String descripcion);
 	public Date getFechaCreacion();
 	public void setFechaCreacion(Date fechaCreacion);
 	public Date getFechaFin();
@@ -18,6 +18,8 @@ public interface Enfrentamiento {
 	public void anadirVotoAplicacion1();
 	public Integer getVotosAplicacion2();
 	public void anadirVotoAplicacion2();
+	public boolean equals(Object o);
+	public String toString();
 	
 
 }

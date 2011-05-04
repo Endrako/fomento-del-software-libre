@@ -2,7 +2,7 @@ package pos.data;
 
 import java.util.List;
 
-import pos.domain.UsuarioImpl;
+import pos.domain.Usuario;
 
 public class UsuarioStore {
 	
@@ -19,15 +19,15 @@ public class UsuarioStore {
 		return userDAO.comprobarUsuario(idUser,password);
 	}
 	
-	public UsuarioImpl recuperarUsuario(String idUser){
-		return (UsuarioImpl) userDAO.recuperarUsuario(idUser);
+	public Usuario recuperarUsuario(String idUser){
+		return (Usuario) userDAO.recuperarUsuario(idUser);
 	}
 	
-	public void insertarUsuario(UsuarioImpl user){
+	public void insertarUsuario(Usuario user){
 		userDAO.insertarUsuario(user);
 	}
 	
-	public List<UsuarioImpl> recuperarTODOS(){
+	public List<Usuario> recuperarTODOS(){
 		return userDAO.recuperarTODOS();
 	}
 }
