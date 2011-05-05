@@ -5,8 +5,9 @@ import java.util.List;
 import pos.domain.Respuesta;
 
 public interface IRespuestaDAO {
-    void borrar(String RespuestaID);
-    List<Respuesta> seleccionarTodasRespuesta();
-    void insertarRespuesta(Respuesta r);
-    Respuesta recuperarRespuesta();
+    public void borrar(String RespuestaID);
+    public List<Respuesta> seleccionarTodasRespuestasPorPregunta(Integer IdPregunta);
+    public void insertarRespuesta(Respuesta r);
+    public Respuesta recuperarRespuesta(Integer idRespuesta);
+	
 }
