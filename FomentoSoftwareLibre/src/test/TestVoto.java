@@ -37,12 +37,12 @@ public class TestVoto {
 		}
 		
 		Voto v = new VotoImpl();
-		v.setAplicacion(4);
-		v.setUsuario(5);
+		v.setAplicacion(8);
+		v.setUsuario(1);
 		v.setValor(false);
-		
 		vdao.insertVoto(v);
 
+		vdao.deleteVoto(5);
 	}
 
 }

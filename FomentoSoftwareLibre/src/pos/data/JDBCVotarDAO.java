@@ -6,16 +6,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
-
-import pos.domain.Encuesta;
-import pos.domain.EncuestaImpl;
 import pos.domain.Voto;
 import pos.domain.VotoImpl;
 
 public class JDBCVotarDAO implements IVotarDAO {
 	
 	 private Connection conn;
-	 private IVotarDAO vdao;
 	 
 	 public JDBCVotarDAO (){
 		 conn = ConnectionManager.getInstance().checkOut();
@@ -148,11 +144,7 @@ public class JDBCVotarDAO implements IVotarDAO {
 
 	@Override
 	public void insertVoto(Voto voto) {
-		//INSERT INTO `isg3bd`.`votos` 
-		//(`IDVoto`, `IDUsuario`, `IDAplicacion`, `valor`) VALUES (NULL, '1', '1', '1');
-		
-		String sql = "INSERT INTO votos" +
-				"(IDVoto, IDUsuario, IDAplicacion, valor) " +
+		String sql = "INSERT INTO votos(IDVoto, IDUsuario, IDAplicacion, valor) " +
 				"VALUES (NULL, ?, ?, ?)" ;
 		PreparedStatement stmt = null;
 		ResultSet result = null;
@@ -163,7 +155,7 @@ public class JDBCVotarDAO implements IVotarDAO {
 			stmt.setInt(2, voto.getAplicacion());
 			stmt.setBoolean(3, voto.getValor());
 						
-			
+			stmt.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println("Message: " + e.getMessage());
 			System.out.println("SQLState: " + e.getSQLState());
@@ -182,9 +174,31 @@ public class JDBCVotarDAO implements IVotarDAO {
 	}
 
 	@Override
-	public void deleteVoto(Integer Voto) {
-		// TODO Auto-generated method stub
-
+	public void deleteVoto(Integer voto) {
+		String sql = "DELETE FROM votos WHERE IDVoto = " + voto ;
+		PreparedStatement stmt = null;
+		ResultSet result = null;
+		
+		try {
+			stmt = conn.prepareStatement(sql);
+			//stmt.setInt(1, voto);
+						
+			stmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println("Message: " + e.getMessage());
+			System.out.println("SQLState: " + e.getSQLState());
+			System.out.println("ErrorCode: " + e.getErrorCode());
+		} finally {
+			try {
+				if (result != null) {
+					result.close();
+				}
+				if (stmt != null) {
+					stmt.close();
+				}
+			} catch (SQLException e) {
+			}
+		}
 	}
 
 }

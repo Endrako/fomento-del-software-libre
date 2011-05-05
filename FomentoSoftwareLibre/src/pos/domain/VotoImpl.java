@@ -1,8 +1,17 @@
 package pos.domain;
 
 public class VotoImpl implements Voto {
-	private Integer usuario, aplicacion;
+	private Integer idVoto, usuario, aplicacion;
 	private Boolean valor;
+	
+	
+	public Integer getIDVoto(){
+		return idVoto;
+	}
+	
+	public void setIDVoto(Integer idVoto){
+		this.idVoto = idVoto;
+	}
 	
 	@Override
 	public Integer getUsuario() {
