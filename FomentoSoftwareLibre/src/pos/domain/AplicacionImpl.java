@@ -55,16 +55,6 @@ public class AplicacionImpl implements Aplicacion {
 	}
 
 	@Override
-	public Proyecto getProyecto() {
-		return proyecto;
-	}
-
-	@Override
-	public void setProyecto(Proyecto proyecto) {
-		this.proyecto = proyecto;
-	}
-
-	@Override
 	public Integer getVotosAFavor() {
 		return votosAFavor;
 	}

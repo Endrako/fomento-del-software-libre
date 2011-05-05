@@ -1,20 +1,19 @@
 package pos.data;
 
 import java.util.List;
-
-import pos.domain.Aplicacion;
+import com.mysql.jdbc.Connection;
 import pos.domain.Enfrentamiento;
 
 public interface IEnfrentamientoDAO {
 	
-	public List<Enfrentamiento> selectAll();
-	public Enfrentamiento selectEnfrentamientoByID(ConnectionManager con,String IDEnfrentamiento);
-	public List<Enfrentamiento> selectEnfrentamientoByUserCreator(ConnectionManager con,String IDUser);
-	public List<Enfrentamiento> selectEnfrentamientoByAply(ConnectionManager con,String IDAply);
-	public List<Enfrentamiento> selectEnfrentamientosAcept(ConnectionManager con);
-	public List<Enfrentamiento> selectEnfrentamientosNonAcept(ConnectionManager con);
-	public void insertEnfrentamiento(ConnectionManager con,Enfrentamiento enfrentamiento);
-	public void deleteEnfrentamiento(ConnectionManager con,Enfrentamiento enfrentamiento);
+	public List<Enfrentamiento> selectAll(Connection con);
+	public Enfrentamiento selectEnfrentamientoByID(Connection con,String IDEnfrentamiento);
+	public List<Enfrentamiento> selectEnfrentamientoByUserCreator(Connection con,String IDUser);
+	public List<Enfrentamiento> selectEnfrentamientoByAply(Connection con,String IDAply);
+	public List<Enfrentamiento> selectEnfrentamientosAcept(Connection con);
+	public List<Enfrentamiento> selectEnfrentamientosNonAcept(Connection con);
+	public void insertEnfrentamiento(Connection con,Enfrentamiento enfrentamiento);
+	public void deleteEnfrentamiento(Connection con,Enfrentamiento enfrentamiento);
 	
 
 }
