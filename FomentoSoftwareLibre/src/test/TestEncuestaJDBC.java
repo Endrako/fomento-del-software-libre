@@ -5,12 +5,16 @@ import java.util.List;
 
 import pos.data.IEncuestaDAO;
 import pos.data.IPreguntaDAO;
+import pos.data.IRespuestaDAO;
 import pos.data.JDBCEncuestaDAO;
 import pos.data.JDBCPreguntaDAO;
+import pos.data.JDBCRespuestaDAO;
 import pos.domain.Encuesta;
 import pos.domain.EncuestaImpl;
 import pos.domain.Pregunta;
 import pos.domain.PreguntaImpl;
+import pos.domain.Respuesta;
+import pos.domain.RespuestaImpl;
 
 public class TestEncuestaJDBC {
 
@@ -24,6 +28,9 @@ public class TestEncuestaJDBC {
 		Pregunta p = new PreguntaImpl();
 		List<Pregunta> lp = new LinkedList<Pregunta>();
 		IPreguntaDAO pdao = new JDBCPreguntaDAO();
+		List<Respuesta> lr= new LinkedList<Respuesta>();
+		IRespuestaDAO rdao = new JDBCRespuestaDAO();
+		Respuesta r = new RespuestaImpl();
 		
 		//recuperar encuesta
 		e=edao.recuperarEncuesta(1);
@@ -41,11 +48,26 @@ public class TestEncuestaJDBC {
 		System.out.println(p.getEnunciado());
 		
 		//preguntas de una encuesta
-		lp = pdao.seleccionarTodasPreguntasPorEncuesta(1);
+		lp = pdao.seleccionarTodasPreguntasPorEncuesta(2);
 		for (Pregunta pr :lp){
 			System.out.println(pr.getEnunciado());
 		}
 		
+		//Respuesta de una pregunta
+		lr = rdao.seleccionarTodasRespuestasPorPregunta(1);
+		for (Respuesta res:lr){
+			System.out.println(res.getDescripcionRespuesta());
+		}
+		
+		//rescuperar una respuesta
+		
+		r=rdao.recuperarRespuesta(1);
+		System.out.println("RespID: "+r.getIDRespuesta()+" "+r.getDescripcionRespuesta());
+		
+		//Insertar una encuesta
+		Encuesta paco = new EncuestaImpl();
+		paco.setTituloEncuesta("Inserción de Picha");
+		edao.insertarEncuesta(e);
 	}
 
 }
