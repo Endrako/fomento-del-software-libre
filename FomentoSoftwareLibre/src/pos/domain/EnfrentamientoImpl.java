@@ -57,17 +57,18 @@ public class EnfrentamientoImpl implements Enfrentamiento{
 		return votosAplicacion1;
 	}
 
-	public void anadirVotoAplicacion1() {
-		votosAplicacion1++;
-	}
-
 	public Integer getVotosAplicacion2() {
 		return votosAplicacion2;
+	}
+	
+	public void anadirVotoAplicacion1() {
+		votosAplicacion1++;
 	}
 
 	public void anadirVotoAplicacion2() {
 		votosAplicacion2++;
 	}
+
 	
 	//Dos enfrentamientos son iguales si
 	//	*Aplicacion1 y 2 en ese orden son iguales ó
@@ -95,4 +96,5 @@ public class EnfrentamientoImpl implements Enfrentamiento{
 		return s;
 	}
 
+	
 }

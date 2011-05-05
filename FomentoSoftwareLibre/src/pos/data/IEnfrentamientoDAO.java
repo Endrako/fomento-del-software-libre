@@ -6,14 +6,14 @@ import pos.domain.Enfrentamiento;
 
 public interface IEnfrentamientoDAO {
 	
-	public List<Enfrentamiento> selectAll(Connection con);
-	public Enfrentamiento selectEnfrentamientoByID(Connection con,String IDEnfrentamiento);
-	public List<Enfrentamiento> selectEnfrentamientoByUserCreator(Connection con,String IDUser);
-	public List<Enfrentamiento> selectEnfrentamientoByAply(Connection con,String IDAply);
-	public List<Enfrentamiento> selectEnfrentamientosAcept(Connection con);
-	public List<Enfrentamiento> selectEnfrentamientosNonAcept(Connection con);
-	public void insertEnfrentamiento(Connection con,Enfrentamiento enfrentamiento);
-	public void deleteEnfrentamiento(Connection con,Enfrentamiento enfrentamiento);
+	public List<Enfrentamiento> selectAll();
+	public Enfrentamiento selectEnfrentamientoByID(String IDEnfrentamiento);
+	public List<Enfrentamiento> selectEnfrentamientoByUserCreator(String IDUser);
+	public List<Enfrentamiento> selectEnfrentamientoByAply(String IDAply);
+	public List<Enfrentamiento> selectEnfrentamientosAcept();
+	public List<Enfrentamiento> selectEnfrentamientosNonAcept();
+	public void insertEnfrentamiento(Enfrentamiento enfrentamiento);
+	public void deleteEnfrentamiento(Enfrentamiento enfrentamiento);
 	
 
 }

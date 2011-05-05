@@ -11,13 +11,16 @@ import com.mysql.jdbc.Connection;
 
 import pos.domain.Aplicacion;
 import pos.domain.Enfrentamiento;
+import pos.domain.EnfrentamientoImpl;
 
 public class JDBCEnfrentamientoDAO implements IEnfrentamientoDAO{
 	
 	//Para obtener un objeto Aplicacion mediante la ID utiliza el método getAplicacionByID
 	//de la clase JDBCAplicacionDAO
 	
-	public List<Enfrentamiento> selectAll(Connection con) {
+	public List<Enfrentamiento> selectAll() {
+		Connection con =(Connection) ConnectionManager.getInstance().checkOut();
+		
 		Enfrentamiento enfrentamiento=null;
 		List<Enfrentamiento> lista = new ArrayList<Enfrentamiento>();
 		String sql= "SELECT * FROM Enfrentamientos";		
@@ -61,7 +64,8 @@ public class JDBCEnfrentamientoDAO implements IEnfrentamientoDAO{
 		return lista;
 	}
 
-	public Enfrentamiento selectEnfrentamientoByID(Connection con,String IDEnfrentamiento) {
+	public Enfrentamiento selectEnfrentamientoByID(String IDEnfrentamiento) {
+		Connection con =(Connection) ConnectionManager.getInstance().checkOut();
 		Enfrentamiento enfrentamiento =null;
 		String sql="SELECT * FROM Enfrentamientos WHERE (IDEnfrentamiento = ?)";
 		PreparedStatement stm=null;
@@ -102,13 +106,13 @@ public class JDBCEnfrentamientoDAO implements IEnfrentamientoDAO{
 		return enfrentamiento;		
 	}
 
-	public List<Enfrentamiento> selectEnfrentamientoByUserCreator(Connection con,String IDUser) {
+	public List<Enfrentamiento> selectEnfrentamientoByUserCreator(String IDUser) {
 		// En la BD no hay un usuario creador.
 		return null;
 	}
-
-	@Override
-	public List<Enfrentamiento> selectEnfrentamientoByAply(Connection con,String IDAply) {
+	public List<Enfrentamiento> selectEnfrentamientoByAply(String IDAply) {
+		
+		Connection con =(Connection) ConnectionManager.getInstance().checkOut();
 			
 		List<Enfrentamiento> lista=new ArrayList<Enfrentamiento>();
 		Enfrentamiento enfrentamiento = null;
@@ -157,8 +161,9 @@ public class JDBCEnfrentamientoDAO implements IEnfrentamientoDAO{
 		return lista;
 	}
 
-	@Override
-	public List<Enfrentamiento> selectEnfrentamientosAcept(Connection con) {
+	public List<Enfrentamiento> selectEnfrentamientosAcept() {
+		Connection con =(Connection) ConnectionManager.getInstance().checkOut();
+		
 		Enfrentamiento enfrentamiento=null;
 		List<Enfrentamiento> lista = new ArrayList<Enfrentamiento>();
 		String sql="SELECT * FROM Enfrentamientos WHERE aceptado=1";
@@ -204,7 +209,9 @@ public class JDBCEnfrentamientoDAO implements IEnfrentamientoDAO{
 	}
 
 	@Override
-	public List<Enfrentamiento> selectEnfrentamientosNonAcept(Connection con) {
+	public List<Enfrentamiento> selectEnfrentamientosNonAcept() {
+		Connection con =(Connection) ConnectionManager.getInstance().checkOut();
+		
 		Enfrentamiento enfrentamiento = null;
 		List<Enfrentamiento> lista = new ArrayList<Enfrentamiento>();
 		String sql="SELECT * FROM Enfrentamientos WHERE aceptado=0";
@@ -237,15 +244,17 @@ public class JDBCEnfrentamientoDAO implements IEnfrentamientoDAO{
 	}
 
 	@Override
-	public void insertEnfrentamiento(Connection con,Enfrentamiento enfrentamiento) {
+	public void insertEnfrentamiento(Enfrentamiento enfrentamiento) {
+		Connection con =(Connection) ConnectionManager.getInstance().checkOut();
+		
 		String sql = "INSERT INTO Enfrentamientos (IDAplicacion1,idAplicacion2,descripcion,votosApp1,votosApp2,fechaCreacion,fechaFin,aceptado) VALUES (?,?,?,?,?,?,?,?) ";
 		PreparedStatement stm=null;
 		
 		Aplicacion aplicacion1=enfrentamiento.getAplicacion1();
 		Aplicacion aplicacion2=enfrentamiento.getAplicacion2();
-		//Me hace falta un método que dandle una aplicacion me de su ID
-		Integer IDAply1= ;
-		Integer IDAply2= ;
+		//Me hace falta un método que dandole una aplicacion me de su ID
+		Integer IDAply1= getIDFromAplication(aplicacion1);
+		Integer IDAply2= getIDFromAplication(aplicacion2);
 		String descripcion = enfrentamiento.getDescripcion();
 		Date fechaCreacion = enfrentamiento.getFechaCreacion();
 		Date fechaFin = enfrentamiento.getFechaFin();
@@ -277,13 +286,37 @@ public class JDBCEnfrentamientoDAO implements IEnfrentamientoDAO{
 	}
 
 	@Override
-	public void deleteEnfrentamiento(Connection con,Enfrentamiento enfrentamiento) {
-		String sql = "DELETE FROM Enfrentamientos WHERE"
-			//obtener un enfrentamiento cuyas aplicaciones 1 y 2 coincidan, ya que no tengo OID
+	public void deleteEnfrentamiento(Enfrentamiento enfrentamiento) {
+		Connection con =(Connection) ConnectionManager.getInstance().checkOut();
 		
+		Integer IDAply1= getIDFromAplication(enfrentamiento.getAplicacion1());
+		Integer IDAply2= getIDFromAplication(enfrentamiento.getAplicacion2());
+			
+		//Me hace falta un método que dandole una aplicacion me de su ID
+		String sql = "DELETE FROM Enfrentamientos WHERE ( IDAplicacion1 = ?) AND (idAplicacion2 = ?)";
+		PreparedStatement stm = null;
+		
+		try{
+			stm=con.prepareStatement(sql);
+			stm.setInt(0,IDAply1);
+			stm.setInt(1,IDAply2);
+			stm.executeUpdate();
+		}catch (SQLException e){
+			
+		}finally{
+			try{
+				if(stm !=null){
+					stm.close();
+				}
+			}catch (SQLException e){
+				
+			}
+		}
+			
 	}
 	
 	private Enfrentamiento createEnfrentamientoFromBD(Enfrentamiento enfrent,ResultSet resSet){
+		enfrent = new EnfrentamientoImpl();
 		Integer IDapl1=resSet.getInt("IDAplicacion1");
 		Integer IDapl2=resSet.getInt("idAplicacion2");
 		String descripcion=resSet.getString("descripcion");
@@ -298,6 +331,7 @@ public class JDBCEnfrentamientoDAO implements IEnfrentamientoDAO{
 		enfrent.setDescripcion(descripcion);
 		enfrent.setFechaCreacion(fechaCreacion);
 		enfrent.setFechaFin(fechaFin);
+		return enfrent;
 	}
 	
 	
