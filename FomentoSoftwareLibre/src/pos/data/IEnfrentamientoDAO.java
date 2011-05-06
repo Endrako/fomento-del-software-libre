@@ -14,6 +14,7 @@ public interface IEnfrentamientoDAO {
 	public List<Enfrentamiento> selectEnfrentamientosNonAcept();
 	public void insertEnfrentamiento(Enfrentamiento enfrentamiento);
 	public void deleteEnfrentamiento(Enfrentamiento enfrentamiento);
+	public void acceptEnfrentamiento(String IDEnfrentamiento);
 	
 
 }

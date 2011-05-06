@@ -1,5 +1,6 @@
 package pos.domain;
 
+import java.util.Date;
 import java.util.List;
 
 import pos.data.JDBCEnfrentamientoDAO;
@@ -27,6 +28,10 @@ public class EnfrentamientoStore {
 	
 	public Enfrentamiento getEnfrentamiento(String enfrenID){
 		return (new JDBCEnfrentamientoDAO()).selectEnfrentamientoByID(enfrenID);
+	}
+	
+	public void crearEnfrentamiento(Aplicacion aply1,Aplicacion aply2,String descripcion,Date fechaInicio,Date fechaFin){
+		
 	}
 	
 

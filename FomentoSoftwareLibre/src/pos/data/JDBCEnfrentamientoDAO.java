@@ -315,6 +315,14 @@ public class JDBCEnfrentamientoDAO implements IEnfrentamientoDAO{
 			
 	}
 	
+	public void acceptEnfrentamiento(String IDEnfrentamiento){
+		
+		Connection con =(Connection) ConnectionManager.getInstance().checkOut();
+		
+		String sql = "UPDATE Enfrentamientos SET "
+		
+	}
+	
 	private Enfrentamiento createEnfrentamientoFromBD(Enfrentamiento enfrent,ResultSet resSet){
 		enfrent = new EnfrentamientoImpl();
 		Integer IDapl1=resSet.getInt("IDAplicacion1");
