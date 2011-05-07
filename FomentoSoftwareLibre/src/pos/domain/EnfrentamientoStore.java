@@ -1,9 +1,11 @@
 package pos.domain;
 
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 import pos.data.JDBCEnfrentamientoDAO;
+import pos.data.JDBCUsuarioDAO;
 
 
 public class EnfrentamientoStore {
@@ -31,7 +33,33 @@ public class EnfrentamientoStore {
 	}
 	
 	public void crearEnfrentamiento(Aplicacion aply1,Aplicacion aply2,String descripcion,Date fechaInicio,Date fechaFin){
+		Enfrentamiento enfrentamiento = new EnfrentamientoImpl();
+		enfrentamiento.setAplicacion1(aply1);
+		enfrentamiento.setAplicacion2(aply2);
+		enfrentamiento.setDescripcion(descripcion);
+		enfrentamiento.setFechaCreacion(fechaInicio);
+		enfrentamiento.setFechaFin(fechaFin);
+		if(!enfrentamientos.contains(enfrentamiento)){
+			(new JDBCEnfrentamientoDAO()).insertEnfrentamiento(enfrentamiento);
+		}
+	}
+	
+	public void votar(String IDEnfrentamiento,String IDUser,String IDAplicacion){
+		JDBCEnfrentamientoDAO enfDAO = new JDBCEnfrentamientoDAO();
+		List<Usuario> listaVotantes = enfDAO.getUsuariosPorEnfrentamiento(IDEnfrentamiento);
+		Usuario currentUsuario = (new JDBCUsuarioDAO()).recuperarUsuario(IDUser);
 		
+		if(!listaVotantes.contains(currentUsuario)){
+			enfDAO.votar(IDEnfrentamiento, IDUser, IDAplicacion);
+		}
+	}
+	
+	public void aceptarEnfrentamiento(String IDEnfrentamiento){
+		(new JDBCEnfrentamientoDAO()).acceptEnfrentamiento(IDEnfrentamiento);
+	}
+	
+	public void borrarEnfrentamiento(Enfrentamiento enfrentamiento){
+		new JDBCEnfrentamientoDAO().deleteEnfrentamiento(enfrentamiento);
 	}
 	
 

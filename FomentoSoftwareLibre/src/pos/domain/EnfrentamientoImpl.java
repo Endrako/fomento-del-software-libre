@@ -8,9 +8,18 @@ public class EnfrentamientoImpl implements Enfrentamiento{
 	private String descripcion;
 	private Date fechaCreacion,fechaFin;
 	private Integer votosAplicacion1, votosAplicacion2=0;
+	private String IDEnfrentamiento = null;
 	
 	public EnfrentamientoImpl(){
 		
+	}
+	
+	public String getIDEnfrentamiento(){
+		return IDEnfrentamiento;
+	}
+	
+	public void setIDEnfrentamiento(String IDEnfrentamiento){
+		this.IDEnfrentamiento=IDEnfrentamiento;
 	}
 	
 	public Aplicacion getAplicacion1() {
@@ -61,12 +70,12 @@ public class EnfrentamientoImpl implements Enfrentamiento{
 		return votosAplicacion2;
 	}
 	
-	public void anadirVotoAplicacion1() {
-		votosAplicacion1++;
+	public void anadirVotoAplicacion1(Integer votos) {
+		votosAplicacion1=votosAplicacion1+votos;;
 	}
 
-	public void anadirVotoAplicacion2() {
-		votosAplicacion2++;
+	public void anadirVotoAplicacion2(Integer votos) {
+		votosAplicacion2=votosAplicacion2+votos;
 	}
 
 	
@@ -77,6 +86,7 @@ public class EnfrentamientoImpl implements Enfrentamiento{
 		boolean res=false;
 		if(o instanceof Enfrentamiento){
 			Enfrentamiento e=(Enfrentamiento) o;
+			//boolean igualID=this.getIDEnfrentamiento().equals(e.getIDEnfrentamiento());
 			boolean igualAplicacion1=this.getAplicacion1().equals(e.getAplicacion1());
 			boolean igualAplicacion2=this.getAplicacion2().equals(e.getAplicacion2());
 			boolean aplicacion1IgualAplicacion2=this.getAplicacion1().equals(e.getAplicacion2());

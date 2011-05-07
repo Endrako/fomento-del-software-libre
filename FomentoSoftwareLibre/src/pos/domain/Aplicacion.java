@@ -5,6 +5,8 @@ import java.util.Date;
 public interface Aplicacion {
 	
 	//TODO Completar la interface con lo que vaya a ser necesario
+	public String getIDAplicacion();
+	public void setIDAplicacion(String IDAplicacion);
 	public String getNombre();
 	public void setNombre(String nombre);
 	public String getDescripcion();

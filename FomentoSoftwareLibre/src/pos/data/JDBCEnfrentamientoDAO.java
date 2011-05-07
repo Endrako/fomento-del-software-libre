@@ -12,6 +12,7 @@ import com.mysql.jdbc.Connection;
 import pos.domain.Aplicacion;
 import pos.domain.Enfrentamiento;
 import pos.domain.EnfrentamientoImpl;
+import pos.domain.Usuario;
 
 public class JDBCEnfrentamientoDAO implements IEnfrentamientoDAO{
 	
@@ -31,25 +32,13 @@ public class JDBCEnfrentamientoDAO implements IEnfrentamientoDAO{
 			stm=con.prepareStatement(sql);
 			result =stm.executeQuery(sql);
 			while(result.next()){
-//				Integer IDapl1=result.getInt("IDAplicacion1");
-//				Integer IDapl2=result.getInt("idAplicacion2");
-//				String descripcion=result.getString("descripcion");
-//				Integer votosAply1=result.getInt("votosApp1");
-//				Integer votosAply2=result.getInt("votosApp2");
-//				Date fechaCreacion = result.getDate("fechaCreacion");
-//				Date fechaFin = result.getDate("fechaFin");
-//				Aplicacion aplicacion1= getAplicacionByID(IDapl1.toString());
-//				Aplicacion aplicacion2= getAplicacionByID(IDapl2.toString());
-//				enfrentamiento.setAplicacion1(aplicacion1);
-//				enfrentamiento.setAplicacion2(aplicacion2);
-//				enfrentamiento.setDescripcion(descripcion);
-//				enfrentamiento.setFechaCreacion(fechaCreacion);
-//				enfrentamiento.setFechaFin(fechaFin);
 				enfrentamiento = createEnfrentamientoFromBD(enfrentamiento, result);
 				lista.add(enfrentamiento);
 			}
 		} catch (SQLException e) {			
-			e.printStackTrace();
+			System.out.println("Message: " + e.getMessage());
+            System.out.println("SQLState: " + e.getSQLState());
+            System.out.println("ErrorCode: " + e.getErrorCode());
 		}finally {
 			try {
 				if (result != null) {
@@ -73,25 +62,13 @@ public class JDBCEnfrentamientoDAO implements IEnfrentamientoDAO{
 		
 		try {
 			stm = con.prepareStatement(sql);
-			stm.setString(0, IDEnfrentamiento);
+			stm.setInt(0, new Integer(IDEnfrentamiento));
 			result=stm.executeQuery();
-			enfrentamiento = createEnfrentamientoFromBD(enfrentamiento, result);
-//			Integer IDapl1=result.getInt("IDAplicacion1");
-//			Integer IDapl2=result.getInt("idAplicacion2");
-//			String descripcion=result.getString("descripcion");
-//			Integer votosAply1=result.getInt("votosApp1");
-//			Integer votosAply2=result.getInt("votosApp2");
-//			Date fechaCreacion = result.getDate("fechaCreacion");
-//			Date fechaFin = result.getDate("fechaFin");
-//			Aplicacion aplicacion1= getAplicacionByID(IDapl1.toString());
-//			Aplicacion aplicacion2= getAplicacionByID(IDapl2.toString());
-//			enfrentamiento.setAplicacion1(aplicacion1);
-//			enfrentamiento.setAplicacion2(aplicacion2);
-//			enfrentamiento.setDescripcion(descripcion);
-//			enfrentamiento.setFechaCreacion(fechaCreacion);
-//			enfrentamiento.setFechaFin(fechaFin);			
+			enfrentamiento = createEnfrentamientoFromBD(enfrentamiento, result);	
 		} catch (SQLException e) {
-			e.printStackTrace();
+			System.out.println("Message: " + e.getMessage());
+            System.out.println("SQLState: " + e.getSQLState());
+            System.out.println("ErrorCode: " + e.getErrorCode());
 		}finally {
 			try {
 				if (result != null) {
@@ -110,6 +87,7 @@ public class JDBCEnfrentamientoDAO implements IEnfrentamientoDAO{
 		// En la BD no hay un usuario creador.
 		return null;
 	}
+	
 	public List<Enfrentamiento> selectEnfrentamientoByAply(String IDAply) {
 		
 		Connection con =(Connection) ConnectionManager.getInstance().checkOut();
@@ -128,25 +106,12 @@ public class JDBCEnfrentamientoDAO implements IEnfrentamientoDAO{
 			
 			while(result.next()){
 				enfrentamiento = createEnfrentamientoFromBD(enfrentamiento, result);
-//				Integer IDapl1=result.getInt("IDAplicacion1");
-//				Integer IDapl2=result.getInt("idAplicacion2");
-//				String descripcion=result.getString("descripcion");
-//				Integer votosAply1=result.getInt("votosApp1");
-//				Integer votosAply2=result.getInt("votosApp2");
-//				Date fechaCreacion = result.getDate("fechaCreacion");
-//				Date fechaFin = result.getDate("fechaFin");
-//				Aplicacion aplicacion1= getAplicacionByID(IDapl1.toString());
-//				Aplicacion aplicacion2= getAplicacionByID(IDapl2.toString());
-//				enfrentamiento.setAplicacion1(aplicacion1);
-//				enfrentamiento.setAplicacion2(aplicacion2);
-//				enfrentamiento.setDescripcion(descripcion);
-//				enfrentamiento.setFechaCreacion(fechaCreacion);
-//				enfrentamiento.setFechaFin(fechaFin);
 				lista.add(enfrentamiento);
 			}			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("Message: " + e.getMessage());
+            System.out.println("SQLState: " + e.getSQLState());
+            System.out.println("ErrorCode: " + e.getErrorCode());
 		}finally {
 			try {
 				if (result != null) {
@@ -175,25 +140,12 @@ public class JDBCEnfrentamientoDAO implements IEnfrentamientoDAO{
 			result=stm.executeQuery();
 			while(result.next()){
 				enfrentamiento = createEnfrentamientoFromBD(enfrentamiento, result);
-//				Integer IDapl1=result.getInt("IDAplicacion1");
-//				Integer IDapl2=result.getInt("idAplicacion2");
-//				String descripcion=result.getString("descripcion");
-//				Integer votosAply1=result.getInt("votosApp1");
-//				Integer votosAply2=result.getInt("votosApp2");
-//				Date fechaCreacion = result.getDate("fechaCreacion");
-//				Date fechaFin = result.getDate("fechaFin");
-//				Aplicacion aplicacion1= getAplicacionByID(IDapl1.toString());
-//				Aplicacion aplicacion2= getAplicacionByID(IDapl2.toString());
-//				enfrentamiento.setAplicacion1(aplicacion1);
-//				enfrentamiento.setAplicacion2(aplicacion2);
-//				enfrentamiento.setDescripcion(descripcion);
-//				enfrentamiento.setFechaCreacion(fechaCreacion);
-//				enfrentamiento.setFechaFin(fechaFin);
 				lista.add(enfrentamiento);
 			}			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("Message: " + e.getMessage());
+            System.out.println("SQLState: " + e.getSQLState());
+            System.out.println("ErrorCode: " + e.getErrorCode());
 		}finally {
 			try {
 				if (result != null) {
@@ -227,7 +179,9 @@ public class JDBCEnfrentamientoDAO implements IEnfrentamientoDAO{
 				lista.add(enfrentamiento);
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			System.out.println("Message: " + e.getMessage());
+            System.out.println("SQLState: " + e.getSQLState());
+            System.out.println("ErrorCode: " + e.getErrorCode());
 		} finally{
 			try{
 				if(result !=null){
@@ -252,9 +206,8 @@ public class JDBCEnfrentamientoDAO implements IEnfrentamientoDAO{
 		
 		Aplicacion aplicacion1=enfrentamiento.getAplicacion1();
 		Aplicacion aplicacion2=enfrentamiento.getAplicacion2();
-		//Me hace falta un método que dandole una aplicacion me de su ID
-		Integer IDAply1= getIDFromAplication(aplicacion1);
-		Integer IDAply2= getIDFromAplication(aplicacion2);
+		Integer IDAply1= new Integer(aplicacion1.getIDAplicacion());
+		Integer IDAply2= new Integer(aplicacion2.getIDAplicacion());
 		String descripcion = enfrentamiento.getDescripcion();
 		Date fechaCreacion = enfrentamiento.getFechaCreacion();
 		Date fechaFin = enfrentamiento.getFechaFin();
@@ -269,11 +222,13 @@ public class JDBCEnfrentamientoDAO implements IEnfrentamientoDAO{
 			stm.setInt(4,0);//votosApp2
 			stm.setDate(5,(java.sql.Date) fechaCreacion);
 			stm.setDate(6,(java.sql.Date) fechaFin);
-			stm.setBoolean(7,false);	
+			stm.setInt(7,0);
 			
 			stm.executeUpdate();
 		}catch (SQLException e){
-			
+			System.out.println("Message: " + e.getMessage());
+            System.out.println("SQLState: " + e.getSQLState());
+            System.out.println("ErrorCode: " + e.getErrorCode());
 		}finally{
 			try{
 				if(stm !=null){
@@ -288,21 +243,197 @@ public class JDBCEnfrentamientoDAO implements IEnfrentamientoDAO{
 	@Override
 	public void deleteEnfrentamiento(Enfrentamiento enfrentamiento) {
 		Connection con =(Connection) ConnectionManager.getInstance().checkOut();
-		
-		Integer IDAply1= getIDFromAplication(enfrentamiento.getAplicacion1());
-		Integer IDAply2= getIDFromAplication(enfrentamiento.getAplicacion2());
+		Integer IDEnfrentamiento = new Integer(enfrentamiento.getIDEnfrentamiento());
+		//Integer IDAply1= getIDFromAplication(enfrentamiento.getAplicacion1());
+		//Integer IDAply2= getIDFromAplication(enfrentamiento.getAplicacion2());
 			
 		//Me hace falta un método que dandole una aplicacion me de su ID
-		String sql = "DELETE FROM Enfrentamientos WHERE ( IDAplicacion1 = ?) AND (idAplicacion2 = ?)";
+		String sql = "DELETE FROM Enfrentamientos WHERE (IDEnfrentamiento = ?)";
+	//	String sql = "DELETE FROM Enfrentamientos WHERE ( IDAplicacion1 = ?) AND (idAplicacion2 = ?)";
 		PreparedStatement stm = null;
+		
+		try{
+			stm=con.prepareStatement(sql);
+			stm.setInt(0,IDEnfrentamiento);
+			//stm.setInt(0,IDAply1);
+			//stm.setInt(1,IDAply2);
+			stm.executeUpdate();
+		}catch (SQLException e){
+			System.out.println("Message: " + e.getMessage());
+            System.out.println("SQLState: " + e.getSQLState());
+            System.out.println("ErrorCode: " + e.getErrorCode());
+		}finally{
+			try{
+				if(stm !=null){
+					stm.close();
+				}
+			}catch (SQLException e){
+				
+			}
+		}			
+	}
+	
+	public void acceptEnfrentamiento(String IDEnfrentamiento){
+		
+		Connection con =(Connection) ConnectionManager.getInstance().checkOut();
+		
+		String sql = "UPDATE Enfrentamientos SET Enfrentamientos.aceptado=1 WHERE (Enfrentamientos.IDEnfrentamiento = ?)";
+		PreparedStatement stm=null;
+		try{
+			stm=con.prepareStatement(sql);
+			stm.setInt(0,new Integer(IDEnfrentamiento));
+			stm.executeUpdate();			
+			
+		}catch (SQLException e){
+			System.out.println("Message: " + e.getMessage());
+            System.out.println("SQLState: " + e.getSQLState());
+            System.out.println("ErrorCode: " + e.getErrorCode());
+		}finally{
+			try{
+				if(stm != null){
+					stm.close();
+				}				
+			}catch(SQLException e){
+				
+			}
+		}		
+	}
+	
+	public Enfrentamiento getEnfrentamientoByAplications(Aplicacion aply1,Aplicacion aply2){
+		Connection con =(Connection) ConnectionManager.getInstance().checkOut();
+		
+		Enfrentamiento enfrentamiento = null;
+		Integer IDAply1=new Integer(aply1.getIDAplicacion());
+		Integer IDAply2=new Integer(aply2.getIDAplicacion());
+		String sql="SELECT * FROM Enfrentamientos WHERE (IDAplicacion1=? AND idAplicacion2=?) OR (IDAplicacion1=? AND idAplicacion2=?)";
+		ResultSet result = null;
+		PreparedStatement stm=null;
 		
 		try{
 			stm=con.prepareStatement(sql);
 			stm.setInt(0,IDAply1);
 			stm.setInt(1,IDAply2);
-			stm.executeUpdate();
-		}catch (SQLException e){
+			stm.setInt(2,IDAply2);
+			stm.setInt(3,IDAply1);
 			
+			result = stm.executeQuery();
+			
+			enfrentamiento = createEnfrentamientoFromBD(enfrentamiento, result);
+		}catch (SQLException e){
+			System.out.println("Message: " + e.getMessage());
+            System.out.println("SQLState: " + e.getSQLState());
+            System.out.println("ErrorCode: " + e.getErrorCode());
+		}finally{
+			try{
+				if(stm !=null){
+					stm.close();
+				}
+				if(result != null){
+					stm.close();
+				}
+			}catch (SQLException e){
+				
+			}
+		}
+		return enfrentamiento;
+	}
+	
+	public void votar(String IDEnfrentamiento,String IDUser,String IDAplicacion){
+		Connection con = (Connection) ConnectionManager.getInstance().checkOut();
+		
+		String sql = "INSERT INTO VotosUsuarioEnfrentamientos(IDEnfrentamiento,IDUsuario,IDAplicacion) VALUES (?,?,?)";
+		PreparedStatement stm = null;
+		
+		try{
+			stm = con.prepareStatement(sql);
+			stm.setInt(0,new Integer(IDEnfrentamiento));
+			stm.setInt(1,new Integer(IDUser));
+			stm.setInt(2,new Integer(IDAplicacion));
+			stm.executeUpdate();
+			
+			puntuar(con,IDEnfrentamiento,IDAplicacion);
+		}catch (SQLException e){
+			System.out.println("Message: " + e.getMessage());
+            System.out.println("SQLState: " + e.getSQLState());
+            System.out.println("ErrorCode: " + e.getErrorCode());
+		}finally{
+			try{
+				if(stm !=null){
+					stm.close();
+				}
+			}catch (SQLException e){
+				
+			}
+		}		
+	}
+	
+	public List<Usuario> getUsuariosPorEnfrentamiento(String IDEnfrentamiento){
+		Connection con = (Connection) ConnectionManager.getInstance().checkOut();
+		
+		Usuario usuario = null;
+		List<Usuario> listaUsuarios = new ArrayList<Usuario>();
+		PreparedStatement stm = null;
+		ResultSet result=null;
+		String sql = "SELECT IDUsuario FROM VotosUsuarioEnfrentamientos WHERE IDEnfrentamiento = ?";
+		
+		Integer currentIDEnfrentamiento = new Integer(IDEnfrentamiento);
+		
+		try{
+			stm = con.prepareStatement(sql);
+			stm.setInt(0,currentIDEnfrentamiento);
+			result = stm.executeQuery();
+			while(result.next()){
+				usuario = (new JDBCUsuarioDAO()).recuperarUsuario(result.getString("IDUsuario"));
+				listaUsuarios.add(usuario);
+			}
+			
+		}catch (SQLException e){
+			System.out.println("Message: " + e.getMessage());
+            System.out.println("SQLState: " + e.getSQLState());
+            System.out.println("ErrorCode: " + e.getErrorCode());
+		}finally{
+			try{
+				if(stm !=null){
+					stm.close();
+				}
+				if(result !=null){
+					result.close();
+				}
+			}catch (SQLException e){
+				
+			}
+		}
+		return listaUsuarios;
+	}
+	
+	private void puntuar(Connection con,String IDEnfrentamiento,String IDAplicacion){
+		Integer currentenIDEnfrentamiento = new Integer(IDEnfrentamiento);
+		Integer currentIDAplicacion = new Integer(IDAplicacion);
+		String sql1="UPDATE Enfrentamientos SET Enfrentamientos.votosApp1 = ? WHERE Enfrentamientos.IDEnfrentamiento = ?";
+		String sql2="UPDATE Enfrentamientos SET Enfrentamientos.votosApp2 = ? WHERE Enfrentamientos.IDEnfrentamiento = ?";
+		PreparedStatement stm = null;
+		
+		Enfrentamiento currentEnfrentamiento = selectEnfrentamientoByID(IDEnfrentamiento);
+		Integer IDAply1=new Integer(currentEnfrentamiento.getAplicacion1().getIDAplicacion());
+		Integer votosAply1=currentEnfrentamiento.getVotosAplicacion1();
+		Integer votosAply2=currentEnfrentamiento.getVotosAplicacion2();
+		
+		try{
+			if(currentIDAplicacion.equals(IDAply1)){
+				stm = con.prepareStatement(sql1);
+				stm.setInt(0,(votosAply1+1));
+				stm.setInt(1,currentenIDEnfrentamiento);
+				stm.executeUpdate();
+			}else{
+				stm = con.prepareStatement(sql2);
+				stm.setInt(0,(votosAply2+1));
+				stm.setInt(1,currentenIDEnfrentamiento);
+				stm.executeUpdate();
+			}			
+		}catch (SQLException e){
+			System.out.println("Message: " + e.getMessage());
+            System.out.println("SQLState: " + e.getSQLState());
+            System.out.println("ErrorCode: " + e.getErrorCode());
 		}finally{
 			try{
 				if(stm !=null){
@@ -312,19 +443,13 @@ public class JDBCEnfrentamientoDAO implements IEnfrentamientoDAO{
 				
 			}
 		}
-			
 	}
 	
-	public void acceptEnfrentamiento(String IDEnfrentamiento){
-		
-		Connection con =(Connection) ConnectionManager.getInstance().checkOut();
-		
-		String sql = "UPDATE Enfrentamientos SET "
-		
-	}
 	
 	private Enfrentamiento createEnfrentamientoFromBD(Enfrentamiento enfrent,ResultSet resSet){
 		enfrent = new EnfrentamientoImpl();
+		
+		Integer IDEnfrentamiento = resSet.getInt("IDEnfrentamiento");
 		Integer IDapl1=resSet.getInt("IDAplicacion1");
 		Integer IDapl2=resSet.getInt("idAplicacion2");
 		String descripcion=resSet.getString("descripcion");
@@ -334,6 +459,7 @@ public class JDBCEnfrentamientoDAO implements IEnfrentamientoDAO{
 		Date fechaFin = resSet.getDate("fechaFin");
 		Aplicacion aplicacion1= getAplicacionByID(IDapl1.toString());
 		Aplicacion aplicacion2= getAplicacionByID(IDapl2.toString());
+		enfrent.setIDEnfrentamiento(IDEnfrentamiento.toString());
 		enfrent.setAplicacion1(aplicacion1);
 		enfrent.setAplicacion2(aplicacion2);
 		enfrent.setDescripcion(descripcion);
@@ -341,6 +467,8 @@ public class JDBCEnfrentamientoDAO implements IEnfrentamientoDAO{
 		enfrent.setFechaFin(fechaFin);
 		return enfrent;
 	}
+	
+
 	
 	
 

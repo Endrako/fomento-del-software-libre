@@ -3,14 +3,21 @@ package pos.domain;
 import java.util.Date;
 
 public class AplicacionImpl implements Aplicacion {
+	private String IDAplicacion;
 	private String nombre;
 	private String descripcion;
 	private Date fechaPublicacion;
 	private String URLWeb;
-	private Proyecto proyecto;
 	private Integer votosAFavor;
 	private Integer votosEnContra;
 	
+	
+	public String getIDAplicacion(){
+		return IDAplicacion;
+	}
+	public void setIDAplicacion(String IDAplicacion){
+		this.IDAplicacion=IDAplicacion;
+	}
 
 	@Override
 	public String getNombre() {
