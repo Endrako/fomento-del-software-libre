@@ -71,9 +71,30 @@ public class TestEncuestaJDBC {
 		
 		//Insertar respuesta
 		
-		r.setDescripcion("Me gusta linux porque tengo sueños eroticos con el pingüino");
+		/*r.setDescripcion("Me gusta linux porque tengo sueños eroticos con el pingüino");
 		r.setNumeroVotos(1);
-		rdao.insertarRespuesta(r);
+		rdao.insertarRespuesta(7,r);*/
+		
+		//Insertar una pregunta
+		Pregunta preg = new PreguntaImpl();
+		Respuesta r1 = new RespuestaImpl();
+		Respuesta r2 = new RespuestaImpl();
+		Respuesta r3 = new RespuestaImpl();
+		Respuesta r4 = new RespuestaImpl();
+		preg.setEnunciado("¿Que sistema operativo usas?");
+		r1.setDescripcion("windows");
+		r2.setDescripcion("Linux");
+		r3.setDescripcion("Mac");
+		r4.setDescripcion("Soy Chuck Norris y no necesito un sistema operativo");
+		lr.clear();
+		lr.add(r1);
+		lr.add(r2);
+		lr.add(r3);
+		lr.add(r4);
+		
+		System.out.println(lr);
+		
+		pdao.insertarPregunta(preg, 23, lr);
 	}
 
 }

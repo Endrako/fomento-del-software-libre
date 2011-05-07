@@ -7,19 +7,19 @@ import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 
-import pos.domain.Encuesta;
-import pos.domain.EncuestaImpl;
 import pos.domain.Pregunta;
 import pos.domain.PreguntaImpl;
+import pos.domain.Respuesta;
+import pos.utils.UIDGenerator;
 
 public class JDBCPreguntaDAO implements IPreguntaDAO {
 	
 	 private Connection conn;
-	 private IPreguntaDAO pdao;
 	 private IRespuestaDAO rdao;
 	 
 	 public JDBCPreguntaDAO(){
 		 conn = ConnectionManager.getInstance().checkOut();
+		 rdao = new JDBCRespuestaDAO();
 	 }
 	 
 	 protected void finalize() {
@@ -70,9 +70,39 @@ public class JDBCPreguntaDAO implements IPreguntaDAO {
 	}
 
 	@Override
-	public void insertarPregunta(Pregunta p) {
-		// TODO Auto-generated method stub
+	public void insertarPregunta(Pregunta p,Integer idEncuensta, List<Respuesta> lr) {
+		Integer pID = UIDGenerator.getInstance().getKey();
+		//Insertar respuestas
+		
+		for (Respuesta r :lr){
+			Integer rID = UIDGenerator.getInstance().getKey();
+			rdao.insertarRespuesta(rID,r);
+			AsociarPreguntaARespuesta(pID, rID);
+		}
+		
+		PreparedStatement stmt = null;
+		String sql = "INSERT INTO preguntas (IDPregunta, IDEncuesta, descripcionPregunta) VALUES (?,?,?) ";
+		try {
+			stmt = conn.prepareStatement(sql);
 
+			stmt.setInt(1, pID);
+			stmt.setInt(2, idEncuensta);
+			stmt.setString(3, p.getEnunciado());
+			
+			stmt.executeUpdate();
+
+		} catch (SQLException e) {
+			System.out.println("Message: " + e.getMessage());
+			System.out.println("SQLState: " + e.getSQLState());
+			System.out.println("ErrorCode: " + e.getErrorCode());
+		} finally {
+			try {
+				if (stmt != null) {
+					stmt.close();
+				}
+			} catch (SQLException e) {
+			}
+		}
 	}
 
 	@Override
@@ -108,6 +138,34 @@ public class JDBCPreguntaDAO implements IPreguntaDAO {
 		}
 
 		return res;
+	}
+	
+	private void AsociarPreguntaARespuesta(Integer idPregunta, Integer idRespuesta){
+		Integer relID = UIDGenerator.getInstance().getKey();
+		PreparedStatement stmt = null;
+		String sql = "INSERT INTO preguntasrespuestas (IDRelacion, IDRespuesta, IDPregunta) VALUES (?,?,?) ";
+		try {
+			System.out.print("Illo k");
+			stmt = conn.prepareStatement(sql);
+
+			stmt.setInt(1, relID);
+			stmt.setInt(2, idRespuesta);
+			stmt.setInt(3, idPregunta);
+
+			stmt.executeUpdate();
+
+		} catch (SQLException e) {
+			System.out.println("Message: " + e.getMessage());
+			System.out.println("SQLState: " + e.getSQLState());
+			System.out.println("ErrorCode: " + e.getErrorCode());
+		} finally {
+			try {
+				if (stmt != null) {
+					stmt.close();
+				}
+			} catch (SQLException e) {
+			}
+		}
 	}
 
 }

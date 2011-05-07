@@ -72,8 +72,8 @@ public class JDBCRespuestaDAO implements IRespuestaDAO {
 	}
 
 	@Override
-	public void insertarRespuesta(Respuesta r) {
-		Integer rID = UIDGenerator.getInstance().getKey();
+	public void insertarRespuesta(Integer rID,Respuesta r) {
+		
 		PreparedStatement stmt = null;
 		String sql = "INSERT INTO respuestas (IDRespuesta, descripcionRespuesta, numeroVotos) VALUES (?,?,?) ";
 		try {
@@ -81,7 +81,7 @@ public class JDBCRespuestaDAO implements IRespuestaDAO {
 
 			stmt.setInt(1, rID);
 			stmt.setString(2, r.getDescripcionRespuesta());
-			stmt.setInt(3, r.getNumeroVotos());
+			stmt.setInt(3, 0);
 
 			stmt.executeUpdate();
 
