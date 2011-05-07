@@ -3,6 +3,7 @@ package pos.data;
 import java.util.List;
 
 import pos.domain.Encuesta;
+import pos.domain.Pregunta;
 
 public interface IEncuestaDAO {
     public void Borrar(String EncuestaID);

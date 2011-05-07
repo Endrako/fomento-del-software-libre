@@ -70,11 +70,11 @@ public class JDBCPreguntaDAO implements IPreguntaDAO {
 	}
 
 	@Override
-	public void insertarPregunta(Pregunta p,Integer idEncuensta, List<Respuesta> lr) {
+	public void insertarPregunta(Pregunta p,Integer idEncuensta) {
 		Integer pID = UIDGenerator.getInstance().getKey();
 		//Insertar respuestas
 		
-		for (Respuesta r :lr){
+		for (Respuesta r :p.getRespuestas()){
 			Integer rID = UIDGenerator.getInstance().getKey();
 			rdao.insertarRespuesta(rID,r);
 			AsociarPreguntaARespuesta(pID, rID);
@@ -145,7 +145,6 @@ public class JDBCPreguntaDAO implements IPreguntaDAO {
 		PreparedStatement stmt = null;
 		String sql = "INSERT INTO preguntasrespuestas (IDRelacion, IDRespuesta, IDPregunta) VALUES (?,?,?) ";
 		try {
-			System.out.print("Illo k");
 			stmt = conn.prepareStatement(sql);
 
 			stmt.setInt(1, relID);

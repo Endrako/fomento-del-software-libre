@@ -32,50 +32,8 @@ public class TestEncuestaJDBC {
 		IRespuestaDAO rdao = new JDBCRespuestaDAO();
 		Respuesta r = new RespuestaImpl();
 		
-		//recuperar encuesta
-		e=edao.recuperarEncuesta(1);
-		System.out.println(e.getTituloEncuesta());
-		
-		//lista de todas las encuestas
-		le = edao.seleccionarTodasEncuestas();
-		for (Encuesta enc :le){
-			System.out.println(enc.getTituloEncuesta());
-		}
-		
-		//recuperarPregunta
-		
-		p=pdao.recuperarPregunta(1);
-		System.out.println(p.getEnunciado());
-		
-		//preguntas de una encuesta
-		lp = pdao.seleccionarTodasPreguntasPorEncuesta(2);
-		for (Pregunta pr :lp){
-			System.out.println(pr.getEnunciado());
-		}
-		
-		//Respuesta de una pregunta
-		lr = rdao.seleccionarTodasRespuestasPorPregunta(1);
-		for (Respuesta res:lr){
-			System.out.println(res.getDescripcionRespuesta());
-		}
-		
-		//rescuperar una respuesta
-		
-		r=rdao.recuperarRespuesta(1);
-		System.out.println("RespID: "+r.getIDRespuesta()+" "+r.getDescripcionRespuesta());
 		
 		//Insertar una encuesta
-		/*Encuesta paco = new EncuestaImpl();
-		paco.setTituloEncuesta("Inserción de Picha");
-		edao.insertarEncuesta(e);*/
-		
-		//Insertar respuesta
-		
-		/*r.setDescripcion("Me gusta linux porque tengo sueños eroticos con el pingüino");
-		r.setNumeroVotos(1);
-		rdao.insertarRespuesta(7,r);*/
-		
-		//Insertar una pregunta
 		Pregunta preg = new PreguntaImpl();
 		Respuesta r1 = new RespuestaImpl();
 		Respuesta r2 = new RespuestaImpl();
@@ -91,10 +49,65 @@ public class TestEncuestaJDBC {
 		lr.add(r2);
 		lr.add(r3);
 		lr.add(r4);
+		preg.setRespuestas(lr);
 		
-		System.out.println(lr);
+		Pregunta preg2 = new PreguntaImpl();
+		Respuesta r5 = new RespuestaImpl();
+		Respuesta r6 = new RespuestaImpl();
+		Respuesta r7 = new RespuestaImpl();
+		Respuesta r8 = new RespuestaImpl();
+		preg2.setEnunciado("¿Que personaje de los siguientes te pone más cachondo?");
+		r5.setDescripcion("Bill Gates");
+		r6.setDescripcion("Papa Pitufo");
+		r7.setDescripcion("David el Gnomo");
+		r8.setDescripcion("Chuck Norris");
+		List<Respuesta> lr2= new LinkedList<Respuesta>();
+		lr2.clear();
+		lr2.add(r5);
+		lr2.add(r6);
+		lr2.add(r7);
+		lr2.add(r8);
+		preg2.setRespuestas(lr2);
 		
-		pdao.insertarPregunta(preg, 23, lr);
+		List<Pregunta> lp1 = new LinkedList<Pregunta>();
+		lp1.add(preg);
+		lp1.add(preg2);
+		e.setTituloEncuesta("Encuesta sobre el sexo de los grillos");
+		e.setPreguntas(lp1);
+		edao.insertarEncuesta(e);
+		
+		//recuperar encuesta
+	/*	e=edao.recuperarEncuesta(1);
+		System.out.println(e.getTituloEncuesta());
+		
+		//lista de todas las encuestas
+		le = edao.seleccionarTodasEncuestas();
+		for (Encuesta enc :le){
+			System.out.println(enc.getTituloEncuesta());
+		}
+		
+		//recuperarPregunta
+		
+		//p=pdao.recuperarPregunta(1);
+		//System.out.println(p.getEnunciado());
+		
+		preguntas de una encuesta
+		lp = pdao.seleccionarTodasPreguntasPorEncuesta(2);
+		for (Pregunta pr :lp){
+			System.out.println(pr.getEnunciado());
+		}
+		
+		//Respuesta de una pregunta
+		lr = rdao.seleccionarTodasRespuestasPorPregunta(1);
+		for (Respuesta res:lr){
+			System.out.println(res.getDescripcionRespuesta());
+		}
+		
+		//rescuperar una respuesta
+		
+		r=rdao.recuperarRespuesta(1);
+		System.out.println("RespID: "+r.getIDRespuesta()+" "+r.getDescripcionRespuesta());
+		*/
 	}
 
 }
