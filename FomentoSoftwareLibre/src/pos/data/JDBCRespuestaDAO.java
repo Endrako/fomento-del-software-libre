@@ -11,6 +11,7 @@ import pos.domain.Pregunta;
 import pos.domain.PreguntaImpl;
 import pos.domain.Respuesta;
 import pos.domain.RespuestaImpl;
+import pos.utils.UIDGenerator;
 
 public class JDBCRespuestaDAO implements IRespuestaDAO {
 
@@ -72,7 +73,30 @@ public class JDBCRespuestaDAO implements IRespuestaDAO {
 
 	@Override
 	public void insertarRespuesta(Respuesta r) {
-		// TODO Auto-generated method stub
+		Integer rID = UIDGenerator.getInstance().getKey();
+		PreparedStatement stmt = null;
+		String sql = "INSERT INTO respuestas (IDRespuesta, descripcionRespuesta, numeroVotos) VALUES (?,?,?) ";
+		try {
+			stmt = conn.prepareStatement(sql);
+
+			stmt.setInt(1, rID);
+			stmt.setString(2, r.getDescripcionRespuesta());
+			stmt.setInt(3, r.getNumeroVotos());
+
+			stmt.executeUpdate();
+
+		} catch (SQLException e) {
+			System.out.println("Message: " + e.getMessage());
+			System.out.println("SQLState: " + e.getSQLState());
+			System.out.println("ErrorCode: " + e.getErrorCode());
+		} finally {
+			try {
+				if (stmt != null) {
+					stmt.close();
+				}
+			} catch (SQLException e) {
+			}
+		}
 
 	}
 

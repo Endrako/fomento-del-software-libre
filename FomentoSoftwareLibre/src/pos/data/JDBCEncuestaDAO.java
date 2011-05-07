@@ -80,13 +80,13 @@ public class JDBCEncuestaDAO implements IEncuestaDAO {
 		//rdao.insert(conn, oidr, o.getDeliverto());
 
 		//insertar Encuensta
-		String oide = UIDGenerator.getInstance().getKey();
+		Integer oide = UIDGenerator.getInstance().getKey();
 		PreparedStatement stmt = null;
 		String sql = "INSERT INTO encuestas (IDEncuesta, nombre	) VALUES (?, ?) ";
 		try {
 			stmt = conn.prepareStatement(sql);
 
-			stmt.setInt(1, 999);
+			stmt.setInt(1, oide);
 			stmt.setString(2, enc.getTituloEncuesta());
 
 			stmt.executeUpdate();

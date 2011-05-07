@@ -65,9 +65,15 @@ public class TestEncuestaJDBC {
 		System.out.println("RespID: "+r.getIDRespuesta()+" "+r.getDescripcionRespuesta());
 		
 		//Insertar una encuesta
-		Encuesta paco = new EncuestaImpl();
+		/*Encuesta paco = new EncuestaImpl();
 		paco.setTituloEncuesta("Inserción de Picha");
-		edao.insertarEncuesta(e);
+		edao.insertarEncuesta(e);*/
+		
+		//Insertar respuesta
+		
+		r.setDescripcion("Me gusta linux porque tengo sueños eroticos con el pingüino");
+		r.setNumeroVotos(1);
+		rdao.insertarRespuesta(r);
 	}
 
 }
