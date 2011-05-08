@@ -1,6 +1,7 @@
 package pos.domain;
 
 import java.util.Date;
+import java.util.List;
 
 public interface Aplicacion {
 	
@@ -16,8 +17,13 @@ public interface Aplicacion {
 	public String getURLWeb();
 	public void setURLWeb(String URLWeb);
 	public Integer getVotosAFavor();
-	public void anadirVotoAFavor();
+	public void anadirVotoAFavor(Integer votos);
+	public void setVotosAFavor(Integer votos);
 	public Integer getVotosEnContra();
-	public void anadirVotoEnContra();
+	public void setVotosEnContra(Integer votos);
+	public void anadirVotoEnContra(Integer votos);
+	public List<Tag> getTags();
+	public void setTags(List<Tag> tags);
+	
 
 }

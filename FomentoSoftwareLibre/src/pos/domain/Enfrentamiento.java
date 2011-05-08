@@ -18,8 +18,10 @@ public interface Enfrentamiento {
 	public void setFechaFin(Date fechaFin);
 	public Integer getVotosAplicacion1();
 	public void anadirVotoAplicacion1(Integer votos);
+	public void setVotosAplicacion1(Integer votos);
 	public Integer getVotosAplicacion2();
 	public void anadirVotoAplicacion2(Integer votos);
+	public void setVotosAplicacion2(Integer votos);
 	public boolean equals(Object o);
 	public String toString();
 	

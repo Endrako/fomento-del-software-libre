@@ -1,6 +1,7 @@
 package pos.domain;
 
 import java.util.Date;
+import java.util.List;
 
 public class AplicacionImpl implements Aplicacion {
 	private String IDAplicacion;
@@ -10,6 +11,7 @@ public class AplicacionImpl implements Aplicacion {
 	private String URLWeb;
 	private Integer votosAFavor;
 	private Integer votosEnContra;
+	private List<Tag> tags;
 	
 	
 	public String getIDAplicacion(){
@@ -67,8 +69,8 @@ public class AplicacionImpl implements Aplicacion {
 	}
 
 	@Override
-	public void anadirVotoAFavor() {
-		votosAFavor++;
+	public void anadirVotoAFavor(Integer votos) {
+		votosAFavor = votosAFavor+votos;
 	}
 
 	@Override
@@ -77,8 +79,25 @@ public class AplicacionImpl implements Aplicacion {
 	}
 
 	@Override
-	public void anadirVotoEnContra() {
-		votosEnContra++;
+	public void anadirVotoEnContra(Integer votos) {
+		votosEnContra = votosEnContra+votos;
+	}
+	
+	public void setVotosAFavor(Integer votos){
+		this.votosAFavor = votos;
+	}
+	
+	public void setVotosEnContra(Integer votos){
+		this.votosEnContra = votos;
+	}
+	@Override
+	public List<Tag> getTags() {
+		return tags;
+	}
+	@Override
+	public void setTags(List<Tag> tags) {
+		this.tags=tags;
+		
 	}
 
 }

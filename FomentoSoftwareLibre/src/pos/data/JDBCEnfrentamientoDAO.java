@@ -24,7 +24,7 @@ public class JDBCEnfrentamientoDAO implements IEnfrentamientoDAO{
 		
 		Enfrentamiento enfrentamiento=null;
 		List<Enfrentamiento> lista = new ArrayList<Enfrentamiento>();
-		String sql= "SELECT * FROM Enfrentamientos";		
+		String sql= "SELECT * FROM enfrentamientos";		
 		PreparedStatement stm=null;
 		ResultSet result = null;
 	
@@ -56,7 +56,7 @@ public class JDBCEnfrentamientoDAO implements IEnfrentamientoDAO{
 	public Enfrentamiento selectEnfrentamientoByID(String IDEnfrentamiento) {
 		Connection con =(Connection) ConnectionManager.getInstance().checkOut();
 		Enfrentamiento enfrentamiento =null;
-		String sql="SELECT * FROM Enfrentamientos WHERE (IDEnfrentamiento = ?)";
+		String sql="SELECT * FROM enfrentamientos WHERE (IDEnfrentamiento = ?)";
 		PreparedStatement stm=null;
 		ResultSet result=null;
 		
@@ -94,7 +94,7 @@ public class JDBCEnfrentamientoDAO implements IEnfrentamientoDAO{
 			
 		List<Enfrentamiento> lista=new ArrayList<Enfrentamiento>();
 		Enfrentamiento enfrentamiento = null;
-		String sql = "SELECT * FROM Enfrentamientos WHERE ( IDAplicacion1 = ? ) OR (idAplicacion2 = ? )";
+		String sql = "SELECT * FROM enfrentamientos WHERE ( IDAplicacion1 = ? ) OR (idAplicacion2 = ? )";
 		PreparedStatement stm= null;
 		ResultSet result=null;
 		
@@ -131,7 +131,7 @@ public class JDBCEnfrentamientoDAO implements IEnfrentamientoDAO{
 		
 		Enfrentamiento enfrentamiento=null;
 		List<Enfrentamiento> lista = new ArrayList<Enfrentamiento>();
-		String sql="SELECT * FROM Enfrentamientos WHERE aceptado=1";
+		String sql="SELECT * FROM enfrentamientos WHERE aceptado=1";
 		PreparedStatement stm=null;
 		ResultSet result=null;
 		
@@ -166,7 +166,7 @@ public class JDBCEnfrentamientoDAO implements IEnfrentamientoDAO{
 		
 		Enfrentamiento enfrentamiento = null;
 		List<Enfrentamiento> lista = new ArrayList<Enfrentamiento>();
-		String sql="SELECT * FROM Enfrentamientos WHERE aceptado=0";
+		String sql="SELECT * FROM enfrentamientos WHERE aceptado=0";
 		PreparedStatement stm = null;
 		ResultSet result = null;
 		
@@ -201,7 +201,7 @@ public class JDBCEnfrentamientoDAO implements IEnfrentamientoDAO{
 	public void insertEnfrentamiento(Enfrentamiento enfrentamiento) {
 		Connection con =(Connection) ConnectionManager.getInstance().checkOut();
 		
-		String sql = "INSERT INTO Enfrentamientos (IDAplicacion1,idAplicacion2,descripcion,votosApp1,votosApp2,fechaCreacion,fechaFin,aceptado) VALUES (?,?,?,?,?,?,?,?) ";
+		String sql = "INSERT INTO enfrentamientos (IDAplicacion1,idAplicacion2,descripcion,votosApp1,votosApp2,fechaCreacion,fechaFin,aceptado) VALUES (?,?,?,?,?,?,?,?) ";
 		PreparedStatement stm=null;
 		
 		Aplicacion aplicacion1=enfrentamiento.getAplicacion1();
@@ -248,7 +248,7 @@ public class JDBCEnfrentamientoDAO implements IEnfrentamientoDAO{
 		//Integer IDAply2= getIDFromAplication(enfrentamiento.getAplicacion2());
 			
 		//Me hace falta un método que dandole una aplicacion me de su ID
-		String sql = "DELETE FROM Enfrentamientos WHERE (IDEnfrentamiento = ?)";
+		String sql = "DELETE FROM enfrentamientos WHERE (IDEnfrentamiento = ?)";
 	//	String sql = "DELETE FROM Enfrentamientos WHERE ( IDAplicacion1 = ?) AND (idAplicacion2 = ?)";
 		PreparedStatement stm = null;
 		
@@ -277,7 +277,7 @@ public class JDBCEnfrentamientoDAO implements IEnfrentamientoDAO{
 		
 		Connection con =(Connection) ConnectionManager.getInstance().checkOut();
 		
-		String sql = "UPDATE Enfrentamientos SET Enfrentamientos.aceptado=1 WHERE (Enfrentamientos.IDEnfrentamiento = ?)";
+		String sql = "UPDATE enfrentamientos SET enfrentamientos.aceptado=1 WHERE (enfrentamientos.IDEnfrentamiento = ?)";
 		PreparedStatement stm=null;
 		try{
 			stm=con.prepareStatement(sql);
@@ -305,7 +305,7 @@ public class JDBCEnfrentamientoDAO implements IEnfrentamientoDAO{
 		Enfrentamiento enfrentamiento = null;
 		Integer IDAply1=new Integer(aply1.getIDAplicacion());
 		Integer IDAply2=new Integer(aply2.getIDAplicacion());
-		String sql="SELECT * FROM Enfrentamientos WHERE (IDAplicacion1=? AND idAplicacion2=?) OR (IDAplicacion1=? AND idAplicacion2=?)";
+		String sql="SELECT * FROM enfrentamientos WHERE (IDAplicacion1=? AND idAplicacion2=?) OR (IDAplicacion1=? AND idAplicacion2=?)";
 		ResultSet result = null;
 		PreparedStatement stm=null;
 		
@@ -341,7 +341,7 @@ public class JDBCEnfrentamientoDAO implements IEnfrentamientoDAO{
 	public void votar(String IDEnfrentamiento,String IDUser,String IDAplicacion){
 		Connection con = (Connection) ConnectionManager.getInstance().checkOut();
 		
-		String sql = "INSERT INTO VotosUsuarioEnfrentamientos(IDEnfrentamiento,IDUsuario,IDAplicacion) VALUES (?,?,?)";
+		String sql = "INSERT INTO votosusuarioenfrentamientos(IDEnfrentamiento,IDUsuario,IDAplicacion) VALUES (?,?,?)";
 		PreparedStatement stm = null;
 		
 		try{
@@ -374,7 +374,7 @@ public class JDBCEnfrentamientoDAO implements IEnfrentamientoDAO{
 		List<Usuario> listaUsuarios = new ArrayList<Usuario>();
 		PreparedStatement stm = null;
 		ResultSet result=null;
-		String sql = "SELECT IDUsuario FROM VotosUsuarioEnfrentamientos WHERE IDEnfrentamiento = ?";
+		String sql = "SELECT IDUsuario FROM votosusuarioenfrentamientos WHERE IDEnfrentamiento = ?";
 		
 		Integer currentIDEnfrentamiento = new Integer(IDEnfrentamiento);
 		
@@ -409,8 +409,8 @@ public class JDBCEnfrentamientoDAO implements IEnfrentamientoDAO{
 	private void puntuar(Connection con,String IDEnfrentamiento,String IDAplicacion){
 		Integer currentenIDEnfrentamiento = new Integer(IDEnfrentamiento);
 		Integer currentIDAplicacion = new Integer(IDAplicacion);
-		String sql1="UPDATE Enfrentamientos SET Enfrentamientos.votosApp1 = ? WHERE Enfrentamientos.IDEnfrentamiento = ?";
-		String sql2="UPDATE Enfrentamientos SET Enfrentamientos.votosApp2 = ? WHERE Enfrentamientos.IDEnfrentamiento = ?";
+		String sql1="UPDATE enfrentamientos SET enfrentamientos.votosApp1 = ? WHERE enfrentamientos.IDEnfrentamiento = ?";
+		String sql2="UPDATE enfrentamientos SET enfrentamientos.votosApp2 = ? WHERE enfrentamientos.IDEnfrentamiento = ?";
 		PreparedStatement stm = null;
 		
 		Enfrentamiento currentEnfrentamiento = selectEnfrentamientoByID(IDEnfrentamiento);
@@ -448,23 +448,31 @@ public class JDBCEnfrentamientoDAO implements IEnfrentamientoDAO{
 	
 	private Enfrentamiento createEnfrentamientoFromBD(Enfrentamiento enfrent,ResultSet resSet){
 		enfrent = new EnfrentamientoImpl();
+		JDBCAplicacionDAO apliDAO = new JDBCAplicacionDAO();
 		
-		Integer IDEnfrentamiento = resSet.getInt("IDEnfrentamiento");
-		Integer IDapl1=resSet.getInt("IDAplicacion1");
-		Integer IDapl2=resSet.getInt("idAplicacion2");
-		String descripcion=resSet.getString("descripcion");
-		Integer votosAply1=resSet.getInt("votosApp1");
-		Integer votosAply2=resSet.getInt("votosApp2");
-		Date fechaCreacion = resSet.getDate("fechaCreacion");
-		Date fechaFin = resSet.getDate("fechaFin");
-		Aplicacion aplicacion1= getAplicacionByID(IDapl1.toString());
-		Aplicacion aplicacion2= getAplicacionByID(IDapl2.toString());
-		enfrent.setIDEnfrentamiento(IDEnfrentamiento.toString());
-		enfrent.setAplicacion1(aplicacion1);
-		enfrent.setAplicacion2(aplicacion2);
-		enfrent.setDescripcion(descripcion);
-		enfrent.setFechaCreacion(fechaCreacion);
-		enfrent.setFechaFin(fechaFin);
+		try{
+			Integer IDEnfrentamiento = resSet.getInt("IDEnfrentamiento");
+			Integer IDapl1=resSet.getInt("IDAplicacion1");
+			Integer IDapl2=resSet.getInt("idAplicacion2");
+			String descripcion=resSet.getString("descripcion");
+			Integer votosAply1=resSet.getInt("votosApp1");
+			Integer votosAply2=resSet.getInt("votosApp2");
+			Date fechaCreacion = resSet.getDate("fechaCreacion");
+			Date fechaFin = resSet.getDate("fechaFin");
+			//Cuidaaaaaaaaaoooooooo!
+			Aplicacion aplicacion1= apliDAO.selectAplicacionByID(IDapl1.toString());
+			Aplicacion aplicacion2= apliDAO.selectAplicacionByID(IDapl2.toString());
+			enfrent.setIDEnfrentamiento(IDEnfrentamiento.toString());
+			enfrent.setAplicacion1(aplicacion1);
+			enfrent.setAplicacion2(aplicacion2);
+			enfrent.setDescripcion(descripcion);
+			enfrent.setFechaCreacion(fechaCreacion);
+			enfrent.setFechaFin(fechaFin);
+			enfrent.setVotosAplicacion1(votosAply1);
+			enfrent.setVotosAplicacion2(votosAply2);			
+		}catch (SQLException e){
+			e.printStackTrace();
+		}
 		return enfrent;
 	}
 	

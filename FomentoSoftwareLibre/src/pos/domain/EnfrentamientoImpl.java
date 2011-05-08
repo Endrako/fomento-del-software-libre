@@ -77,6 +77,14 @@ public class EnfrentamientoImpl implements Enfrentamiento{
 	public void anadirVotoAplicacion2(Integer votos) {
 		votosAplicacion2=votosAplicacion2+votos;
 	}
+	
+	public void setVotosAplicacion1(Integer votos){
+		this.votosAplicacion1=votos;
+	}
+	
+	public void setVotosAplicacion2(Integer votos){
+		this.votosAplicacion2 = votos;
+	}
 
 	
 	//Dos enfrentamientos son iguales si
