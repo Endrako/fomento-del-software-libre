@@ -27,8 +27,25 @@ public class JDBCRespuestaDAO implements IRespuestaDAO {
 	 }
 	
 	@Override
-	public void borrar(String RespuestaID) {
-		
+	public void borrar(Integer RespuestaID) {
+        String sql = "DELETE FROM respuestas WHERE (IDRespuesta = ?) ";
+        PreparedStatement stmt = null;
+
+        try {
+            stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, RespuestaID);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("Message: " + e.getMessage());
+            System.out.println("SQLState: " + e.getSQLState());
+            System.out.println("ErrorCode: " + e.getErrorCode());
+        } finally {
+            try {
+                if (stmt != null)
+                    stmt.close();
+            } catch (SQLException e) {
+            }
+        }
 
 	}
 

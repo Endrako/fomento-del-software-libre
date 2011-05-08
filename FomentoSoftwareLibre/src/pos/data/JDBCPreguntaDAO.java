@@ -28,8 +28,33 @@ public class JDBCPreguntaDAO implements IPreguntaDAO {
 	
 	 
 	@Override
-	public void borrar(String PreguntaID) {
-		// TODO Auto-generated method stub
+	public void borrar(Integer preguntaID) {
+		
+		List<Integer> respIDs = seleccionarRespuestasDePregunta(preguntaID);
+		for (Integer n: respIDs){
+			borrarAsociacionPreguntaRespuesta(n);
+			rdao.borrar(n);
+		}
+		
+		
+		String sql = "DELETE FROM preguntas WHERE (IDPregunta = ?) ";
+        PreparedStatement stmt = null;
+
+        try {
+            stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, preguntaID);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("Message: " + e.getMessage());
+            System.out.println("SQLState: " + e.getSQLState());
+            System.out.println("ErrorCode: " + e.getErrorCode());
+        } finally {
+            try {
+                if (stmt != null)
+                    stmt.close();
+            } catch (SQLException e) {
+            }
+        }
 
 	}
 
@@ -140,6 +165,10 @@ public class JDBCPreguntaDAO implements IPreguntaDAO {
 		return res;
 	}
 	
+	//============ Métodos Privados de la Asociación entre preguntas y respuestas=============
+	
+	
+	
 	private void AsociarPreguntaARespuesta(Integer idPregunta, Integer idRespuesta){
 		Integer relID = UIDGenerator.getInstance().getKey();
 		PreparedStatement stmt = null;
@@ -165,6 +194,65 @@ public class JDBCPreguntaDAO implements IPreguntaDAO {
 			} catch (SQLException e) {
 			}
 		}
+	}
+	
+	private List<Integer> seleccionarRespuestasDePregunta(Integer pregID) {
+		PreparedStatement stmt = null;
+		ResultSet result = null;
+		String sql = "SELECT * FROM preguntasrespuestas WHERE (IDPregunta = ? ) ";
+		List<Integer> res = new LinkedList<Integer>();
+
+		try {
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, pregID);
+
+			result = stmt.executeQuery();
+
+			while (result.next()){
+				Integer id;
+				id = result.getInt("IDRespuesta");
+				res.add(id);
+			}
+		} catch (SQLException e) {
+			System.out.println("Message: " + e.getMessage());
+			System.out.println("SQLState: " + e.getSQLState());
+			System.out.println("ErrorCode: " + e.getErrorCode());
+		} finally {
+			try {
+				if (result != null) {
+					result.close();
+				}
+
+				if (stmt != null) {
+					stmt.close();
+				}
+			} catch (SQLException e) {
+			}
+		}
+
+		return res;
+	}
+	
+	private void borrarAsociacionPreguntaRespuesta(Integer respID) {
+        String sql = "DELETE FROM preguntasrespuestas WHERE (IDRespuesta = ?) ";
+        PreparedStatement stmt = null;
+
+        try {
+            stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, respID);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("Message: " + e.getMessage());
+            System.out.println("SQLState: " + e.getSQLState());
+            System.out.println("ErrorCode: " + e.getErrorCode());
+        } finally {
+            try {
+                if (stmt != null)
+                    stmt.close();
+            } catch (SQLException e) {
+            }
+        }
+
 	}
 
 }

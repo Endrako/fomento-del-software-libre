@@ -34,6 +34,7 @@ public class TestEncuestaJDBC {
 		
 		
 		//Insertar una encuesta
+		/*
 		Pregunta preg = new PreguntaImpl();
 		Respuesta r1 = new RespuestaImpl();
 		Respuesta r2 = new RespuestaImpl();
@@ -75,6 +76,10 @@ public class TestEncuestaJDBC {
 		e.setTituloEncuesta("Encuesta sobre el sexo de los grillos");
 		e.setPreguntas(lp1);
 		edao.insertarEncuesta(e);
+		*/
+		//borrar pregunta
+		
+		pdao.borrar(1509550783);
 		
 		//recuperar encuesta
 	/*	e=edao.recuperarEncuesta(1);
