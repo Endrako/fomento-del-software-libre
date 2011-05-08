@@ -6,8 +6,11 @@ import java.util.List;
 public interface Aplicacion {
 	
 	//TODO Completar la interface con lo que vaya a ser necesario
-	public String getIDAplicacion();
-	public void setIDAplicacion(String IDAplicacion);
+	
+	// Puede que alguno encuentre errores aquí porque creo que hemos editado 2 a la vez esto...
+	
+	public Integer getIDAplicacion();
+	public void setIDAplicacion(Integer IDAplicacion);
 	public String getNombre();
 	public void setNombre(String nombre);
 	public String getDescripcion();
@@ -17,13 +20,16 @@ public interface Aplicacion {
 	public String getURLWeb();
 	public void setURLWeb(String URLWeb);
 	public Integer getVotosAFavor();
+	public void setVotosAFavor(Integer votosAFavor);
+	public void anadirVotoAFavor();
 	public void anadirVotoAFavor(Integer votos);
-	public void setVotosAFavor(Integer votos);
 	public Integer getVotosEnContra();
-	public void setVotosEnContra(Integer votos);
+	public void setVotosEnContra(Integer votosEnContra);
+	public void anadirVotoEnContra();
 	public void anadirVotoEnContra(Integer votos);
 	public List<Tag> getTags();
 	public void setTags(List<Tag> tags);
-	
+		public Integer getIDProyecto();
+	public void setIDProyecto(Integer idProyecto);
 
 }

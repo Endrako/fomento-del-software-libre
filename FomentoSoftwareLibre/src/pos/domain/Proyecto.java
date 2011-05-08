@@ -1,6 +1,7 @@
 package pos.domain;
 
 import java.util.Date;
+import java.util.List;
 
 public interface Proyecto {
 	
@@ -16,5 +17,7 @@ public interface Proyecto {
 	public void setFechaInicio(Date fechaInicio);
 	public void setFechaFin(Date fechaFin);
 	public void setDisponibilidad(Boolean disponibilidad);
+	public List<Aplicacion> getListaAplicaciones();
+	public void setListaAplicaciones(List<Aplicacion> listaAplicaciones);
 
 }

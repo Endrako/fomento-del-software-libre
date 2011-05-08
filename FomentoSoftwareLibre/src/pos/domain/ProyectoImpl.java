@@ -1,6 +1,7 @@
 package pos.domain;
 
 import java.util.Date;
+import java.util.List;
 
 public class ProyectoImpl implements Proyecto {
 	
@@ -12,12 +13,13 @@ public class ProyectoImpl implements Proyecto {
 	private Boolean disponibilidad;
 	private Integer numeroMaximoDesarrolladores;
 	private Integer numeroActualDesarrolladores;
+	private List<Aplicacion> listaAplicaciones;
+	
 	
 	
 	/*
 	 * MÉTODOS GETTERS Y SETTERS
 	 */
-	
 	
 	
 	public String getNombreProyecto() {
@@ -68,6 +70,13 @@ public class ProyectoImpl implements Proyecto {
 	@Override
 	public void setIDProyecto(Integer idProyecto) {
 		this.idProyecto = idProyecto;
+	}
+	public List<Aplicacion> getListaAplicaciones(){
+		return listaAplicaciones;
+	}
+	@Override
+	public void setListaAplicaciones(List<Aplicacion> listaAplicaciones) {
+		this.listaAplicaciones = listaAplicaciones;
 	}
 
 	
