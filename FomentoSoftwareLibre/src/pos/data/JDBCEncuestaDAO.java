@@ -28,7 +28,32 @@ public class JDBCEncuestaDAO implements IEncuestaDAO {
 	 }
 
 	@Override
-	public void Borrar(String EncuestaID) {
+	public void Borrar(Integer encuestaID) {
+		List<Integer> pregIDs = seleccionarPreguntasDeEncuesta(encuestaID);
+		for (Integer n: pregIDs){
+			pdao.borrar(n);
+		}
+		
+		
+		String sql = "DELETE FROM encuestas WHERE (IDEncuesta = ?) ";
+        PreparedStatement stmt = null;
+
+        try {
+            stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, encuestaID);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("Message: " + e.getMessage());
+            System.out.println("SQLState: " + e.getSQLState());
+            System.out.println("ErrorCode: " + e.getErrorCode());
+        } finally {
+            try {
+                if (stmt != null)
+                    stmt.close();
+            } catch (SQLException e) {
+            }
+        }
+		
 	}
 
 	@Override
@@ -136,5 +161,42 @@ public class JDBCEncuestaDAO implements IEncuestaDAO {
 		}
 
 		
+	}
+	
+	private List<Integer> seleccionarPreguntasDeEncuesta(Integer encID) {
+		PreparedStatement stmt = null;
+		ResultSet result = null;
+		String sql = "SELECT * FROM preguntas WHERE (IDEncuesta = ? ) ";
+		List<Integer> res = new LinkedList<Integer>();
+
+		try {
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, encID);
+
+			result = stmt.executeQuery();
+
+			while (result.next()){
+				Integer id;
+				id = result.getInt("IDPregunta");
+				res.add(id);
+			}
+		} catch (SQLException e) {
+			System.out.println("Message: " + e.getMessage());
+			System.out.println("SQLState: " + e.getSQLState());
+			System.out.println("ErrorCode: " + e.getErrorCode());
+		} finally {
+			try {
+				if (result != null) {
+					result.close();
+				}
+
+				if (stmt != null) {
+					stmt.close();
+				}
+			} catch (SQLException e) {
+			}
+		}
+
+		return res;
 	}
 }

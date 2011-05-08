@@ -77,9 +77,13 @@ public class TestEncuestaJDBC {
 		e.setPreguntas(lp1);
 		edao.insertarEncuesta(e);
 		*/
+		//Borrar encuesta
+		
+		edao.Borrar(176551812);
+		
 		//borrar pregunta
 		
-		pdao.borrar(1509550783);
+		//pdao.borrar(1509550783);
 		
 		//recuperar encuesta
 	/*	e=edao.recuperarEncuesta(1);
