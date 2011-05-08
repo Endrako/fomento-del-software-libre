@@ -19,4 +19,14 @@
     <servlet-name>FrontController</servlet-name>
     <url-pattern>/FrontController</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>TratarEncuesta</display-name>
+    <servlet-name>TratarEncuesta</servlet-name>
+    <servlet-class>servlets.TratarEncuesta</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TratarEncuesta</servlet-name>
+    <url-pattern>/TratarEncuesta</url-pattern>
+  </servlet-mapping>
 </web-app>
