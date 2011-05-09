@@ -4,22 +4,21 @@ import java.util.Date;
 import java.util.List;
 
 public class AplicacionImpl implements Aplicacion {
-	private Integer IDAplicacion; // cambio a Integer el IDAplicacion
+	private String IDAplicacion;
 	private String nombre;
 	private String descripcion;
 	private Date fechaPublicacion;
 	private String URLWeb;
 	private Integer votosAFavor;
 	private Integer votosEnContra;
-	private Integer idProyecto;
 	private List<Tag> tags;
-
-	public Integer getIDAplicacion() {
+	
+	
+	public String getIDAplicacion(){
 		return IDAplicacion;
 	}
-
-	public void setIDAplicacion(Integer IDAplicacion) {
-		this.IDAplicacion = IDAplicacion;
+	public void setIDAplicacion(String IDAplicacion){
+		this.IDAplicacion=IDAplicacion;
 	}
 
 	@Override
@@ -69,13 +68,9 @@ public class AplicacionImpl implements Aplicacion {
 		return votosAFavor;
 	}
 
-	public void setVotosAFavor(Integer votosAFavor) {
-		this.votosAFavor = votosAFavor;
-	}
-
 	@Override
 	public void anadirVotoAFavor(Integer votos) {
-		votosAFavor = votosAFavor + votos;
+		votosAFavor = votosAFavor+votos;
 	}
 
 	@Override
@@ -83,44 +78,26 @@ public class AplicacionImpl implements Aplicacion {
 		return votosEnContra;
 	}
 
-	public void setVotosEnContra(Integer votosEnContra) {
-		this.votosEnContra = votosEnContra;
-	}
-
 	@Override
 	public void anadirVotoEnContra(Integer votos) {
-		votosEnContra = votosEnContra + votos;
+		votosEnContra = votosEnContra+votos;
 	}
-
+	
+	public void setVotosAFavor(Integer votos){
+		this.votosAFavor = votos;
+	}
+	
+	public void setVotosEnContra(Integer votos){
+		this.votosEnContra = votos;
+	}
 	@Override
 	public List<Tag> getTags() {
 		return tags;
 	}
-
 	@Override
 	public void setTags(List<Tag> tags) {
-		this.tags = tags;
-
-	}
-
-	@Override
-	public Integer getIDProyecto() {
-		return this.idProyecto;
-	}
-
-	@Override
-	public void setIDProyecto(Integer idProyecto) {
-		this.idProyecto = idProyecto;
-	}
-
-	@Override
-	public void anadirVotoAFavor() {
-		votosAFavor++;
-	}
-
-	@Override
-	public void anadirVotoEnContra() {
-		votosEnContra++;
+		this.tags=tags;
+		
 	}
 
 }
