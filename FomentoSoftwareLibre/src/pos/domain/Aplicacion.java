@@ -24,6 +24,8 @@ public interface Aplicacion {
 	public void anadirVotoEnContra(Integer votos);
 	public List<Tag> getTags();
 	public void setTags(List<Tag> tags);
+	public Integer getIDProyecto();
+	public void setIDProyecto(Integer IDProyecto);
 	
 
 }

@@ -12,6 +12,7 @@ public class AplicacionImpl implements Aplicacion {
 	private Integer votosAFavor;
 	private Integer votosEnContra;
 	private List<Tag> tags;
+	private Integer IDProyecto; // NO BORRAR!!!!!!! Que esta clase la usan varias personas!!!
 	
 	
 	public String getIDAplicacion(){
@@ -98,6 +99,12 @@ public class AplicacionImpl implements Aplicacion {
 	public void setTags(List<Tag> tags) {
 		this.tags=tags;
 		
+	}
+	public Integer getIDProyecto(){
+		return this.IDProyecto;
+	}
+	public void setIDProyecto(Integer IDProyecto){
+		this.IDProyecto=IDProyecto;
 	}
 
 }

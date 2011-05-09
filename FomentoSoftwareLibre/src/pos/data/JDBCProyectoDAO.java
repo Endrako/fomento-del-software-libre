@@ -248,7 +248,7 @@ public class JDBCProyectoDAO implements IProyectoDAO {
 
 			try {
 				stmtAux = conn.prepareStatement(sqlAux);
-				stmtAux.setInt(1, a.getIDAplicacion());
+				stmtAux.setInt(1, a.getIDAplicacion()); // No cambiar de nuevo hasta hablar con Álvaro
 				stmtAux.executeUpdate();
 
 			} catch (SQLException e) {
@@ -283,8 +283,7 @@ public class JDBCProyectoDAO implements IProyectoDAO {
 		// acceder a los métodos
 		// de JDBCAplicacionDAO? haciéndolos static es un follón. Comentar con
 		// esta gente. Solución tomada arriba de hacer un DELETE por aplicación
-		// es repetir código que
-		// podría tomarse de JDBCAplicacionDAO.
+		// es repetir código que podría tomarse de JDBCAplicacionDAO.
 
 		try {
 			stmt = conn.prepareStatement(sql);
@@ -333,7 +332,7 @@ public class JDBCProyectoDAO implements IProyectoDAO {
 
 			while (result.next()) {
 				Aplicacion a = new AplicacionImpl();
-				a.setIDAplicacion(result.getInt("IDAplicacion"));
+				a.setIDAplicacion(result.getInt("IDAplicacion")); // Cambiar cuando se hable con Álvaro
 				a.setNombre(result.getString("nombre"));
 				a.setDescripcion(result.getString("descripcion"));
 				a.setFechaPublicacion(result.getDate("fechaPublicacion"));
