@@ -24,6 +24,8 @@ public interface Aplicacion {
 	public void anadirVotoEnContra(Integer votos);
 	public List<Tag> getTags();
 	public void setTags(List<Tag> tags);
+	
+	// Si una aplicación no tuviera un proyecto, con dejarse a null el atributo valdría?
 	public Integer getIDProyecto();
 	public void setIDProyecto(Integer IDProyecto);
 	

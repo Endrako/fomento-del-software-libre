@@ -16,6 +16,7 @@ import pos.utils.UIDGenerator;
 public class JDBCProyectoDAO implements IProyectoDAO {
 
 	private Connection conn;
+	IAplicacionDAO adao = new JDBCAplicacionDAO();
 
 	public JDBCProyectoDAO() {
 		conn = ConnectionManager.getInstance().checkOut();
@@ -231,59 +232,18 @@ public class JDBCProyectoDAO implements IProyectoDAO {
 	public void borrarProyecto(Integer idProyecto) {
 
 		PreparedStatement stmt = null;
-		List<Aplicacion> listaAplicaciones = obtenerListaAplicacionesDeProyecto(idProyecto);
+		Aplicacion a = obtenerAplicacionDeProyecto(idProyecto);
 
-		for (Aplicacion a : listaAplicaciones) {
-			/*
-			 * Solución elegante, llamando a método:
-			 * 
-			 * JDBCAplicacionDAO.borrarAplicacionPorID(a.getIDAplicacion());
-			 */
-
-			/*
-			 * Solución enrebesada pero factible a mi parecer:
-			 */
-			String sqlAux = "DELETE FROM aplicaciones WHERE IDAplicacion = ?";
-			PreparedStatement stmtAux = null;
-
-			try {
-				stmtAux = conn.prepareStatement(sqlAux);
-				stmtAux.setInt(1, a.getIDAplicacion()); // No cambiar de nuevo hasta hablar con Álvaro
-				stmtAux.executeUpdate();
-
-			} catch (SQLException e) {
-				System.out.println("Message: " + e.getMessage());
-				System.out.println("SQLState: " + e.getSQLState());
-				System.out.println("Error Code: " + e.getErrorCode());
-				System.out.println("Cause: " + e.getCause());
-			} finally {
-
-				try {
-					if (stmt != null) {
-						conn.close();
-					}
-				} catch (Exception e) {
-
-				}
-			}
-
-		} // fin del bucle de borrado de aplicaciones de los proyectos
-
-		// Parte anterior es discutible...a partir de aquí es correcto pero solo
-		// borra proyectos
-
-		String sql = "DELETE FROM proyectos WHERE (IDProyecto = ?)";
+		adao.deleteAplication(a);
 
 		// Problemática del método: borrar las aplicaciones vinculadas del
 		// proyecto a borrar.
 
 		// Si a nivel de BD estuviera conectado en cascada, se borrarían
 		// automáticamente las aplicaciones
-		// asociadas al proyecto borrado... ¿cómo borrar las aplicaciones? ¿cómo
-		// acceder a los métodos
-		// de JDBCAplicacionDAO? haciéndolos static es un follón. Comentar con
-		// esta gente. Solución tomada arriba de hacer un DELETE por aplicación
-		// es repetir código que podría tomarse de JDBCAplicacionDAO.
+		// asociadas al proyecto borrado...
+
+		String sql = "DELETE FROM proyectos WHERE (IDProyecto = ?)";
 
 		try {
 			stmt = conn.prepareStatement(sql);
@@ -309,10 +269,9 @@ public class JDBCProyectoDAO implements IProyectoDAO {
 	}
 
 	@Override
-	public List<Aplicacion> obtenerListaAplicacionesDeProyecto(
-			Integer idProyecto) {
+	public Aplicacion obtenerAplicacionDeProyecto(Integer idProyecto) {
 
-		List<Aplicacion> listaAplicaciones = new LinkedList<Aplicacion>();
+		Aplicacion a = new AplicacionImpl();
 
 		ResultSet result = null;
 		PreparedStatement stmt = null;
@@ -330,18 +289,17 @@ public class JDBCProyectoDAO implements IProyectoDAO {
 
 			// Tratamiento de consulta
 
-			while (result.next()) {
-				Aplicacion a = new AplicacionImpl();
-				a.setIDAplicacion(result.getInt("IDAplicacion")); // Cambiar cuando se hable con Álvaro
-				a.setNombre(result.getString("nombre"));
-				a.setDescripcion(result.getString("descripcion"));
-				a.setFechaPublicacion(result.getDate("fechaPublicacion"));
-				a.setURLWeb(result.getString("URLWeb"));
-				a.setVotosAFavor(result.getInt("numeroVotosAFavor"));
-				a.setVotosEnContra(result.getInt("numeroVotosEnContra"));
-				a.setIDProyecto(idProyecto);
-				listaAplicaciones.add(a);
-			}
+			result.next();
+			a.setIDAplicacion(result.getInt("IDAplicacion")); // Cambiar cuando
+																// se hable con
+																// Álvaro
+			a.setNombre(result.getString("nombre"));
+			a.setDescripcion(result.getString("descripcion"));
+			a.setFechaPublicacion(result.getDate("fechaPublicacion"));
+			a.setURLWeb(result.getString("URLWeb"));
+			a.setVotosAFavor(result.getInt("numeroVotosAFavor"));
+			a.setVotosEnContra(result.getInt("numeroVotosEnContra"));
+			a.setIDProyecto(idProyecto);
 
 		} catch (SQLException e) {
 			System.out.println("Message: " + e.getMessage());
@@ -362,7 +320,7 @@ public class JDBCProyectoDAO implements IProyectoDAO {
 			}
 		}
 
-		return listaAplicaciones;
+		return a;
 	}
 
 }

@@ -12,6 +12,9 @@ public interface IProyectoDAO {
 	public void insertarProyecto(Proyecto project);
 	public Proyecto obtenerProyectoPorID(Integer idProyecto);
 	public void borrarProyecto(Integer idProyecto);
-	public List<Aplicacion> obtenerListaAplicacionesDeProyecto(Integer idProyecto);
+	
+	// Un proyecto no tiene N aplicaciones, solo tiene 1. No existen proyectos de varias apps a la vez
+	
+	public Aplicacion obtenerAplicacionDeProyecto(Integer idProyecto);
 
 }
