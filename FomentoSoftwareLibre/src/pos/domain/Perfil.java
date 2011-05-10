@@ -2,9 +2,9 @@ package pos.domain;
 
 public interface Perfil {
 
-	public String getIdUser();
+	public int getIdPerfil();
 
-	public void setIdUser(String idUser);
+	public void setIdPerfil(int idUser);
 
 	public String getNombreUsuario();
 
@@ -21,10 +21,6 @@ public interface Perfil {
 	public String getIdPais();
 
 	public void setIdPais(String idPais);
-
-	public String getIdCiudad();
-
-	public void setIdCiudad(String idCiudad);
 
 	public String getIdPoblacion();
 

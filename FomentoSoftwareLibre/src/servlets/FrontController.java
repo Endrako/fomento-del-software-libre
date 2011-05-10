@@ -6,8 +6,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import pos.data.UsuarioStore;
 import pos.domain.Usuario;
+import pos.domain.UsuarioStore;
 
 /**
  * Servlet implementation class FrontController

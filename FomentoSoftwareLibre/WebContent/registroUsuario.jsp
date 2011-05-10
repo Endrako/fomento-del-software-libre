@@ -39,10 +39,10 @@
 				document.formulario.action = "FrontController?accion=registro1";
 				document.formulario.submit();
 			}
-		}
+	 	}
 </script>
 </head>
-<body>
+<body background="Imagenes/fondo.jpg">
 <!--  INICIO TABLA CONTENEDORA DE TODAS LAS JSP / HTML -->
 <table align="center">
 	<tr>

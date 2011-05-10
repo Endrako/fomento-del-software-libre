@@ -1,10 +1,11 @@
-package pos.data;
+package pos.domain;
 
 import java.util.List;
 
-import pos.domain.Usuario;
+import pos.data.IUsuarioDAO;
+import pos.data.JDBCUsuarioDAO;
 
-public class UsuarioStore {
+public class UsuarioStore implements IUsuarioDAO {
 	
 	private JDBCUsuarioDAO userDAO;
 	

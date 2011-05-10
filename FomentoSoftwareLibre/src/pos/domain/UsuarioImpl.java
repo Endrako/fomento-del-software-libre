@@ -3,6 +3,10 @@ package pos.domain;
 public class UsuarioImpl implements Usuario{
 
 	/**
+	 * 	Atributo que almacena el id
+	 */
+	private int idUser;
+	/**
 	 *	Atributo que guarda el nombre del usuario
 	 */
 	private String nombreUsuario = null;
@@ -57,11 +61,19 @@ public class UsuarioImpl implements Usuario{
 		this.contrasena = contrasena;
 	}
 
-	public Perfil getPerfil() {
+	public int getIdUser() {
+		return idUser;
+	}
+
+	public void setIdUser(int idUser) {
+		this.idUser = idUser;
+	}
+
+	public Perfil getPerfilUser() {
 		return perfilUser;
 	}
 
-	public void setPerfil(Perfil perfilUser) {
+	public void setPerfilUser(Perfil perfilUser) {
 		this.perfilUser = perfilUser;
 	}
 	

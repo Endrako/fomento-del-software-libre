@@ -13,11 +13,14 @@ import pos.domain.TagImpl;
 
 public class JDBCTagDAO implements ITagDAO{
 
+	private Connection conn;
+	
+	public JDBCTagDAO(){
+		conn = (Connection) ConnectionManager.getInstance()
+		.checkOut();
+	}
 	@Override
 	public List<Tag> selectAll() {
-		Connection con = (Connection) ConnectionManager.getInstance()
-		.checkOut();
-		
 		List<Tag> listaTags = new ArrayList<Tag>();
 		Tag tag = null;
 		PreparedStatement stm = null;
@@ -25,7 +28,7 @@ public class JDBCTagDAO implements ITagDAO{
 		String sql = "SELECT * FROM tags";
 		
 		try{
-			stm = con.prepareStatement(sql);
+			stm = conn.prepareStatement(sql);
 			result = stm.executeQuery();
 			tag = createTagFromBD(tag, result);
 			listaTags.add(tag);
@@ -53,9 +56,6 @@ public class JDBCTagDAO implements ITagDAO{
 
 	@Override
 	public Tag selectTagByID(String idTag) {
-		Connection con = (Connection) ConnectionManager.getInstance()
-		.checkOut();
-		
 		Integer tagid = new Integer(idTag);
 		PreparedStatement stm = null;
 		ResultSet result = null;
@@ -63,7 +63,7 @@ public class JDBCTagDAO implements ITagDAO{
 		String sql = "SELECT * FROM tags WHERE IDTag = ?";
 		
 		try{
-			stm = con.prepareStatement(sql);
+			stm = conn.prepareStatement(sql);
 			stm.setInt(1,tagid);
 			result = stm.executeQuery();
 			tag = createTagFromBD(tag, result);

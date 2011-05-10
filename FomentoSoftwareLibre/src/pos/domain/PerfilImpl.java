@@ -5,7 +5,7 @@ public class PerfilImpl implements Perfil{
 	/**
 	 * Atributo que almacena el id del usuario
 	 */
-	private String idUser;
+	private int idPerfil;
 	
 	/**
 	 * Atributo que almacena el nombre del usuario
@@ -26,11 +26,6 @@ public class PerfilImpl implements Perfil{
 	 * Atributo que almacena el pais del usuario
 	 */
 	private String pais;
-	
-	/**
-	 * Atributo que almacena la ciudad del usuario
-	 */
-	private String ciudad;
 	
 	/**
 	 * Atributo que almacena la poblacion del usuario
@@ -54,12 +49,12 @@ public class PerfilImpl implements Perfil{
 		
 	}
 
-	public String getIdUser() {
-		return idUser;
+	public int getIdPerfil() {
+		return idPerfil;
 	}
 
-	public void setIdUser(String idUser) {
-		this.idUser = idUser;
+	public void setIdPerfil(int idPerfil) {
+		this.idPerfil = idPerfil;
 	}
 
 	public String getNombreUsuario() {
@@ -95,14 +90,6 @@ public class PerfilImpl implements Perfil{
 
 	public void setIdPais(String idPais) {
 		this.pais = idPais;
-	}
-
-	public String getIdCiudad() {
-		return ciudad;
-	}
-
-	public void setIdCiudad(String idCiudad) {
-		this.ciudad = idCiudad;
 	}
 
 	public String getIdPoblacion() {
