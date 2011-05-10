@@ -10,4 +10,5 @@ public interface IVotarDAO {
 	public List<Voto> selectVotoByAplicacion (Integer Aplicacion);
 	public void insertVoto(Voto voto);
 	public void deleteVoto(Integer voto);
+	public Voto selectVotoByID(Integer voto);
 }

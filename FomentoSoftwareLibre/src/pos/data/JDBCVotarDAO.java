@@ -8,16 +8,17 @@ import java.util.LinkedList;
 import java.util.List;
 
 import pos.domain.Aplicacion;
-import pos.domain.AplicacionImpl;
 import pos.domain.Voto;
 import pos.domain.VotoImpl;
 
 public class JDBCVotarDAO implements IVotarDAO {
 
 	private Connection conn;
+	private IAplicacionDAO dapli;
 
 	public JDBCVotarDAO (){
 		conn = ConnectionManager.getInstance().checkOut();
+		dapli = new JDBCAplicacionDAO();
 	}
 
 	@Override
@@ -59,6 +60,42 @@ public class JDBCVotarDAO implements IVotarDAO {
 		}
 
 		return res;
+	}
+	
+	public Voto selectVotoByID(Integer voto){
+		String sq = "Select * FROM votos WHERE IDVoto = ?";
+
+		PreparedStatement stmt = null;
+		ResultSet result = null;
+
+		Voto res = new VotoImpl();
+
+		try {
+			stmt = conn.prepareStatement(sq);
+			stmt.setInt(1, voto);
+			result = stmt.executeQuery();
+
+			result.next();
+
+			res.setAplicacion(result.getInt("IDAplicacion"));
+			res.setValor(result.getBoolean("valor"));
+			
+		} catch (SQLException e) {
+			System.out.println("Message: " + e.getMessage());
+			System.out.println("SQLState: " + e.getSQLState());
+			System.out.println("ErrorCode: " + e.getErrorCode());
+		} finally {
+			try {
+				if (result != null) {
+					result.close();
+				}
+				if (stmt != null) {
+					stmt.close();
+				}
+			} catch (SQLException e) {
+			}
+		}
+		return res;		
 	}
 
 	@Override
@@ -161,7 +198,7 @@ public class JDBCVotarDAO implements IVotarDAO {
 
 			stmt1.executeUpdate();
 
-			Aplicacion apli = getAplicacion(voto.getAplicacion());
+			Aplicacion apli = dapli.selectAplicacionByID(voto.getAplicacion().toString());
 			updateAplicacion(voto, apli, 1);
 
 
@@ -193,11 +230,11 @@ public class JDBCVotarDAO implements IVotarDAO {
 			stmt.setInt(1, voto);
 			
 			
-			Voto res = getVoto(voto);
-			Aplicacion apli = getAplicacion(res.getAplicacion());
+			Voto res = selectVotoByID(voto);
+			Aplicacion apli = dapli.selectAplicacionByID(res.getAplicacion().toString());
 			updateAplicacion(res, apli, -1);
 			
-			stmt.executeUpdate();
+			stmt.executeUpdate();	
 			
 		} catch (SQLException e) {
 			System.out.println("Message: " + e.getMessage());
@@ -218,43 +255,6 @@ public class JDBCVotarDAO implements IVotarDAO {
 	
 // ------------------------------------- X -------------------------------
 	
-	
-	private Aplicacion getAplicacion(Integer aplicacion){
-		String sq = "Select * FROM aplicaciones WHERE IDAplicacion = ?";
-
-		PreparedStatement stmt = null;
-		ResultSet result = null;
-
-		Aplicacion apli = new AplicacionImpl();
-
-		try {
-			stmt = conn.prepareStatement(sq);
-			stmt.setInt(1, aplicacion);
-			result = stmt.executeQuery();
-
-			result.next();
-
-			apli.setVotosAFavor(result.getInt("numeroVotosAFavor"));
-			apli.setVotosEnContra(result.getInt("numeroVotosEnContra"));
-
-		} catch (SQLException e) {
-			System.out.println("Message: " + e.getMessage());
-			System.out.println("SQLState: " + e.getSQLState());
-			System.out.println("ErrorCode: " + e.getErrorCode());
-		} finally {
-			try {
-				if (result != null) {
-					result.close();
-				}
-				if (stmt != null) {
-					stmt.close();
-				}
-			} catch (SQLException e) {
-			}
-		}
-		return apli;		
-	}
-
 	private void updateAplicacion(Voto voto, Aplicacion apli, Integer i){
 		PreparedStatement stmt = null;
 		ResultSet result = null;
@@ -295,41 +295,5 @@ public class JDBCVotarDAO implements IVotarDAO {
 			} catch (SQLException e) {
 			}
 		}
-	}
-	
-	private Voto getVoto(Integer voto){
-		String sq = "Select * FROM votos WHERE IDVoto = ?";
-
-		PreparedStatement stmt = null;
-		ResultSet result = null;
-
-		Voto res = new VotoImpl();
-
-		try {
-			stmt = conn.prepareStatement(sq);
-			stmt.setInt(1, voto);
-			result = stmt.executeQuery();
-
-			result.next();
-
-			res.setAplicacion(result.getInt("IDAplicacion"));
-			res.setValor(result.getBoolean("valor"));
-			
-		} catch (SQLException e) {
-			System.out.println("Message: " + e.getMessage());
-			System.out.println("SQLState: " + e.getSQLState());
-			System.out.println("ErrorCode: " + e.getErrorCode());
-		} finally {
-			try {
-				if (result != null) {
-					result.close();
-				}
-				if (stmt != null) {
-					stmt.close();
-				}
-			} catch (SQLException e) {
-			}
-		}
-		return res;		
 	}
 }
