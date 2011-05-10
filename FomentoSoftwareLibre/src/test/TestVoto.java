@@ -36,11 +36,13 @@ public class TestVoto {
 					" del usuario " + v.getUsuario() + "\n");
 		}
 		
-		Voto v = new VotoImpl();
-		v.setAplicacion(1);
-		v.setUsuario(3);
-		v.setValor(true);
-		vdao.insertVoto(v);
+//		Voto v = new VotoImpl();
+//		v.setAplicacion(1);
+//		v.setUsuario(3);
+//		v.setValor(true);
+//		vdao.insertVoto(v);
+		
+		vdao.deleteVoto(2);
 
 	}
 
