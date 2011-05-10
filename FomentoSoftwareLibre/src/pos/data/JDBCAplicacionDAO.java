@@ -29,6 +29,11 @@ public class JDBCAplicacionDAO implements IAplicacionDAO {
 		try {
 			stm = con.prepareStatement(sql);
 			result = stm.executeQuery();
+			//para poder acceder a los datos del ResultSet hay que hacerle el .next()
+			//si el método solo figurase dentro del while se saltaria la primera tupla
+			aplicacion = createAplicacionFromBD(aplicacion, result);
+			listaAplicaciones.add(aplicacion);
+			
 			while (result.next()) {
 				aplicacion = createAplicacionFromBD(aplicacion, result);
 				listaAplicaciones.add(aplicacion);
@@ -176,6 +181,7 @@ public class JDBCAplicacionDAO implements IAplicacionDAO {
 			stm = con.prepareStatement(sql);
 			stm.setInt(1, idtag);
 			result = stm.executeQuery();
+						
 			while (result.next()) {
 				Integer IDAplicacion = result.getInt("IDAplicacion");
 				aplicacion = this.selectAplicacionByID(IDAplicacion.toString());
@@ -232,8 +238,6 @@ public class JDBCAplicacionDAO implements IAplicacionDAO {
 	private Aplicacion createAplicacionFromBD(Aplicacion aplicacion,
 			ResultSet result) {
 		aplicacion = new AplicacionImpl();
-		List<Tag> listaTags = this.getAplicationTags(aplicacion
-				.getIDAplicacion());
 		Integer IDAplicacion;
 		try {
 			while (result.next()) {
@@ -253,7 +257,7 @@ public class JDBCAplicacionDAO implements IAplicacionDAO {
 				aplicacion.setURLWeb(URLWeb);
 				aplicacion.setVotosAFavor(numeroVotosAFavor);
 				aplicacion.setVotosEnContra(numeroVotosEnContra);
-				aplicacion.setTags(listaTags);
+				inicializarTags(aplicacion);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -262,6 +266,12 @@ public class JDBCAplicacionDAO implements IAplicacionDAO {
 		return aplicacion;
 	}
 
+	private void inicializarTags(Aplicacion aplicacion){
+		List<Tag> listaTags = this.getAplicationTags(aplicacion
+				.getIDAplicacion());
+		aplicacion.setTags(listaTags);
+	}
+	
 	private void insertAplicationTagRelation(Connection con,
 			Aplicacion aplicacion, Tag tag) {
 		PreparedStatement stm = null;
@@ -279,15 +289,6 @@ public class JDBCAplicacionDAO implements IAplicacionDAO {
 			System.out.println("SQLState: " + e.getSQLState());
 			System.out.println("ErrorCode: " + e.getErrorCode());
 		}
-		// finally{
-		// try{
-		// if(stm != null){
-		// stm.close();
-		// }
-		// }catch (SQLException e){
-		//
-		// }
-		// }
 	}
 
 	private void deleteAplicationTagRelation(Connection con,
@@ -306,15 +307,6 @@ public class JDBCAplicacionDAO implements IAplicacionDAO {
 			System.out.println("SQLState: " + e.getSQLState());
 			System.out.println("ErrorCode: " + e.getErrorCode());
 		}
-		// finally{
-		// try{
-		// if(stm != null){
-		// stm.close();
-		// }
-		// }catch (SQLException e){
-		//
-		// }
-		// }
 	}
 
 	private List<Tag> getAplicationTags(String IDAplicacion) {
@@ -335,7 +327,7 @@ public class JDBCAplicacionDAO implements IAplicacionDAO {
 			while (result.next()) {
 				Integer IDTag = result.getInt("IDTag");
 				// Cuidaaaooooooooooooo!!
-				tag = (new JDBCTagDAO()).selectTagByID(IDTag);
+				tag = (new JDBCTagDAO()).selectTagByID(IDTag.toString());
 				listaTags.add(tag);
 			}
 		} catch (SQLException e) {

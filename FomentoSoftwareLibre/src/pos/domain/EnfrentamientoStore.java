@@ -48,9 +48,13 @@ public class EnfrentamientoStore {
 		JDBCEnfrentamientoDAO enfDAO = new JDBCEnfrentamientoDAO();
 		List<Usuario> listaVotantes = enfDAO.getUsuariosPorEnfrentamiento(IDEnfrentamiento);
 		Usuario currentUsuario = (new JDBCUsuarioDAO()).recuperarUsuario(IDUser);
-		
+		//TODO Quitar al acabar tests
+		System.out.println(listaVotantes.toString());
 		if(!listaVotantes.contains(currentUsuario)){
 			enfDAO.votar(IDEnfrentamiento, IDUser, IDAplicacion);
+		}else{
+			//TODO Quitar al acabar tests
+			System.out.println("Que ya has votado, coño");
 		}
 	}
 	

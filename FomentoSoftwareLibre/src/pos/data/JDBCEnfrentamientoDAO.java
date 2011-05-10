@@ -33,9 +33,13 @@ public class JDBCEnfrentamientoDAO implements IEnfrentamientoDAO {
 		try {
 			stm = con.prepareStatement(sql);
 			result = stm.executeQuery(sql);
+			//para poder acceder a los datos del ResultSet hay que hacerle el .next()
+			//si el método solo figurase dentro del while se saltaria la primera tupla
+			enfrentamiento = createEnfrentamientoFromBD(enfrentamiento,result);
+			lista.add(enfrentamiento);
+			
 			while (result.next()) {
-				enfrentamiento = createEnfrentamientoFromBD(enfrentamiento,
-						result);
+				enfrentamiento = createEnfrentamientoFromBD(enfrentamiento,result);
 				lista.add(enfrentamiento);
 			}
 		} catch (SQLException e) {
@@ -109,7 +113,11 @@ public class JDBCEnfrentamientoDAO implements IEnfrentamientoDAO {
 			stm.setString(1, IDAply);
 			stm.setString(2, IDAply);
 			result = stm.executeQuery();
-
+			//para poder acceder a los datos del ResultSet hay que hacerle el .next()
+			//si el método solo figurase dentro del while se saltaria la primera tupla
+			enfrentamiento = createEnfrentamientoFromBD(enfrentamiento,result);
+			lista.add(enfrentamiento);
+			
 			while (result.next()) {
 				enfrentamiento = createEnfrentamientoFromBD(enfrentamiento,
 						result);
@@ -146,6 +154,11 @@ public class JDBCEnfrentamientoDAO implements IEnfrentamientoDAO {
 		try {
 			stm = con.prepareStatement(sql);
 			result = stm.executeQuery();
+			//para poder acceder a los datos del ResultSet hay que hacerle el .next()
+			//si el método solo figurase dentro del while se saltaria la primera tupla
+			enfrentamiento = createEnfrentamientoFromBD(enfrentamiento,result);
+			lista.add(enfrentamiento);
+			
 			while (result.next()) {
 				enfrentamiento = createEnfrentamientoFromBD(enfrentamiento,
 						result);
@@ -183,10 +196,13 @@ public class JDBCEnfrentamientoDAO implements IEnfrentamientoDAO {
 		try {
 			stm = con.prepareStatement(sql);
 			result = stm.executeQuery();
-
+			//para poder acceder a los datos del ResultSet hay que hacerle el .next()
+			//si el método solo figurase dentro del while se saltaria la primera tupla
+			enfrentamiento = createEnfrentamientoFromBD(enfrentamiento,result);
+			lista.add(enfrentamiento);
+			
 			while (result.next()) {
-				enfrentamiento = createEnfrentamientoFromBD(enfrentamiento,
-						result);
+				enfrentamiento = createEnfrentamientoFromBD(enfrentamiento,result);
 				lista.add(enfrentamiento);
 			}
 		} catch (SQLException e) {
@@ -363,7 +379,7 @@ public class JDBCEnfrentamientoDAO implements IEnfrentamientoDAO {
 		Connection con = (Connection) ConnectionManager.getInstance()
 				.checkOut();
 
-		String sql = "INSERT INTO votosusuarioenfrentamientos(IDEnfrentamiento,IDUsuario,IDAplicacion) VALUES (?,?,?)";
+		String sql = "INSERT INTO votosusuarioenfrentamiento(IDEnfrentamiento,IDUsuario,IDAplicacion) VALUES (?,?,?)";
 		PreparedStatement stm = null;
 
 		try {
@@ -397,7 +413,7 @@ public class JDBCEnfrentamientoDAO implements IEnfrentamientoDAO {
 		List<Usuario> listaUsuarios = new ArrayList<Usuario>();
 		PreparedStatement stm = null;
 		ResultSet result = null;
-		String sql = "SELECT IDUsuario FROM votosusuarioenfrentamientos WHERE IDEnfrentamiento = ?";
+		String sql = "SELECT IDUsuario FROM votosusuarioenfrentamiento WHERE IDEnfrentamiento = ?";
 
 		Integer currentIDEnfrentamiento = new Integer(IDEnfrentamiento);
 
@@ -488,10 +504,8 @@ public class JDBCEnfrentamientoDAO implements IEnfrentamientoDAO {
 				Date fechaCreacion = resSet.getDate("fechaCreacion");
 				Date fechaFin = resSet.getDate("fechaFin");
 				// Cuidaaaaaaaaaoooooooo!
-				Aplicacion aplicacion1 = apliDAO.selectAplicacionByID(IDapl1
-						.toString());
-				Aplicacion aplicacion2 = apliDAO.selectAplicacionByID(IDapl2
-						.toString());
+				Aplicacion aplicacion1 = apliDAO.selectAplicacionByID(IDapl1.toString());
+				Aplicacion aplicacion2 = apliDAO.selectAplicacionByID(IDapl2.toString());
 				enfrent.setIDEnfrentamiento(IDEnfrentamiento.toString());
 				enfrent.setAplicacion1(aplicacion1);
 				enfrent.setAplicacion2(aplicacion2);

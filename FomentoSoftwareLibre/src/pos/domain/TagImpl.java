@@ -7,14 +7,9 @@ public class TagImpl implements Tag{
 	 */
 	private String idTag;
 	
-	/**
-	 * Atributo que almacena el id de la aplicacion.
-	 */
-	private String idAplicacion;
+	private String nombre;
 	
-	/**
-	 * Constructor de la clase
-	 */
+	
 	public TagImpl(){
 		
 	}
@@ -30,18 +25,17 @@ public class TagImpl implements Tag{
 		this.idTag = idTag;
 	}
 
-	/* (non-Javadoc)
-	 * @see pos.domain.Tag#getIdAplicacion()
-	 */
-	public String getIdAplicacion() {
-		return idAplicacion;
+	//Borrados los métodos que relacionan a un Tag con una Aplicacion
+	//MOTIVO: Un Tag no tiene una Aplicacion, si no que una Aplicacion contiene a un Tag
+	//o a varios. Esta relacion se establece en la tabla de relacion, a la cual se
+	//accede desde el DAO de Aplicacion
+	
+	public void setNombre(String nombre){
+		this.nombre = nombre;
 	}
-
-	/* (non-Javadoc)
-	 * @see pos.domain.Tag#setIdAplicacion(java.lang.String)
-	 */
-	public void setIdAplicacion(String idAplicacion) {
-		this.idAplicacion = idAplicacion;
+	
+	public String getNombre(){
+		return nombre;
 	}
 	
 }
