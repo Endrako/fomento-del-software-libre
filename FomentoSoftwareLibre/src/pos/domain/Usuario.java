@@ -18,9 +18,9 @@ public interface Usuario {
 
 	public void setContrasena(String contrasena);
 	
-	public Perfil getPerfilUser();
+	public int getPerfilUser();
 	
-	public void setPerfilUser(Perfil p);
+	public void setPerfilUser(int idPerfil);
 	
 	public int getIdUser();
 	

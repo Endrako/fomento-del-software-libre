@@ -9,14 +9,16 @@
 		document.write("<link href='" + css + "' rel='stylesheet' type='text/css'>"); 
 		
 		function enviarFormulario(valor){
-			
-			if ( valor == "Entrar"){
-				document.formulario.action="FrontController?accion=entrar";
-				document.formulario.submit()
-			}else{
-				window.location="FrontController?accion=registrar";
-			}
-			
+				if ( valor == "Entrar"){
+					if ( document.getElementById("user").value == "" || document.getElementById("password").value == "" ){
+						alert("Debe de introducir user y contraseña");
+					}else{
+						document.formulario.action="FrontController?accion=entrar";
+						document.formulario.submit()
+					}
+				}else{
+					window.location="FrontController?accion=registrar";
+				}
 		}
 </script>
 </head>
@@ -39,7 +41,7 @@
 					</td>
 				</tr>
 				<tr>
-					<td colspan="2"  class="letra_secundaria" align="left">
+					<td colspan="2" align="left" class="letra_secundaria">
 						<strong>Nick:            </strong><input type="text" id="user" name="user" value="" size="10" ><br>
 						<strong>Password: </strong><input type="password" id="password" name="password" value="" size="10"><br>
 					</td>

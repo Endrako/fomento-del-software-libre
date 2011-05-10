@@ -24,7 +24,7 @@ public class UsuarioImpl implements Usuario{
 	/**
 	 * 	Atributo que almacena el perfil del usuario
 	 */
-	private Perfil perfilUser;
+	private int idPerfil;
 	
 	/**
 	 * CONSTRUCTOR DE LA CLASE
@@ -69,12 +69,12 @@ public class UsuarioImpl implements Usuario{
 		this.idUser = idUser;
 	}
 
-	public Perfil getPerfilUser() {
-		return perfilUser;
+	public int getPerfilUser() {
+		return idPerfil;
 	}
 
-	public void setPerfilUser(Perfil perfilUser) {
-		this.perfilUser = perfilUser;
+	public void setPerfilUser(int perfilUser) {
+		this.idPerfil = perfilUser;
 	}
 	
 }

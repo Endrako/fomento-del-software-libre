@@ -23,21 +23,25 @@
 		}
 		
 		function comprobarPassword(){
-			
+			var validar = true;
 			var nickname = document.getElementById("nick").value;
 			var password = document.getElementById("password").value;
 			var conf_password = document.getElementById("conf_password").value;
 			var email = document.getElementById("email").value;
 			
-			if ( nickname.equals("") || password.equals("") || email.equals("") ){
+			if ( nickname == "" || password == "" || email == "" ){
 				alert("Debe introducir todos los datos");
+				validar = false;
 			}
 			
-			if ( !password.equals(conf_password) ){
+			if ( password != conf_password  ){
 				alert("Los password no coinciden");
+				validar = false;
 			}else{
-				document.formulario.action = "FrontController?accion=registro1";
-				document.formulario.submit();
+				if ( validar ){
+					document.formulario.action = "FrontController?accion=registroUsuario";
+					document.formulario.submit();
+				}
 			}
 	 	}
 </script>
@@ -78,7 +82,7 @@
 			<strong>Password: </strong>
 		</td>
 		<td width="50%" class="datos_tabla" align="left">
-			<input type="password" id="password" value="">
+			<input type="password" id="password" name="password" value="">
 		</td>
 	</tr>
 	<tr>
@@ -86,7 +90,7 @@
 			<strong>Confirmar Password: </strong>
 		</td>
 		<td width="50%" class="datos_tabla" align="left">
-			<input type="password" id="conf_password" value="">
+			<input type="password" id="conf_password" name ="conf_password" value="">
 		</td>
 	</tr>
 	<tr>
@@ -94,7 +98,7 @@
 			<strong>Email: </strong>
 		</td>
 		<td width="50%" class="datos_tabla" align="left">
-			<input type="text" id="email" value="">
+			<input type="text" id="email" name ='email' value="">
 		</td>
 	</tr>
 	<tr>

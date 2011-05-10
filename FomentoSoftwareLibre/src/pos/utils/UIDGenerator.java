@@ -18,7 +18,7 @@ public class UIDGenerator {
     }
 
     public Integer getKey() {
-        Integer key =random.nextInt();
+        Integer key = Math.abs(random.nextInt());
         return key;
     }
 }

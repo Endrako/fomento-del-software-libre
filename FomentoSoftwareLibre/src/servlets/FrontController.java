@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import pos.domain.Usuario;
+import pos.domain.UsuarioImpl;
 import pos.domain.UsuarioStore;
 
 /**
@@ -45,6 +46,8 @@ public class FrontController extends HttpServlet {
 			entrar(request,response);
 		}else if ( accion.equals("registrar") ){
 			registrar(request,response);
+		}else if ( accion.equals("registroUsuario") ){
+			registroUsuario(request,response);
 		}
 	}
 	
@@ -53,6 +56,23 @@ public class FrontController extends HttpServlet {
 		// TODO Auto-generated method stub
 		request.getRequestDispatcher("registroUsuario.jsp").include(request,response);
 		
+	}
+	
+	public void registroUsuario(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		String nick = request.getParameter("nick");
+		String password = request.getParameter("password");
+		String email = request.getParameter("email");
+		
+		if ( !"".equals(nick) && !"".equals(password) && !"".equals(email) ){
+			
+			UsuarioStore store = new UsuarioStore();
+			UsuarioImpl user = new UsuarioImpl();
+			user.setNombreUsuario(nick);
+			user.setContrasena(password);
+			user.setEmail(email);
+			store.insertarUsuario(user);
+		}
+		request.getRequestDispatcher("registroPerfil.jsp").include(request,response);
 	}
 
 	public void entrar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
