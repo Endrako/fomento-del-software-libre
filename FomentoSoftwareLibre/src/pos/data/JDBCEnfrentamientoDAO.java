@@ -374,8 +374,7 @@ public class JDBCEnfrentamientoDAO implements IEnfrentamientoDAO {
 		return enfrentamiento;
 	}
 
-	public void votar(String IDEnfrentamiento, String IDUser,
-			String IDAplicacion) {
+	public void votar(String IDEnfrentamiento, String IDUser,String IDAplicacion) {
 		Connection con = (Connection) ConnectionManager.getInstance()
 				.checkOut();
 
@@ -406,8 +405,7 @@ public class JDBCEnfrentamientoDAO implements IEnfrentamientoDAO {
 	}
 
 	public List<Usuario> getUsuariosPorEnfrentamiento(String IDEnfrentamiento) {
-		Connection con = (Connection) ConnectionManager.getInstance()
-				.checkOut();
+		Connection con = (Connection) ConnectionManager.getInstance().checkOut();
 
 		Usuario usuario = null;
 		List<Usuario> listaUsuarios = new ArrayList<Usuario>();
@@ -520,5 +518,40 @@ public class JDBCEnfrentamientoDAO implements IEnfrentamientoDAO {
 		}
 		return enfrent;
 	}
-
+	
+	public List<String> getIDUsuariosVotantes(String IDEnfrentamiento){
+		Connection con = (Connection) ConnectionManager.getInstance().checkOut();
+		
+		PreparedStatement stm = null;
+		ResultSet result = null;
+		List<String> listaIds = new ArrayList<String>();
+		String sql = "SELECT IDUsuario FROM votosusuarioenfrentamiento WHERE IDEnfrentamiento = ?";
+		
+		try{
+			stm = con.prepareStatement(sql);
+			stm.setInt(1,new Integer(IDEnfrentamiento));
+			result = stm.executeQuery();
+			
+			while(result.next()){
+				Integer iduser = result.getInt("IDUsuario");
+				listaIds.add(iduser.toString());
+			}
+		}catch (SQLException e){
+			System.out.println("SQLMessage"+e.getMessage());
+			System.out.println("SQLState"+e.getSQLState());
+			System.out.println("ErrorCode"+e.getErrorCode());
+		} finally {
+			try{
+				if(stm != null){
+					stm.close();
+				}
+				if(result != null){
+					result.close();
+				}
+			}catch (SQLException e){
+				
+			}
+		}
+		return listaIds;
+	}
 }

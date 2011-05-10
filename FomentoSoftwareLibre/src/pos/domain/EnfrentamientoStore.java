@@ -1,7 +1,6 @@
 package pos.domain;
 
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 
 import pos.data.JDBCEnfrentamientoDAO;
@@ -41,20 +40,17 @@ public class EnfrentamientoStore {
 		enfrentamiento.setFechaFin(fechaFin);
 		if(!enfrentamientos.contains(enfrentamiento)){
 			(new JDBCEnfrentamientoDAO()).insertEnfrentamiento(enfrentamiento);
+		}else{
+			System.out.println("Que este ya estaaa, hostiaaa");
 		}
 	}
 	
 	public void votar(String IDEnfrentamiento,String IDUser,String IDAplicacion){
 		JDBCEnfrentamientoDAO enfDAO = new JDBCEnfrentamientoDAO();
-		List<Usuario> listaVotantes = enfDAO.getUsuariosPorEnfrentamiento(IDEnfrentamiento);
-		Usuario currentUsuario = (new JDBCUsuarioDAO()).recuperarUsuario(IDUser);
-		//TODO Quitar al acabar tests
-		System.out.println(listaVotantes.toString());
-		if(!listaVotantes.contains(currentUsuario)){
+		List<String> listaVotantes = enfDAO.getIDUsuariosVotantes(IDEnfrentamiento);
+				
+		if(!listaVotantes.contains(IDUser)){
 			enfDAO.votar(IDEnfrentamiento, IDUser, IDAplicacion);
-		}else{
-			//TODO Quitar al acabar tests
-			System.out.println("Que ya has votado, coño");
 		}
 	}
 	

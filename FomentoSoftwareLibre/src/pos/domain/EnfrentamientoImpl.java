@@ -104,8 +104,8 @@ public class EnfrentamientoImpl implements Enfrentamiento {
 					e.getAplicacion2());
 			boolean aplicacion2IgualAplicacion1 = this.getAplicacion2().equals(
 					e.getAplicacion1());
-			if ((igualAplicacion1 && igualAplicacion2)
-					|| (aplicacion1IgualAplicacion2 && aplicacion2IgualAplicacion1)) {
+			if (!(igualAplicacion1 && igualAplicacion2)
+					|| !(aplicacion1IgualAplicacion2 && aplicacion2IgualAplicacion1)) {
 				res = true;
 			}
 

@@ -21,6 +21,7 @@ public interface IEnfrentamientoDAO {
 	public Enfrentamiento getEnfrentamientoByAplications(Aplicacion aply1, Aplicacion aply2);
 	public void votar(String IDEnfrentamiento,String IDUser,String IDAplicacion);
 	public List<Usuario> getUsuariosPorEnfrentamiento(String IDEnfrentamiento);
+	public List<String> getIDUsuariosVotantes(String IDEnfrentamiento);
 	
 
 }
