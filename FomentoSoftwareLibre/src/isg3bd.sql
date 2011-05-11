@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 -- 
 -- Servidor: localhost
--- Tiempo de generación: 11-05-2011 a las 15:21:29
+-- Tiempo de generación: 11-05-2011 a las 17:57:28
 -- Versión del servidor: 5.0.24
 -- Versión de PHP: 5.1.6
 -- 
@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS `aplicaciones` (
   `URLWeb` varchar(200) collate latin1_spanish_ci NOT NULL,
   `numeroVotosAFavor` int(11) NOT NULL,
   `numeroVotosEnContra` int(11) NOT NULL,
-  `OIDProyecto` int(11) default NULL,
+  `IDProyecto` varchar(50) collate latin1_spanish_ci default NULL,
   PRIMARY KEY  (`OIDAplicacion`),
   UNIQUE KEY `nombre` (`nombre`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci AUTO_INCREMENT=5 ;
@@ -47,8 +47,8 @@ INSERT INTO `aplicaciones` VALUES (4, '', 'Calculetor', 'Calculadora para estadi
 
 CREATE TABLE IF NOT EXISTS `colaboracionusuariosproyectos` (
   `OIDRelacion` int(11) NOT NULL auto_increment,
-  `OIDUsuario` int(11) NOT NULL,
-  `OIDProyecto` int(11) NOT NULL,
+  `IDUsuario` varchar(50) collate latin1_spanish_ci NOT NULL,
+  `IDProyecto` varchar(50) collate latin1_spanish_ci NOT NULL,
   PRIMARY KEY  (`OIDRelacion`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci AUTO_INCREMENT=3 ;
 
@@ -56,8 +56,8 @@ CREATE TABLE IF NOT EXISTS `colaboracionusuariosproyectos` (
 -- Volcar la base de datos para la tabla `colaboracionusuariosproyectos`
 -- 
 
-INSERT INTO `colaboracionusuariosproyectos` VALUES (1, 1, 2);
-INSERT INTO `colaboracionusuariosproyectos` VALUES (2, 2, 1);
+INSERT INTO `colaboracionusuariosproyectos` VALUES (1, '1', '2');
+INSERT INTO `colaboracionusuariosproyectos` VALUES (2, '2', '1');
 
 -- --------------------------------------------------------
 
@@ -68,8 +68,8 @@ INSERT INTO `colaboracionusuariosproyectos` VALUES (2, 2, 1);
 CREATE TABLE IF NOT EXISTS `comentarios` (
   `OIDComentario` int(11) NOT NULL auto_increment,
   `IDComentario` varchar(50) collate latin1_spanish_ci NOT NULL,
-  `OIDAplicacion` int(11) NOT NULL,
-  `OIDUsuario` int(11) NOT NULL,
+  `IDAplicacion` varchar(50) collate latin1_spanish_ci NOT NULL,
+  `IDUsuario` varchar(50) collate latin1_spanish_ci NOT NULL,
   `descripcion` text collate latin1_spanish_ci NOT NULL,
   PRIMARY KEY  (`OIDComentario`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci AUTO_INCREMENT=3 ;
@@ -78,8 +78,8 @@ CREATE TABLE IF NOT EXISTS `comentarios` (
 -- Volcar la base de datos para la tabla `comentarios`
 -- 
 
-INSERT INTO `comentarios` VALUES (1, '', 1, 3, 'El programa se me queda pillado cuando pongo un video de alta definicion');
-INSERT INTO `comentarios` VALUES (2, '', 1, 2, 'Un gran programa, lo reproduce todo todo todo');
+INSERT INTO `comentarios` VALUES (1, '', '1', '3', 'El programa se me queda pillado cuando pongo un video de alta definicion');
+INSERT INTO `comentarios` VALUES (2, '', '1', '2', 'Un gran programa, lo reproduce todo todo todo');
 
 -- --------------------------------------------------------
 
@@ -110,8 +110,8 @@ INSERT INTO `encuestas` VALUES (2, '', 'Programas de ofimatica');
 CREATE TABLE IF NOT EXISTS `enfrentamientos` (
   `OIDEnfrentamiento` int(11) NOT NULL auto_increment,
   `IDEnfrentamiento` varchar(50) collate latin1_spanish_ci NOT NULL,
-  `OIDAplicacion1` int(11) NOT NULL,
-  `OIDAplicacion2` int(11) NOT NULL,
+  `IDAplicacion1` varchar(50) collate latin1_spanish_ci NOT NULL,
+  `IDAplicacion2` varchar(50) collate latin1_spanish_ci NOT NULL,
   `descripcion` text collate latin1_spanish_ci NOT NULL,
   `votosApp1` int(11) NOT NULL,
   `votosApp2` int(11) NOT NULL,
@@ -125,7 +125,7 @@ CREATE TABLE IF NOT EXISTS `enfrentamientos` (
 -- Volcar la base de datos para la tabla `enfrentamientos`
 -- 
 
-INSERT INTO `enfrentamientos` VALUES (1, '', 1, 3, 'VLC vs Winamp ¿Quien ganra? voten', 0, 0, '2011-04-29 14:53:05', '2011-04-30 14:53:09', 1);
+INSERT INTO `enfrentamientos` VALUES (1, '', '1', '3', 'VLC vs Winamp ¿Quien ganra? voten', 0, 0, '2011-04-29 14:53:05', '2011-04-30 14:53:09', 1);
 
 -- --------------------------------------------------------
 
@@ -160,10 +160,10 @@ CREATE TABLE IF NOT EXISTS `perfiles` (
   `nombre` varchar(50) collate latin1_spanish_ci default NULL,
   `apellidos` varchar(50) collate latin1_spanish_ci default NULL,
   `edad` int(3) default NULL,
-  `OIDPais` int(11) default NULL,
-  `OIDProvincia` int(11) default NULL,
-  `OIDSO1` int(11) default NULL,
-  `OIDSO2` int(11) default NULL,
+  `IDPais` varchar(50) collate latin1_spanish_ci default NULL,
+  `IDProvincia` varchar(50) collate latin1_spanish_ci default NULL,
+  `IDSO1` varchar(50) collate latin1_spanish_ci default NULL,
+  `IDSO2` varchar(50) collate latin1_spanish_ci default NULL,
   PRIMARY KEY  (`OIDPerfil`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci AUTO_INCREMENT=3 ;
 
@@ -171,8 +171,8 @@ CREATE TABLE IF NOT EXISTS `perfiles` (
 -- Volcar la base de datos para la tabla `perfiles`
 -- 
 
-INSERT INTO `perfiles` VALUES (1, '', 'Alvaro', NULL, 22, 1, 3, 1, 2);
-INSERT INTO `perfiles` VALUES (2, '', 'Fco Javier', NULL, 24, 1, 3, 1, 2);
+INSERT INTO `perfiles` VALUES (1, '', 'Alvaro', NULL, 22, '1', '3', '1', '2');
+INSERT INTO `perfiles` VALUES (2, '', 'Fco Javier', NULL, 24, '1', '3', '1', '2');
 
 -- --------------------------------------------------------
 
@@ -183,7 +183,7 @@ INSERT INTO `perfiles` VALUES (2, '', 'Fco Javier', NULL, 24, 1, 3, 1, 2);
 CREATE TABLE IF NOT EXISTS `preguntas` (
   `OIDPregunta` int(11) NOT NULL auto_increment,
   `IDPregunta` varchar(50) collate latin1_spanish_ci NOT NULL,
-  `OIDEncuesta` int(11) NOT NULL,
+  `IDEncuesta` varchar(50) collate latin1_spanish_ci NOT NULL,
   `descripcionPregunta` varchar(150) collate latin1_spanish_ci NOT NULL,
   PRIMARY KEY  (`OIDPregunta`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci AUTO_INCREMENT=3 ;
@@ -192,8 +192,8 @@ CREATE TABLE IF NOT EXISTS `preguntas` (
 -- Volcar la base de datos para la tabla `preguntas`
 -- 
 
-INSERT INTO `preguntas` VALUES (1, '', 1, '¿Cual tiene mejor calidad de video?');
-INSERT INTO `preguntas` VALUES (2, '', 1, '¿Cual tiene mejor calidad de sonido?');
+INSERT INTO `preguntas` VALUES (1, '', '1', '¿Cual tiene mejor calidad de video?');
+INSERT INTO `preguntas` VALUES (2, '', '1', '¿Cual tiene mejor calidad de sonido?');
 
 -- --------------------------------------------------------
 
@@ -203,8 +203,8 @@ INSERT INTO `preguntas` VALUES (2, '', 1, '¿Cual tiene mejor calidad de sonido?
 
 CREATE TABLE IF NOT EXISTS `preguntasrespuestas` (
   `OIDRelacion` int(11) NOT NULL auto_increment,
-  `OIDRespuesta` int(11) NOT NULL,
-  `OIDPregunta` int(11) NOT NULL,
+  `IDRespuesta` varchar(50) collate latin1_spanish_ci NOT NULL,
+  `IDPregunta` varchar(50) collate latin1_spanish_ci NOT NULL,
   PRIMARY KEY  (`OIDRelacion`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci AUTO_INCREMENT=1 ;
 
@@ -268,8 +268,8 @@ INSERT INTO `proyectos` VALUES (2, '', 'Pacorrer', 'Calendario de marchas y send
 
 CREATE TABLE IF NOT EXISTS `referenciascomentarios` (
   `OIDReferencia` int(11) NOT NULL auto_increment,
-  `OIDComentarioReferenciado` int(11) NOT NULL,
-  `OIDComentarioReferenciador` int(11) NOT NULL,
+  `IDComentarioReferenciado` varchar(50) collate latin1_spanish_ci NOT NULL,
+  `IDComentarioReferenciador` varchar(50) collate latin1_spanish_ci NOT NULL,
   PRIMARY KEY  (`OIDReferencia`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci AUTO_INCREMENT=1 ;
 
@@ -289,7 +289,8 @@ CREATE TABLE IF NOT EXISTS `respuestas` (
   `IDRespuesta` varchar(50) collate latin1_spanish_ci NOT NULL,
   `descripcionRespuesta` varchar(200) collate latin1_spanish_ci NOT NULL,
   `numeroVotos` int(11) NOT NULL,
-  PRIMARY KEY  (`OIDRespuesta`)
+  PRIMARY KEY  (`OIDRespuesta`),
+  UNIQUE KEY `IDRespuesta` (`IDRespuesta`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci AUTO_INCREMENT=1 ;
 
 -- 
@@ -352,8 +353,8 @@ INSERT INTO `tags` VALUES (4, '', 'Ofimatica');
 
 CREATE TABLE IF NOT EXISTS `tagsaplicaciones` (
   `OIDRelacion` int(11) NOT NULL auto_increment,
-  `OIDAplicacion` int(11) NOT NULL,
-  `OIDTag` int(11) NOT NULL,
+  `IDAplicacion` varchar(50) collate latin1_spanish_ci NOT NULL,
+  `IDTag` varchar(50) collate latin1_spanish_ci NOT NULL,
   PRIMARY KEY  (`OIDRelacion`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci AUTO_INCREMENT=6 ;
 
@@ -361,11 +362,11 @@ CREATE TABLE IF NOT EXISTS `tagsaplicaciones` (
 -- Volcar la base de datos para la tabla `tagsaplicaciones`
 -- 
 
-INSERT INTO `tagsaplicaciones` VALUES (1, 1, 1);
-INSERT INTO `tagsaplicaciones` VALUES (2, 3, 1);
-INSERT INTO `tagsaplicaciones` VALUES (3, 3, 3);
-INSERT INTO `tagsaplicaciones` VALUES (4, 2, 4);
-INSERT INTO `tagsaplicaciones` VALUES (5, 4, 4);
+INSERT INTO `tagsaplicaciones` VALUES (1, '1', '1');
+INSERT INTO `tagsaplicaciones` VALUES (2, '3', '1');
+INSERT INTO `tagsaplicaciones` VALUES (3, '3', '3');
+INSERT INTO `tagsaplicaciones` VALUES (4, '2', '4');
+INSERT INTO `tagsaplicaciones` VALUES (5, '4', '4');
 
 -- --------------------------------------------------------
 
@@ -375,10 +376,10 @@ INSERT INTO `tagsaplicaciones` VALUES (5, 4, 4);
 
 CREATE TABLE IF NOT EXISTS `usuarioencuestas` (
   `OIDRelacion` int(11) NOT NULL auto_increment,
-  `OIDEncuesta` int(11) NOT NULL,
-  `OIDUsuario` int(11) NOT NULL,
-  `OIDPregunta` int(11) NOT NULL,
-  `OIDRespuesta` int(11) NOT NULL,
+  `IDEncuesta` varchar(50) collate latin1_spanish_ci NOT NULL,
+  `IDUsuario` varchar(50) collate latin1_spanish_ci NOT NULL,
+  `IDPregunta` varchar(50) collate latin1_spanish_ci NOT NULL,
+  `IDRespuesta` varchar(50) collate latin1_spanish_ci NOT NULL,
   PRIMARY KEY  (`OIDRelacion`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci AUTO_INCREMENT=1 ;
 
@@ -398,18 +399,18 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `nombreUsuario` varchar(50) collate latin1_spanish_ci NOT NULL,
   `contrasenna` varchar(50) collate latin1_spanish_ci NOT NULL,
   `email` varchar(50) collate latin1_spanish_ci NOT NULL,
-  `OIDPerfil` int(11) default NULL,
+  `IDPerfil` varchar(50) collate latin1_spanish_ci default NULL,
   `karma` int(11) NOT NULL,
   PRIMARY KEY  (`OIDUsuario`),
-  UNIQUE KEY `nombreUsuario` (`nombreUsuario`,`email`,`OIDPerfil`)
+  UNIQUE KEY `nombreUsuario` (`nombreUsuario`,`email`,`IDPerfil`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci AUTO_INCREMENT=3 ;
 
 -- 
 -- Volcar la base de datos para la tabla `usuarios`
 -- 
 
-INSERT INTO `usuarios` VALUES (1, 'Varusblack', 'isg3', 'algo@email.com', 1, 0);
-INSERT INTO `usuarios` VALUES (2, 'lordreivaj', 'isg3', 'alguien@email.com', 2, 0);
+INSERT INTO `usuarios` VALUES (1, 'Varusblack', 'isg3', 'algo@email.com', '1', 0);
+INSERT INTO `usuarios` VALUES (2, 'lordreivaj', 'isg3', 'alguien@email.com', '2', 0);
 
 -- --------------------------------------------------------
 
@@ -420,8 +421,8 @@ INSERT INTO `usuarios` VALUES (2, 'lordreivaj', 'isg3', 'alguien@email.com', 2, 
 CREATE TABLE IF NOT EXISTS `votos` (
   `OIDVoto` int(11) NOT NULL auto_increment,
   `IDVoto` varchar(50) collate latin1_spanish_ci NOT NULL,
-  `OIDUsuario` int(11) NOT NULL,
-  `OIDAplicacion` int(11) NOT NULL,
+  `IDUsuario` varchar(50) collate latin1_spanish_ci NOT NULL,
+  `IDAplicacion` varchar(50) collate latin1_spanish_ci NOT NULL,
   `valor` tinyint(1) NOT NULL,
   PRIMARY KEY  (`OIDVoto`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci AUTO_INCREMENT=1 ;
@@ -439,9 +440,9 @@ CREATE TABLE IF NOT EXISTS `votos` (
 
 CREATE TABLE IF NOT EXISTS `votosusuarioenfrentamiento` (
   `OIDRelacion` int(11) NOT NULL auto_increment,
-  `OIDEnfrentamiento` int(11) NOT NULL,
-  `OIDUsuario` int(11) NOT NULL,
-  `OIDAplicacion` int(11) NOT NULL,
+  `IDEnfrentamiento` varchar(50) collate latin1_spanish_ci NOT NULL,
+  `IDUsuario` varchar(50) collate latin1_spanish_ci NOT NULL,
+  `IDAplicacion` varchar(50) collate latin1_spanish_ci NOT NULL,
   PRIMARY KEY  (`OIDRelacion`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci AUTO_INCREMENT=1 ;
 
