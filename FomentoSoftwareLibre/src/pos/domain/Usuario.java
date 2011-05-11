@@ -29,5 +29,9 @@ public interface Usuario {
 	public int getKarma();
 	
 	public void setKarma(int karma);
+	
+	public int getNumeroRecomendaciones();
+	
+	public void setNumeroRecomendaciones(int recomendacion);
 
 }

@@ -53,11 +53,16 @@ public class NuevoUsuario extends HttpServlet {
 			user.setEmail(email);
 			user.setKarma(10);
 			if ( "".equals(check) ){
-				user.setKarma(user.getKarma()+10);
 				Usuario userRecomendador = store.recuperarUsuarioByNick(nickRecomendador);
 				if (  userRecomendador.getNombreUsuario().equals(nickRecomendador) ){
-					userRecomendador.setKarma(userRecomendador.getKarma()+10);
-					store.actualizarUsuario(userRecomendador);
+					if ( userRecomendador.getNumeroRecomendaciones() < 5 ){
+						user.setKarma(user.getKarma()+10);
+						userRecomendador.setKarma(userRecomendador.getKarma()+10);
+						userRecomendador.setNumeroRecomendaciones(userRecomendador.getNumeroRecomendaciones()+1);
+						store.actualizarUsuario(userRecomendador);
+						request.getSession().setAttribute("haSidoRecomendado", true);
+					}
+					request.getSession().setAttribute("haSidoRecomendado", false);
 				}
 				
 			}

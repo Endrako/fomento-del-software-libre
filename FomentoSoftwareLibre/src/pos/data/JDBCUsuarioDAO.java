@@ -79,6 +79,7 @@ public class JDBCUsuarioDAO implements IUsuarioDAO {
 	            u.setIdUser(result.getString("IDUser"));
 	            u.setNombreUsuario(result.getString("nombreCompleto"));
 	            u.setKarma(result.getInt("karma"));
+	            u.setNumeroRecomendaciones(result.getInt("numeroRecomendaciones"));
 	            
 	            // Recuperamos el Perfil
 	            IPerfilDAO daoP = new JDBCPerfilDAO();
@@ -104,7 +105,7 @@ public class JDBCUsuarioDAO implements IUsuarioDAO {
 	    }
 
 	public void insertarUsuario(Usuario user) {
-		String sql = "INSERT INTO usuarios (IDUser,nombreUsuario,contrasenna,email,IDPerfil,karma) VALUES (?,?,?,?,?,?) ";
+		String sql = "INSERT INTO usuarios (IDUser,nombreUsuario,contrasenna,email,IDPerfil,karma,numeroRecomendaciones) VALUES (?,?,?,?,?,?,?) ";
 		PreparedStatement stmt = null;
 		
 		try {
@@ -116,6 +117,7 @@ public class JDBCUsuarioDAO implements IUsuarioDAO {
 			stmt.setString(4, user.getEmail());
 			stmt.setString(5, "");
 			stmt.setInt(6, user.getKarma());
+			stmt.setInt(7, user.getNumeroRecomendaciones());
 		
 			stmt.executeUpdate();
 
@@ -151,6 +153,7 @@ public class JDBCUsuarioDAO implements IUsuarioDAO {
 		            u.setIdUser(result.getString("IDUser"));
 		            u.setNombreUsuario(result.getString("nombreCompleto"));
 		            u.setKarma(result.getInt("karma"));
+		            u.setNumeroRecomendaciones(result.getInt("numeroRecomendaciones"));
 		            
 		            // Recuperamos el Perfil
 		            IPerfilDAO daoP = new JDBCPerfilDAO();
@@ -200,7 +203,7 @@ public class JDBCUsuarioDAO implements IUsuarioDAO {
 	}
 	
 	public void actualizarUsuario(Usuario u) {
-		String sql = "UPDATE usuarios SET nombreUsuario = ?, contrasenna = ?, email = ?, karma = ? WHERE (IDUser = ?)";
+		String sql = "UPDATE usuarios SET nombreUsuario = ?, contrasenna = ?, email = ?, karma = ?, numeroRecomendaciones = ? WHERE (IDUser = ?)";
 		PreparedStatement stm = null;
 		try {
 			stm = cm.checkOut().prepareStatement(sql);
@@ -208,7 +211,8 @@ public class JDBCUsuarioDAO implements IUsuarioDAO {
 			stm.setString(2, u.getContrasena());
 			stm.setString(3, u.getEmail());
 			stm.setInt(4, u.getKarma());
-			stm.setString(5, u.getIdUser());
+			stm.setInt(5, u.getNumeroRecomendaciones());
+			stm.setString(6, u.getIdUser());
 			stm.executeUpdate();
 
 		} catch (SQLException e) {
@@ -244,6 +248,7 @@ public class JDBCUsuarioDAO implements IUsuarioDAO {
 	            u.setIdUser(result.getString("IDUser"));
 	            u.setNombreUsuario(result.getString("nombreUsuario"));
 	            u.setKarma(result.getInt("karma"));
+	            u.setNumeroRecomendaciones(result.getInt("numeroRecomendaciones"));
 	            
 	            // Recuperamos el Perfil
 	            IPerfilDAO daoP = new JDBCPerfilDAO();

@@ -39,8 +39,9 @@
 				validar = false;
 			}else{
 				if ( validar ){
+					
 					if ( document.formulario.checkRecomendado.checked == true  ){
-						alert("Al recomendarte un amigo ambos sumareis 10 puntos de Karma además de los 10 por registrarte :)")
+						alert("Al recomendarte un amigo ambos sumareis 10 puntos de Karma además de los 10 por registrarte :), pero recuerda que si tu amigo ya ha recomendado a 5 usuarios no recibireis los puntos")
 					}
 					document.formulario.action = "FrontController?accion=registroUsuario";
 					document.formulario.submit();

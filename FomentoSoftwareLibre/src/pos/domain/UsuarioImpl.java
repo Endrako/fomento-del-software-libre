@@ -32,6 +32,11 @@ public class UsuarioImpl implements Usuario{
 	private int Karma;
 	
 	/**
+	 * Atributo que almcena el numero de recomendaciones hechas por un usuario
+	 */
+	private int numeroRecomendaciones;
+	
+	/**
 	 * CONSTRUCTOR DE LA CLASE
 	 */
 	public UsuarioImpl(){
@@ -88,6 +93,14 @@ public class UsuarioImpl implements Usuario{
 
 	public void setKarma(int karma) {
 		Karma = karma;
+	}
+
+	public int getNumeroRecomendaciones() {
+		return numeroRecomendaciones;
+	}
+
+	public void setNumeroRecomendaciones(int numeroRecomendaciones) {
+		this.numeroRecomendaciones = numeroRecomendaciones;
 	}
 	
 	
