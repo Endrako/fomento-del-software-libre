@@ -39,14 +39,29 @@
 				validar = false;
 			}else{
 				if ( validar ){
+					if ( document.formulario.checkRecomendado.checked == true  ){
+						alert("Al recomendarte un amigo ambos sumareis 10 puntos de Karma además de los 10 por registrarte :)")
+					}
 					document.formulario.action = "FrontController?accion=registroUsuario";
 					document.formulario.submit();
 				}
 			}
 	 	}
+
+		function muestra_oculta(valor){
+				if ( document.formulario.checkRecomendado.checked == true  ){
+					document.getElementById("recomendado").className="expandido";
+				}else{
+					document.getElementById("recomendado").className="contraido";
+				}
+		}
+		
+		function ini(){
+			document.getElementById("recomendado").className="contraido";
+		}
 </script>
 </head>
-<body background="Imagenes/fondo.jpg">
+<body background="Imagenes/fondo.jpg" onload="javascript:ini();">
 <!--  INICIO TABLA CONTENEDORA DE TODAS LAS JSP / HTML -->
 <table align="center">
 	<tr>
@@ -99,6 +114,18 @@
 		</td>
 		<td width="50%" class="datos_tabla" align="left">
 			<input type="text" id="email" name ='email' value="">
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2" class="datos_tabla" align="left">
+			<input type="checkbox" id="checkRecomendado" name ='checkRecomendado' value="" onclick="javascript:muestra_oculta(this.value);"><font size="3pxl">¿ Vienes Recomendado ?</font>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2" class="datos_tabla" align="left">
+			<div id="recomendado">
+				Usuario recomendador: <input type="text" id="usuarioRecomendador" name="usuarioRecomendador" size="15">
+			</div>
 		</td>
 	</tr>
 	<tr>

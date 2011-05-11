@@ -35,4 +35,13 @@ public class UsuarioStore implements IUsuarioDAO {
 	public void borrarUsuario(String idUser){
 		userDAO.borrarUsuario(idUser);
 	}
+	
+	public void actualizarUsuario(Usuario u){
+		userDAO.actualizarUsuario(u);
+	}
+	
+	public Usuario recuperarUsuarioByNick(String nick){
+		return userDAO.recuperarUsuarioByNick(nick);
+	}
+
 }

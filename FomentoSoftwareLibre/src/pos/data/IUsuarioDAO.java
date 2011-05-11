@@ -11,5 +11,6 @@ public interface IUsuarioDAO {
 	public void insertarUsuario(Usuario user);
 	public List<Usuario> recuperarTODOS();
 	public void borrarUsuario(String idUsuario);
+	public Usuario recuperarUsuarioByNick(String nick);
 	
 }

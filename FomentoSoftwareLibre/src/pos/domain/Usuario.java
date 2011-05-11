@@ -25,5 +25,9 @@ public interface Usuario {
 	public String getIdUser();
 	
 	public void setIdUser(String idUser);
+	
+	public int getKarma();
+	
+	public void setKarma(int karma);
 
 }

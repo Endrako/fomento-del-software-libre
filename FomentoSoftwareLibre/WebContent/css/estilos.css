@@ -17,6 +17,8 @@ input[type=text]{
     font-family:Tahoma,Geneva,sans-serif;
     font-size:12px;
 }
+.contraido{display:none;}
+.expandido{}
 
 input[type=password], textarea { 
     border:1px solid #6F8BAA;

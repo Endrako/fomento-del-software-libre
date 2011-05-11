@@ -59,36 +59,12 @@ public class FrontController extends HttpServlet {
 	}
 	
 	public void registroUsuario(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		String nick = request.getParameter("nick");
-		String password = request.getParameter("password");
-		String email = request.getParameter("email");
-		
-		if ( !"".equals(nick) && !"".equals(password) && !"".equals(email) ){
-			
-			UsuarioStore store = new UsuarioStore();
-			UsuarioImpl user = new UsuarioImpl();
-			user.setNombreUsuario(nick);
-			user.setContrasena(password);
-			user.setEmail(email);
-			store.insertarUsuario(user);
-		}
-		request.getRequestDispatcher("index.html").include(request,response);
+		request.getRequestDispatcher("NuevoUsuario").include(request,response);
 	}
 
 	public void entrar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		String idUser = request.getParameter("user");
-		String password = request.getParameter("password");
-		
-		UsuarioStore userBIZ = new UsuarioStore();
-		if ( idUser != null && password != null && !idUser.equals("") && !password.equals("") ){
-			if ( userBIZ.comprobarUsuario(idUser,password) ){
-				Usuario user = userBIZ.recuperarUsuario(idUser);
-				request.getSession().setAttribute("usuario", user);
-				request.getRequestDispatcher("index2.html").include(request,response);
-			}else{
-				request.getRequestDispatcher("falloUsuario.html").include(request,response);
-			}
-		}
+	
+		request.getRequestDispatcher("Logear").include(request,response);
 		
 	}
 

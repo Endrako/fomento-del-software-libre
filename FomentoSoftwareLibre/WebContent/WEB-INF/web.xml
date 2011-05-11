@@ -29,4 +29,24 @@
     <servlet-name>TratarEncuesta</servlet-name>
     <url-pattern>/TratarEncuesta</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Logear</display-name>
+    <servlet-name>Logear</servlet-name>
+    <servlet-class>servlets.Logear</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Logear</servlet-name>
+    <url-pattern>/Logear</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>NuevoUsuario</display-name>
+    <servlet-name>NuevoUsuario</servlet-name>
+    <servlet-class>servlets.NuevoUsuario</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>NuevoUsuario</servlet-name>
+    <url-pattern>/NuevoUsuario</url-pattern>
+  </servlet-mapping>
 </web-app>

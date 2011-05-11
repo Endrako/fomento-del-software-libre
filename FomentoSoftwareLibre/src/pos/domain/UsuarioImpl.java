@@ -27,6 +27,11 @@ public class UsuarioImpl implements Usuario{
 	private Perfil idPerfil;
 	
 	/**
+	 * Atributo que almacena el karma del usuario
+	 */
+	private int Karma;
+	
+	/**
 	 * CONSTRUCTOR DE LA CLASE
 	 */
 	public UsuarioImpl(){
@@ -76,5 +81,15 @@ public class UsuarioImpl implements Usuario{
 	public void setPerfil(Perfil perfilUser) {
 		this.idPerfil = perfilUser;
 	}
+
+	public int getKarma() {
+		return Karma;
+	}
+
+	public void setKarma(int karma) {
+		Karma = karma;
+	}
+	
+	
 	
 }
