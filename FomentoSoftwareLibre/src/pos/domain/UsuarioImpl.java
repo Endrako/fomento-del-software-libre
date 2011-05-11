@@ -5,7 +5,7 @@ public class UsuarioImpl implements Usuario{
 	/**
 	 * 	Atributo que almacena el id
 	 */
-	private int idUser;
+	private String idUser;
 	/**
 	 *	Atributo que guarda el nombre del usuario
 	 */
@@ -24,7 +24,7 @@ public class UsuarioImpl implements Usuario{
 	/**
 	 * 	Atributo que almacena el perfil del usuario
 	 */
-	private int idPerfil;
+	private Perfil idPerfil;
 	
 	/**
 	 * CONSTRUCTOR DE LA CLASE
@@ -61,19 +61,19 @@ public class UsuarioImpl implements Usuario{
 		this.contrasena = contrasena;
 	}
 
-	public int getIdUser() {
+	public String getIdUser() {
 		return idUser;
 	}
 
-	public void setIdUser(int idUser) {
+	public void setIdUser(String idUser) {
 		this.idUser = idUser;
 	}
 
-	public int getPerfilUser() {
+	public Perfil getPerfil() {
 		return idPerfil;
 	}
 
-	public void setPerfilUser(int perfilUser) {
+	public void setPerfil(Perfil perfilUser) {
 		this.idPerfil = perfilUser;
 	}
 	

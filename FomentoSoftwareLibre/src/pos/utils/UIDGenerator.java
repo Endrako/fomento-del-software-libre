@@ -17,8 +17,9 @@ public class UIDGenerator {
         return guidgen;
     }
 
-    public Integer getKey() {
-        Integer key = Math.abs(random.nextInt());
+    public String getKey() {
+        String key = "" + System.currentTimeMillis()
+                + Long.toHexString(random.nextInt());
         return key;
     }
 }

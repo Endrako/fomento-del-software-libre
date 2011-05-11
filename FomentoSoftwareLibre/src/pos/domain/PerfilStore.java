@@ -14,7 +14,7 @@ public class PerfilStore implements IPerfilDAO{
 	}
 
 	@Override
-	public List<PerfilImpl> recuperarPerfiles() {
+	public List<Perfil> recuperarPerfiles() {
 		return dao.recuperarPerfiles();
 	}
 
@@ -24,11 +24,15 @@ public class PerfilStore implements IPerfilDAO{
 	}
 
 	@Override
-	public Perfil recuperarPerfil(int idPerfil) {
+	public Perfil recuperarPerfil(String idPerfil) {
 		return dao.recuperarPerfil(idPerfil);
 	}
 	
+	public void borrarPerfil(String idPerfil){
+		dao.borrarPerfil(idPerfil);
+	}
 	
-	
-	
+	public void actualizarPerfil(Perfil per){
+		dao.actualizarPerfil(per);
+	}	
 }

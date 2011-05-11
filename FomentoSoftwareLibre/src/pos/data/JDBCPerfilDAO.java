@@ -21,8 +21,8 @@ public class JDBCPerfilDAO implements IPerfilDAO {
 		conn = (Connection) ConnectionManager.getInstance().checkOut();
 	}
 	@Override
-	public List<PerfilImpl> recuperarPerfiles() {
-		List<PerfilImpl> p = new ArrayList<PerfilImpl>();
+	public List<Perfil> recuperarPerfiles() {
+		List<Perfil> p = new ArrayList<Perfil>();
 		String sql = "SELECT * FROM perfiles";
 		PreparedStatement stmt = null;
 		ResultSet result = null;
@@ -33,7 +33,7 @@ public class JDBCPerfilDAO implements IPerfilDAO {
 
 			while(result.next()){
 				PerfilImpl perfil = new PerfilImpl();
-				perfil.setIdPerfil(result.getInt("IDPerfil"));
+				perfil.setIdPerfil(result.getString("IDPerfil"));
 				perfil.setNombreUsuario(result.getString("nombre"));
 				perfil.setApellidos(result.getString("apellidos"));
 				perfil.setEdad(result.getInt("edad"));
@@ -64,22 +64,21 @@ public class JDBCPerfilDAO implements IPerfilDAO {
 
 	@Override
 	public void insertarPerfil(Perfil p) {
-		String sql = "INSERT INTO perfiles (IDPerfil, nombre, apellidos, edad, IDPais, IDPoblacion,IDSO1, IDSO2) VALUES (?, ?,?,?,?,?,?,?) ";
+		String sql = "INSERT INTO perfiles (IDPerfil, nombre, apellidos, edad, IDPais, IDPoblacion,IDSO1, IDSO2) VALUES (?,?,?,?,?,?,?,?) ";
 		PreparedStatement stmt = null;
-		ResultSet result = null;
 		
 		try {
 			stmt = conn.prepareStatement(sql);
 			
-			stmt.setInt(1, UIDGenerator.getInstance().getKey());
+			stmt.setString(1, UIDGenerator.getInstance().getKey());
 			stmt.setString(2, p.getNombreUsuario());
 			stmt.setString(3, p.getApellidos());
 			stmt.setInt(4, p.getEdad());
-			stmt.setInt(5, Integer.parseInt(p.getIdPais()));
-			stmt.setInt(6, Integer.parseInt(p.getIdPoblacion()));
-			stmt.setInt(7, Integer.parseInt(p.getPcOS()));
-			stmt.setInt(8, Integer.parseInt(p.getMovilOS()));
-			result = stmt.executeQuery();
+			stmt.setString(5, p.getIdPais());
+			stmt.setString(6, p.getIdPoblacion());
+			stmt.setString(7, p.getPcOS());
+			stmt.setString(8, p.getMovilOS());
+			stmt.executeUpdate();
 
 		} catch (SQLException e) {
 			System.out.println("Message: " + e.getMessage());
@@ -87,9 +86,6 @@ public class JDBCPerfilDAO implements IPerfilDAO {
 			System.out.println("ErrorCode: " + e.getErrorCode());
 		} finally {
 			try {
-				if (result != null) {
-					result.close();
-				}
 				if (stmt != null) {
 					stmt.close();
 				}
@@ -99,9 +95,9 @@ public class JDBCPerfilDAO implements IPerfilDAO {
 	}
 
 	@Override
-	public Perfil recuperarPerfil(int idPerfil) {
+	public Perfil recuperarPerfil(String idPerfil) {
 		Perfil perfil = new PerfilImpl();
-		String sql = "SELECT * FROM perfiles where ( id = ? )";
+		String sql = "SELECT * FROM perfiles where ( IDPerfil = ? )";
 		
 		PreparedStatement stmt = null;
 		ResultSet result = null;
@@ -109,12 +105,12 @@ public class JDBCPerfilDAO implements IPerfilDAO {
 		try {
 			stmt = conn.prepareStatement(sql);
 			
-			stmt.setInt(1, idPerfil);
+			stmt.setString(1, idPerfil);
 			
 			result = stmt.executeQuery();
 
 			while(result.next()){
-				perfil.setIdPerfil(result.getInt("IDPerfil"));
+				perfil.setIdPerfil(result.getString("IDPerfil"));
 				perfil.setNombreUsuario(result.getString("nombre"));
 				perfil.setApellidos(result.getString("apellidos"));
 				perfil.setEdad(result.getInt("edad"));
@@ -140,6 +136,59 @@ public class JDBCPerfilDAO implements IPerfilDAO {
 		}
 
 		return perfil;
+	}
+	
+	@Override
+	public void borrarPerfil(String idPerfil) {
+		String sql = "DELETE FROM encuestas WHERE (IDPerfil = ?) ";
+        PreparedStatement stmt = null;
+
+        try {
+            stmt = conn.prepareStatement(sql);
+            stmt.setString(1, idPerfil);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("Message: " + e.getMessage());
+            System.out.println("SQLState: " + e.getSQLState());
+            System.out.println("ErrorCode: " + e.getErrorCode());
+        } finally {
+            try {
+                if (stmt != null)
+                    stmt.close();
+            } catch (SQLException e) {
+            }
+        }
+		
+		
+	}
+	@Override
+	public void actualizarPerfil(Perfil p) {
+		String sql = "UPDATE perfiles SET nombre = ?, apellidos = ?, edad = ?, IDPais = ?, IDProvincia = ?, IDSO1 = ?, IDSO2 = ? WHERE (IDPerfil = ?)";
+		PreparedStatement stm = null;
+		try {
+			stm = conn.prepareStatement(sql);
+			stm.setString(1, p.getNombreUsuario());
+			stm.setString(2, p.getApellidos());
+			stm.setInt(3, p.getEdad());
+			stm.setString(4, p.getIdPais());
+			stm.setString(5, p.getPcOS());
+			stm.setString(4, p.getMovilOS());
+			stm.executeUpdate();
+
+		} catch (SQLException e) {
+			System.out.println("Message: " + e.getMessage());
+			System.out.println("SQLState: " + e.getSQLState());
+			System.out.println("ErrorCode: " + e.getErrorCode());
+		} finally {
+			try {
+				if (stm != null) {
+					stm.close();
+				}
+			} catch (SQLException e) {
+
+			}
+		}
+		
 	}
 
 }

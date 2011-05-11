@@ -2,9 +2,9 @@ package pos.domain;
 
 public interface Perfil {
 
-	public int getIdPerfil();
+	public String getIdPerfil();
 
-	public void setIdPerfil(int idUser);
+	public void setIdPerfil(String idPerfil);
 
 	public String getNombreUsuario();
 

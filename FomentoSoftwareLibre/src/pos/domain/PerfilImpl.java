@@ -5,7 +5,7 @@ public class PerfilImpl implements Perfil{
 	/**
 	 * Atributo que almacena el id del usuario
 	 */
-	private int idPerfil;
+	private String idPerfil;
 	
 	/**
 	 * Atributo que almacena el nombre del usuario
@@ -49,11 +49,11 @@ public class PerfilImpl implements Perfil{
 		
 	}
 
-	public int getIdPerfil() {
+	public String getIdPerfil() {
 		return idPerfil;
 	}
 
-	public void setIdPerfil(int idPerfil) {
+	public void setIdPerfil(String idPerfil) {
 		this.idPerfil = idPerfil;
 	}
 

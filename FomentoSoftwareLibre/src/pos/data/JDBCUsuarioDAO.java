@@ -39,7 +39,7 @@ public class JDBCUsuarioDAO implements IUsuarioDAO {
 		            stmt.setString(1, nombreUsuario);
 		            result = stmt.executeQuery();
 		            result.next();
-		            if ( result.getString("password").equals(password) ){
+		            if ( result.getString("contrasenna").equals(password) ){
 		            	res = true;
 		            }
 		            
@@ -75,9 +75,14 @@ public class JDBCUsuarioDAO implements IUsuarioDAO {
 	            result.next();
 	            u = new UsuarioImpl();
 	            u.setEmail(result.getString("email"));
-	            u.setContrasena(result.getString("password"));
-	            u.setIdUser(result.getInt("IDUser"));
-	            u.setPerfilUser(result.getInt("IDPerfil"));
+	            u.setContrasena(result.getString("contrasenna"));
+	            u.setIdUser(result.getString("IDUser"));
+	            u.setNombreUsuario(result.getString("nombreCompleto"));
+	            
+	            // Recuperamos el Perfil
+	            IPerfilDAO daoP = new JDBCPerfilDAO();
+	            u.setPerfil(daoP.recuperarPerfil(result.getString("IDPerfil")));
+	            
 	           
 	        } catch (SQLException e) {
 	            System.out.println("Message: " + e.getMessage());
@@ -97,18 +102,18 @@ public class JDBCUsuarioDAO implements IUsuarioDAO {
 	        return u;
 	    }
 
-	@Override
-	// TODO: METODO INSERTAR USUARIO
 	public void insertarUsuario(Usuario user) {
-		String sql = "INSERT INTO usuarios (nombreUsuario,password,email,IDPerfil) VALUES (?,?,?,NULL) ";
+		String sql = "INSERT INTO usuarios (IDUser,nombreUsuario,contrasenna,email,IDPerfil) VALUES (?,?,?,?,?) ";
 		PreparedStatement stmt = null;
 		
 		try {
 			stmt = cm.checkOut().prepareStatement(sql);
 	
-			stmt.setString(1, user.getNombreUsuario());
-			stmt.setString(2, user.getContrasena());
-			stmt.setString(3, user.getEmail());
+			stmt.setString(1, UIDGenerator.getInstance().getKey());
+			stmt.setString(2, user.getNombreUsuario());
+			stmt.setString(3, user.getContrasena());
+			stmt.setString(4, user.getEmail());
+			stmt.setString(5, "");
 		
 			stmt.executeUpdate();
 
@@ -139,13 +144,14 @@ public class JDBCUsuarioDAO implements IUsuarioDAO {
 
 			while(result.next()){
 				Usuario u = new UsuarioImpl();
-		        u.setEmail(result.getString("email"));
-		        u.setContrasena(result.getString("password"));
-		        u.setIdUser(result.getInt("IDUser"));
+		            u.setEmail(result.getString("email"));
+		            u.setContrasena(result.getString("contrasenna"));
+		            u.setIdUser(result.getString("IDUser"));
+		            u.setNombreUsuario(result.getString("nombreCompleto"));
 		            
-		        // Recuperamos el Perfil Ante de Devolverlo
-		        PerfilStore perfilS = new PerfilStore();
-		        u.setPerfilUser(result.getInt("IDPerfil"));
+		            // Recuperamos el Perfil
+		            IPerfilDAO daoP = new JDBCPerfilDAO();
+		            u.setPerfil(daoP.recuperarPerfil(result.getString("IDPerfil")));
 				p.add(u);
 			}
 		} catch (SQLException e) {
@@ -165,5 +171,28 @@ public class JDBCUsuarioDAO implements IUsuarioDAO {
 		}
 
 		return p;
+	}
+	
+	public void borrarUsuario(String idUsuario) {
+		
+		String sql = "DELETE FROM encuestas WHERE (IDUsuario = ?) ";
+        PreparedStatement stmt = null;
+
+        try {
+            stmt = cm.checkOut().prepareStatement(sql);
+            stmt.setString(1, idUsuario);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("Message: " + e.getMessage());
+            System.out.println("SQLState: " + e.getSQLState());
+            System.out.println("ErrorCode: " + e.getErrorCode());
+        } finally {
+            try {
+                if (stmt != null)
+                    stmt.close();
+            } catch (SQLException e) {
+            }
+        }
+		
 	}
 }

@@ -18,12 +18,12 @@ public interface Usuario {
 
 	public void setContrasena(String contrasena);
 	
-	public int getPerfilUser();
+	public Perfil getPerfil();
 	
-	public void setPerfilUser(int idPerfil);
+	public void setPerfil(Perfil perfil);
 	
-	public int getIdUser();
+	public String getIdUser();
 	
-	public void setIdUser(int idUser);
+	public void setIdUser(String idUser);
 
 }

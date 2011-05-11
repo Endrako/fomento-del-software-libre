@@ -31,4 +31,8 @@ public class UsuarioStore implements IUsuarioDAO {
 	public List<Usuario> recuperarTODOS(){
 		return userDAO.recuperarTODOS();
 	}
+	
+	public void borrarUsuario(String idUser){
+		userDAO.borrarUsuario(idUser);
+	}
 }
