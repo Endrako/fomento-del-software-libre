@@ -77,9 +77,6 @@ public class JDBCUsuarioDAO implements IUsuarioDAO {
 	            u.setEmail(result.getString("email"));
 	            u.setContrasena(result.getString("password"));
 	            u.setIdUser(result.getInt("IDUser"));
-	            
-	            // Recuperamos el Perfil Ante de Devolverlo
-	            PerfilStore perfilS = new PerfilStore();
 	            u.setPerfilUser(result.getInt("IDPerfil"));
 	           
 	        } catch (SQLException e) {
@@ -103,20 +100,17 @@ public class JDBCUsuarioDAO implements IUsuarioDAO {
 	@Override
 	// TODO: METODO INSERTAR USUARIO
 	public void insertarUsuario(Usuario user) {
-		String sql = "INSERT INTO usuarios (IDUsuario,nombreUsuario,password,email,IDPerfil) VALUES (?,?,?,?,?) ";
+		String sql = "INSERT INTO usuarios (nombreUsuario,password,email,IDPerfil) VALUES (?,?,?,NULL) ";
 		PreparedStatement stmt = null;
-		ResultSet result = null;
 		
 		try {
 			stmt = cm.checkOut().prepareStatement(sql);
-			
-			stmt.setInt(1, UIDGenerator.getInstance().getKey());
-			stmt.setString(2, user.getNombreUsuario());
-			stmt.setString(3, user.getContrasena());
-			stmt.setString(4, user.getEmail());
-			stmt.setInt(5, 1);
+	
+			stmt.setString(1, user.getNombreUsuario());
+			stmt.setString(2, user.getContrasena());
+			stmt.setString(3, user.getEmail());
 		
-			result = stmt.executeQuery();
+			stmt.executeUpdate();
 
 		} catch (SQLException e) {
 			System.out.println("Message: " + e.getMessage());
@@ -124,9 +118,6 @@ public class JDBCUsuarioDAO implements IUsuarioDAO {
 			System.out.println("ErrorCode: " + e.getErrorCode());
 		} finally {
 			try {
-				if (result != null) {
-					result.close();
-				}
 				if (stmt != null) {
 					stmt.close();
 				}

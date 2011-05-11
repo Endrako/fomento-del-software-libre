@@ -72,7 +72,7 @@ public class FrontController extends HttpServlet {
 			user.setEmail(email);
 			store.insertarUsuario(user);
 		}
-		request.getRequestDispatcher("registroPerfil.jsp").include(request,response);
+		request.getRequestDispatcher("index.html").include(request,response);
 	}
 
 	public void entrar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
