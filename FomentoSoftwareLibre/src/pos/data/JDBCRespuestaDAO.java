@@ -7,11 +7,8 @@ import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 
-import pos.domain.Pregunta;
-import pos.domain.PreguntaImpl;
 import pos.domain.Respuesta;
 import pos.domain.RespuestaImpl;
-import pos.utils.UIDGenerator;
 
 public class JDBCRespuestaDAO implements IRespuestaDAO {
 
@@ -27,13 +24,13 @@ public class JDBCRespuestaDAO implements IRespuestaDAO {
 	 }
 	
 	@Override
-	public void borrar(Integer RespuestaID) {
+	public void borrar(String RespuestaID) {
         String sql = "DELETE FROM respuestas WHERE (IDRespuesta = ?) ";
         PreparedStatement stmt = null;
 
         try {
             stmt = conn.prepareStatement(sql);
-            stmt.setInt(1, RespuestaID);
+            stmt.setString(1, RespuestaID);
             stmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println("Message: " + e.getMessage());
@@ -50,7 +47,7 @@ public class JDBCRespuestaDAO implements IRespuestaDAO {
 	}
 
 	@Override
-	public List<Respuesta> seleccionarTodasRespuestasPorPregunta(Integer idPregunta) {
+	public List<Respuesta> seleccionarTodasRespuestasPorPregunta(String idPregunta) {
 		//Esta mal la consulta
 		String sql = "SELECT * FROM preguntasrespuestas pr,respuestas r WHERE (pr.IDPregunta = ? ) AND pr.IDRespuesta=r.IDRespuesta";
 		PreparedStatement stmt = null;
@@ -59,13 +56,13 @@ public class JDBCRespuestaDAO implements IRespuestaDAO {
 
 		try {
 			stmt = conn.prepareStatement(sql);
-			stmt.setInt(1, idPregunta);
+			stmt.setString(1, idPregunta);
 
 			result = stmt.executeQuery();
 
 			while(result.next()){
 				Respuesta r = new RespuestaImpl();
-				r.setIDRespuesta(result.getInt("IDRespuesta"));
+				r.setIDRespuesta(result.getString("IDRespuesta"));
 				r.setDescripcion(result.getString("descripcionRespuesta"));
 				res.add(r);
 			}
@@ -89,14 +86,14 @@ public class JDBCRespuestaDAO implements IRespuestaDAO {
 	}
 
 	@Override
-	public void insertarRespuesta(Integer rID,Respuesta r) {
+	public void insertarRespuesta(String rID,Respuesta r) {
 		
 		PreparedStatement stmt = null;
 		String sql = "INSERT INTO respuestas (IDRespuesta, descripcionRespuesta, numeroVotos) VALUES (?,?,?) ";
 		try {
 			stmt = conn.prepareStatement(sql);
 
-			stmt.setInt(1, rID);
+			stmt.setString(1, rID);
 			stmt.setString(2, r.getDescripcionRespuesta());
 			stmt.setInt(3, 0);
 
@@ -118,7 +115,7 @@ public class JDBCRespuestaDAO implements IRespuestaDAO {
 	}
 
 	@Override
-	public Respuesta recuperarRespuesta(Integer RespuestaId) {
+	public Respuesta recuperarRespuesta(String RespuestaId) {
 		String sql = "SELECT * FROM respuestas WHERE (IDRespuesta = ? )";
 		PreparedStatement stmt = null;
 		ResultSet result = null;
@@ -126,12 +123,12 @@ public class JDBCRespuestaDAO implements IRespuestaDAO {
 
 		try {
 			stmt = conn.prepareStatement(sql);
-			stmt.setInt(1, RespuestaId);
+			stmt.setString(1, RespuestaId);
 
 			result = stmt.executeQuery();
 
 			result.next();
-			res.setIDRespuesta(result.getInt("IDRespuesta"));
+			res.setIDRespuesta(result.getString("IDRespuesta"));
 			res.setDescripcion(result.getString("descripcionRespuesta"));
 
 		} catch (SQLException e) {

@@ -40,7 +40,7 @@ public class JDBCProyectoDAO implements IProyectoDAO {
 
 			while (result.next()) {
 				Proyecto proyecto = new ProyectoImpl();
-				proyecto.setIDProyecto(result.getInt("idProyecto"));
+				proyecto.setIDProyecto(result.getString("idProyecto"));
 				proyecto.setDescripcionProyecto(result.getString("descripcion"));
 				proyecto.setFechaFin(result.getDate("fechaFin"));
 				proyecto.setFechaInicio(result.getDate("fechaInicio"));
@@ -90,7 +90,7 @@ public class JDBCProyectoDAO implements IProyectoDAO {
 
 			while (result.next()) {
 				Proyecto proyecto = new ProyectoImpl();
-				proyecto.setIDProyecto(result.getInt("idProyecto"));
+				proyecto.setIDProyecto(result.getString("idProyecto"));
 				proyecto.setDescripcionProyecto(result.getString("descripcion"));
 				proyecto.setFechaFin(result.getDate("fechaFin"));
 				proyecto.setFechaInicio(result.getDate("fechaInicio"));
@@ -128,7 +128,7 @@ public class JDBCProyectoDAO implements IProyectoDAO {
 
 		PreparedStatement stmt = null;
 
-		Integer oid = UIDGenerator.getInstance().getKey();
+		String oid = UIDGenerator.getInstance().getKey();
 
 		String sql = "INSERT INTO proyecto(IDProyecto,nombre,descripcion,fechaInicio,fechaFin,"
 				+ "disponible) VALUES (?,?,?,?,?,?)";
@@ -136,7 +136,7 @@ public class JDBCProyectoDAO implements IProyectoDAO {
 		try {
 			stmt = conn.prepareStatement(sql);
 
-			stmt.setInt(1, oid);
+			stmt.setString(1, oid);
 			stmt.setString(2, proyecto.getNombreProyecto());
 			stmt.setString(3, proyecto.getDescripcionProyecto());
 			stmt.setString(4, proyecto.getFechaInicio().toString());
@@ -170,7 +170,7 @@ public class JDBCProyectoDAO implements IProyectoDAO {
 	 * Método para obtener un proyecto concreto por su identificador de
 	 * referencia
 	 */
-	public Proyecto obtenerProyectoPorID(Integer idProyecto) {
+	public Proyecto obtenerProyectoPorID(String idProyecto) {
 
 		Proyecto p = new ProyectoImpl();
 
@@ -184,7 +184,7 @@ public class JDBCProyectoDAO implements IProyectoDAO {
 		try {
 			// Ejecución de consulta
 			stmt = conn.prepareStatement(sql);
-			stmt.setInt(1, idProyecto);
+			stmt.setString(1, idProyecto);
 			result = stmt.executeQuery();
 
 			// Tratamiento de consulta
@@ -199,7 +199,7 @@ public class JDBCProyectoDAO implements IProyectoDAO {
 
 			// llamo al método creado para obtener la lista de aplicaciones
 			// vinculadas al proyecto
-			p.setListaAplicaciones(obtenerListaAplicacionesDeProyecto(idProyecto));
+			p.setAplicacion(obtenerAplicacionDeProyecto(idProyecto));
 
 		} catch (SQLException e) {
 			System.out.println("Message: " + e.getMessage());
@@ -229,7 +229,7 @@ public class JDBCProyectoDAO implements IProyectoDAO {
 	 * Método para eliminar un proyecto. CUANDO SE BORRA UN PROYECTO, LAS APPS
 	 * VINCULADAS VAN DETRÁS CON ÉL!!!
 	 */
-	public void borrarProyecto(Integer idProyecto) {
+	public void borrarProyecto(String idProyecto) {
 
 		PreparedStatement stmt = null;
 		Aplicacion a = obtenerAplicacionDeProyecto(idProyecto);
@@ -247,7 +247,7 @@ public class JDBCProyectoDAO implements IProyectoDAO {
 
 		try {
 			stmt = conn.prepareStatement(sql);
-			stmt.setInt(1, idProyecto);
+			stmt.setString(1, idProyecto);
 
 			stmt.executeUpdate();
 
@@ -269,7 +269,7 @@ public class JDBCProyectoDAO implements IProyectoDAO {
 	}
 
 	@Override
-	public Aplicacion obtenerAplicacionDeProyecto(Integer idProyecto) {
+	public Aplicacion obtenerAplicacionDeProyecto(String idProyecto) {
 
 		Aplicacion a = new AplicacionImpl();
 
@@ -284,13 +284,13 @@ public class JDBCProyectoDAO implements IProyectoDAO {
 
 			// Ejecución de consulta
 			stmt = conn.prepareStatement(sql);
-			stmt.setInt(1, idProyecto);
+			stmt.setString(1, idProyecto);
 			result = stmt.executeQuery();
 
 			// Tratamiento de consulta
 
 			result.next();
-			a.setIDAplicacion(result.getInt("IDAplicacion")); // Cambiar cuando
+			a.setIDAplicacion(result.getString("IDAplicacion")); // Cambiar cuando
 																// se hable con
 																// Álvaro
 			a.setNombre(result.getString("nombre"));

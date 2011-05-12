@@ -5,8 +5,8 @@ import java.util.List;
 
 public interface Pregunta {
 	
-	public Integer getIDPregunta();
-	public void setIDPregunta(Integer id); 
+	public String getIDPregunta();
+	public void setIDPregunta(String id); 
 	public String getEnunciado();
 	public void setEnunciado(String e);
 	public List<Respuesta> getRespuestas();

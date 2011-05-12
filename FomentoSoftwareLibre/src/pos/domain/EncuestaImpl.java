@@ -4,12 +4,12 @@ import java.util.List;
 
 public class EncuestaImpl implements Encuesta {
 	
-	private Integer encuestaID;
+	private String encuestaID;
 	private String titulo;
 	private List<Pregunta> lp;
 	
 	
-	public Integer getEncuestaId() {
+	public String getEncuestaId() {
 		return encuestaID;
 	}
 
@@ -21,7 +21,7 @@ public class EncuestaImpl implements Encuesta {
 		titulo=t;
 	}
 
-	public void setEncuestaID(Integer id) {
+	public void setEncuestaID(String id) {
 		encuestaID=id;
 	}
 

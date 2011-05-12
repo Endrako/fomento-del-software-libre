@@ -28,9 +28,9 @@ public class JDBCEncuestaDAO implements IEncuestaDAO {
 	 }
 
 	@Override
-	public void Borrar(Integer encuestaID) {
-		List<Integer> pregIDs = seleccionarPreguntasDeEncuesta(encuestaID);
-		for (Integer n: pregIDs){
+	public void Borrar(String encuestaID) {
+		List<String> pregIDs = seleccionarPreguntasDeEncuesta(encuestaID);
+		for (String n: pregIDs){
 			pdao.borrar(n);
 		}
 		
@@ -40,7 +40,7 @@ public class JDBCEncuestaDAO implements IEncuestaDAO {
 
         try {
             stmt = conn.prepareStatement(sql);
-            stmt.setInt(1, encuestaID);
+            stmt.setString(1, encuestaID);
             stmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println("Message: " + e.getMessage());
@@ -70,6 +70,7 @@ public class JDBCEncuestaDAO implements IEncuestaDAO {
 
 			while(result.next()){
 			Encuesta e = new EncuestaImpl();
+			e.setEncuestaID(result.getString("IDEncuesta"));
 			e.setTituloEncuesta(result.getString("nombre"));
 			res.add(e);
 			}
@@ -94,7 +95,7 @@ public class JDBCEncuestaDAO implements IEncuestaDAO {
 
 
 	@Override
-	public Encuesta recuperarEncuesta(Integer idEncuesta) {
+	public Encuesta recuperarEncuesta(String idEncuesta) {
 		String sql = "SELECT * FROM encuestas WHERE (IDEncuesta = ? ) ";
 		PreparedStatement stmt = null;
 		ResultSet result = null;
@@ -102,7 +103,7 @@ public class JDBCEncuestaDAO implements IEncuestaDAO {
 
 		try {
 			stmt = conn.prepareStatement(sql);
-			stmt.setInt(1, idEncuesta);
+			stmt.setString(1, idEncuesta);
 
 			result = stmt.executeQuery();
 
@@ -130,7 +131,7 @@ public class JDBCEncuestaDAO implements IEncuestaDAO {
 
 	@Override
 	public void insertarEncuesta(Encuesta enc) {
-		Integer eId = UIDGenerator.getInstance().getKey();
+		String eId = UIDGenerator.getInstance().getKey();
 		
 		for (Pregunta p : enc.getPreguntas()){
 			pdao.insertarPregunta(p, eId);
@@ -142,7 +143,7 @@ public class JDBCEncuestaDAO implements IEncuestaDAO {
 		try {
 			stmt = conn.prepareStatement(sql);
 
-			stmt.setInt(1, eId);
+			stmt.setString(1, eId);
 			stmt.setString(2, enc.getTituloEncuesta());
 
 			stmt.executeUpdate();
@@ -163,21 +164,21 @@ public class JDBCEncuestaDAO implements IEncuestaDAO {
 		
 	}
 	
-	private List<Integer> seleccionarPreguntasDeEncuesta(Integer encID) {
+	private List<String> seleccionarPreguntasDeEncuesta(String encID) {
 		PreparedStatement stmt = null;
 		ResultSet result = null;
 		String sql = "SELECT * FROM preguntas WHERE (IDEncuesta = ? ) ";
-		List<Integer> res = new LinkedList<Integer>();
+		List<String> res = new LinkedList<String>();
 
 		try {
 			stmt = conn.prepareStatement(sql);
-			stmt.setInt(1, encID);
+			stmt.setString(1, encID);
 
 			result = stmt.executeQuery();
 
 			while (result.next()){
-				Integer id;
-				id = result.getInt("IDPregunta");
+				String id;
+				id = result.getString("IDPregunta");
 				res.add(id);
 			}
 		} catch (SQLException e) {

@@ -78,7 +78,7 @@ public class TestEncuestaJDBC {
 		
 		//Borrar encuesta
 		
-		//edao.Borrar(1127659404);
+		//edao.Borrar("130519874044365be0ef4");
 		
 		//borrar pregunta
 		

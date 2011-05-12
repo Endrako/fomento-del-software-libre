@@ -28,10 +28,10 @@ public class JDBCPreguntaDAO implements IPreguntaDAO {
 	
 	 
 	@Override
-	public void borrar(Integer preguntaID) {
+	public void borrar(String preguntaID) {
 		
-		List<Integer> respIDs = seleccionarRespuestasDePregunta(preguntaID);
-		for (Integer n: respIDs){
+		List<String> respIDs = seleccionarRespuestasDePregunta(preguntaID);
+		for (String n: respIDs){
 			borrarAsociacionPreguntaRespuesta(n);
 			rdao.borrar(n);
 		}
@@ -42,7 +42,7 @@ public class JDBCPreguntaDAO implements IPreguntaDAO {
 
         try {
             stmt = conn.prepareStatement(sql);
-            stmt.setInt(1, preguntaID);
+            stmt.setString(1, preguntaID);
             stmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println("Message: " + e.getMessage());
@@ -58,7 +58,7 @@ public class JDBCPreguntaDAO implements IPreguntaDAO {
 
 	}
 
-	public List<Pregunta> seleccionarTodasPreguntasPorEncuesta(Integer idEncuesta) {
+	public List<Pregunta> seleccionarTodasPreguntasPorEncuesta(String idEncuesta) {
 		String sql = "SELECT * FROM preguntas WHERE (IDEncuesta = ? )";
 		PreparedStatement stmt = null;
 		ResultSet result = null;
@@ -66,7 +66,7 @@ public class JDBCPreguntaDAO implements IPreguntaDAO {
 
 		try {
 			stmt = conn.prepareStatement(sql);
-			stmt.setInt(1, idEncuesta);
+			stmt.setString(1, idEncuesta);
 
 			result = stmt.executeQuery();
 
@@ -95,12 +95,12 @@ public class JDBCPreguntaDAO implements IPreguntaDAO {
 	}
 
 	@Override
-	public void insertarPregunta(Pregunta p,Integer idEncuensta) {
-		Integer pID = UIDGenerator.getInstance().getKey();
+	public void insertarPregunta(Pregunta p,String idEncuensta) {
+		String pID = UIDGenerator.getInstance().getKey();
 		//Insertar respuestas
 		
 		for (Respuesta r :p.getRespuestas()){
-			Integer rID = UIDGenerator.getInstance().getKey();
+			String rID = UIDGenerator.getInstance().getKey();
 			rdao.insertarRespuesta(rID,r);
 			AsociarPreguntaARespuesta(pID, rID);
 		}
@@ -110,8 +110,8 @@ public class JDBCPreguntaDAO implements IPreguntaDAO {
 		try {
 			stmt = conn.prepareStatement(sql);
 
-			stmt.setInt(1, pID);
-			stmt.setInt(2, idEncuensta);
+			stmt.setString(1, pID);
+			stmt.setString(2, idEncuensta);
 			stmt.setString(3, p.getEnunciado());
 			
 			stmt.executeUpdate();
@@ -131,7 +131,7 @@ public class JDBCPreguntaDAO implements IPreguntaDAO {
 	}
 
 	@Override
-	public Pregunta recuperarPregunta(Integer idPregunta) {
+	public Pregunta recuperarPregunta(String idPregunta) {
 		String sql = "SELECT * FROM preguntas WHERE (IDPregunta = ? ) ";
 		PreparedStatement stmt = null;
 		ResultSet result = null;
@@ -139,7 +139,7 @@ public class JDBCPreguntaDAO implements IPreguntaDAO {
 
 		try {
 			stmt = conn.prepareStatement(sql);
-			stmt.setInt(1, idPregunta);
+			stmt.setString(1, idPregunta);
 
 			result = stmt.executeQuery();
 
@@ -169,16 +169,14 @@ public class JDBCPreguntaDAO implements IPreguntaDAO {
 	
 	
 	
-	private void AsociarPreguntaARespuesta(Integer idPregunta, Integer idRespuesta){
-		Integer relID = UIDGenerator.getInstance().getKey();
+	private void AsociarPreguntaARespuesta(String idPregunta, String idRespuesta){
 		PreparedStatement stmt = null;
-		String sql = "INSERT INTO preguntasrespuestas (IDRelacion, IDRespuesta, IDPregunta) VALUES (?,?,?) ";
+		String sql = "INSERT INTO preguntasrespuestas (IDRespuesta, IDPregunta) VALUES (?,?) ";
 		try {
 			stmt = conn.prepareStatement(sql);
-
-			stmt.setInt(1, relID);
-			stmt.setInt(2, idRespuesta);
-			stmt.setInt(3, idPregunta);
+			
+			stmt.setString(1, idRespuesta);
+			stmt.setString(2, idPregunta);
 
 			stmt.executeUpdate();
 
@@ -196,21 +194,21 @@ public class JDBCPreguntaDAO implements IPreguntaDAO {
 		}
 	}
 	
-	private List<Integer> seleccionarRespuestasDePregunta(Integer pregID) {
+	private List<String> seleccionarRespuestasDePregunta(String pregID) {
 		PreparedStatement stmt = null;
 		ResultSet result = null;
 		String sql = "SELECT * FROM preguntasrespuestas WHERE (IDPregunta = ? ) ";
-		List<Integer> res = new LinkedList<Integer>();
+		List<String> res = new LinkedList<String>();
 
 		try {
 			stmt = conn.prepareStatement(sql);
-			stmt.setInt(1, pregID);
+			stmt.setString(1, pregID);
 
 			result = stmt.executeQuery();
 
 			while (result.next()){
-				Integer id;
-				id = result.getInt("IDRespuesta");
+				String id;
+				id = result.getString("IDRespuesta");
 				res.add(id);
 			}
 		} catch (SQLException e) {
@@ -233,13 +231,13 @@ public class JDBCPreguntaDAO implements IPreguntaDAO {
 		return res;
 	}
 	
-	private void borrarAsociacionPreguntaRespuesta(Integer respID) {
+	private void borrarAsociacionPreguntaRespuesta(String respID) {
         String sql = "DELETE FROM preguntasrespuestas WHERE (IDRespuesta = ?) ";
         PreparedStatement stmt = null;
 
         try {
             stmt = conn.prepareStatement(sql);
-            stmt.setInt(1, respID);
+            stmt.setString(1, respID);
             stmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println("Message: " + e.getMessage());

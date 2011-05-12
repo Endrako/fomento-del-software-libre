@@ -4,16 +4,16 @@ import java.util.List;
 
 public class PreguntaImpl implements Pregunta {
 	
-	private Integer idPregunta;
+	private String idPregunta;
 	private String enunciado;
 	private List<Respuesta> lr;
 	
 	@Override
-	public Integer getIDPregunta() {
+	public String getIDPregunta() {
 		return idPregunta;
 	}
 
-	public void setIDPregunta(Integer id) {
+	public void setIDPregunta(String id) {
 		idPregunta=id;
 	}
 	

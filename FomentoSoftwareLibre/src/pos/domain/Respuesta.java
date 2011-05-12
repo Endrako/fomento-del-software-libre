@@ -2,10 +2,10 @@ package pos.domain;
 
 public interface Respuesta {
 	
-	public Integer getIDRespuesta();
-	public void setIDRespuesta(Integer id);
+	public String getIDRespuesta();
+	public void setIDRespuesta(String id);
 	public String getDescripcionRespuesta();
 	public void setDescripcion(String d);
-	public Integer getNumeroVotos();
-	public void setNumeroVotos(Integer nvotos);
+	public String getNumeroVotos();
+	public void setNumeroVotos(String nvotos);
 }

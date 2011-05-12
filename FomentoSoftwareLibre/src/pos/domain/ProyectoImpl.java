@@ -1,19 +1,19 @@
 package pos.domain;
 
 import java.util.Date;
-import java.util.List;
+
 
 public class ProyectoImpl implements Proyecto {
 	
-	private Integer idProyecto;
+	private String idProyecto;
 	private String nombreProyecto;
 	private String descripcion;
 	private Date fechaInicio;
 	private Date fechaFin;
 	private Boolean disponibilidad;
-	private Integer numeroMaximoDesarrolladores;
-	private Integer numeroActualDesarrolladores;
-	private List<Aplicacion> listaAplicaciones;
+	private String numeroMaximoDesarrolladores;
+	private String numeroActualDesarrolladores;
+	private Aplicacion aplicacion;
 	
 	
 	
@@ -52,31 +52,31 @@ public class ProyectoImpl implements Proyecto {
 	public void setDisponibilidad(Boolean disponibilidad) {
 		this.disponibilidad = disponibilidad;
 	}
-	public Integer getNumeroMaximoDesarrolladores() {
+	public String getNumeroMaximoDesarrolladores() {
 		return numeroMaximoDesarrolladores;
 	}
-	public void setNumeroMaximoDesarrolladores(Integer numeroMaximoDesarrolladores) {
+	public void setNumeroMaximoDesarrolladores(String numeroMaximoDesarrolladores) {
 		this.numeroMaximoDesarrolladores = numeroMaximoDesarrolladores;
 	}
-	public Integer getNumeroActualDesarrolladores() {
+	public String getNumeroActualDesarrolladores() {
 		return numeroActualDesarrolladores;
 	}
-	public void setNumeroActualDesarrolladores(Integer numeroActualDesarrolladores) {
+	public void setNumeroActualDesarrolladores(String numeroActualDesarrolladores) {
 		this.numeroActualDesarrolladores = numeroActualDesarrolladores;
 	}
-	public Integer getIDProyecto() {
+	public String getIDProyecto() {
 		return idProyecto;
 	}
 	@Override
-	public void setIDProyecto(Integer idProyecto) {
+	public void setIDProyecto(String idProyecto) {
 		this.idProyecto = idProyecto;
 	}
-	public List<Aplicacion> getListaAplicaciones(){
-		return listaAplicaciones;
+	public Aplicacion getAplicacion(){
+		return aplicacion;
 	}
 	@Override
-	public void setListaAplicaciones(List<Aplicacion> listaAplicaciones) {
-		this.listaAplicaciones = listaAplicaciones;
+	public void setAplicacion(Aplicacion aplicacion) {
+		this.aplicacion = aplicacion;
 	}
 
 	

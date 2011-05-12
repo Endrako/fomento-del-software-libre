@@ -2,11 +2,11 @@ package pos.domain;
 
 public class RespuestaImpl implements Respuesta {
 	
-	private Integer idRespuesta;
+	private String idRespuesta;
 	private String desc;
-	private Integer nvotos;
+	private String nvotos;
 
-	public Integer getIDRespuesta() {
+	public String getIDRespuesta() {
 		return idRespuesta;
 	}
 
@@ -16,7 +16,7 @@ public class RespuestaImpl implements Respuesta {
 	}
 
 	@Override
-	public void setIDRespuesta(Integer id) {
+	public void setIDRespuesta(String id) {
 		idRespuesta=id;
 		
 	}
@@ -27,12 +27,12 @@ public class RespuestaImpl implements Respuesta {
 	}
 
 	@Override
-	public Integer getNumeroVotos() {
+	public String getNumeroVotos() {
 		return nvotos;
 	}
 
 	@Override
-	public void setNumeroVotos(Integer votos) {
+	public void setNumeroVotos(String votos) {
 		nvotos=votos;
 	}
 

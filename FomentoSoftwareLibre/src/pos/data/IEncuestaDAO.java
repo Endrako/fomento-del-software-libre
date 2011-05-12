@@ -8,6 +8,6 @@ import pos.domain.Pregunta;
 public interface IEncuestaDAO {
     public List<Encuesta> seleccionarTodasEncuestas();
     public void insertarEncuesta(Encuesta e);
-	public Encuesta recuperarEncuesta(Integer idEncuesta);
-	void Borrar(Integer encuestaID);
+	public Encuesta recuperarEncuesta(String idEncuesta);
+	public void Borrar(String encuestaID);
 }
