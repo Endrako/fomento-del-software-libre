@@ -3,11 +3,11 @@
 -- http://www.phpmyadmin.net
 -- 
 -- Servidor: localhost
--- Tiempo de generación: 11-05-2011 a las 17:57:28
+-- Tiempo de generación: 12-05-2011 a las 09:21:08
 -- Versión del servidor: 5.0.24
 -- Versión de PHP: 5.1.6
 -- 
--- Base de datos: `isg3bd`
+-- Base de datos: `prueba asdasdasd`
 -- 
 
 -- --------------------------------------------------------
@@ -396,11 +396,13 @@ CREATE TABLE IF NOT EXISTS `usuarioencuestas` (
 
 CREATE TABLE IF NOT EXISTS `usuarios` (
   `OIDUsuario` int(11) NOT NULL auto_increment,
+  `IDUsuario` varchar(50) collate latin1_spanish_ci NOT NULL,
   `nombreUsuario` varchar(50) collate latin1_spanish_ci NOT NULL,
   `contrasenna` varchar(50) collate latin1_spanish_ci NOT NULL,
   `email` varchar(50) collate latin1_spanish_ci NOT NULL,
   `IDPerfil` varchar(50) collate latin1_spanish_ci default NULL,
   `karma` int(11) NOT NULL,
+  `numeroRecomendaciones` int(11) NOT NULL,
   PRIMARY KEY  (`OIDUsuario`),
   UNIQUE KEY `nombreUsuario` (`nombreUsuario`,`email`,`IDPerfil`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci AUTO_INCREMENT=3 ;
@@ -409,8 +411,8 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
 -- Volcar la base de datos para la tabla `usuarios`
 -- 
 
-INSERT INTO `usuarios` VALUES (1, 'Varusblack', 'isg3', 'algo@email.com', '1', 0);
-INSERT INTO `usuarios` VALUES (2, 'lordreivaj', 'isg3', 'alguien@email.com', '2', 0);
+INSERT INTO `usuarios` VALUES (1, '', 'Varusblack', 'isg3', 'algo@email.com', '1', 0, 0);
+INSERT INTO `usuarios` VALUES (2, '', 'lordreivaj', 'isg3', 'alguien@email.com', '2', 0, 0);
 
 -- --------------------------------------------------------
 
