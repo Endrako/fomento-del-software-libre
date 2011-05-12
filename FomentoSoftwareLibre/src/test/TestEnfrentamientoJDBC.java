@@ -2,6 +2,8 @@ package test;
 
 
 import java.sql.Date;
+import java.util.Calendar;
+
 import pos.data.JDBCAplicacionDAO;
 import pos.data.JDBCEnfrentamientoDAO;
 import pos.domain.Aplicacion;
@@ -24,7 +26,7 @@ public class TestEnfrentamientoJDBC {
 //			System.out.println(e.toString());
 //		}
 		
-//		System.out.println("-----> Método toString <-----");
+//		System.out.println("-----> Mï¿½todo toString <-----");
 //		System.out.println(enfrentamiento.toString()+"\n");
 //		
 //		System.out.println("-----> Propiedades del enfrentamiento <-----");
@@ -38,7 +40,7 @@ public class TestEnfrentamientoJDBC {
 		System.out.println("Fecha Creacion: "+enfrentamiento.getFechaCreacion().toString());
 		System.out.println("Fecha Fin: "+enfrentamiento.getFechaFin().toString());
 		
-		//System.out.println("-----> Inserción de enfrentamiento <-----");
+		//System.out.println("-----> Inserciï¿½n de enfrentamiento <-----");
 //		Aplicacion aplicacion1 = aplyTestDAO.selectAplicacionByID("1");
 //		Aplicacion aplicacion2 = aplyTestDAO.selectAplicacionByID("2");
 //		Enfrentamiento enfrentamiento2 = new EnfrentamientoImpl();
@@ -84,6 +86,10 @@ public class TestEnfrentamientoJDBC {
 //		testDAO.votar(enfrentamiento.getIDEnfrentamiento(), "1", "1");
 //		System.out.println("Votos Aplicacion 1: "+enfrentamiento.getVotosAplicacion1());
 //		System.out.println("Votos Aplicacion 2: "+enfrentamiento.getVotosAplicacion2());
+		
+		Calendar calendario = Calendar.getInstance();
+		Date d = calendario.getTime();
+		System.out.println(d);
 	
 		
 	}
