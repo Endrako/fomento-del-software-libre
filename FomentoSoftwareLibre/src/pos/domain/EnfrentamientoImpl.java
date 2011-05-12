@@ -8,7 +8,7 @@ public class EnfrentamientoImpl implements Enfrentamiento {
 	private String descripcion;
 	private Date fechaCreacion, fechaFin;
 	private Integer votosAplicacion1, votosAplicacion2 = 0;
-	private String IDEnfrentamiento = null;
+	private String IDEnfrentamiento = "";
 
 	public EnfrentamientoImpl() {
 
