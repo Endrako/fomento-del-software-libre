@@ -16,15 +16,14 @@ import pos.domain.PreguntaImpl;
 public class JDBCPaisDAO implements IPaisDAO {
 
 	 private Connection conn;
-	 private IPaisDAO dao;
 	 
 	public JDBCPaisDAO(){
 		conn = ConnectionManager.getInstance().checkOut();
-		dao = new JDBCPaisDAO();
 	}
+	
 	@Override
-	public List<PaisImpl> recuperarPaises() {
-		List<PaisImpl> p = new ArrayList<PaisImpl>();
+	public List<Pais> recuperarPaises() {
+		List<Pais> p = new ArrayList<Pais>();
 		String sql = "SELECT * FROM paises";
 		PreparedStatement stmt = null;
 		ResultSet result = null;
@@ -34,8 +33,8 @@ public class JDBCPaisDAO implements IPaisDAO {
 			result = stmt.executeQuery();
 
 			while(result.next()){
-				PaisImpl pais = new PaisImpl();
-				pais.setId(result.getInt("IDPais"));
+				Pais pais = new PaisImpl();
+				pais.setId(result.getString("IDPais"));
 				pais.setDescripcion(result.getString("nombre"));
 				p.add(pais);
 			}

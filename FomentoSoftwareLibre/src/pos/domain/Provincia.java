@@ -2,9 +2,9 @@ package pos.domain;
 
 public interface Provincia {
 
-	public int getId();
+	public String getId();
 
-	public void setId(int id);
+	public void setId(String p);
 
 	public String getDescripcion();
 

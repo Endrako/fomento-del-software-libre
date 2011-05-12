@@ -12,7 +12,7 @@ public class PaisStore {
 		dao = new JDBCPaisDAO();
 	}
 	
-	public List<PaisImpl> recuperarTodosLosPaises(){
+	public List<Pais> recuperarTodosLosPaises(){
 		return dao.recuperarPaises();
 	}
 }

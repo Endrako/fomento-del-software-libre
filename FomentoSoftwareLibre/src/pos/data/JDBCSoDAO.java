@@ -8,22 +8,23 @@ import java.util.List;
 
 import pos.domain.Provincia;
 import pos.domain.ProvinciaImpl;
+import pos.domain.SO;
+import pos.domain.SoImpl;
 
 import com.mysql.jdbc.Connection;
 
-public class JDBCProvinciaDAO {
-
-	private Connection conn;
+public class JDBCSoDAO implements ISoDAO {
+private Connection conn;
 	
-	public JDBCProvinciaDAO(){
+	public JDBCSoDAO(){
 		conn =  (Connection) ConnectionManager.getInstance()
 		.checkOut();
 	}
 	
-	public List<Provincia> recuperarTodasLasProvincias(){
-		List<Provincia> lista = new ArrayList<Provincia>();
+	public List<SO> recuperarTodosLosSo(){
+		List<SO> lista = new ArrayList<SO>();
 		
-		String sql = "SELECT * FROM provincias";
+		String sql = "SELECT * FROM so";
 		PreparedStatement stmt = null;
 		ResultSet result = null;
 		
@@ -32,9 +33,10 @@ public class JDBCProvinciaDAO {
 			result = stmt.executeQuery();
 
 			while(result.next()){
-				Provincia prov = new ProvinciaImpl();
-				prov.setId(result.getString("IDProvincia"));
+				SO prov = new SoImpl();
+				prov.setIdSO(result.getString("IDSO"));
 				prov.setDescripcion(result.getString("nombre"));
+				prov.setEsOSmovil(result.getInt("esSOMovil"));
 				lista.add(prov);
 			}
 		} catch (SQLException e) {

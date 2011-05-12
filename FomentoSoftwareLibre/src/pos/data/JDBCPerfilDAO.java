@@ -38,7 +38,7 @@ public class JDBCPerfilDAO implements IPerfilDAO {
 				perfil.setApellidos(result.getString("apellidos"));
 				perfil.setEdad(result.getInt("edad"));
 				perfil.setIdPais(result.getString("IDPais"));
-				perfil.setIdPoblacion(result.getString("IDPoblacion"));
+				perfil.setIdPoblacion(result.getString("IDProvincia"));
 				perfil.setMovilOS(result.getString("IDSO2"));
 				perfil.setPcOS(result.getString("IDSO1"));
 				p.add(perfil);
@@ -115,7 +115,7 @@ public class JDBCPerfilDAO implements IPerfilDAO {
 				perfil.setApellidos(result.getString("apellidos"));
 				perfil.setEdad(result.getInt("edad"));
 				perfil.setIdPais(result.getString("IDPais"));
-				perfil.setIdPoblacion(result.getString("IDPoblacion"));
+				perfil.setIdPoblacion(result.getString("IDProvincia"));
 				perfil.setMovilOS(result.getString("IDSO2"));
 				perfil.setPcOS(result.getString("IDSO1"));
 			}

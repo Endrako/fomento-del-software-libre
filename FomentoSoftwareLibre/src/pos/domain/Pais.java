@@ -2,9 +2,9 @@ package pos.domain;
 
 public interface Pais {
 
-	public int getId();
+	public String getId();
 
-	public void setId(int id);
+	public void setId(String id);
 
 	public String getDescripcion();
 

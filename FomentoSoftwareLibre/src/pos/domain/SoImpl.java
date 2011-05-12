@@ -5,7 +5,7 @@ public class SoImpl implements SO {
 	/**
 	 * Atributo que almacena el id del so
 	 */
-	private int idSO;
+	private String idSO;
 	
 	/**
 	 * Atributo que almacena la descripcion
@@ -16,22 +16,20 @@ public class SoImpl implements SO {
 	 * Atributo que almacena si es movil o no
 	 */
 	
-	private boolean esOSmovil;
+	private int esOSmovil;
 	
 	/**
 	 * Constructor de la clase
 	 */
-	public SoImpl(int id, String desc, boolean esmovil){
-		idSO = id;
-		descripcion = desc;
-		esOSmovil = esmovil;
+	public SoImpl(){
+
 	}
 
-	public int getIdSO() {
+	public String getIdSO() {
 		return idSO;
 	}
 
-	public void setIdSO(int idSO) {
+	public void setIdSO(String idSO) {
 		this.idSO = idSO;
 	}
 
@@ -43,11 +41,11 @@ public class SoImpl implements SO {
 		this.descripcion = descripcion;
 	}
 
-	public boolean isEsOSmovil() {
+	public int getEsOSmovil() {
 		return esOSmovil;
 	}
 
-	public void setEsOSmovil(boolean esOSmovil) {
+	public void setEsOSmovil(int esOSmovil) {
 		this.esOSmovil = esOSmovil;
 	}
 	

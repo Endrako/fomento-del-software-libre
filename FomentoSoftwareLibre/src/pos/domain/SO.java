@@ -2,16 +2,16 @@ package pos.domain;
 
 public interface SO {
 
-	public int getIdSO();
+	public String getIdSO();
 
-	public void setIdSO(int idSO);
+	public void setIdSO(String idSO);
 
 	public String getDescripcion();
 
 	public void setDescripcion(String descripcion);
 
-	public boolean isEsOSmovil();
+	public int getEsOSmovil();
 
-	public void setEsOSmovil(boolean esOSmovil);
+	public void setEsOSmovil(int esOSmovil);
 
 }

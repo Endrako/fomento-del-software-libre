@@ -5,6 +5,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import pos.domain.Usuario;
 import pos.domain.UsuarioImpl;
@@ -43,6 +44,8 @@ public class NuevoUsuario extends HttpServlet {
 		String nickRecomendador = request.getParameter("usuarioRecomendador");
 		String check = request.getParameter("checkRecomendado");
 		
+		HttpSession session = request.getSession();
+		
 		UsuarioStore store = new UsuarioStore();
 		Usuario user = new UsuarioImpl();
 		
@@ -60,17 +63,18 @@ public class NuevoUsuario extends HttpServlet {
 						userRecomendador.setKarma(userRecomendador.getKarma()+10);
 						userRecomendador.setNumeroRecomendaciones(userRecomendador.getNumeroRecomendaciones()+1);
 						store.actualizarUsuario(userRecomendador);
-						request.getSession().setAttribute("haSidoRecomendado", true);
+						session.setAttribute("haSidoRecomendado", true);
 					}
-					request.getSession().setAttribute("haSidoRecomendado", false);
+					
+					session.setAttribute("haSidoRecomendado", false);
 				}
 				
 			}
 			store.insertarUsuario(user);
 		}
-		user = store.recuperarUsuario(user.getIdUser());
-		request.getSession().setAttribute("usuario", user);
-		request.getRequestDispatcher("creacionPerfil.jsp").include(request,response);
+		user = store.recuperarUsuarioByNick(nick);
+		session.setAttribute("usuario", user);
+		request.getRequestDispatcher("nuevoPerfil.jsp").include(request,response);
 	}
 
 }
