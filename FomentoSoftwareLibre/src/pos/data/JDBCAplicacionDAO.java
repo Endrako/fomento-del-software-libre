@@ -31,11 +31,18 @@ public class JDBCAplicacionDAO implements IAplicacionDAO {
 			result = stm.executeQuery();
 			//para poder acceder a los datos del ResultSet hay que hacerle el .next()
 			//si el método solo figurase dentro del while se saltaria la primera tupla
-			aplicacion = createAplicacionFromBD(aplicacion, result);
-			listaAplicaciones.add(aplicacion);
-			
-			while (result.next()) {
-				aplicacion = createAplicacionFromBD(aplicacion, result);
+			while(result.next()){
+				String IDAplicacion = result.getString("IDAplicacion");
+				String nombre = result.getString("nombre");
+				String descripcion = result.getString("descripcion");
+				Date fechaPublicacion = result.getDate("fechaPublicacion");
+				String URLWeb = result.getString("URLWeb");
+				Integer votosAFavor = result.getInt("numeroVotosAFavor");
+				Integer votosEnContra = result.getInt("numeroVotosEnContra");
+				String IDProyecto = result.getString("IDProyecto");
+				List<Tag> tags = this.getAplicationTags(result.getString("IDAplicacion"));
+				
+				aplicacion = new AplicacionImpl(IDAplicacion,nombre,descripcion,fechaPublicacion,URLWeb,votosAFavor,votosEnContra,tags,IDProyecto);
 				listaAplicaciones.add(aplicacion);
 			}
 		} catch (SQLException e) {
@@ -110,7 +117,18 @@ public class JDBCAplicacionDAO implements IAplicacionDAO {
 			stm.setInt(1, IDAply);
 			result = stm.executeQuery();
 
-			aplicacion = createAplicacionFromBD(aplicacion, result);
+			while(result.next()){
+				String nombre = result.getString("nombre");
+				String descripcion = result.getString("descripcion");
+				Date fechaPublicacion = result.getDate("fechaPublicacion");
+				String URLWeb = result.getString("URLWeb");
+				Integer votosAFavor = result.getInt("numeroVotosAFavor");
+				Integer votosEnContra = result.getInt("numeroVotosEnContra");
+				String IDProyecto = result.getString("IDProyecto");
+				List<Tag> tags = this.getAplicationTags(result.getString("IDAplicacion"));
+				
+				aplicacion = new AplicacionImpl(IDAplicacion,nombre,descripcion,fechaPublicacion,URLWeb,votosAFavor,votosEnContra,tags,IDProyecto);
+			}
 		} catch (SQLException e) {
 			System.out.println("SQLMessage: " + e.getMessage());
 			System.out.println("SQLState: " + e.getSQLState());
@@ -144,8 +162,19 @@ public class JDBCAplicacionDAO implements IAplicacionDAO {
 			stm = con.prepareStatement(sql);
 			stm.setString(1, name);
 			result = stm.executeQuery();
-
-			aplicacion = createAplicacionFromBD(aplicacion, result);
+			while(result.next()){
+				String IDAplicacion = result.getString("IDAplicacion");
+				String nombre = result.getString("nombre");
+				String descripcion = result.getString("descripcion");
+				Date fechaPublicacion = result.getDate("fechaPublicacion");
+				String URLWeb = result.getString("URLWeb");
+				Integer votosAFavor = result.getInt("numeroVotosAFavor");
+				Integer votosEnContra = result.getInt("numeroVotosEnContra");
+				String IDProyecto = result.getString("IDProyecto");
+				List<Tag> tags = this.getAplicationTags(result.getString("IDAplicacion"));
+				
+				aplicacion = new AplicacionImpl(IDAplicacion,nombre,descripcion,fechaPublicacion,URLWeb,votosAFavor,votosEnContra,tags,IDProyecto);
+			}
 		} catch (SQLException e) {
 			System.out.println("SQLMessage: " + e.getMessage());
 			System.out.println("SQLState: " + e.getSQLState());
@@ -208,8 +237,7 @@ public class JDBCAplicacionDAO implements IAplicacionDAO {
 
 	@Override
 	public void deleteAplication(Aplicacion aplicacion) {
-		Connection con = (Connection) ConnectionManager.getInstance()
-				.checkOut();
+		Connection con = (Connection) ConnectionManager.getInstance().checkOut();
 
 		PreparedStatement stm = null;
 		String sql = "DELETE FROM aplicaciones WHERE (IDAplicacion = ?)";
@@ -232,46 +260,63 @@ public class JDBCAplicacionDAO implements IAplicacionDAO {
 
 			}
 		}
-
-	}
-
-	private Aplicacion createAplicacionFromBD(Aplicacion aplicacion,
-			ResultSet result) {
-		aplicacion = new AplicacionImpl();
-		Integer IDAplicacion;
+	}	
+	
+	public List<Aplicacion> selectAplicationsByTags (List<Tag> tags){
+		Connection con = (Connection) ConnectionManager.getInstance().checkOut();
+		
+		String inCondition = "";
+		
+		for(int i=0; i<tags.size();i++){
+			inCondition+=tags.get(i).getIdTag();
+			if(i+1==tags.size()){
+				inCondition+="";
+			} else {
+				inCondition+=",";
+			}
+		}
+		
+		Aplicacion aplicacion = null;
+		List<Aplicacion> aplicaciones = new ArrayList<Aplicacion>();
+		ResultSet result = null;
+		PreparedStatement stm = null;
+		String sql = "SELECT DISTINC * FROM tagsaplicaciones WHERE IDTag IN (?)";
+		
 		try {
-			while (result.next()) {
-				IDAplicacion = result.getInt("IDAplicacion");
+
+			stm = con.prepareStatement(sql);
+			stm.setString(1,inCondition);
+			result = stm.executeQuery();
+			while(result.next()){
+				String IDAplicacion = result.getString("IDAplicacion");
 				String nombre = result.getString("nombre");
 				String descripcion = result.getString("descripcion");
 				Date fechaPublicacion = result.getDate("fechaPublicacion");
 				String URLWeb = result.getString("URLWeb");
-				Integer numeroVotosAFavor = result.getInt("numeroVotosAFavor");
-				Integer numeroVotosEnContra = result
-						.getInt("numeroVotosEnContra");
+				Integer votosAFavor = result.getInt("numeroVotosAFavor");
+				Integer votosEnContra = result.getInt("numeroVotosEnContra");
+				String IDProyecto = result.getString("IDProyecto");
 
-				aplicacion.setDescripcion(descripcion);
-				aplicacion.setFechaPublicacion(fechaPublicacion);
-				aplicacion.setIDAplicacion(IDAplicacion.toString());
-				aplicacion.setNombre(nombre);
-				aplicacion.setURLWeb(URLWeb);
-				aplicacion.setVotosAFavor(numeroVotosAFavor);
-				aplicacion.setVotosEnContra(numeroVotosEnContra);
-				inicializarTags(aplicacion);
+				aplicacion = new AplicacionImpl(IDAplicacion,nombre,descripcion,fechaPublicacion,URLWeb,votosAFavor,votosEnContra,tags,IDProyecto);
+				aplicaciones.add(aplicacion);
+
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			System.out.println("SQLMessage: " + e.getMessage());
+			System.out.println("SQLState: " + e.getSQLState());
+			System.out.println("ErrorCode: " + e.getErrorCode());
+		} finally {
+			try {
+				if (stm != null) {
+					stm.close();
+				}
+			} catch (SQLException e) {
+
+			}
 		}
-
-		return aplicacion;
+		return aplicaciones;
 	}
 
-	private void inicializarTags(Aplicacion aplicacion){
-		List<Tag> listaTags = this.getAplicationTags(aplicacion
-				.getIDAplicacion());
-		aplicacion.setTags(listaTags);
-	}
-	
 	private void insertAplicationTagRelation(Connection con,
 			Aplicacion aplicacion, Tag tag) {
 		PreparedStatement stm = null;

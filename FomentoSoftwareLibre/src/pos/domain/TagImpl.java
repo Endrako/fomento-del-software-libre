@@ -10,8 +10,12 @@ public class TagImpl implements Tag{
 	private String nombre;
 	
 	
-	public TagImpl(){
-		
+	public TagImpl(){		
+	}
+	
+	public TagImpl(String idTag,String nombre){
+		this.idTag = idTag;
+		this.nombre = nombre;
 	}
 
 	public String getIdTag() {

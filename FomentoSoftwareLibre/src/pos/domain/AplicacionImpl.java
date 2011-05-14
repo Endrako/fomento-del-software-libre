@@ -14,6 +14,17 @@ public class AplicacionImpl implements Aplicacion {
 	private List<Tag> tags;
 	private String IDProyecto; 
 	
+	public AplicacionImpl(String IDAplicacion, String nombre, String descripcion, Date fechaPublicacion, String URLWeb, Integer votosAFavor, Integer votosEnContra, List<Tag> listaTags,String IDProyecto){
+		this.IDAplicacion = IDAplicacion;
+		this.nombre = nombre;
+		this.descripcion = descripcion;
+		this.fechaPublicacion = fechaPublicacion;
+		this.URLWeb = URLWeb;
+		this.votosAFavor = votosAFavor;
+		this.votosEnContra = votosEnContra;
+		this.tags = listaTags;
+		this.IDProyecto = IDProyecto;
+	}
 	
 	public String getIDAplicacion(){
 		return IDAplicacion;

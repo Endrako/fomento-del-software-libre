@@ -13,6 +13,17 @@ public class EnfrentamientoImpl implements Enfrentamiento {
 	public EnfrentamientoImpl() {
 
 	}
+	
+	public EnfrentamientoImpl(String IDEnfrentamiento,Aplicacion apli1,Aplicacion apli2,String descripcion,Date fechaCreacion,Date fechaFin, Integer votosApp1, Integer votosApp2){
+		this.IDEnfrentamiento = IDEnfrentamiento;
+		this.aplicacion1 = apli1;
+		this.aplicacion2 = apli2;
+		this.descripcion = descripcion;
+		this.fechaCreacion = fechaCreacion;
+		this.fechaFin = fechaFin;
+		this.votosAplicacion1 = votosApp1;
+		this.votosAplicacion2 = votosApp2;
+	}
 
 	public String getIDEnfrentamiento() {
 		return IDEnfrentamiento;

@@ -59,4 +59,14 @@
     <servlet-name>nuevoPerfil</servlet-name>
     <url-pattern>/nuevoPerfil</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Enfrentamiento</display-name>
+    <servlet-name>Enfrentamiento</servlet-name>
+    <servlet-class>servlets.Enfrentamiento</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Enfrentamiento</servlet-name>
+    <url-pattern>/Enfrentamiento</url-pattern>
+  </servlet-mapping>
 </web-app>

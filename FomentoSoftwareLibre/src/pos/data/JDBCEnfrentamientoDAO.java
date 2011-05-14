@@ -34,15 +34,24 @@ public class JDBCEnfrentamientoDAO implements IEnfrentamientoDAO {
 		try {
 			stm = con.prepareStatement(sql);
 			result = stm.executeQuery(sql);
-			//para poder acceder a los datos del ResultSet hay que hacerle el .next()
-			//si el método solo figurase dentro del while se saltaria la primera tupla
-			enfrentamiento = createEnfrentamientoFromBD(enfrentamiento,result);
-			lista.add(enfrentamiento);
-			
-			while (result.next()) {
-				enfrentamiento = createEnfrentamientoFromBD(enfrentamiento,result);
+			while(result.next()){
+				JDBCAplicacionDAO apliDAO = new JDBCAplicacionDAO();
+				
+				String IDEnfrentamiento = result.getString("IDEnfrentamiento");
+				String IDapl1 = result.getString("IDAplicacion1");
+				String IDapl2 = result.getString("IDAplicacion2");
+				String descripcion = result.getString("descripcion");
+				Integer votosAply1 = result.getInt("votosApp1");
+				Integer votosAply2 = result.getInt("votosApp2");
+				Date fechaCreacion = result.getDate("fechaCreacion");
+				Date fechaFin = result.getDate("fechaFin");
+				// Cuidaaaaaaaaaoooooooo!
+				Aplicacion aplicacion1 = apliDAO.selectAplicacionByID(IDapl1.toString());
+				Aplicacion aplicacion2 = apliDAO.selectAplicacionByID(IDapl2.toString());
+				enfrentamiento = new EnfrentamientoImpl(IDEnfrentamiento,aplicacion1,aplicacion2,descripcion,fechaCreacion,fechaFin,votosAply1,votosAply2);
 				lista.add(enfrentamiento);
 			}
+			
 		} catch (SQLException e) {
 			System.out.println("Message: " + e.getMessage());
 			System.out.println("SQLState: " + e.getSQLState());
@@ -73,7 +82,21 @@ public class JDBCEnfrentamientoDAO implements IEnfrentamientoDAO {
 			stm = con.prepareStatement(sql);
 			stm.setString(1,IDEnfrentamiento);
 			result = stm.executeQuery();
-			enfrentamiento = createEnfrentamientoFromBD(enfrentamiento, result);
+			while(result.next()){
+				JDBCAplicacionDAO apliDAO = new JDBCAplicacionDAO();
+				
+				String IDapl1 = result.getString("IDAplicacion1");
+				String IDapl2 = result.getString("IDAplicacion2");
+				String descripcion = result.getString("descripcion");
+				Integer votosAply1 = result.getInt("votosApp1");
+				Integer votosAply2 = result.getInt("votosApp2");
+				Date fechaCreacion = result.getDate("fechaCreacion");
+				Date fechaFin = result.getDate("fechaFin");
+				// Cuidaaaaaaaaaoooooooo!
+				Aplicacion aplicacion1 = apliDAO.selectAplicacionByID(IDapl1.toString());
+				Aplicacion aplicacion2 = apliDAO.selectAplicacionByID(IDapl2.toString());
+				enfrentamiento = new EnfrentamientoImpl(IDEnfrentamiento,aplicacion1,aplicacion2,descripcion,fechaCreacion,fechaFin,votosAply1,votosAply2);
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 			System.out.println("Message: " + e.getMessage());
@@ -114,16 +137,24 @@ public class JDBCEnfrentamientoDAO implements IEnfrentamientoDAO {
 			stm.setString(1, IDAply);
 			stm.setString(2, IDAply);
 			result = stm.executeQuery();
-			//para poder acceder a los datos del ResultSet hay que hacerle el .next()
-			//si el método solo figurase dentro del while se saltaria la primera tupla
-			enfrentamiento = createEnfrentamientoFromBD(enfrentamiento,result);
-			lista.add(enfrentamiento);
-			
-			while (result.next()) {
-				enfrentamiento = createEnfrentamientoFromBD(enfrentamiento,
-						result);
+			while(result.next()){
+				JDBCAplicacionDAO apliDAO = new JDBCAplicacionDAO();
+				
+				String IDEnfrentamiento = result.getString("IDEnfrentamiento");
+				String IDapl1 = result.getString("IDAplicacion1");
+				String IDapl2 = result.getString("IDAplicacion2");
+				String descripcion = result.getString("descripcion");
+				Integer votosAply1 = result.getInt("votosApp1");
+				Integer votosAply2 = result.getInt("votosApp2");
+				Date fechaCreacion = result.getDate("fechaCreacion");
+				Date fechaFin = result.getDate("fechaFin");
+				// Cuidaaaaaaaaaoooooooo!
+				Aplicacion aplicacion1 = apliDAO.selectAplicacionByID(IDapl1.toString());
+				Aplicacion aplicacion2 = apliDAO.selectAplicacionByID(IDapl2.toString());
+				enfrentamiento = new EnfrentamientoImpl(IDEnfrentamiento,aplicacion1,aplicacion2,descripcion,fechaCreacion,fechaFin,votosAply1,votosAply2);
 				lista.add(enfrentamiento);
 			}
+			
 		} catch (SQLException e) {
 			System.out.println("Message: " + e.getMessage());
 			System.out.println("SQLState: " + e.getSQLState());
@@ -155,16 +186,24 @@ public class JDBCEnfrentamientoDAO implements IEnfrentamientoDAO {
 		try {
 			stm = con.prepareStatement(sql);
 			result = stm.executeQuery();
-			//para poder acceder a los datos del ResultSet hay que hacerle el .next()
-			//si el método solo figurase dentro del while se saltaria la primera tupla
-			enfrentamiento = createEnfrentamientoFromBD(enfrentamiento,result);
-			lista.add(enfrentamiento);
-			
-			while (result.next()) {
-				enfrentamiento = createEnfrentamientoFromBD(enfrentamiento,
-						result);
+			while(result.next()){
+				JDBCAplicacionDAO apliDAO = new JDBCAplicacionDAO();
+				
+				String IDEnfrentamiento = result.getString("IDEnfrentamiento");
+				String IDapl1 = result.getString("IDAplicacion1");
+				String IDapl2 = result.getString("IDAplicacion2");
+				String descripcion = result.getString("descripcion");
+				Integer votosAply1 = result.getInt("votosApp1");
+				Integer votosAply2 = result.getInt("votosApp2");
+				Date fechaCreacion = result.getDate("fechaCreacion");
+				Date fechaFin = result.getDate("fechaFin");
+				// Cuidaaaaaaaaaoooooooo!
+				Aplicacion aplicacion1 = apliDAO.selectAplicacionByID(IDapl1.toString());
+				Aplicacion aplicacion2 = apliDAO.selectAplicacionByID(IDapl2.toString());
+				enfrentamiento = new EnfrentamientoImpl(IDEnfrentamiento,aplicacion1,aplicacion2,descripcion,fechaCreacion,fechaFin,votosAply1,votosAply2);
 				lista.add(enfrentamiento);
 			}
+			
 		} catch (SQLException e) {
 			System.out.println("Message: " + e.getMessage());
 			System.out.println("SQLState: " + e.getSQLState());
@@ -197,13 +236,21 @@ public class JDBCEnfrentamientoDAO implements IEnfrentamientoDAO {
 		try {
 			stm = con.prepareStatement(sql);
 			result = stm.executeQuery();
-			//para poder acceder a los datos del ResultSet hay que hacerle el .next()
-			//si el método solo figurase dentro del while se saltaria la primera tupla
-			enfrentamiento = createEnfrentamientoFromBD(enfrentamiento,result);
-			lista.add(enfrentamiento);
-			
-			while (result.next()) {
-				enfrentamiento = createEnfrentamientoFromBD(enfrentamiento,result);
+			while(result.next()){
+				JDBCAplicacionDAO apliDAO = new JDBCAplicacionDAO();
+				
+				String IDEnfrentamiento = result.getString("IDEnfrentamiento");
+				String IDapl1 = result.getString("IDAplicacion1");
+				String IDapl2 = result.getString("IDAplicacion2");
+				String descripcion = result.getString("descripcion");
+				Integer votosAply1 = result.getInt("votosApp1");
+				Integer votosAply2 = result.getInt("votosApp2");
+				Date fechaCreacion = result.getDate("fechaCreacion");
+				Date fechaFin = result.getDate("fechaFin");
+				// Cuidaaaaaaaaaoooooooo!
+				Aplicacion aplicacion1 = apliDAO.selectAplicacionByID(IDapl1.toString());
+				Aplicacion aplicacion2 = apliDAO.selectAplicacionByID(IDapl2.toString());
+				enfrentamiento = new EnfrentamientoImpl(IDEnfrentamiento,aplicacion1,aplicacion2,descripcion,fechaCreacion,fechaFin,votosAply1,votosAply2);
 				lista.add(enfrentamiento);
 			}
 		} catch (SQLException e) {
@@ -357,7 +404,22 @@ public class JDBCEnfrentamientoDAO implements IEnfrentamientoDAO {
 
 			result = stm.executeQuery();
 
-			enfrentamiento = createEnfrentamientoFromBD(enfrentamiento, result);
+			while(result.next()){
+				JDBCAplicacionDAO apliDAO = new JDBCAplicacionDAO();
+				
+				String IDEnfrentamiento = result.getString("IDEnfrentamiento");
+				String IDapl1 = result.getString("IDAplicacion1");
+				String IDapl2 = result.getString("IDAplicacion2");
+				String descripcion = result.getString("descripcion");
+				Integer votosAply1 = result.getInt("votosApp1");
+				Integer votosAply2 = result.getInt("votosApp2");
+				Date fechaCreacion = result.getDate("fechaCreacion");
+				Date fechaFin = result.getDate("fechaFin");
+				// Cuidaaaaaaaaaoooooooo!
+				Aplicacion aplicacion1 = apliDAO.selectAplicacionByID(IDapl1.toString());
+				Aplicacion aplicacion2 = apliDAO.selectAplicacionByID(IDapl2.toString());
+				enfrentamiento = new EnfrentamientoImpl(IDEnfrentamiento,aplicacion1,aplicacion2,descripcion,fechaCreacion,fechaFin,votosAply1,votosAply2);
+			}
 		} catch (SQLException e) {
 			System.out.println("Message: " + e.getMessage());
 			System.out.println("SQLState: " + e.getSQLState());
@@ -485,40 +547,6 @@ public class JDBCEnfrentamientoDAO implements IEnfrentamientoDAO {
 		}
 	}
 
-	private Enfrentamiento createEnfrentamientoFromBD(Enfrentamiento enfrent,
-			ResultSet resSet) {
-		enfrent = new EnfrentamientoImpl();
-		JDBCAplicacionDAO apliDAO = new JDBCAplicacionDAO();
-
-		try {
-			while (resSet.next()) {
-
-				String IDEnfrentamiento = resSet.getString("IDEnfrentamiento");
-				String IDapl1 = resSet.getString("IDAplicacion1");
-				String IDapl2 = resSet.getString("IDAplicacion2");
-				String descripcion = resSet.getString("descripcion");
-				Integer votosAply1 = resSet.getInt("votosApp1");
-				Integer votosAply2 = resSet.getInt("votosApp2");
-				Date fechaCreacion = resSet.getDate("fechaCreacion");
-				Date fechaFin = resSet.getDate("fechaFin");
-				// Cuidaaaaaaaaaoooooooo!
-				Aplicacion aplicacion1 = apliDAO.selectAplicacionByID(IDapl1.toString());
-				Aplicacion aplicacion2 = apliDAO.selectAplicacionByID(IDapl2.toString());
-				enfrent.setIDEnfrentamiento(IDEnfrentamiento.toString());
-				enfrent.setAplicacion1(aplicacion1);
-				enfrent.setAplicacion2(aplicacion2);
-				enfrent.setDescripcion(descripcion);
-				enfrent.setFechaCreacion(fechaCreacion);
-				enfrent.setFechaFin(fechaFin);
-				enfrent.setVotosAplicacion1(votosAply1);
-				enfrent.setVotosAplicacion2(votosAply2);
-				
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return enfrent;
-	}
 	
 	public List<String> getIDUsuariosVotantes(String IDEnfrentamiento){
 		Connection con = (Connection) ConnectionManager.getInstance().checkOut();

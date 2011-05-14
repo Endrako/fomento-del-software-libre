@@ -30,15 +30,15 @@ public class TestEnfrentamientoJDBC {
 //		System.out.println(enfrentamiento.toString()+"\n");
 //		
 //		System.out.println("-----> Propiedades del enfrentamiento <-----");
-		System.out.println("IDEnfrentamiento: "+enfrentamiento.getIDEnfrentamiento());
-		System.out.println("Aplicacion 1: "+enfrentamiento.getAplicacion1().getNombre());
-		System.out.println("Aplicacion 2: "+enfrentamiento.getAplicacion2().getNombre());
-		System.out.println("Descripcion: "+enfrentamiento.getDescripcion());
-		System.out.println("IDEnfrentamiento: "+enfrentamiento.getIDEnfrentamiento());
-		System.out.println("Votos Aplicacion 1: "+enfrentamiento.getVotosAplicacion1());
-		System.out.println("Votos Aplicacion 2: "+enfrentamiento.getVotosAplicacion2());
-		System.out.println("Fecha Creacion: "+enfrentamiento.getFechaCreacion().toString());
-		System.out.println("Fecha Fin: "+enfrentamiento.getFechaFin().toString());
+//		System.out.println("IDEnfrentamiento: "+enfrentamiento.getIDEnfrentamiento());
+//		System.out.println("Aplicacion 1: "+enfrentamiento.getAplicacion1().getNombre());
+//		System.out.println("Aplicacion 2: "+enfrentamiento.getAplicacion2().getNombre());
+//		System.out.println("Descripcion: "+enfrentamiento.getDescripcion());
+//		System.out.println("IDEnfrentamiento: "+enfrentamiento.getIDEnfrentamiento());
+//		System.out.println("Votos Aplicacion 1: "+enfrentamiento.getVotosAplicacion1());
+//		System.out.println("Votos Aplicacion 2: "+enfrentamiento.getVotosAplicacion2());
+//		System.out.println("Fecha Creacion: "+enfrentamiento.getFechaCreacion().toString());
+//		System.out.println("Fecha Fin: "+enfrentamiento.getFechaFin().toString());
 		
 		//System.out.println("-----> Inserci�n de enfrentamiento <-----");
 //		Aplicacion aplicacion1 = aplyTestDAO.selectAplicacionByID("1");
@@ -58,23 +58,23 @@ public class TestEnfrentamientoJDBC {
 		
 //		store.votar(enfrentamiento.getIDEnfrentamiento(),"1","1");
 		
-		Aplicacion aplicacion3 = aplyTestDAO.selectAplicacionByID("1");
-		Aplicacion aplicacion4 = aplyTestDAO.selectAplicacionByID("3");
-		Enfrentamiento enfrentamiento3 = new EnfrentamientoImpl();
-		enfrentamiento3.setAplicacion1(aplicacion3);
-		enfrentamiento3.setAplicacion2(aplicacion4);
-		enfrentamiento3.setDescripcion("El enfrentamiento del siglo! Esten atentos para ver \n cual de los dos colosos saldra triunfante");
-		enfrentamiento3.setFechaCreacion(new Date(3, 3, 03));
-		enfrentamiento3.setFechaFin(new Date(12,12,12));
-		enfrentamiento3.setVotosAplicacion1(0);
-		enfrentamiento3.setVotosAplicacion2(0);
-		
-		Date fechaInicio = new Date(3, 3, 03);
-		Date fechaFin = new Date(12,12,12);
-		String desc = "El enfrentamiento del siglo! Esten atentos para ver \n cual de los dos colosos saldra triunfante";
+//		Aplicacion aplicacion3 = aplyTestDAO.selectAplicacionByID("1");
+//		Aplicacion aplicacion4 = aplyTestDAO.selectAplicacionByID("3");
+//		Enfrentamiento enfrentamiento3 = new EnfrentamientoImpl();
+//		enfrentamiento3.setAplicacion1(aplicacion3);
+//		enfrentamiento3.setAplicacion2(aplicacion4);
+//		enfrentamiento3.setDescripcion("El enfrentamiento del siglo! Esten atentos para ver \n cual de los dos colosos saldra triunfante");
+//		enfrentamiento3.setFechaCreacion(new Date(3, 3, 03));
+//		enfrentamiento3.setFechaFin(new Date(12,12,12));
+//		enfrentamiento3.setVotosAplicacion1(0);
+//		enfrentamiento3.setVotosAplicacion2(0);
+//		
+//		Date fechaInicio = new Date(3, 3, 03);
+//		Date fechaFin = new Date(12,12,12);
+//		String desc = "El enfrentamiento del siglo! Esten atentos para ver \n cual de los dos colosos saldra triunfante";
 		//store.crearEnfrentamiento(aplicacion3, aplicacion4, desc, fechaInicio, fechaFin);
 		
-		store.crearEnfrentamiento(aplicacion4, aplicacion3, desc, fechaInicio, fechaFin);
+	//	store.crearEnfrentamiento(aplicacion4, aplicacion3, desc, fechaInicio, fechaFin);
 
 //		for(Usuario u:testDAO.getUsuariosPorEnfrentamiento(enfrentamiento.getIDEnfrentamiento())){
 //			System.out.println(u.getNombreUsuario());
@@ -87,9 +87,9 @@ public class TestEnfrentamientoJDBC {
 //		System.out.println("Votos Aplicacion 1: "+enfrentamiento.getVotosAplicacion1());
 //		System.out.println("Votos Aplicacion 2: "+enfrentamiento.getVotosAplicacion2());
 		
-		Calendar calendario = Calendar.getInstance();
-		Date d = calendario.getTime();
-		System.out.println(d);
+//		Calendar calendario = Calendar.getInstance();
+//		Date d = calendario.getTime();
+//		System.out.println(d);
 	
 		
 	}

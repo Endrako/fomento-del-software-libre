@@ -50,6 +50,10 @@ public class FrontController extends HttpServlet {
 			registroUsuario(request,response);
 		}else if ( accion.equals("nuevoPerfil") ){
 			guardarNuevoPerfil(request,response);
+		}else if (accion.equals("TagsEnfrentamiento")){
+			seleccionarTagParaEnfrentamiento(request,response);
+		}else if(accion.equals("AplicacionesEnfrentamiento")){
+			seleccionarAplicacionesEnfrentamiento(request,response);
 		}
 	}
 	
@@ -76,5 +80,15 @@ public class FrontController extends HttpServlet {
 		request.getRequestDispatcher("Logear").include(request,response);
 		
 	}
+	
+	private void seleccionarTagParaEnfrentamiento (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		request.setAttribute("evento", "selectTags");
+		request.getRequestDispatcher("Enfrentamiento").include(request, response);
+	}
+	
+	private void seleccionarAplicacionesEnfrentamiento (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		request.setAttribute("evento", "selectTags");
+	}
+	
 
 }

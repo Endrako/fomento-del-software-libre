@@ -30,11 +30,10 @@ public class JDBCTagDAO implements ITagDAO{
 		try{
 			stm = conn.prepareStatement(sql);
 			result = stm.executeQuery();
-			tag = createTagFromBD(tag, result);
-			listaTags.add(tag);
+			
 			while(result.next()){
-				tag = createTagFromBD(tag, result);
-				listaTags.add(tag);				
+				tag = new TagImpl(result.getString("IDTag"),result.getString("nombre"));
+				listaTags.add(tag);
 			}
 		}catch (SQLException e){
 			System.out.println("Message: " + e.getMessage());
@@ -65,9 +64,9 @@ public class JDBCTagDAO implements ITagDAO{
 			stm = conn.prepareStatement(sql);
 			stm.setString(1,idTag);
 			result = stm.executeQuery();
-			tag = createTagFromBD(tag, result);
-			//TODO terminar
-//			while()
+			while(result.next()){
+				tag = new TagImpl(result.getString("IDTag"),result.getString("nombre"));
+			}
 		}catch (SQLException e){
 			System.out.println("Message: " + e.getMessage());
 			System.out.println("SQLState: " + e.getSQLState());
@@ -103,9 +102,10 @@ public class JDBCTagDAO implements ITagDAO{
 			stm = conn.prepareStatement(sql);
 			stm.setString(1,name);
 			result = stm.executeQuery();
-			tag = createTagFromBD(tag, result);
-			//TODO terminar
-//			while()
+			
+			while(result.next()){
+				tag = new TagImpl(result.getString("IDTag"),result.getString("nombre"));
+			}
 		}catch (SQLException e){
 			System.out.println("Message: " + e.getMessage());
 			System.out.println("SQLState: " + e.getSQLState());
@@ -124,24 +124,6 @@ public class JDBCTagDAO implements ITagDAO{
 		return tag;
 	}
 	
-	private Tag createTagFromBD(Tag tag, ResultSet result){
-		tag = new TagImpl();
-		
-		try{
-			while(result.next()){
-				String nombreTag = result.getString("nombre");
-				String IDTag = result.getString("IDTag");
-				
-				tag.setIdTag(IDTag);
-				tag.setNombre(nombreTag);
-			}
-		}catch (SQLException e){
-			System.out.println("Message: " + e.getMessage());
-			System.out.println("SQLState: " + e.getSQLState());
-			System.out.println("ErrorCode: " + e.getErrorCode());
-		}
-		
-		return tag;
-	}
+	
 
 }

@@ -62,7 +62,7 @@
 	</tr>
 </table>
 
-<form id="formularioTags" name="formularioTags" action="" method="post">
+<form id="formularioTags" name="formularioTags" action="FrontController?accion=TagsEnfrentamiento" method="post">
 
 	<table align="center">
 	<% 
@@ -74,29 +74,35 @@
 		
 	
 	<tr>
-		<td width="30%" align="left">
-			<%=t.getNombre()%>
+		<td class="titular" width="50%" align="center">
+			&nbsp;&nbsp;&nbsp;&nbsp;<%=t.getNombre()%>
 		</td>
-		<td class="titular" align="center" width="70%">
-			<input type="checkbox" id=<%=t.getIdTag()%> name = <%=t.getIdTag()%> value=<%=t.getNombre()%>>
+		<td align="right" width="15%">
+			&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" id=<%=t.getIdTag()%> name = <%=t.getIdTag()%> value=<%=t.getNombre()%>>
 		</td>
-		<td width="15%" align="right">
-		</td>
+		
 	</tr>
-
 	<% } %>
 	</table>
+	<br>
+	<br>
 	
 	
+	<table>
+		<tr>
+			<td width="50%" aling="left">
+			</td>
+			<td class="titular "width="15%" aling="center">
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="Enviar" id="submit" />
+			</td>
+			<td width="15%" aling="right">
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="reset" value="Limpiar" />
+			</td>
+		</tr>
 	
-	
-	
-	
-	
+	</table>
 
 </form>
-
-
 
 </body>
 </html>
