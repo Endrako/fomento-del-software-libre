@@ -43,7 +43,7 @@ public class Logear extends HttpServlet {
 			if ( userBIZ.comprobarUsuario(idUser,password) ){
 				Usuario user = userBIZ.recuperarUsuario(idUser);
 				request.getSession().setAttribute("usuario", user);
-				request.getRequestDispatcher("index2.html").include(request,response);
+				request.getRequestDispatcher("index2.jsp").include(request,response);
 			}else{
 				request.getRequestDispatcher("falloUsuario.html").include(request,response);
 			}

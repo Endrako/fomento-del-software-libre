@@ -3,10 +3,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ page import     = "java.util.ArrayList" %>
 <%@ page import     = "java.util.List" %>
+<%@ page import     = "java.util.Date" %>
 <%@ page import     = "pos.domain.PaisStore" %>
 <%@ page import     = "pos.domain.Pais" %>
 <%@ page import     = "pos.domain.ProvinciaStore" %>
 <%@ page import     = "pos.domain.Provincia" %>
+<%@ page import     = "pos.domain.Usuario" %>
 <%@ page import     = "pos.domain.SoStore" %>
 <%@ page import     = "pos.domain.SO" %>
 <html>
@@ -14,17 +16,60 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Configura tu Perfil</title>
  <script language="JavaScript" src="js/funcionesComunes.js" type="text/javascript"></script>
+<%
+			//HttpSession session = request.getSession();
+			Boolean recomendado = (Boolean) session.getAttribute("haSidoRecomendado");
+			Usuario usuario = (Usuario)session.getAttribute("usuario");
+			String nombre = "";
+			String apellidos = "";
+			String pais = "";
+			String provincia = "";
+			String soPC = "";
+			String soMvl = "";
+			Integer edad = 0;
+			String idPerfil = "";
+
+			if ( usuario.getPerfil() != null ){
+				if ( !"".equals( usuario.getPerfil().getIdPerfil() ) ){
+					nombre = usuario.getPerfil().getNombreUsuario();
+					apellidos = usuario.getPerfil().getApellidos();
+					pais = usuario.getPerfil().getIdPais();
+					edad = usuario.getPerfil().getEdad();
+					provincia = usuario.getPerfil().getIdPoblacion();
+					soPC = usuario.getPerfil().getPcOS();
+					soMvl = usuario.getPerfil().getMovilOS();
+					idPerfil = usuario.getPerfil().getIdPerfil();
+				}
+			}
+
+
+
+
+%>
 <script language="JavaScript" >
 			var css="css/estilos.css";
 		document.write("<link href='" + css + "' rel='stylesheet' type='text/css'>"); 
 		
 		function ini(){
-			if ( <%=request.getSession().getAttribute("haSidoRecomendado")%> ){
-				alert("Bien el registro se ha completado y ambos teneis 10 puntos Extras!!");
+			if ( <%= recomendado %> ){
+				alert("Bien!! el registro se ha completado y ambos teneis 10 puntos Extras!!");
 			}else{
 				alert("OOHHHH el registro se ha completado pero tu amigo ya recomendo a más de 5 amigos :(");
 			}
 		}
+		
+		function limpiarForm(){
+			document.getElementById("nombre").value = "";
+			document.getElementById("apellidos").value = "";
+			document.getElementById("edad").value = "";
+		}
+		
+		function guardar(){
+			document.formulario.action = "FrontController?accion=nuevoPerfil";
+			document.formulario.submit();
+		}
+		
+		
 	
 </script>
 </head>
@@ -44,7 +89,15 @@
 	</tr>
 </table>
 <!--  FIN TABLA CONTENEDORA DE TODAS LAS JSP / HTML -->
+<table border="0">
+	<tr>
+		<td class="datos_tabla" align="left">
+			Bienvenido <%=usuario.getNombreUsuario()%>, Hoy es <%=new Date()%>
+		</td>
+	</tr>
+</table>
 <form id="formulario" name="formulario" action="" method="post">
+	<input type="hidden" id="idPerfil" name="idPerfil" value="<%=idPerfil%>">
 	<table align="center" class="borde">
 		<tr>
 			<td width="100%" class="tabla_principal" align="center" colspan="2">
@@ -56,7 +109,7 @@
 				<strong>Nombre: </strong>
 			</td>
 			<td width="50%" class="datos_tabla" align="left">
-				<input type="text" id="nombre" name ="nombre" value="">
+				<input type="text" id="nombre" name ="nombre" value="<%=nombre%>">
 			</td>
 		</tr>
 		<tr>
@@ -64,7 +117,7 @@
 				<strong>Apellidos: </strong>
 			</td>
 			<td width="50%" class="datos_tabla" align="left">
-				<input type="text" id="apellidos" name ="apellidos" value="">
+				<input type="text" id="apellidos" name ="apellidos" value="<%=apellidos%>">
 			</td>
 		</tr>
 		<tr>
@@ -72,7 +125,7 @@
 				<strong>Edad: </strong>
 			</td>
 			<td width="50%" class="datos_tabla" align="left">
-				<input type="text" id="edad" name ="edad" onKeyPress="javascript:soloNumeros(event)" value="">
+				<input type="text" id="edad" name ="edad" onKeyPress="javascript:soloNumeros(event)" value="<%=edad%>">
 			</td>
 		</tr>
 		<tr>
@@ -86,7 +139,7 @@
 				%>
 				<select id="paises" name="paises">
 					<% for ( Pais p : paises ){ %>
-					<option value="<%=p.getId() %>"><%=p.getDescripcion()%></option>
+					<option value="<%=p.getId() %>" <% if (pais.equals(p.getId()) ){%> selected<%}%>><%=p.getDescripcion()%></option>
 					<%} %>
 				</select>
 			</td>
@@ -102,7 +155,7 @@
 				%>
 				<select id="provincias" name="provincias">
 					<% for ( Provincia pro : provincias ){ %>
-					<option value="<%=pro.getId()%>"><%=pro.getDescripcion()%></option>
+					<option value="<%=pro.getId()%>" <% if (provincia.equals(pro.getId()) ){%> selected<%} %>><%=pro.getDescripcion()%></option>
 					<%} %>
 				</select>
 			</td>
@@ -120,7 +173,7 @@
 					<% for ( SO s : ssoo ){
 							if ( s.getEsOSmovil() == 0 ){	
 					%>
-								<option value="<%=s.getIdSO()%>"><%=s.getDescripcion()%></option>
+								<option value="<%=s.getIdSO()%>" <% if (soPC.equals(s.getIdSO()) ){%> selected<%} %>><%=s.getDescripcion()%></option>
 					<%		}
 						}%>
 				</select>
@@ -135,7 +188,7 @@
 					<% for ( SO sm : ssoo ){
 							if ( sm.getEsOSmovil() == 1 ){	
 					%>
-								<option value="<%=sm.getIdSO() %>"><%=sm.getDescripcion()%></option>
+								<option value="<%=sm.getIdSO() %>" <% if (soMvl.equals(sm.getIdSO()) ){%> selected<%} %>><%=sm.getDescripcion()%></option>
 					<%		}
 						}%>
 				</select>
@@ -143,7 +196,7 @@
 		</tr>
 		<tr>
 		<td width="50%" align="left">
-			&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" id="registrarse" name="registrarse" value=" Registrarse" onclick="javascript:comprobarPassword();">
+			&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" id="registrarse" name="registrarse" value=" Actualizar" onclick="javascript:guardar();">
 		</td>
 		<td width="50%" align="left">
 			&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" id="limpiar" name="limpiar" value=" Limpiar Formulario" onclick="javascript:limpiarForm();">

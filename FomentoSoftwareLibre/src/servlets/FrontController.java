@@ -48,6 +48,8 @@ public class FrontController extends HttpServlet {
 			registrar(request,response);
 		}else if ( accion.equals("registroUsuario") ){
 			registroUsuario(request,response);
+		}else if ( accion.equals("nuevoPerfil") ){
+			guardarNuevoPerfil(request,response);
 		}
 	}
 	
@@ -55,6 +57,13 @@ public class FrontController extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		request.getRequestDispatcher("registroUsuario.jsp").include(request,response);
+		
+	}
+	
+	private void guardarNuevoPerfil(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		request.getRequestDispatcher("nuevoPerfil").include(request,response);
 		
 	}
 	

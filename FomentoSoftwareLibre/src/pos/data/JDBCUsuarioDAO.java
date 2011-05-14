@@ -19,15 +19,19 @@ public class JDBCUsuarioDAO implements IUsuarioDAO {
 	/**
 	 * Atributo que crea la conexion a la bd
 	 */
-	private ConnectionManager cm;
+	private Connection conn;
 	
 	/**
 	 * Constructor de la clase
 	 */
 	public JDBCUsuarioDAO(){
-		cm = (ConnectionManager) ConnectionManager.getInstance();
+		conn = (Connection) ConnectionManager.getInstance().checkOut();
 	}
 	
+	@Override
+	 protected void finalize() {
+       ConnectionManager.getInstance().checkIn(conn);
+	}
 	public boolean comprobarUsuario(String nombreUsuario, String password){
 		boolean res = false;
 		        PreparedStatement stmt = null;
@@ -35,7 +39,7 @@ public class JDBCUsuarioDAO implements IUsuarioDAO {
 		        String sql = "SELECT * FROM usuarios WHERE ( nombreUsuario = ? )";
 
 		        try {
-		            stmt = cm.checkOut().prepareStatement(sql);
+		            stmt = conn.prepareStatement(sql);
 		            stmt.setString(1, nombreUsuario);
 		            result = stmt.executeQuery();
 		            result.next();
@@ -61,14 +65,14 @@ public class JDBCUsuarioDAO implements IUsuarioDAO {
 		return res;
 	}
 	
-	 public UsuarioImpl recuperarUsuario(String IDUsuario) {
+	 public Usuario recuperarUsuario(String IDUsuario) {
 	        PreparedStatement stmt = null;
 	        ResultSet result = null;
-	        UsuarioImpl u = null;
-	        String sql = "SELECT * FROM usuarios WHERE (IDUsuario = ?) ";
+	        Usuario u = null;
+	        String sql = "SELECT * FROM usuarios WHERE (nombreUsuario = ?) ";
 
 	        try {
-	            stmt = cm.checkOut().prepareStatement(sql);
+	            stmt = conn.prepareStatement(sql);
 	            stmt.setString(1, IDUsuario);
 	            result = stmt.executeQuery();
 
@@ -77,7 +81,53 @@ public class JDBCUsuarioDAO implements IUsuarioDAO {
 	            u.setEmail(result.getString("email"));
 	            u.setContrasena(result.getString("contrasenna"));
 	            u.setIdUser(result.getString("IDUsuario"));
-	            u.setNombreUsuario(result.getString("nombreCompleto"));
+	            u.setNombreUsuario(result.getString("nombreUsuario"));
+	            u.setKarma(result.getInt("karma"));
+	            u.setNumeroRecomendaciones(result.getInt("numeroRecomendaciones"));
+	            
+	            // Recuperamos el Perfil
+	            if ( result.getString("IDPerfil") != null || !"".equals(result.getString("IDPerfil")) ){
+		            IPerfilDAO daoP = new JDBCPerfilDAO();
+		            u.setPerfil(daoP.recuperarPerfil(result.getString("IDPerfil")));
+	            }else{
+	            	u.setPerfil(null);
+	            }
+	           
+	        } catch (SQLException e) {
+	            System.out.println("Message: " + e.getMessage());
+	            System.out.println("SQLState: " + e.getSQLState());
+	            System.out.println("ErrorCode: " + e.getErrorCode());
+	        } finally {
+	            try {
+	                if (result != null) {
+	                    result.close();
+	                }
+	                if (stmt != null) {
+	                    stmt.close();
+	                }
+	            } catch (SQLException e) {
+	            }
+	        }
+	        return u;
+	    }
+	 
+	 public Usuario recuperarUsuarioByIdUsuario(String IDUsuario) {
+	        PreparedStatement stmt = null;
+	        ResultSet result = null;
+	        Usuario u = null;
+	        String sql = "SELECT * FROM usuarios WHERE (IDUsuario = ?) ";
+
+	        try {
+	            stmt = conn.prepareStatement(sql);
+	            stmt.setString(1, IDUsuario);
+	            result = stmt.executeQuery();
+
+	            result.next();
+	            u = new UsuarioImpl();
+	            u.setEmail(result.getString("email"));
+	            u.setContrasena(result.getString("contrasenna"));
+	            u.setIdUser(result.getString("IDUsuario"));
+	            u.setNombreUsuario(result.getString("nombreUsuario"));
 	            u.setKarma(result.getInt("karma"));
 	            u.setNumeroRecomendaciones(result.getInt("numeroRecomendaciones"));
 	            
@@ -112,7 +162,7 @@ public class JDBCUsuarioDAO implements IUsuarioDAO {
 		PreparedStatement stmt = null;
 		
 		try {
-			stmt = cm.checkOut().prepareStatement(sql);
+			stmt = conn.prepareStatement(sql);
 	
 			stmt.setString(1, UIDGenerator.getInstance().getKey());
 			stmt.setString(2, user.getNombreUsuario());
@@ -146,7 +196,7 @@ public class JDBCUsuarioDAO implements IUsuarioDAO {
 		ResultSet result = null;
 		
 		try {
-			stmt = cm.checkOut().prepareStatement(sql);
+			stmt = conn.prepareStatement(sql);
 			result = stmt.executeQuery();
 
 			while(result.next()){
@@ -193,7 +243,7 @@ public class JDBCUsuarioDAO implements IUsuarioDAO {
         PreparedStatement stmt = null;
 
         try {
-            stmt = cm.checkOut().prepareStatement(sql);
+            stmt = conn.prepareStatement(sql);
             stmt.setString(1, idUsuario);
             stmt.executeUpdate();
         } catch (SQLException e) {
@@ -211,16 +261,21 @@ public class JDBCUsuarioDAO implements IUsuarioDAO {
 	}
 	
 	public void actualizarUsuario(Usuario u) {
-		String sql = "UPDATE usuarios SET nombreUsuario = ?, contrasenna = ?, email = ?, karma = ?, numeroRecomendaciones = ? WHERE (IDUsuario = ?)";
+		String sql = "UPDATE usuarios SET nombreUsuario = ?, contrasenna = ?, email = ?, karma = ?, IDPerfil = ? ,numeroRecomendaciones = ? WHERE (IDUsuario = ?)";
 		PreparedStatement stm = null;
 		try {
-			stm = cm.checkOut().prepareStatement(sql);
+			stm = conn.prepareStatement(sql);
 			stm.setString(1, u.getNombreUsuario());
 			stm.setString(2, u.getContrasena());
 			stm.setString(3, u.getEmail());
 			stm.setInt(4, u.getKarma());
-			stm.setInt(5, u.getNumeroRecomendaciones());
-			stm.setString(6, u.getIdUser());
+			if ( u.getPerfil() != null ){
+				stm.setString(5, u.getPerfil().getIdPerfil());
+			}else{
+				stm.setString(5, "");
+			}
+			stm.setInt(6, u.getNumeroRecomendaciones());
+			stm.setString(7, u.getIdUser());
 			stm.executeUpdate();
 
 		} catch (SQLException e) {
@@ -245,7 +300,7 @@ public class JDBCUsuarioDAO implements IUsuarioDAO {
 	        String sql = "SELECT * FROM usuarios WHERE (nombreUsuario = ?) ";
 
 	        try {
-	            stmt = cm.checkOut().prepareStatement(sql);
+	            stmt = conn.prepareStatement(sql);
 	            stmt.setString(1, nick);
 	            result = stmt.executeQuery();
 

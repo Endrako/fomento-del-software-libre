@@ -19,8 +19,8 @@ public class PerfilStore implements IPerfilDAO{
 	}
 
 	@Override
-	public void insertarPerfil(Perfil p) {
-		dao.insertarPerfil(p);
+	public Perfil insertarPerfil(Perfil p) {
+		return dao.insertarPerfil(p);
 	}
 
 	@Override

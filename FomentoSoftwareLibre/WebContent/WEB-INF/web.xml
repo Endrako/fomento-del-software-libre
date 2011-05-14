@@ -49,4 +49,14 @@
     <servlet-name>NuevoUsuario</servlet-name>
     <url-pattern>/NuevoUsuario</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>nuevoPerfil</display-name>
+    <servlet-name>nuevoPerfil</servlet-name>
+    <servlet-class>servlets.nuevoPerfil</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>nuevoPerfil</servlet-name>
+    <url-pattern>/nuevoPerfil</url-pattern>
+  </servlet-mapping>
 </web-app>

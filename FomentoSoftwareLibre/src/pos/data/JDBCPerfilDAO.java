@@ -21,6 +21,10 @@ public class JDBCPerfilDAO implements IPerfilDAO {
 		conn = (Connection) ConnectionManager.getInstance().checkOut();
 	}
 	@Override
+	 protected void finalize() {
+        ConnectionManager.getInstance().checkIn(conn);
+        
+ }
 	public List<Perfil> recuperarPerfiles() {
 		List<Perfil> p = new ArrayList<Perfil>();
 		String sql = "SELECT * FROM perfiles";
@@ -55,6 +59,7 @@ public class JDBCPerfilDAO implements IPerfilDAO {
 				if (stmt != null) {
 					stmt.close();
 				}
+				finalize();
 			} catch (SQLException e) {
 			}
 		}
@@ -63,14 +68,14 @@ public class JDBCPerfilDAO implements IPerfilDAO {
 	}
 
 	@Override
-	public void insertarPerfil(Perfil p) {
-		String sql = "INSERT INTO perfiles (IDPerfil, nombre, apellidos, edad, IDPais, IDPoblacion,IDSO1, IDSO2) VALUES (?,?,?,?,?,?,?,?) ";
+	public Perfil insertarPerfil(Perfil p) {
+		String sql = "INSERT INTO perfiles (IDPerfil, nombre, apellidos, edad, IDPais, IDProvincia,IDSO1, IDSO2) VALUES (?,?,?,?,?,?,?,?) ";
 		PreparedStatement stmt = null;
-		
+		p.setIdPerfil(UIDGenerator.getInstance().getKey());
 		try {
 			stmt = conn.prepareStatement(sql);
 			
-			stmt.setString(1, UIDGenerator.getInstance().getKey());
+			stmt.setString(1, p.getIdPerfil());
 			stmt.setString(2, p.getNombreUsuario());
 			stmt.setString(3, p.getApellidos());
 			stmt.setInt(4, p.getEdad());
@@ -89,9 +94,11 @@ public class JDBCPerfilDAO implements IPerfilDAO {
 				if (stmt != null) {
 					stmt.close();
 				}
+				finalize();
 			} catch (SQLException e) {
 			}
 		}
+		return p;
 	}
 
 	@Override
@@ -131,6 +138,7 @@ public class JDBCPerfilDAO implements IPerfilDAO {
 				if (stmt != null) {
 					stmt.close();
 				}
+				finalize();
 			} catch (SQLException e) {
 			}
 		}
@@ -155,6 +163,7 @@ public class JDBCPerfilDAO implements IPerfilDAO {
             try {
                 if (stmt != null)
                     stmt.close();
+                finalize();
             } catch (SQLException e) {
             }
         }
@@ -184,6 +193,7 @@ public class JDBCPerfilDAO implements IPerfilDAO {
 				if (stm != null) {
 					stm.close();
 				}
+				finalize();
 			} catch (SQLException e) {
 
 			}

@@ -20,8 +20,12 @@ public class UsuarioStore implements IUsuarioDAO {
 		return userDAO.comprobarUsuario(idUser,password);
 	}
 	
-	public Usuario recuperarUsuario(String idUser){
-		return (Usuario) userDAO.recuperarUsuario(idUser);
+	public Usuario recuperarUsuario(String nombreUsuario){
+		return userDAO.recuperarUsuario(nombreUsuario);
+	}
+	
+	public Usuario recuperarUsuarioByIdUsuario(String idUser){
+		return userDAO.recuperarUsuario(idUser);
 	}
 	
 	public void insertarUsuario(Usuario user){

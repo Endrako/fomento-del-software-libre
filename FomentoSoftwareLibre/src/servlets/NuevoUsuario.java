@@ -1,6 +1,8 @@
 package servlets;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -44,7 +46,7 @@ public class NuevoUsuario extends HttpServlet {
 		String nickRecomendador = request.getParameter("usuarioRecomendador");
 		String check = request.getParameter("checkRecomendado");
 		
-		HttpSession session = request.getSession();
+		HttpSession sesion = request.getSession();
 		
 		UsuarioStore store = new UsuarioStore();
 		Usuario user = new UsuarioImpl();
@@ -63,18 +65,21 @@ public class NuevoUsuario extends HttpServlet {
 						userRecomendador.setKarma(userRecomendador.getKarma()+10);
 						userRecomendador.setNumeroRecomendaciones(userRecomendador.getNumeroRecomendaciones()+1);
 						store.actualizarUsuario(userRecomendador);
-						session.setAttribute("haSidoRecomendado", true);
-					}
+						sesion.setAttribute("haSidoRecomendado", true);
+					}else{
 					
-					session.setAttribute("haSidoRecomendado", false);
+						sesion.setAttribute("haSidoRecomendado", false);
+					}
 				}
 				
 			}
 			store.insertarUsuario(user);
 		}
 		user = store.recuperarUsuarioByNick(nick);
-		session.setAttribute("usuario", user);
-		request.getRequestDispatcher("nuevoPerfil.jsp").include(request,response);
+		sesion.setAttribute("usuario", user);
+		RequestDispatcher resq = request.getRequestDispatcher("nuevoPerfil.jsp");
+		//request.getRequestDispatcher("nuevoPerfil.jsp").include(request,response);
+		resq.forward(request, response);
 	}
 
 }
