@@ -56,7 +56,6 @@ public class JDBCTagDAO implements ITagDAO{
 
 	@Override
 	public Tag selectTagByID(String idTag) {
-		Integer tagid = new Integer(idTag);
 		PreparedStatement stm = null;
 		ResultSet result = null;
 		Tag tag = null;
@@ -64,7 +63,7 @@ public class JDBCTagDAO implements ITagDAO{
 		
 		try{
 			stm = conn.prepareStatement(sql);
-			stm.setInt(1,tagid);
+			stm.setString(1,idTag);
 			result = stm.executeQuery();
 			tag = createTagFromBD(tag, result);
 			//TODO terminar
@@ -95,8 +94,34 @@ public class JDBCTagDAO implements ITagDAO{
 
 	@Override
 	public Tag selectTagByName(String name) {
-		// TODO Auto-generated method stub
-		return null;
+		PreparedStatement stm = null;
+		ResultSet result = null;
+		Tag tag = null;
+		String sql = "SELECT * FROM tags WHERE nombre = ?";
+		
+		try{
+			stm = conn.prepareStatement(sql);
+			stm.setString(1,name);
+			result = stm.executeQuery();
+			tag = createTagFromBD(tag, result);
+			//TODO terminar
+//			while()
+		}catch (SQLException e){
+			System.out.println("Message: " + e.getMessage());
+			System.out.println("SQLState: " + e.getSQLState());
+			System.out.println("ErrorCode: " + e.getErrorCode());
+		} finally {
+			try {
+				if (result != null) {
+					result.close();
+				}
+				if (stm != null) {
+					stm.close();
+				}
+			} catch (SQLException e) {
+			}			
+		}
+		return tag;
 	}
 	
 	private Tag createTagFromBD(Tag tag, ResultSet result){
@@ -105,9 +130,9 @@ public class JDBCTagDAO implements ITagDAO{
 		try{
 			while(result.next()){
 				String nombreTag = result.getString("nombre");
-				Integer IDTag = result.getInt("IDTag");
+				String IDTag = result.getString("IDTag");
 				
-				tag.setIdTag(IDTag.toString());
+				tag.setIdTag(IDTag);
 				tag.setNombre(nombreTag);
 			}
 		}catch (SQLException e){
