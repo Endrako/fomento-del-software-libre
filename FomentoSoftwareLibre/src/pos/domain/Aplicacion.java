@@ -24,6 +24,7 @@ public interface Aplicacion {
 	public void anadirVotoEnContra(Integer votos);
 	public List<Tag> getTags();
 	public void setTags(List<Tag> tags);
+	public boolean equals(Object o);
 	
 	public String getIDProyecto();
 	public void setIDProyecto(String IDProyecto);

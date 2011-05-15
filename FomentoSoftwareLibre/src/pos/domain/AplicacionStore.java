@@ -37,4 +37,8 @@ public class AplicacionStore {
 		//Putadon dar un nombre del tag en vez de dar un Objeto tag:Implica hacer métodos nuevos.
 		return (new JDBCAplicacionDAO()).selectAplicationByTag(tag.getIdTag());
 	}
+	
+	public List<Aplicacion> getAplicacionByTagList(List<Tag> listaTags){
+		return (new JDBCAplicacionDAO()).selectAplicationsByTags(listaTags);
+	}
 }

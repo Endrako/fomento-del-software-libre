@@ -117,5 +117,16 @@ public class AplicacionImpl implements Aplicacion {
 	public void setIDProyecto(String IDProyecto){
 		this.IDProyecto=IDProyecto;
 	}
+	
+	public boolean equals(Object o){
+		boolean res=false;
+		if(o instanceof Aplicacion){
+			Aplicacion ap1 = (Aplicacion)o;
+			if(ap1.getNombre().equals(this.getNombre()) && (ap1.getIDAplicacion().equals(this.getIDAplicacion()))){
+				res=true;
+			}
+		}
+		return res;
+	}
 
 }

@@ -11,39 +11,23 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Crea un enfrentamiento</title>
 
-<script>
-
-
-
-	function maximoChecked(nombre, max) {
-		checkboxes = document.getElementsByName(nombre);
-		for (a = 0; a < checkboxes.length; a++) { //les aplicamos el evento onclick
-			checkboxes[a].onclick = function() {
-				if (this.checked == true) { //iba a ponerle el check
-					grupo = document.getElementsByName(this.name);
-					cuantosChecked = 0;
-					for (b = 0; b < grupo.length; b++)
-						if (grupo[b].checked)
-							cuantosChecked++;
-					if (cuantosChecked > max) {
-						alert("Lo siento, el maximo de checkados solo puede ser "
-								+ max);
-						this.checked = false;
-					}
-				}
-			}
-		}
+<script type="text/javascript">
+	function maximoCheckboxarCheckbox(nombre, maximoCheckbox){
+	    for (var i=0; i<nombre.length; i++){
+	        nombre[i].onclick=function(){
+	        var num_chequeados=0;
+	        for (var i=0; i<nombre.length; i++)
+	            num_chequeados+=(nombre[i].checked)? 1 : 0
+	            if (num_chequeados>maximoCheckbox){
+	                alert("El numero maximo de aplicaciones que puedes seleccionar son "+maximoCheckbox+"");
+	                this.checked=false;
+	            }
+	        }
+	    }
 	}
-
-	//maximoChecked("entrante",3);
-</script> 
-
-
-
-
-
-
-
+</script>
+<!--  SCRIPT PARA LIMITAR EL NUMERO DE CHECKBOXES -->
+<!-- SOLO TOCAR EL MENSAJE DEL alert  -->
 
 
 </head>
@@ -98,7 +82,7 @@
 					nombreTags+=", ";
 				}
 			}%>
-			<%=nombreTags %>
+			<strong><%=nombreTags %></strong>
 		</td>
 		<td width="15%" align="right">
 		</td>
@@ -107,10 +91,10 @@
 
 <table align="center">
 	<tr>
-		<td width="30%" align="left">
+		<td width="40%" align="left">
 			<strong><h3 style="color: blue;">&nbsp;&nbsp;&nbsp;&nbsp;2º Selecciona las aplicaciones</h3></strong>
 		</td>
-		<td class="titular" align="center" width="70%">
+		<td class="titular" align="center" width="30%">
 			
 		</td>
 		<td width="15%" align="right">
@@ -125,20 +109,31 @@
 	AplicacionStore aplSt = AplicacionStore.getInstance();
 	List<Aplicacion> listAplis = aplSt.getAplicacionByTagList((List<Tag>)request.getAttribute("tags"));
 	
-	for (int i=0;i<listAplis.size();i++ ) { 
-		Aplicacion ap = listAplis.get(i);%>
+	if(listAplis.size()<2){%>
+		<tr>
+		<td class="titular" width="50%" align="center">
+			&nbsp;<h3 style="color: orange;">No hay aplicaciones con los tags seleccionados para hacer un enfrentamiento</h2>
+		</td>
+		<td align="right" width="5%">
+		</td>
 		
-	
+	</tr>
+	<% }else{
+	for (int i=0;i<listAplis.size();i++ ) { 
+		Aplicacion ap = listAplis.get(i);%>	
 	<tr>
 		<td class="titular" width="50%" align="center">
 			&nbsp;&nbsp;&nbsp;&nbsp;<%=ap.getNombre()%>
 		</td>
 		<td align="right" width="15%">
-			&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" id=<%=ap.getIDAplicacion()%> name = <%=ap.getIDAplicacion()%> value=<%=ap.getNombre()%> onClick="maximoChecked('entrante',2)">
+			&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" id=<%=ap.getIDAplicacion()%> name ="aplicaciones" value=<%=ap.getNombre()%>>
 		</td>
 		
 	</tr>
-	<% } %>
+		
+	
+	<%}
+	} %>
 	</table>
 	<br>
 	<br>
@@ -146,19 +141,25 @@
 	
 	<table>
 		<tr>
-			<td width="50%" aling="left">
+			<td width="60%" aling="left">
 			</td>
 			<td class="titular "width="15%" aling="center">
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="Enviar" id="submit" />
+				
+				<input type="submit" value="Enviar" id="submit" />
+				<input type="reset" value="Limpiar" />
+				
 			</td>
 			<td width="15%" aling="right">
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="reset" value="Limpiar" />
 			</td>
 		</tr>
 	
 	</table>
 
 </form>
+<!-- INVOCACION DEL SCRIPT  -->
+<script type="text/javascript">
+	maximoCheckboxarCheckbox(document.formularioAplicaciones.aplicaciones, 2);
+</script>
 
 </body>
 </html>

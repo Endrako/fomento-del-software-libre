@@ -51,10 +51,10 @@
 
 <table align="center">
 	<tr>
-		<td width="30%" align="left">
-			<strong><h3 style="color: blue;">1º Selecciona los tags</h3></strong>
+		<td width="40%" align="left">
+			<strong><h3 style="color: blue;">&nbsp;&nbsp;&nbsp;&nbsp;1º Selecciona los tags</h3></strong>
 		</td>
-		<td class="titular" align="center" width="70%">
+		<td class="titular" align="center" width="30%">
 			
 		</td>
 		<td width="15%" align="right">
@@ -90,13 +90,14 @@
 	
 	<table>
 		<tr>
-			<td width="50%" aling="left">
+			<td width="60%" aling="left">
 			</td>
 			<td class="titular "width="15%" aling="center">
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="Enviar" id="submit" />
+				<input type="submit" value="Enviar" id="submit" />
+				<input type="reset" value="Limpiar" />
+				
 			</td>
 			<td width="15%" aling="right">
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="reset" value="Limpiar" />
 			</td>
 		</tr>
 	

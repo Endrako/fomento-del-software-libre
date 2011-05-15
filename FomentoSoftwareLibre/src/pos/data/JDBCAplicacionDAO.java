@@ -1,5 +1,6 @@
 package pos.data;
 
+import java.sql.Array;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -265,10 +266,10 @@ public class JDBCAplicacionDAO implements IAplicacionDAO {
 	public List<Aplicacion> selectAplicationsByTags (List<Tag> tags){
 		Connection con = (Connection) ConnectionManager.getInstance().checkOut();
 		
-		String inCondition = "";
-		
+		String inCondition = "";		
 		for(int i=0; i<tags.size();i++){
-			inCondition+=tags.get(i).getIdTag();
+			inCondition+="'"+tags.get(i).getIdTag()+"'";
+	
 			if(i+1==tags.size()){
 				inCondition+="";
 			} else {
@@ -276,31 +277,42 @@ public class JDBCAplicacionDAO implements IAplicacionDAO {
 			}
 		}
 		
+		System.out.println(inCondition);
+		
 		Aplicacion aplicacion = null;
 		List<Aplicacion> aplicaciones = new ArrayList<Aplicacion>();
 		ResultSet result = null;
 		PreparedStatement stm = null;
-		String sql = "SELECT DISTINC * FROM tagsaplicaciones WHERE IDTag IN (?)";
 		
+//		String sql = "SELECT * FROM tagsaplicaciones WHERE IDTag IN ("+inCondition+")";
+		
+		String sql = "SELECT * FROM tagsaplicaciones ta1 WHERE NOT EXISTS (SELECT * FROM tags t WHERE (t.IDTag IN ("+inCondition+")) AND NOT EXISTS (SELECT * FROM tagsaplicaciones ta2 WHERE (ta2.IDTag = t.IDTag) AND (ta1.IDAplicacion = ta2.IDAplicacion)))";
 		try {
-
-			stm = con.prepareStatement(sql);
-			stm.setString(1,inCondition);
+			stm=con.prepareStatement(sql);
+//			stm.setString(1,inCondition);
 			result = stm.executeQuery();
 			while(result.next()){
-				String IDAplicacion = result.getString("IDAplicacion");
-				String nombre = result.getString("nombre");
-				String descripcion = result.getString("descripcion");
-				Date fechaPublicacion = result.getDate("fechaPublicacion");
-				String URLWeb = result.getString("URLWeb");
-				Integer votosAFavor = result.getInt("numeroVotosAFavor");
-				Integer votosEnContra = result.getInt("numeroVotosEnContra");
-				String IDProyecto = result.getString("IDProyecto");
-
-				aplicacion = new AplicacionImpl(IDAplicacion,nombre,descripcion,fechaPublicacion,URLWeb,votosAFavor,votosEnContra,tags,IDProyecto);
-				aplicaciones.add(aplicacion);
-
+				String IDAplicacion = result.getString("IDAplicacion");					
+				aplicacion = this.selectAplicacionByID(IDAplicacion);
+				if(!aplicaciones.contains(aplicacion)){
+					aplicaciones.add(aplicacion);
+				}										
 			}
+
+//			for(Tag tag : tags){
+//				stm = con.prepareStatement(sql);
+//				stm.setString(1,tag.getIdTag());
+//				result = stm.executeQuery();
+//				while(result.next()){
+//					String IDAplicacion = result.getString("IDAplicacion");					
+//					aplicacion = this.selectAplicacionByID(IDAplicacion);
+//					if(!aplicaciones.contains(aplicacion)){
+//						aplicaciones.add(aplicacion);
+//					}										
+//				}				
+//			}
+			
+			
 		} catch (SQLException e) {
 			System.out.println("SQLMessage: " + e.getMessage());
 			System.out.println("SQLState: " + e.getSQLState());
@@ -363,11 +375,10 @@ public class JDBCAplicacionDAO implements IAplicacionDAO {
 		PreparedStatement stm = null;
 		ResultSet result = null;
 		String sql = "SELECT IDTag FROM tagsaplicaciones WHERE (IDAplicacion = ?)";
-		Integer idaply = new Integer(IDAplicacion);
 
 		try {
 			stm = con.prepareStatement(sql);
-			stm.setInt(1, idaply);
+			stm.setString(1, IDAplicacion);
 			result = stm.executeQuery();
 			while (result.next()) {
 				Integer IDTag = result.getInt("IDTag");
