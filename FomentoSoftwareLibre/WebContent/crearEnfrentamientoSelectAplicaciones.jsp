@@ -127,34 +127,43 @@
 		</td>
 		<td align="right" width="15%">
 			&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" id=<%=ap.getIDAplicacion()%> name ="aplicaciones" value=<%=ap.getNombre()%>>
-		</td>
-		
+		</td>		
 	</tr>
-		
 	
 	<%}
 	} %>
 	</table>
 	<br>
-	<br>
-	
-	
+	<br>	
+	<%if(listAplis.size()>=2){ %>
 	<table>
-		<tr>
-			<td width="60%" aling="left">
-			</td>
-			<td class="titular "width="15%" aling="center">
-				
-				<input type="submit" value="Enviar" id="submit" />
-				<input type="reset" value="Limpiar" />
-				
-			</td>
-			<td width="15%" aling="right">
-			</td>
-		</tr>
+	<tr>
+		<td width="60%" align="left">
+		</td>
+		<td class="titular" width="50%" align="center">
+			Pon una descripcion para el enfrentamiento
+		</td>
+	</tr>
+	<tr>
+		<td width="50%" align="left">
+		</td>
+		<td class="titular" width="50%" align="center">
+			<textarea  name="descripcionEnfrentamiento" rows="7" cols="40"></textarea>
+			<br /><br />
+		</td>		
+	</tr>	
+	<tr>
+		<td width="50%" aling="left">
+		</td>
+		<td class="titular "width="50%" aling="center">				
+			<input type="submit" value="Enviar" id="submit" />
+			<input type="reset" value="Limpiar" />
+		
+		</td>
+	</tr>
 	
 	</table>
-
+	<%}%>
 </form>
 <!-- INVOCACION DEL SCRIPT  -->
 <script type="text/javascript">

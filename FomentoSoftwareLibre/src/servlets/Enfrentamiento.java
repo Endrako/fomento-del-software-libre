@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import pos.domain.Aplicacion;
+import pos.domain.AplicacionStore;
 import pos.domain.Tag;
 import pos.domain.TagStore;
 
@@ -52,6 +54,16 @@ public class Enfrentamiento extends HttpServlet {
 			request.getRequestDispatcher("crearEnfrentamientoSelectAplicaciones.jsp").include(request, response);	
 		
 		}else if(request.getAttribute("evento").equals("selectAplicaciones")){
+			AplicacionStore aplSt = AplicacionStore.getInstance();
+			List<Aplicacion> aplicaciones = new ArrayList<Aplicacion>();
+			
+			for(Aplicacion ap : aplSt.getAplicaciones()){
+				if(request.getParameter(ap.getIDAplicacion()) !=null){
+					aplicaciones.add(ap);
+				}
+			}
+			
+			
 			
 		}
 		
