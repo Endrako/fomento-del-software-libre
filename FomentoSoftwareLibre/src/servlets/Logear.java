@@ -5,6 +5,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import pos.domain.Usuario;
 import pos.domain.UsuarioStore;
@@ -35,8 +36,16 @@ public class Logear extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession sesion = request.getSession();
+		
+		if ( "si".equals((String)request.getAttribute("logout") )){
+			sesion.invalidate();
+			request.getRequestDispatcher("index.html").include(request,response);
+		}else{
 		String idUser = request.getParameter("user");
 		String password = request.getParameter("password");
+		
+		
 		
 		UsuarioStore userBIZ = new UsuarioStore();
 		if ( idUser != null && password != null && !idUser.equals("") && !password.equals("") ){
@@ -48,6 +57,7 @@ public class Logear extends HttpServlet {
 				request.getRequestDispatcher("falloUsuario.html").include(request,response);
 			}
 		}
+	}
 	}
 
 }

@@ -44,16 +44,18 @@ public class FrontController extends HttpServlet {
 	public void procesarAccion(String accion, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		if ( accion.equals("entrar") ){
 			entrar(request,response);
+		}else if (accion.equals("TagsEnfrentamiento")){
+			seleccionarTagParaEnfrentamiento(request,response);
+		}else if(accion.equals("AplicacionesEnfrentamiento")){
+			seleccionarAplicacionesEnfrentamiento(request,response);
+		}else if ( accion.equals("logout") ){
+			logout(request,response);
 		}else if ( accion.equals("registrar") ){
 			registrar(request,response);
 		}else if ( accion.equals("registroUsuario") ){
 			registroUsuario(request,response);
 		}else if ( accion.equals("nuevoPerfil") ){
 			guardarNuevoPerfil(request,response);
-		}else if (accion.equals("TagsEnfrentamiento")){
-			seleccionarTagParaEnfrentamiento(request,response);
-		}else if(accion.equals("AplicacionesEnfrentamiento")){
-			seleccionarAplicacionesEnfrentamiento(request,response);
 		}
 	}
 	
@@ -61,6 +63,14 @@ public class FrontController extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		request.getRequestDispatcher("registroUsuario.jsp").include(request,response);
+		
+	}
+	
+	private void logout(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		request.setAttribute("logout", "si");
+		request.getRequestDispatcher("Logear").include(request,response);
 		
 	}
 	

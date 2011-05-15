@@ -65,11 +65,12 @@ public class NuevoUsuario extends HttpServlet {
 						userRecomendador.setKarma(userRecomendador.getKarma()+10);
 						userRecomendador.setNumeroRecomendaciones(userRecomendador.getNumeroRecomendaciones()+1);
 						store.actualizarUsuario(userRecomendador);
+						sesion.setAttribute("existeRecomendador", true);
 						sesion.setAttribute("haSidoRecomendado", true);
 					}else{
-					
 						sesion.setAttribute("haSidoRecomendado", false);
 					}
+					sesion.setAttribute("existeRecomendador", false);
 				}
 				
 			}
@@ -78,7 +79,6 @@ public class NuevoUsuario extends HttpServlet {
 		user = store.recuperarUsuarioByNick(nick);
 		sesion.setAttribute("usuario", user);
 		RequestDispatcher resq = request.getRequestDispatcher("nuevoPerfil.jsp");
-		//request.getRequestDispatcher("nuevoPerfil.jsp").include(request,response);
 		resq.forward(request, response);
 	}
 

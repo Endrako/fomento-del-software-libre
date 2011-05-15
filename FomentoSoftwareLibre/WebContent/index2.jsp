@@ -4,6 +4,7 @@
 <%@ page import     = "java.util.ArrayList" %>
 <%@ page import     = "java.util.List" %>
 <%@ page import     = "java.util.Date" %>
+<%@ page import     = "pos.utils.FuncionesImpl" %>
 <%@ page import     = "pos.domain.PaisStore" %>
 <%@ page import     = "pos.domain.Pais" %>
 <%@ page import     = "pos.domain.ProvinciaStore" %>
@@ -45,8 +46,11 @@
 <!--  FIN TABLA CONTENEDORA DE TODAS LAS JSP / HTML -->
 <table border="0">
 	<tr>
-		<td class="datos_tabla" align="left">
-			Bienvenido <a href="nuevoPerfil.jsp"><%=usuario.getNombreUsuario()%></a>, Hoy es <%=new Date()%>
+		<td width="50%" class="datos_tabla" align="left">
+			Bienvenido <a href="ActualizarPerfil.jsp"><%=usuario.getNombreUsuario()%></a>, Hoy es <%=FuncionesImpl.formateoFecha(new Date())%>
+		</td>
+		<td width="50%" class="datos_tabla" align="left">
+			<a href="FrontController?accion=logout">Salir</a>
 		</td>
 	</tr>
 </table>

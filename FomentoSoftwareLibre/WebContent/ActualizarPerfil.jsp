@@ -3,8 +3,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ page import     = "java.util.ArrayList" %>
 <%@ page import     = "java.util.List" %>
-<%@ page import     = "pos.utils.FuncionesImpl" %>
 <%@ page import     = "java.util.Date" %>
+<%@ page import     = "pos.utils.FuncionesImpl" %>
 <%@ page import     = "pos.domain.PaisStore" %>
 <%@ page import     = "pos.domain.Pais" %>
 <%@ page import     = "pos.domain.ProvinciaStore" %>
@@ -18,7 +18,6 @@
 <title>Configura tu Perfil</title>
  <script language="JavaScript" src="js/funcionesComunes.js" type="text/javascript"></script>
 <%
-			Boolean recomendado = (Boolean) session.getAttribute("haSidoRecomendado");
 			Usuario usuario = (Usuario)session.getAttribute("usuario");
 			String nombre = "";
 			String apellidos = "";
@@ -30,7 +29,7 @@
 			String idPerfil = "";
 
 			if ( usuario.getPerfil() != null ){
-				if (  !"".equals( usuario.getPerfil().getIdPerfil() ) && usuario.getPerfil().getIdPerfil() != null ){
+				if ( !"".equals( usuario.getPerfil().getIdPerfil() ) && usuario.getPerfil().getIdPerfil() != null ){
 					nombre = usuario.getPerfil().getNombreUsuario();
 					apellidos = usuario.getPerfil().getApellidos();
 					pais = usuario.getPerfil().getIdPais();
@@ -46,18 +45,6 @@
 			var css="css/estilos.css";
 		document.write("<link href='" + css + "' rel='stylesheet' type='text/css'>"); 
 		
-		function ini(){
-			if ( <%=(Boolean)session.getAttribute("existeRecomendador")%> ){
-			 	if ( <%= recomendado %> ){
-					alert("Bien!! el registro se ha completado y ambos teneis 10 puntos Extras!!");
-				}else{
-					alert("OOHHHH el registro se ha completado pero tu amigo ya recomendo a más de 5 amigos :(");
-				}
-			}else{
-				alert("El registro se ha completado pero el usuario que te ha recomendado no existe en nuestra Base de Datos");
-			}
-		}
-		
 		function limpiarForm(){
 			document.getElementById("nombre").value = "";
 			document.getElementById("apellidos").value = "";
@@ -70,7 +57,7 @@
 		}
 </script>
 </head>
-<body background="Imagenes/fondo.jpg" onload="javascript:ini();">
+<body background="Imagenes/fondo.jpg">
 <!--  INICIO TABLA CONTENEDORA DE TODAS LAS JSP / HTML -->
 <table align="center">
 	<tr>
@@ -202,6 +189,10 @@
 			&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" id="limpiar" name="limpiar" value=" Limpiar Formulario" onclick="javascript:limpiarForm();">
 		</td>
 	</tr>
+	<tr>
+		<td colspan="2" align="center">
+			<input type="button" id="volver" name="volver" value=" Volver" onClick="window.location.href='index2.jsp'">
+		</td>
 	</table>
 </form>
 </body>
