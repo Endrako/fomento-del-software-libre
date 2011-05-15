@@ -1,5 +1,6 @@
 <%@page import="pos.data.JDBCRespuestaDAO"%>
 <%@page import="pos.data.IRespuestaDAO"%>
+<%@page import="org.apache.catalina.connector.Request"%>
 <%@page import="pos.data.JDBCEncuestaDAO"%>
 <%@page import="pos.data.IEncuestaDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -28,10 +29,16 @@
 	</table>
 	<div id="capa">
 		<form>
-			<label for=texto">Texto:</label><input id="texto" type="text" size=40 />
-			<input type="button"
-				onClick="addElement(getElementById('texto').value);"
-				value="Añadir Elemento" />
+			<label for=enun">Enunciado de la pregunta:</label>
+			<input id="enun" type="text" size=40 />
+			<br>
+			<label for=res1> Respuesta 1</label>
+			<input id= res1 type="text" size=20/>
+			<br>
+			<label for=res2> Respuesta 2</label>
+			<input id= res2 type="text" size=20/>
+			<br>
+			<input type="button"onClick="addElement();" value="Añadir Respuesta" />
 		</form>
 	</div>
 </body>
