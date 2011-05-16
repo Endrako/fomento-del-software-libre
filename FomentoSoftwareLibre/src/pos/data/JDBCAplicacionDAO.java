@@ -381,9 +381,9 @@ public class JDBCAplicacionDAO implements IAplicacionDAO {
 			stm.setString(1, IDAplicacion);
 			result = stm.executeQuery();
 			while (result.next()) {
-				Integer IDTag = result.getInt("IDTag");
+				String IDTag = result.getString("IDTag");
 				// Cuidaaaooooooooooooo!!
-				tag = (new JDBCTagDAO()).selectTagByID(IDTag.toString());
+				tag = (new JDBCTagDAO()).selectTagByID(IDTag);
 				listaTags.add(tag);
 			}
 		} catch (SQLException e) {
