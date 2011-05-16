@@ -120,39 +120,4 @@ color:#3B094E;
  margin-left: 200px;
 }
 
-#pestanas {
-   float:left;
-   width:100%;
-   line-height:normal;
-   font-size: 16px;
-   font-weight: bold;
-}
 
-#pestanas ul {
-   margin:0;
-   padding:0;
-   list-style:none;
-}
-
-#pestanas li {
-   float:left;
-   margin:0 0 0 3px;
-   padding:0;
-   background:url("Imagenes/p-derch-dis.gif") no-repeat right top;
-}
-
-#pestanas a {
-   padding:3px 10px 3px 10px;
-   display:block;
-   background:url("Imagenes/p-izq-dis.gif") no-repeat left top;
-   color: #fff;
-   text-decoration: none;
-}
-
-#pestanas .activa a{
-   background-image:url("Imagenes/p-izq-act.gif");
-}
-
-#pestanas .activa{
-   background-image:url("Imagenes/p-derc-act.gif");
-} 
