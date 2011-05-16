@@ -213,8 +213,8 @@ public class JDBCAplicacionDAO implements IAplicacionDAO {
 			result = stm.executeQuery();
 						
 			while (result.next()) {
-				Integer IDAplicacion = result.getInt("IDAplicacion");
-				aplicacion = this.selectAplicacionByID(IDAplicacion.toString());
+				String IDAplicacion = result.getString("IDAplicacion");
+				aplicacion = this.selectAplicacionByID(IDAplicacion);
 				listaAplicaciones.add(aplicacion);
 			}
 		} catch (SQLException e) {
