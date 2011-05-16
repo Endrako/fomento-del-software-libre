@@ -12,7 +12,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<script language="JavaScript" src="js/jsencuesta.js"type="text/javascript"></script>
+<script language="JavaScript" src="js/jsencuesta.js"
+	type="text/javascript"></script>
 <title>Panel de control de Encuestas</title>
 </head>
 <body>
@@ -27,19 +28,23 @@
 			</td>
 		</tr>
 	</table>
-	<div id="capa">
-		<form>
-			<label for=enun">Enunciado de la pregunta:</label>
-			<input id="enun" type="text" size=40 />
-			<br>
-			<label for=res1> Respuesta 1</label>
-			<input id= res1 type="text" size=20/>
-			<br>
-			<label for=res2> Respuesta 2</label>
-			<input id= res2 type="text" size=20/>
-			<br>
-			<input type="button"onClick="addElement();" value="Añadir Respuesta" />
-		</form>
-	</div>
+	<form>
+		<div id="pregunta">
+			<div id="enun">
+				<label for=enun">Enunciado de la pregunta 1:</label> <input id="enun"
+					type="text" size=40 /> <br>
+			</div>
+			<label for=res1> Respuesta 1</label> <input id=res1 type="text"
+				size=20 /> <br> <label for=res2> Respuesta 2</label> <input
+				id=res2 type="text" size=20 /> <br>
+
+			<div id="respu"></div>
+
+			<input type="button" onClick="addRespuesta();"
+				value="Añadir Respuesta" />
+		</div>
+		<div id="preg"></div>
+		<input type="button" onClick="addPregunta();" value="Añadir Pregunta" />
+	</form>
 </body>
 </html>
