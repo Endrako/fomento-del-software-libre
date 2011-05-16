@@ -271,12 +271,12 @@ public class JDBCProyectoDAO implements IProyectoDAO {
 	@Override
 	public Aplicacion obtenerAplicacionDeProyecto(String idProyecto) {
 
-		Aplicacion a = new AplicacionImpl();
+		Aplicacion a = null;
 
 		ResultSet result = null;
 		PreparedStatement stmt = null;
 
-		// Consulta para obtener las aplicaciones vinculadas al proyecto
+		// Consulta para obtener la aplicación vinculada al proyecto
 
 		String sql = "SELECT * FROM aplicaciones a WHERE (a.IDProyecto = ? )";
 
@@ -290,9 +290,7 @@ public class JDBCProyectoDAO implements IProyectoDAO {
 			// Tratamiento de consulta
 
 			result.next();
-			a.setIDAplicacion(result.getString("IDAplicacion")); // Cambiar cuando
-																// se hable con
-																// Álvaro
+			a.setIDAplicacion(result.getString("IDAplicacion"));
 			a.setNombre(result.getString("nombre"));
 			a.setDescripcion(result.getString("descripcion"));
 			a.setFechaPublicacion(result.getDate("fechaPublicacion"));

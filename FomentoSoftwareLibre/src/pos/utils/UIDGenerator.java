@@ -1,6 +1,7 @@
 package pos.utils;
 
 import java.security.SecureRandom;
+import java.sql.Date;
 
 public class UIDGenerator {
     private static UIDGenerator guidgen;
@@ -20,6 +21,7 @@ public class UIDGenerator {
     public String getKey() {
         String key = "" + System.currentTimeMillis()
                 + Long.toHexString(random.nextInt());
+        
         return key;
     }
 }
