@@ -54,6 +54,13 @@
 		</td>
 	</tr>
 </table>
-
+<div id="pestanas">
+   <ul>
+      <li><a href="#">Encuestas</a></li>
+      <li class="activa"><a href="#">Enfrentamientos</a></li>
+      <li><a href="#">Aplicaciones</a></li>
+      <li><a href="#">Proyectos</a></li>
+   </ul>
+</div>
 </body>
 </html>

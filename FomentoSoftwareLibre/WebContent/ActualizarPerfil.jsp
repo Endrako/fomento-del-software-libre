@@ -76,7 +76,7 @@
 <table border="0">
 	<tr>
 		<td width="50%" class="datos_tabla" align="left">
-			Bienvenido <a href="ActualizarPerfil.jsp"><%=usuario.getNombreUsuario()%></a>, Hoy es <%=FuncionesImpl.formateoFecha(new Date())%>
+			Bienvenido <a href="index2.jsp"><%=usuario.getNombreUsuario()%></a>, Hoy es <%=FuncionesImpl.formateoFecha(new Date())%>
 		</td>
 		<td width="50%" class="datos_tabla" align="left">
 			<a href="FrontController?accion=logout">Salir</a>
