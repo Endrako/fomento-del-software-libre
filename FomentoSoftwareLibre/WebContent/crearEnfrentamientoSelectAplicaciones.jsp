@@ -5,6 +5,8 @@
 <%@ page import     = "pos.domain.Tag" %>
 <%@ page import     = "pos.domain.Aplicacion" %>
 <%@ page import     = "java.util.*" %>
+<%@ page import		= "java.sql.Date"%>
+<%@ page import 	= "java.util.Calendar" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -81,8 +83,10 @@
 				}else{
 					nombreTags+=", ";
 				}
-			}%>
+			}
+			request.setAttribute("tagString",nombreTags);%>
 			<strong><%=nombreTags %></strong>
+			
 		</td>
 		<td width="15%" align="right">
 		</td>
@@ -148,7 +152,7 @@
 		<td width="50%" align="left">
 		</td>
 		<td class="titular" width="50%" align="center">
-			<textarea  name="descripcionEnfrentamiento" rows="7" cols="40"></textarea>
+			<textarea id="descripcion" name="descripcionEnfrentamiento" rows="7" cols="40"></textarea>
 			<br /><br />
 		</td>		
 	</tr>	
@@ -156,7 +160,7 @@
 		<td width="50%" aling="left">
 		</td>
 		<td class="titular "width="50%" aling="center">				
-			<input type="submit" value="Enviar" id="submit" />
+			<input type="submit" value="Enviar" id="submit" onclick="<%request.setAttribute("fecha",Calendar.getInstance().getTime()); %>"/>
 			<input type="reset" value="Limpiar" />
 		
 		</td>

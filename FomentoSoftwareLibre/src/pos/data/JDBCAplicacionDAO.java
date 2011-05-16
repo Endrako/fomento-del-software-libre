@@ -268,8 +268,7 @@ public class JDBCAplicacionDAO implements IAplicacionDAO {
 		
 		String inCondition = "";		
 		for(int i=0; i<tags.size();i++){
-			inCondition+="'"+tags.get(i).getIdTag()+"'";
-	
+			inCondition+="'"+tags.get(i).getIdTag()+"'";	
 			if(i+1==tags.size()){
 				inCondition+="";
 			} else {
@@ -298,22 +297,8 @@ public class JDBCAplicacionDAO implements IAplicacionDAO {
 					aplicaciones.add(aplicacion);
 				}										
 			}
-
-//			for(Tag tag : tags){
-//				stm = con.prepareStatement(sql);
-//				stm.setString(1,tag.getIdTag());
-//				result = stm.executeQuery();
-//				while(result.next()){
-//					String IDAplicacion = result.getString("IDAplicacion");					
-//					aplicacion = this.selectAplicacionByID(IDAplicacion);
-//					if(!aplicaciones.contains(aplicacion)){
-//						aplicaciones.add(aplicacion);
-//					}										
-//				}				
-//			}
-			
-			
 		} catch (SQLException e) {
+			System.out.println("consulta: "+sql);
 			System.out.println("SQLMessage: " + e.getMessage());
 			System.out.println("SQLState: " + e.getSQLState());
 			System.out.println("ErrorCode: " + e.getErrorCode());

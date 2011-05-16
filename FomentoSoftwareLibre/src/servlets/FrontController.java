@@ -97,7 +97,7 @@ public class FrontController extends HttpServlet {
 	}
 	
 	private void seleccionarAplicacionesEnfrentamiento (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		request.setAttribute("evento", "selectTags");
+		request.setAttribute("evento", "selectAplicaciones");
 		request.getRequestDispatcher("Enfrentamiento").include(request, response);
 	}
 	
