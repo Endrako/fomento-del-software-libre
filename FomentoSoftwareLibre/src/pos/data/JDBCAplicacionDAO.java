@@ -110,12 +110,11 @@ public class JDBCAplicacionDAO implements IAplicacionDAO {
 		Aplicacion aplicacion = null;
 		PreparedStatement stm = null;
 		ResultSet result = null;
-		Integer IDAply = new Integer(IDAplicacion);
 		String sql = "SELECT * FROM aplicaciones WHERE (IDAplicacion = ?)";
 
 		try {
 			stm = con.prepareStatement(sql);
-			stm.setInt(1, IDAply);
+			stm.setString(1, IDAplicacion);
 			result = stm.executeQuery();
 
 			while(result.next()){
@@ -205,11 +204,10 @@ public class JDBCAplicacionDAO implements IAplicacionDAO {
 		String sql = "SELECT IDAplicacion FROM tagsaplicaciones WHERE (IDTag = ?)";
 		PreparedStatement stm = null;
 		ResultSet result = null;
-		Integer idtag = new Integer(IDTag);
 
 		try {
 			stm = con.prepareStatement(sql);
-			stm.setInt(1, idtag);
+			stm.setString(1, IDTag);
 			result = stm.executeQuery();
 						
 			while (result.next()) {
@@ -244,7 +242,7 @@ public class JDBCAplicacionDAO implements IAplicacionDAO {
 		String sql = "DELETE FROM aplicaciones WHERE (IDAplicacion = ?)";
 		try {
 			stm = con.prepareStatement(sql);
-			stm.setInt(1, new Integer(aplicacion.getIDAplicacion()));
+			stm.setString(1,aplicacion.getIDAplicacion());
 
 			stm.executeUpdate();
 			deleteAplicationTagRelation(con, aplicacion);
@@ -263,56 +261,56 @@ public class JDBCAplicacionDAO implements IAplicacionDAO {
 		}
 	}	
 	
-	public List<Aplicacion> selectAplicationsByTags (List<Tag> tags){
-		Connection con = (Connection) ConnectionManager.getInstance().checkOut();
-		
-		String inCondition = "";		
-		for(int i=0; i<tags.size();i++){
-			inCondition+="'"+tags.get(i).getIdTag()+"'";	
-			if(i+1==tags.size()){
-				inCondition+="";
-			} else {
-				inCondition+=",";
-			}
-		}
-		
-		System.out.println(inCondition);
-		
-		Aplicacion aplicacion = null;
-		List<Aplicacion> aplicaciones = new ArrayList<Aplicacion>();
-		ResultSet result = null;
-		PreparedStatement stm = null;
-		
-//		String sql = "SELECT * FROM tagsaplicaciones WHERE IDTag IN ("+inCondition+")";
-		
-		String sql = "SELECT * FROM tagsaplicaciones ta1 WHERE NOT EXISTS (SELECT * FROM tags t WHERE (t.IDTag IN ("+inCondition+")) AND NOT EXISTS (SELECT * FROM tagsaplicaciones ta2 WHERE (ta2.IDTag = t.IDTag) AND (ta1.IDAplicacion = ta2.IDAplicacion)))";
-		try {
-			stm=con.prepareStatement(sql);
-//			stm.setString(1,inCondition);
-			result = stm.executeQuery();
-			while(result.next()){
-				String IDAplicacion = result.getString("IDAplicacion");					
-				aplicacion = this.selectAplicacionByID(IDAplicacion);
-				if(!aplicaciones.contains(aplicacion)){
-					aplicaciones.add(aplicacion);
-				}										
-			}
-		} catch (SQLException e) {
-			System.out.println("consulta: "+sql);
-			System.out.println("SQLMessage: " + e.getMessage());
-			System.out.println("SQLState: " + e.getSQLState());
-			System.out.println("ErrorCode: " + e.getErrorCode());
-		} finally {
-			try {
-				if (stm != null) {
-					stm.close();
-				}
-			} catch (SQLException e) {
-
-			}
-		}
-		return aplicaciones;
-	}
+//	public List<Aplicacion> selectAplicationsByTags (List<Tag> tags){
+//		Connection con = (Connection) ConnectionManager.getInstance().checkOut();
+//		
+//		String inCondition = "";		
+//		for(int i=0; i<tags.size();i++){
+//			inCondition+="'"+tags.get(i).getIdTag()+"'";	
+//			if(i+1==tags.size()){
+//				inCondition+="";
+//			} else {
+//				inCondition+=",";
+//			}
+//		}
+//		
+//		System.out.println(inCondition);
+//		
+//		Aplicacion aplicacion = null;
+//		List<Aplicacion> aplicaciones = new ArrayList<Aplicacion>();
+//		ResultSet result = null;
+//		PreparedStatement stm = null;
+//		
+////		String sql = "SELECT * FROM tagsaplicaciones WHERE IDTag IN ("+inCondition+")";
+//		
+//		String sql = "SELECT * FROM tagsaplicaciones ta1 WHERE NOT EXISTS (SELECT * FROM tags t WHERE (t.IDTag IN ("+inCondition+")) AND NOT EXISTS (SELECT * FROM tagsaplicaciones ta2 WHERE (ta2.IDTag = t.IDTag) AND (ta1.IDAplicacion = ta2.IDAplicacion)))";
+//		try {
+//			stm=con.prepareStatement(sql);
+////			stm.setString(1,inCondition);
+//			result = stm.executeQuery();
+//			while(result.next()){
+//				String IDAplicacion = result.getString("IDAplicacion");					
+//				aplicacion = this.selectAplicacionByID(IDAplicacion);
+//				if(!aplicaciones.contains(aplicacion)){
+//					aplicaciones.add(aplicacion);
+//				}										
+//			}
+//		} catch (SQLException e) {
+//			System.out.println("consulta: "+sql);
+//			System.out.println("SQLMessage: " + e.getMessage());
+//			System.out.println("SQLState: " + e.getSQLState());
+//			System.out.println("ErrorCode: " + e.getErrorCode());
+//		} finally {
+//			try {
+//				if (stm != null) {
+//					stm.close();
+//				}
+//			} catch (SQLException e) {
+//
+//			}
+//		}
+//		return aplicaciones;
+//	}
 
 	private void insertAplicationTagRelation(Connection con,
 			Aplicacion aplicacion, Tag tag) {
@@ -321,8 +319,8 @@ public class JDBCAplicacionDAO implements IAplicacionDAO {
 
 		try {
 			stm = con.prepareStatement(sql);
-			stm.setInt(1, new Integer(aplicacion.getIDAplicacion()));
-			stm.setInt(2, new Integer(tag.getIdTag()));
+			stm.setString(1, aplicacion.getIDAplicacion());
+			stm.setString(2, tag.getIdTag());
 
 			stm.executeUpdate();
 
@@ -340,7 +338,7 @@ public class JDBCAplicacionDAO implements IAplicacionDAO {
 
 		try {
 			stm = con.prepareStatement(sql);
-			stm.setInt(1, new Integer(aplicacion.getIDAplicacion()));
+			stm.setString(1,aplicacion.getIDAplicacion());
 
 			stm.executeUpdate();
 
