@@ -28,9 +28,6 @@ public class AplicacionStore {
 		return (new JDBCAplicacionDAO()).selectAplicacionByID(aplyId);
 	}
 	
-//	public Anuncio getAnuncioAply(String aplyId){
-//		return ;
-//	}
 	
 	//Cambiado tagname:String por tag:Tag
 	public List<Aplicacion> getAplicationByTag(Tag tag){
@@ -38,7 +35,7 @@ public class AplicacionStore {
 		return (new JDBCAplicacionDAO()).selectAplicationByTag(tag.getIdTag());
 	}
 	
-	public List<Aplicacion> getAplicacionByTagList(List<Tag> listaTags){
-		return (new JDBCAplicacionDAO()).selectAplicationsByTags(listaTags);
-	}
+//	public List<Aplicacion> getAplicacionByTagList(List<Tag> listaTags){
+//		return (new JDBCAplicacionDAO()).selectAplicationsByTags(listaTags);
+//	}
 }

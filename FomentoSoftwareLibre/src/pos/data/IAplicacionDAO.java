@@ -13,5 +13,5 @@ public interface IAplicacionDAO {
 	public Aplicacion selectAplicacionByName(String name);
 	public List<Aplicacion> selectAplicationByTag(String IDTag);
 	public void deleteAplication(Aplicacion aplicacion);
-	public List<Aplicacion> selectAplicationsByTags (List<Tag> tags);
+//	public List<Aplicacion> selectAplicationsByTags (List<Tag> tags);
 }

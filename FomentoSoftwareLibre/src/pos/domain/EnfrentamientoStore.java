@@ -31,7 +31,8 @@ public class EnfrentamientoStore {
 		return (new JDBCEnfrentamientoDAO()).selectEnfrentamientoByID(enfrenID);
 	}
 	
-	public void crearEnfrentamiento(Aplicacion aply1,Aplicacion aply2,String descripcion,Date fechaInicio,Date fechaFin){
+	public boolean crearEnfrentamiento(Aplicacion aply1,Aplicacion aply2,String descripcion,Date fechaInicio,Date fechaFin){
+		boolean res=true;
 		Enfrentamiento enfrentamiento = new EnfrentamientoImpl();
 		enfrentamiento.setAplicacion1(aply1);
 		enfrentamiento.setAplicacion2(aply2);
@@ -41,8 +42,9 @@ public class EnfrentamientoStore {
 		if(!enfrentamientos.contains(enfrentamiento)){
 			(new JDBCEnfrentamientoDAO()).insertEnfrentamiento(enfrentamiento);
 		}else{
-			System.out.println("Que este ya estaaa, hostiaaa");
+			res=false;
 		}
+		return res;
 	}
 	
 	public void votar(String IDEnfrentamiento,String IDUser,String IDAplicacion){

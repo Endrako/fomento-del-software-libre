@@ -48,57 +48,56 @@ public class Enfrentamiento extends HttpServlet {
 		
 		if(request.getAttribute("evento").equals("selectTags")){
 			TagStore tagSt = TagStore.getInstance();
-			List<Tag> tags = new ArrayList<Tag>();
+			Tag tag = null;
 			
 			for(Tag t : tagSt.getTags()){
-				if(request.getParameter(t.getIdTag()) !=null){
-					tags.add(t);
+				 String par = request.getParameter(t.getNombre());
+				 System.out.println(par);
+				if(!(par == "")){
+					tag=t;
+					break;
 				}
 			}			
-			request.setAttribute("tags", tags);
+			request.setAttribute("tags", tag);
 			request.getRequestDispatcher("crearEnfrentamientoSelectAplicaciones.jsp").include(request, response);	
 		
 		}else if(request.getAttribute("evento").equals("selectAplicaciones")){
-			TagStore tagSt = TagStore.getInstance();
-			EnfrentamientoStore enfSt = EnfrentamientoStore.getInstance();
-			//NO LE LLEGA EL ATRIBUTO
-			String tags = (String) request.getAttribute("tagString");
-			String [] wuf = tags.split(", ");
 			AplicacionStore aplSt = AplicacionStore.getInstance();
-			List<Tag> listaTags = new ArrayList<Tag>();
-			for(int i = 0; i<wuf.length;i++){
-				listaTags.add(tagSt.getTagByName(wuf[i]));
-			}
+			EnfrentamientoStore enfSt = EnfrentamientoStore.getInstance();
 			
-			//LA LISTA DE TAGS ESTA VACIA!!!
-			List<Aplicacion> listAplis = aplSt.getAplicacionByTagList(listaTags);
-			
-//			List<Aplicacion> aplicaciones = new ArrayList<Aplicacion>();
-//			//AQUI PIFIA mete nulos
-//			for(Aplicacion ap : aplSt.getAplicaciones()){
-//				if(!(request.getParameter(ap.getIDAplicacion()) ==null)){
-//					aplicaciones.add(ap);
-//				}
-//			}	
+			List<Aplicacion> aplicaciones = new ArrayList<Aplicacion>();
+			//AQUI PIFIA mete nulos
+			for(Aplicacion ap : aplSt.getAplicaciones()){
+				String par = request.getParameter(ap.getIDAplicacion());
+				System.out.println(par);
+				if(par !=null){
+					if((!(par=="")) && par.equals(ap.getNombre())){
+						aplicaciones.add(ap);
+					}					
+				}
+			}	
 			System.out.println("tamaño de aplisStore: "+aplSt.getAplicaciones().size());
-			System.out.println("tamaño de listaplis: "+listAplis.size());
 
 
 			//TODO sumar karma? agregar IDUsuario a tabla enfrentamientos
 			// como se yo el usuario que está trasteando?
-			Aplicacion apli1 = listAplis.get(0);
-			Aplicacion apli2 = listAplis.get(1);
-			String descripcion = request.getParameter("descripcion");
+			Aplicacion apli1 = aplicaciones.get(0);
+			Aplicacion apli2 = aplicaciones.get(1);
+			String descripcion = request.getParameter("descripcionEnfrentamiento");
 			
 			//El enfrentamiento finaliza tras una semana
-			Date fechaInicio = (Date) request.getAttribute("fecha");
+			java.util.Date today = new java.util.Date();
+			java.sql.Date fechaInicio = new java.sql.Date(today.getTime());
+			
+			
+			
 			Date fechaFin = fechaMas(fechaInicio,7);
 			
 			boolean noExiste = enfSt.crearEnfrentamiento(apli1,apli2,descripcion,fechaInicio,fechaFin);
 			if(noExiste == true){
 				request.getRequestDispatcher("indexEnfrentamientos.jsp");				
 			}else{
-				request.setAttribute("aplicaciones", listAplis);
+				request.setAttribute("aplicaciones", aplicaciones);
 				request.getRequestDispatcher("crearEnfrentamientoError.jsp").include(request, response);
 			}
 			

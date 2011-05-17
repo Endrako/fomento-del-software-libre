@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import pos.domain.Tag;
 import pos.domain.Usuario;
 import pos.domain.UsuarioImpl;
 import pos.domain.UsuarioStore;
@@ -98,6 +99,7 @@ public class FrontController extends HttpServlet {
 	
 	private void seleccionarAplicacionesEnfrentamiento (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		request.setAttribute("evento", "selectAplicaciones");
+		request.setAttribute("tags", (Tag)request.getAttribute("tags"));
 		request.getRequestDispatcher("Enfrentamiento").include(request, response);
 	}
 	
