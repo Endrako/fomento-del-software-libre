@@ -22,10 +22,10 @@ public class JDBCProyectoDAO implements IProyectoDAO {
 	 * Método para obtener todos los proyectos de la tabla
 	 */
 	public List<Proyecto> obtenerTodosProyectos() {
-		
+
 		Connection con = (Connection) ConnectionManager.getInstance()
-		.checkOut();
-		
+				.checkOut();
+
 		String sql = "SELECT * FROM proyectos";
 		PreparedStatement stmt = null;
 		ResultSet result = null;
@@ -74,9 +74,9 @@ public class JDBCProyectoDAO implements IProyectoDAO {
 	 * Método para obtener solo los proyectos que están aún abiertos
 	 */
 	public List<Proyecto> obtenerProyectosAbiertos() {
-		
+
 		Connection con = (Connection) ConnectionManager.getInstance()
-		.checkOut();
+				.checkOut();
 
 		String sql = "SELECT * FROM proyectos p WHERE p.disponible = '1'";
 
@@ -129,9 +129,9 @@ public class JDBCProyectoDAO implements IProyectoDAO {
 	 * Método para insertar un nuevo proyecto en la tabla
 	 */
 	public void insertarProyecto(Proyecto proyecto) {
-		
+
 		Connection con = (Connection) ConnectionManager.getInstance()
-		.checkOut();
+				.checkOut();
 
 		PreparedStatement stmt = null;
 
@@ -179,9 +179,9 @@ public class JDBCProyectoDAO implements IProyectoDAO {
 	 * referencia
 	 */
 	public Proyecto obtenerProyectoPorID(String idProyecto) {
-		
+
 		Connection con = (Connection) ConnectionManager.getInstance()
-		.checkOut();
+				.checkOut();
 
 		Proyecto p = new ProyectoImpl();
 
@@ -242,9 +242,9 @@ public class JDBCProyectoDAO implements IProyectoDAO {
 	 * VINCULADAS VAN DETRÁS CON ÉL!!!
 	 */
 	public void borrarProyecto(String idProyecto) {
-		
+
 		Connection con = (Connection) ConnectionManager.getInstance()
-		.checkOut();
+				.checkOut();
 
 		PreparedStatement stmt = null;
 		Aplicacion a = obtenerAplicacionDeProyecto(idProyecto);
@@ -285,9 +285,9 @@ public class JDBCProyectoDAO implements IProyectoDAO {
 
 	@Override
 	public Aplicacion obtenerAplicacionDeProyecto(String idProyecto) {
-		
+
 		Connection con = (Connection) ConnectionManager.getInstance()
-		.checkOut();
+				.checkOut();
 
 		Aplicacion a = new AplicacionImpl();
 
@@ -337,6 +337,25 @@ public class JDBCProyectoDAO implements IProyectoDAO {
 		}
 
 		return a;
+	}
+
+	public List<Proyecto> obtenerProyectosAbiertosPorKarma(Integer karma) {
+
+		List<Proyecto> listaProyectos = new LinkedList<Proyecto>();
+		List<Proyecto> listaAux = obtenerProyectosAbiertos();
+
+		if (karma == null || karma < 0) {
+			throw new IllegalArgumentException(
+					"El nivel de karma no puede ser nulo ni menor que 0");
+		}
+
+		for (Proyecto p : listaAux) {
+			if (p.getNivelKarma() >= karma) {
+				listaProyectos.add(p);
+			}
+		}
+		return listaProyectos;
+
 	}
 
 }
