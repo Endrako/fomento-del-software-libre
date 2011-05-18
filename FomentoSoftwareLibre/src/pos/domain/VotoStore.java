@@ -36,12 +36,7 @@ public class VotoStore {
 		return votoDAO.selectVotoByAplicacion(IDApli);
 	}	
 	
-	public void crearVoto(String IDVoto, String IDUser, String IDApli, Boolean valor){
-		Voto voto = new VotoImpl();
-		voto.setIDVoto(IDVoto);
-		voto.setUsuario(IDUser);
-		voto.setAplicacion(IDApli);
-		voto.setValor(valor);
+	public void crearVoto(Voto voto){
 		
 		votoDAO.insertVoto(voto);
 	}

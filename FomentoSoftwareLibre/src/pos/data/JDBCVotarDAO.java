@@ -201,7 +201,7 @@ public class JDBCVotarDAO implements IVotarDAO {
 			stmt1.setBoolean(4, voto.getValor());
 
 			stmt1.executeUpdate();
-			Usuario user = duser.recuperarUsuario(voto.getUsuario());
+			Usuario user = duser.recuperarUsuarioByIdUsuario(voto.getUsuario());
 			Aplicacion apli = dapli.selectAplicacionByID(voto.getAplicacion());
 			updateAplicacion(voto, apli, 1);
 			updateUser(voto, user);

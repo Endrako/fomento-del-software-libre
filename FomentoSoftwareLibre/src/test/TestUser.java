@@ -19,14 +19,12 @@ public class TestUser {
 		users = iuser.recuperarTODOS();
 		
 		for(Usuario u : users){
-			System.out.print("Usuario " + u.getNombreUsuario());
+			System.out.print("Usuario " + u.getNombreUsuario()+"\n");
 		}
 		
-		user = iuser.recuperarUsuario("a");
-		System.out.print(user.getNombreUsuario());
 		
 		user = iuser.recuperarUsuarioByIdUsuario("a");
-		System.out.print(user.getNombreUsuario());
+		System.out.print(user.getNombreUsuario()+" No me lo creo");
 	}
 
 }
