@@ -204,7 +204,7 @@ public class JDBCUsuarioDAO implements IUsuarioDAO {
 		            u.setEmail(result.getString("email"));
 		            u.setContrasena(result.getString("contrasenna"));
 		            u.setIdUser(result.getString("IDUsuario"));
-		            u.setNombreUsuario(result.getString("nombreCompleto"));
+		            u.setNombreUsuario(result.getString("nombreUsuario"));
 		            u.setKarma(result.getInt("karma"));
 		            u.setNumeroRecomendaciones(result.getInt("numeroRecomendaciones"));
 		            
