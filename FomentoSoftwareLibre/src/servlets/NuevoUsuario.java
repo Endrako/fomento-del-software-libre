@@ -53,28 +53,37 @@ public class NuevoUsuario extends HttpServlet {
 		
 		if ( !"".equals(nick) && !"".equals(password) && !"".equals(email) ){
 			
-			user.setNombreUsuario(nick);
-			user.setContrasena(password);
-			user.setEmail(email);
-			user.setKarma(10);
-			if ( "".equals(check) ){
-				Usuario userRecomendador = store.recuperarUsuarioByNick(nickRecomendador);
-				if (  userRecomendador.getNombreUsuario().equals(nickRecomendador) ){
-					if ( userRecomendador.getNumeroRecomendaciones() < 5 ){
-						user.setKarma(user.getKarma()+10);
-						userRecomendador.setKarma(userRecomendador.getKarma()+10);
-						userRecomendador.setNumeroRecomendaciones(userRecomendador.getNumeroRecomendaciones()+1);
-						store.actualizarUsuario(userRecomendador);
-						sesion.setAttribute("existeRecomendador", true);
-						sesion.setAttribute("haSidoRecomendado", true);
+			// Comprobamos que no exista el usuario. Si es vacio es que no existe ese usuario
+			Usuario usuarioNuevo = store.recuperarUsuarioByNick(nick);
+			if ( "".equals(usuarioNuevo.getIdUser()) ){
+				user.setNombreUsuario(nick);
+				user.setContrasena(password);
+				user.setEmail(email);
+				user.setKarma(10);
+				if ( "".equals(check) ){
+					Usuario userRecomendador = store.recuperarUsuarioByNick(nickRecomendador);
+					if (  userRecomendador.getNombreUsuario().equals(nickRecomendador) ){
+						if ( userRecomendador.getNumeroRecomendaciones() < 5 ){
+							user.setKarma(user.getKarma()+10);
+							userRecomendador.setKarma(userRecomendador.getKarma()+10);
+							userRecomendador.setNumeroRecomendaciones(userRecomendador.getNumeroRecomendaciones()+1);
+							store.actualizarUsuario(userRecomendador);
+							sesion.setAttribute("existeRecomendador", true);
+							sesion.setAttribute("haSidoRecomendado", true);
+						}else{
+							sesion.setAttribute("haSidoRecomendado", false);
+						}
+						
 					}else{
-						sesion.setAttribute("haSidoRecomendado", false);
+						sesion.setAttribute("existeRecomendador", false);
 					}
-					sesion.setAttribute("existeRecomendador", false);
+					
 				}
-				
+				store.insertarUsuario(user);
+			}else{
+				RequestDispatcher resq = request.getRequestDispatcher("usuarioExistente.jsp");	
+				resq.forward(request, response);
 			}
-			store.insertarUsuario(user);
 		}
 		user = store.recuperarUsuarioByNick(nick);
 		sesion.setAttribute("usuario", user);

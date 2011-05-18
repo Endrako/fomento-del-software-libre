@@ -44,11 +44,9 @@ public class Logear extends HttpServlet {
 		}else{
 		String idUser = request.getParameter("user");
 		String password = request.getParameter("password");
-		
-		
-		
+
 		UsuarioStore userBIZ = new UsuarioStore();
-		if ( idUser != null && password != null && !idUser.equals("") && !password.equals("") ){
+		if ( idUser != null && password != null && !"".equals(idUser) && !"".equals(password) ){
 			if ( userBIZ.comprobarUsuario(idUser,password) ){
 				Usuario user = userBIZ.recuperarUsuario(idUser);
 				request.getSession().setAttribute("usuario", user);

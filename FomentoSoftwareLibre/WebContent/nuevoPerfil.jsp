@@ -19,6 +19,7 @@
  <script language="JavaScript" src="js/funcionesComunes.js" type="text/javascript"></script>
 <%
 			Boolean recomendado = (Boolean) session.getAttribute("haSidoRecomendado");
+			Boolean  existeRecomendado = (Boolean)session.getAttribute("existeRecomendador");
 			Usuario usuario = (Usuario)session.getAttribute("usuario");
 			String nombre = "";
 			String apellidos = "";
@@ -28,26 +29,13 @@
 			String soMvl = "";
 			Integer edad = 0;
 			String idPerfil = "";
-
-			if ( usuario.getPerfil() != null ){
-				if (  !"".equals( usuario.getPerfil().getIdPerfil() ) && usuario.getPerfil().getIdPerfil() != null ){
-					nombre = usuario.getPerfil().getNombreUsuario();
-					apellidos = usuario.getPerfil().getApellidos();
-					pais = usuario.getPerfil().getIdPais();
-					edad = usuario.getPerfil().getEdad();
-					provincia = usuario.getPerfil().getIdPoblacion();
-					soPC = usuario.getPerfil().getPcOS();
-					soMvl = usuario.getPerfil().getMovilOS();
-					idPerfil = usuario.getPerfil().getIdPerfil();
-				}
-			}
 %>
 <script language="JavaScript" >
 			var css="css/estilos.css";
 		document.write("<link href='" + css + "' rel='stylesheet' type='text/css'>"); 
 		
 		function ini(){
-			if ( <%=(Boolean)session.getAttribute("existeRecomendador")%> ){
+			if ( <%=existeRecomendado%> ){
 			 	if ( <%= recomendado %> ){
 					alert("Bien!! el registro se ha completado y ambos teneis 10 puntos Extras!!");
 				}else{

@@ -59,7 +59,6 @@ public class JDBCPerfilDAO implements IPerfilDAO {
 				if (stmt != null) {
 					stmt.close();
 				}
-				finalize();
 			} catch (SQLException e) {
 			}
 		}
@@ -94,7 +93,6 @@ public class JDBCPerfilDAO implements IPerfilDAO {
 				if (stmt != null) {
 					stmt.close();
 				}
-				finalize();
 			} catch (SQLException e) {
 			}
 		}
@@ -138,7 +136,6 @@ public class JDBCPerfilDAO implements IPerfilDAO {
 				if (stmt != null) {
 					stmt.close();
 				}
-				finalize();
 			} catch (SQLException e) {
 			}
 		}
@@ -163,7 +160,6 @@ public class JDBCPerfilDAO implements IPerfilDAO {
             try {
                 if (stmt != null)
                     stmt.close();
-                finalize();
             } catch (SQLException e) {
             }
         }
@@ -180,8 +176,10 @@ public class JDBCPerfilDAO implements IPerfilDAO {
 			stm.setString(2, p.getApellidos());
 			stm.setInt(3, p.getEdad());
 			stm.setString(4, p.getIdPais());
-			stm.setString(5, p.getPcOS());
-			stm.setString(4, p.getMovilOS());
+			stm.setString(5, p.getIdPoblacion());
+			stm.setString(6, p.getPcOS());
+			stm.setString(7, p.getMovilOS());
+			stm.setString(8, p.getIdPerfil());
 			stm.executeUpdate();
 
 		} catch (SQLException e) {
@@ -193,7 +191,6 @@ public class JDBCPerfilDAO implements IPerfilDAO {
 				if (stm != null) {
 					stm.close();
 				}
-				finalize();
 			} catch (SQLException e) {
 
 			}

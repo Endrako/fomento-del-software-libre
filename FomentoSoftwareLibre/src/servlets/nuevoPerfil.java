@@ -73,6 +73,8 @@ public class nuevoPerfil extends HttpServlet {
 			perfil.setMovilOS(soMovil);
 			perfil.setPcOS(soPC);
 			store.actualizarPerfil(perfil);
+			user.setPerfil(perfil);
+			storeUser.actualizarUsuario(user);
 		}else{
 			perfil = new PerfilImpl();
 			perfil.setNombreUsuario(nombre);
@@ -83,18 +85,15 @@ public class nuevoPerfil extends HttpServlet {
 			perfil.setMovilOS(soMovil);
 			perfil.setPcOS(soPC);
 			perfCOM = store.insertarPerfil(perfil);
+			user.setPerfil(perfCOM);
+			storeUser.actualizarUsuario(user);
 		}
 		
 		//Actualizamos el perfil en el user
-		user.setPerfil(perfCOM);
-		storeUser.actualizarUsuario(user);
-	
-		sesion.setAttribute("perfil", perfil);
 		
+		sesion.setAttribute("usuario", user);
 		request.getRequestDispatcher("index2.jsp").include(request, response);
-		
-		
-		
+
 	}
 
 }

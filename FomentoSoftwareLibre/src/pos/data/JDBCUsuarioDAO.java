@@ -314,7 +314,7 @@ public class JDBCUsuarioDAO implements IUsuarioDAO {
 	            u.setNumeroRecomendaciones(result.getInt("numeroRecomendaciones"));
 	            
 	            // Recuperamos el Perfil
-	            if ( result.getString("IDPerfil") != null && !"".equals(result.getString(result.getString("IDPerfil"))) ){
+	            if ( result.getString("IDPerfil") != null && !"".equals(result.getString("IDPerfil")) ){
 		            IPerfilDAO daoP = new JDBCPerfilDAO();
 		            u.setPerfil(daoP.recuperarPerfil(result.getString("IDPerfil")));
 	            }else{

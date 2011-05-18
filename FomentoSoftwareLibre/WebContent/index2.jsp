@@ -15,7 +15,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Configura tu Perfil</title>
+<title>Bienvenidos a la web que siempre soñabas</title>
  <script language="JavaScript" src="js/funcionesComunes.js" type="text/javascript"></script>
 <script language="JavaScript" >
 			var css="css/estilos.css";

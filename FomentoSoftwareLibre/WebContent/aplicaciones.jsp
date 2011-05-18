@@ -76,10 +76,10 @@
 		</td>
 	</tr>
 	<tr>
-		<td width="60%" class="tabla_principal2" align="left">
+		<td width="50%" class="tabla_principal2" align="left">
 			<strong>Nombre aplicación: </strong>
 		</td>
-		<td width="40%" class="tabla_principal2" align="left">
+		<td width="50%" class="tabla_principal2" align="left">
 			<strong>Descripción Detallada</strong>
 		</td>
 	</tr>
@@ -90,10 +90,10 @@
 			
 	%>
 	<tr>
-		<td width="60%" class="datos_tabla" align="left">
+		<td width="50%" class="datos_tabla" align="left">
 			<%=a.getNombre() %>
 		</td>
-		<td width="40%" class="datos_tabla" align="left">
+		<td width="50%" class="datos_tabla" align="left">
 			 <input type="button" id="<%=a.getIDAplicacion()%>" name="<%=a.getIDAplicacion()%>" onClick="javascript:recuperarAplicacion(this.id)" value="Ver descripción">
 		</td>
 	</tr>
@@ -105,18 +105,6 @@
 		<td width="40%" align="left" class="datos_tabla">
 			<input type="button" id="atras" name="atras" value=" Atrás " onclick="javascript:redirigir()">
 		</td>
-	</tr>
-	<%
-			UsuarioStore storeUser = new UsuarioStore();
-			List<Usuario> listaUSuario = storeUser.recuperarTODOS();
-			for ( Usuario userito : listaUSuario){
-	%>
-	<tr>
-		<td width="60%" align="left" class="datos_tabla">
-			<%=userito.getNombreUsuario() %>
-		</td>
-	</tr>
-	<%} %>
 </table>
 </form>
 </body>
