@@ -1,12 +1,12 @@
 package pos.domain;
 
 public interface Voto {
-	public Integer getIDVoto();
-	public void setIDVoto(Integer idVoto);
-	public Integer getUsuario();
-	public void setUsuario(Integer usuario);
-	public Integer getAplicacion();
-	public void setAplicacion(Integer aplicacion);
+	public String getIDVoto();
+	public void setIDVoto(String idVoto);
+	public String getUsuario();
+	public void setUsuario(String usuario);
+	public String getAplicacion();
+	public void setAplicacion(String aplicacion);
 	public Boolean getValor();
 	public void setValor(Boolean valor);
 

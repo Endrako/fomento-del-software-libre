@@ -8,6 +8,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import pos.domain.Aplicacion;
+import pos.domain.Usuario;
 import pos.domain.Voto;
 import pos.domain.VotoImpl;
 
@@ -15,10 +16,12 @@ public class JDBCVotarDAO implements IVotarDAO {
 
 	private Connection conn;
 	private IAplicacionDAO dapli;
+	private IUsuarioDAO duser;
 
 	public JDBCVotarDAO (){
 		conn = ConnectionManager.getInstance().checkOut();
 		dapli = new JDBCAplicacionDAO();
+		duser = new JDBCUsuarioDAO();
 	}
 
 	@Override
@@ -36,8 +39,8 @@ public class JDBCVotarDAO implements IVotarDAO {
 
 			while(result.next()){
 				Voto voto = new VotoImpl();
-				voto.setUsuario(result.getInt("IDUsuario"));
-				voto.setAplicacion(result.getInt("IDAplicacion"));
+				voto.setUsuario(result.getString("IDUsuario"));
+				voto.setAplicacion(result.getString("IDAplicacion"));
 				voto.setValor(result.getBoolean("valor"));
 				res.add(voto);
 			}
@@ -62,7 +65,7 @@ public class JDBCVotarDAO implements IVotarDAO {
 		return res;
 	}
 	
-	public Voto selectVotoByID(Integer voto){
+	public Voto selectVotoByID(String voto){
 		String sq = "Select * FROM votos WHERE IDVoto = ?";
 
 		PreparedStatement stmt = null;
@@ -72,12 +75,12 @@ public class JDBCVotarDAO implements IVotarDAO {
 
 		try {
 			stmt = conn.prepareStatement(sq);
-			stmt.setInt(1, voto);
+			stmt.setString(1, voto);
 			result = stmt.executeQuery();
 
 			result.next();
 
-			res.setAplicacion(result.getInt("IDAplicacion"));
+			res.setAplicacion(result.getString("IDAplicacion"));
 			res.setValor(result.getBoolean("valor"));
 			
 		} catch (SQLException e) {
@@ -99,7 +102,7 @@ public class JDBCVotarDAO implements IVotarDAO {
 	}
 
 	@Override
-	public List<Voto> selectVotosByUser(Integer idUser) {
+	public List<Voto> selectVotosByUser(String idUser) {
 		String sql = "SELECT * FROM votos WHERE (IDUsuario = ?)" ;
 		PreparedStatement stmt = null;
 		ResultSet result = null;
@@ -107,15 +110,15 @@ public class JDBCVotarDAO implements IVotarDAO {
 
 		try {
 			stmt = conn.prepareStatement(sql);
-			stmt.setInt(1, idUser);
+			stmt.setString(1, idUser);
 
 			result = stmt.executeQuery();
 			res = new LinkedList<Voto>();
 
 			while(result.next()){
 				Voto voto = new VotoImpl();
-				voto.setUsuario(result.getInt("IDUsuario"));
-				voto.setAplicacion(result.getInt("IDAplicacion"));
+				voto.setUsuario(result.getString("IDUsuario"));
+				voto.setAplicacion(result.getString("IDAplicacion"));
 				voto.setValor(result.getBoolean("valor"));
 				res.add(voto);
 			}
@@ -141,7 +144,7 @@ public class JDBCVotarDAO implements IVotarDAO {
 	}
 
 	@Override
-	public List<Voto> selectVotoByAplicacion(Integer Aplicacion) {
+	public List<Voto> selectVotoByAplicacion(String Aplicacion) {
 		String sql = "SELECT * FROM votos WHERE (IDAplicacion = ?)" ;
 		PreparedStatement stmt = null;
 		ResultSet result = null;
@@ -149,15 +152,15 @@ public class JDBCVotarDAO implements IVotarDAO {
 
 		try {
 			stmt = conn.prepareStatement(sql);
-			stmt.setInt(1, Aplicacion);
+			stmt.setString(1, Aplicacion);
 
 			result = stmt.executeQuery();
 			res = new LinkedList<Voto>();
 
 			while(result.next()){
 				Voto voto = new VotoImpl();
-				voto.setUsuario(result.getInt("IDUsuario"));
-				voto.setAplicacion(result.getInt("IDAplicacion"));
+				voto.setUsuario(result.getString("IDUsuario"));
+				voto.setAplicacion(result.getString("IDAplicacion"));
 				voto.setValor(result.getBoolean("valor"));
 				res.add(voto);
 			}
@@ -184,22 +187,24 @@ public class JDBCVotarDAO implements IVotarDAO {
 
 	@Override
 	public void insertVoto(Voto voto) {
-		String sql = "INSERT INTO votos(IDUsuario, IDAplicacion, valor) " +
-		"VALUES ( ?, ?, ?)" ;
+		String sql = "INSERT INTO votos(IDVoto, IDUsuario, IDAplicacion, valor) " +
+		"VALUES (?, ?, ?, ?)" ;
 
 		PreparedStatement stmt1 = null;
 		ResultSet result1 = null;
 
 		try {
 			stmt1 = conn.prepareStatement(sql);
-			stmt1.setInt(1, voto.getUsuario());
-			stmt1.setInt(2, voto.getAplicacion());
-			stmt1.setBoolean(3, voto.getValor());
+			stmt1.setString(1, voto.getIDVoto());
+			stmt1.setString(2, voto.getUsuario());
+			stmt1.setString(3, voto.getAplicacion());
+			stmt1.setBoolean(4, voto.getValor());
 
 			stmt1.executeUpdate();
-
-			Aplicacion apli = dapli.selectAplicacionByID(voto.getAplicacion().toString());
+			Usuario user = duser.recuperarUsuario(voto.getUsuario());
+			Aplicacion apli = dapli.selectAplicacionByID(voto.getAplicacion());
 			updateAplicacion(voto, apli, 1);
+			updateUser(voto, user);
 
 
 		} catch (SQLException e) {
@@ -220,14 +225,14 @@ public class JDBCVotarDAO implements IVotarDAO {
 	}
 
 	@Override
-	public void deleteVoto(Integer voto) {
+	public void deleteVoto(String voto) {
 		String sql = "DELETE FROM votos WHERE IDVoto = ?";
 		PreparedStatement stmt = null;
 		ResultSet result = null;
 
 		try {
 			stmt = conn.prepareStatement(sql);
-			stmt.setInt(1, voto);
+			stmt.setString(1, voto);
 			
 			
 			Voto res = selectVotoByID(voto);
@@ -255,6 +260,9 @@ public class JDBCVotarDAO implements IVotarDAO {
 	
 // ------------------------------------- X -------------------------------
 	
+	
+	//Tiene un parametro i por si se modifica al final la opcion de votar y en vez de ser solo +1
+	//tenemos un rango de valores.
 	private void updateAplicacion(Voto voto, Aplicacion apli, Integer i){
 		PreparedStatement stmt = null;
 		ResultSet result = null;
@@ -276,7 +284,7 @@ public class JDBCVotarDAO implements IVotarDAO {
 			}else{
 				stmt.setInt(1, apli.getVotosEnContra()+i);
 			}
-			stmt.setInt(2, voto.getAplicacion());
+			stmt.setString(2, voto.getAplicacion());
 
 			stmt.executeUpdate();				
 
@@ -295,5 +303,36 @@ public class JDBCVotarDAO implements IVotarDAO {
 			} catch (SQLException e) {
 			}
 		}
+	}
+	
+	private void updateUser(Voto voto, Usuario user){
+		PreparedStatement stmt = null;
+		ResultSet result = null;
+		String sq = "UPDATE usuarios SET karma = ? WHERE usuarios.IDUsuario = ?";
+		
+		try {
+
+			stmt = conn.prepareStatement(sq);
+			stmt.setInt(1, user.getKarma()+1);
+			stmt.setString(2, user.getIdUser());
+
+			stmt.executeUpdate();				
+
+		} catch (SQLException e) {
+			System.out.println("Message: " + e.getMessage());
+			System.out.println("SQLState: " + e.getSQLState());
+			System.out.println("ErrorCode: " + e.getErrorCode());
+		} finally {
+			try {
+				if (result != null) {
+					result.close();
+				}
+				if (stmt != null) {
+					stmt.close();
+				}
+			} catch (SQLException e) {
+			}
+		}
+		
 	}
 }

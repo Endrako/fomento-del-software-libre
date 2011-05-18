@@ -25,26 +25,27 @@ public class TestVoto {
 		}
 		
 		
-		lv=vdao.selectVotosByUser(3);
+		lv=vdao.selectVotosByUser("ju");
 		for(Voto v:lv){
 			System.out.print("Voto del usuario X " +v.getUsuario() + 
 					" de la aplicacion " + v.getAplicacion() + "\n");
 		}
 		
 	
-		lv=vdao.selectVotoByAplicacion(2);
+		lv=vdao.selectVotoByAplicacion("VLC");
 		for(Voto v:lv){
 			System.out.print("Voto de la aplicacion X " +v.getAplicacion() + 
 					" del usuario " + v.getUsuario() + "\n");
 		}
 		
-//		Voto v = new VotoImpl();
-//		v.setAplicacion(1);
-//		v.setUsuario(3);
-//		v.setValor(true);
-//		vdao.insertVoto(v);
+		Voto v = new VotoImpl();
+		v.setIDVoto("112432");
+		v.setAplicacion("VLC");
+		v.setUsuario("a");
+		v.setValor(true);
+		vdao.insertVoto(v);
 		
-//		vdao.deleteVoto(2);
+		//vdao.deleteVoto("12345");
 		
 		
 
