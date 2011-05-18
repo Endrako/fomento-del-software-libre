@@ -26,6 +26,10 @@ public class AplicacionImpl implements Aplicacion {
 		this.IDProyecto = IDProyecto;
 	}
 	
+	public AplicacionImpl(){
+		
+	}
+	
 	public String getIDAplicacion(){
 		return IDAplicacion;
 	}

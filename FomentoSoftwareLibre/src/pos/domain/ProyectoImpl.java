@@ -14,6 +14,7 @@ public class ProyectoImpl implements Proyecto {
 	private String numeroMaximoDesarrolladores;
 	private String numeroActualDesarrolladores;
 	private Aplicacion aplicacion;
+	private Integer nivelKarma;
 	
 	
 	
@@ -77,6 +78,12 @@ public class ProyectoImpl implements Proyecto {
 	@Override
 	public void setAplicacion(Aplicacion aplicacion) {
 		this.aplicacion = aplicacion;
+	}
+	public void setNivelKarma(Integer nivelKarma){
+		this.nivelKarma=nivelKarma;
+	}
+	public Integer getNivelKarma(){
+		return nivelKarma;
 	}
 
 	

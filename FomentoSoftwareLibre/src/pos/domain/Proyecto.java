@@ -18,5 +18,7 @@ public interface Proyecto {
 	public void setDisponibilidad(Boolean disponibilidad);
 	public Aplicacion getAplicacion();
 	public void setAplicacion(Aplicacion aplicacion);
+	public Integer getNivelKarma();
+	public void setNivelKarma(Integer nivelKarma);
 
 }
