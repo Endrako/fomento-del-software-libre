@@ -51,13 +51,15 @@ public class Enfrentamiento extends HttpServlet {
 			Tag tag = null;
 			
 			for(Tag t : tagSt.getTags()){
-				 String par = request.getParameter(t.getNombre());
-				 System.out.println(par);
-				if(!(par == "")){
-					tag=t;
-					break;
+				String par = request.getParameter(t.getIdTag());
+				System.out.println(par);
+				if(par != null){
+					if(!(par == "")){
+						tag=t;
+						break;
+					}
 				}
-			}			
+			}
 			request.setAttribute("tags", tag);
 			request.getRequestDispatcher("crearEnfrentamientoSelectAplicaciones.jsp").include(request, response);	
 		
