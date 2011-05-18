@@ -1,3 +1,4 @@
+<%@page import="pos.domain.VotoImpl"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -14,9 +15,12 @@
 <%@ page import     = "pos.domain.Usuario" %>
 <%@ page import     = "pos.domain.SoStore" %>
 <%@ page import     = "pos.domain.SO" %>
+<%@ page import     = "pos.domain.*" %>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<script language="JavaScript" src="js/votar.js"
+	type="text/javascript"></script>
 <title>Descripción Aplicación</title>
  <script language="JavaScript" src="js/funcionesComunes.js" type="text/javascript"></script>
 <script language="JavaScript" >
@@ -29,6 +33,17 @@
 		function redirigir(){
 			window.location="aplicaciones.jsp";
 		}
+		
+		function votarafavor(){
+			document.formulario.action = "FrontController?accion=votarAFavor";
+			document.formulario.submit();
+		}
+		function votarencontra(){
+			document.formulario.action = "FrontController?accion=votarEnContra";
+			document.formulario.submit();
+		}
+		
+
 </script>
 <%
 	String idAplicacion = request.getParameter("idAplicacion");
@@ -37,6 +52,7 @@
 	
 %>
 </head>
+
 <body background="Imagenes/fondo.jpg">
 <!--  INICIO TABLA CONTENEDORA DE TODAS LAS JSP / HTML -->
 <table align="center">
@@ -127,6 +143,14 @@
 		</td>
 		<td width="50%" class="datos_tabla" align="left">
 			<a href=<%=api.getURLWeb()%>></a>
+		</td>
+	</tr>
+	<tr>
+		<td width="50%" align="left" class="datos_tabla">
+			&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" id="votarAFavor" name="votarAFavor" value=" Votar a Favor "  onclick="javascript:votarafavor();">
+		</td>
+		<td width="50%" align="center" class="datos_tabla">
+			&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" id="votarEnContra" name="votarEnContra" value=" Votar en Contra " onclick="javascript:votarencontra();">
 		</td>
 	</tr>
 	<tr>
