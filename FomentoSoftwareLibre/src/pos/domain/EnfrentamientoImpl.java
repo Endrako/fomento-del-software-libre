@@ -9,12 +9,13 @@ public class EnfrentamientoImpl implements Enfrentamiento {
 	private Date fechaCreacion, fechaFin;
 	private Integer votosAplicacion1, votosAplicacion2 = 0;
 	private String IDEnfrentamiento = "";
+	private String IDUsuario = "";
 
 	public EnfrentamientoImpl() {
 
 	}
 	
-	public EnfrentamientoImpl(String IDEnfrentamiento,Aplicacion apli1,Aplicacion apli2,String descripcion,Date fechaCreacion,Date fechaFin, Integer votosApp1, Integer votosApp2){
+	public EnfrentamientoImpl(String IDEnfrentamiento,Aplicacion apli1,Aplicacion apli2,String descripcion,Date fechaCreacion,Date fechaFin, Integer votosApp1, Integer votosApp2, String IDUsuario){
 		this.IDEnfrentamiento = IDEnfrentamiento;
 		this.aplicacion1 = apli1;
 		this.aplicacion2 = apli2;
@@ -23,6 +24,7 @@ public class EnfrentamientoImpl implements Enfrentamiento {
 		this.fechaFin = fechaFin;
 		this.votosAplicacion1 = votosApp1;
 		this.votosAplicacion2 = votosApp2;
+		this.IDUsuario = IDUsuario;
 	}
 
 	public String getIDEnfrentamiento() {
@@ -129,6 +131,16 @@ public class EnfrentamientoImpl implements Enfrentamiento {
 		s = aplicacion1.getNombre() + " vs " + aplicacion2.getNombre();
 		s = s + "\n" + descripcion;
 		return s;
+	}
+
+	@Override
+	public String getIDUsuario() {
+		return IDUsuario;
+	}
+
+	@Override
+	public void setIDUsuario(String IDUsuario) {
+		this.IDUsuario = IDUsuario;
 	}
 
 }

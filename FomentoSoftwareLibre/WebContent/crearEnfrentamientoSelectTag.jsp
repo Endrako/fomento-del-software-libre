@@ -11,18 +11,22 @@
 <title>Crea un enfrentamiento</title>
 
 <script type="text/javascript">
-	function maximoCheckboxarCheckbox(nombre, maximoCheckbox){
-	    for (var i=0; i<nombre.length; i++){
-	        nombre[i].onclick=function(){
-	        var num_chequeados=0;
-	        for (var i=0; i<nombre.length; i++)
-	            num_chequeados+=(nombre[i].checked)? 1 : 0
-	            if (num_chequeados>maximoCheckbox){
-	                alert("El numero maximo de tags que puedes seleccionar es "+maximoCheckbox+"");
-	                this.checked=false;
-	            }
-	        }
+	function validar(nombre, maximoCheckbox){
+		var res = true;
+		var num_chequeados=0;
+	    for (var i=0; i<nombre.length; i++){	        
+	        for (var i=0; i<nombre.length; i++){
+	            num_chequeados+=(nombre[i].checked)? 1 : 0	            
+	        }	        
 	    }
+	    if (num_chequeados>maximoCheckbox){
+            alert("El numero maximo de tags que puedes seleccionar es "+maximoCheckbox+"");
+            res = false;
+        } else if (num_chequeados<1){
+        	alert("Debes seleccionar al menos 1 tag");
+        	res = false;            	
+        }
+	    return res;
 	}
 </script>
 <!--  SCRIPT PARA LIMITAR EL NUMERO DE CHECKBOXES -->
@@ -81,7 +85,7 @@
 	</tr>
 </table>
 
-<form id="formularioTags" name="formularioTags" action="FrontController?accion=TagsEnfrentamiento" method="post">
+<form id="formularioTags" name="formularioTags" action="FrontController?accion=TagsEnfrentamiento" method="post" onsubmit="return validar(this,1)">
 
 	<table align="center">
 	<% 
@@ -97,7 +101,7 @@
 			&nbsp;&nbsp;&nbsp;&nbsp;<%=t.getNombre()%>
 		</td>
 		<td align="right" width="15%">
-			&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" id=<%=t.getIdTag()%> name ="tags" value=<%=t.getNombre()%>>
+			&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" id=<%=t.getIdTag()%> name =<%=t.getIdTag()%> value=<%=t.getNombre()%>>
 		</td>
 		
 	</tr>
@@ -123,10 +127,6 @@
 	</table>
 
 </form>
-<!-- INVOCACION DEL SCRIPT  -->
-<script type="text/javascript">
-	maximoCheckboxarCheckbox(document.formularioTags.tags, 1);
-</script>
 
 </body>
 </html>

@@ -12,18 +12,28 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Crea un enfrentamiento</title>
-
+<% 
+	AplicacionStore aplSt = AplicacionStore.getInstance();
+	List<Aplicacion> listAplis = aplSt.getAplicationByTag((Tag)request.getAttribute("tags"));%>
+	
 <script type="text/javascript">
-function validacion(obj) {
-	  limite=2;
-	  num=0;
-	  if (obj.checked) {
-	    for (i=0; ele=obj.form.elements[i]; i++)
-	      if (ele.checked) num++;
-	  if (num>limite)
-	    obj.checked=false;
-	  }
-	} 
+function validar(nombre, maximoCheckbox){
+	var res = true;
+	var num_chequeados=0;
+    for (var i=0; i<nombre.length; i++){	        
+        for (var i=0; i<nombre.length; i++){
+            num_chequeados+=(nombre[i].checked)? 1 : 0	            
+        }	        
+    }
+    if (num_chequeados>maximoCheckbox){
+        alert("El numero maximo de aplicaciones que puedes seleccionar es "+maximoCheckbox+"");
+        res = false;
+    } else if (num_chequeados<2){
+    	alert("Debes seleccionar 2 aplicaciones");
+    	res = false;            	
+    }
+    return res;
+}
 </script>
 <!--  SCRIPT PARA LIMITAR EL NUMERO DE CHECKBOXES -->
 <!-- SOLO TOCAR EL MENSAJE DEL alert  -->
@@ -93,14 +103,11 @@ function validacion(obj) {
 	</tr>
 </table>
 
-<form id="formularioTags" name="formularioAplicaciones" action="FrontController?accion=AplicacionesEnfrentamiento" method="post">
+<form id="formularioTags" name="formularioAplicaciones" action="FrontController?accion=AplicacionesEnfrentamiento" method="post" onsubmit="return validar(this,2)">
 
 	<table align="center">
-	<% 
-	AplicacionStore aplSt = AplicacionStore.getInstance();
-	List<Aplicacion> listAplis = aplSt.getAplicationByTag((Tag)request.getAttribute("tags"));
 	
-	if(listAplis.size()<2){%>
+	<%if(listAplis.size()<2){%>
 		<tr>
 		<td class="titular" width="50%" align="center">
 			&nbsp;<h3 style="color: orange;">No hay aplicaciones con los tags seleccionados para hacer un enfrentamiento</h2>
@@ -117,7 +124,7 @@ function validacion(obj) {
 			&nbsp;&nbsp;&nbsp;&nbsp;<%=ap.getNombre()%>
 		</td>
 		<td align="right" width="15%">
-			&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" id=<%=ap.getIDAplicacion()%> name =<%=ap.getIDAplicacion()%> value=<%=ap.getNombre()%> onclick = "javascript:validacion(this);">
+			&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" id=<%=ap.getIDAplicacion()%> name =<%=ap.getIDAplicacion()%> value=<%=ap.getNombre()%>>
 		</td>		
 	</tr>
 	

@@ -3,11 +3,11 @@
 -- http://www.phpmyadmin.net
 -- 
 -- Servidor: localhost
--- Tiempo de generación: 12-05-2011 a las 09:21:08
+-- Tiempo de generación: 18-05-2011 a las 10:12:38
 -- Versión del servidor: 5.0.24
 -- Versión de PHP: 5.1.6
 -- 
--- Base de datos: `prueba asdasdasd`
+-- Base de datos: `isg3bd`
 -- 
 
 -- --------------------------------------------------------
@@ -34,10 +34,10 @@ CREATE TABLE IF NOT EXISTS `aplicaciones` (
 -- Volcar la base de datos para la tabla `aplicaciones`
 -- 
 
-INSERT INTO `aplicaciones` VALUES (1, '', 'VLC', 'Reproductor de video multicodecs.', '2011-04-29', 'www.url1.com', 0, 0, NULL);
-INSERT INTO `aplicaciones` VALUES (2, '', 'Open Office', 'Programa de ofimatica parecida al Microsoft Office', '2011-04-28', 'www.url2.com', 0, 0, NULL);
-INSERT INTO `aplicaciones` VALUES (3, '', 'Winamp', 'Reproductor de audio y video normalito', '2011-04-22', 'www.url3.com', 0, 0, NULL);
-INSERT INTO `aplicaciones` VALUES (4, '', 'Calculetor', 'Calculadora para estadisticos', '2011-04-23', 'www.url4.com', 0, 0, NULL);
+INSERT INTO `aplicaciones` VALUES (1, '1', 'VLC', 'Reproductor de video multicodecs.', '2011-04-29', 'www.url1.com', 0, 0, NULL);
+INSERT INTO `aplicaciones` VALUES (2, '2', 'Open Office', 'Programa de ofimatica parecida al Microsoft Office', '2011-04-28', 'www.url2.com', 0, 0, NULL);
+INSERT INTO `aplicaciones` VALUES (3, '3', 'Winamp', 'Reproductor de audio y video normalito', '2011-04-22', 'www.url3.com', 0, 0, NULL);
+INSERT INTO `aplicaciones` VALUES (4, '4', 'Calculetor', 'Calculadora para estadisticos', '2011-04-23', 'www.url4.com', 0, 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -118,6 +118,8 @@ CREATE TABLE IF NOT EXISTS `enfrentamientos` (
   `fechaCreacion` datetime NOT NULL,
   `fechaFin` datetime NOT NULL,
   `aceptado` tinyint(1) NOT NULL,
+  `IDUsuario` varchar(50) collate latin1_spanish_ci NOT NULL,
+  `finalizado` tinyint(1) NOT NULL,
   PRIMARY KEY  (`OIDEnfrentamiento`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci AUTO_INCREMENT=2 ;
 
@@ -125,7 +127,7 @@ CREATE TABLE IF NOT EXISTS `enfrentamientos` (
 -- Volcar la base de datos para la tabla `enfrentamientos`
 -- 
 
-INSERT INTO `enfrentamientos` VALUES (1, '', '1', '3', 'VLC vs Winamp ¿Quien ganra? voten', 0, 0, '2011-04-29 14:53:05', '2011-04-30 14:53:09', 1);
+INSERT INTO `enfrentamientos` VALUES (1, 'en1', '1', '3', 'VLC vs Winamp ¿Quien ganra? voten', 0, 0, '2011-04-29 14:53:05', '2011-04-30 14:53:09', 1, '', 0);
 
 -- --------------------------------------------------------
 
@@ -334,16 +336,17 @@ CREATE TABLE IF NOT EXISTS `tags` (
   `nombre` varchar(50) collate latin1_spanish_ci NOT NULL,
   PRIMARY KEY  (`OIDTag`),
   UNIQUE KEY `nombre` (`nombre`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci AUTO_INCREMENT=5 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci AUTO_INCREMENT=6 ;
 
 -- 
 -- Volcar la base de datos para la tabla `tags`
 -- 
 
-INSERT INTO `tags` VALUES (1, '', 'Video');
-INSERT INTO `tags` VALUES (2, '', 'Antivirus');
-INSERT INTO `tags` VALUES (3, '', 'Musica');
-INSERT INTO `tags` VALUES (4, '', 'Ofimatica');
+INSERT INTO `tags` VALUES (1, 'vid', 'Video');
+INSERT INTO `tags` VALUES (2, 'ant', 'Antivirus');
+INSERT INTO `tags` VALUES (3, 'mus', 'Musica');
+INSERT INTO `tags` VALUES (4, 'ofi', 'Ofimatica');
+INSERT INTO `tags` VALUES (5, 'cht', 'Chat');
 
 -- --------------------------------------------------------
 
@@ -356,17 +359,18 @@ CREATE TABLE IF NOT EXISTS `tagsaplicaciones` (
   `IDAplicacion` varchar(50) collate latin1_spanish_ci NOT NULL,
   `IDTag` varchar(50) collate latin1_spanish_ci NOT NULL,
   PRIMARY KEY  (`OIDRelacion`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci AUTO_INCREMENT=6 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci AUTO_INCREMENT=12 ;
 
 -- 
 -- Volcar la base de datos para la tabla `tagsaplicaciones`
 -- 
 
-INSERT INTO `tagsaplicaciones` VALUES (1, '1', '1');
-INSERT INTO `tagsaplicaciones` VALUES (2, '3', '1');
-INSERT INTO `tagsaplicaciones` VALUES (3, '3', '3');
-INSERT INTO `tagsaplicaciones` VALUES (4, '2', '4');
-INSERT INTO `tagsaplicaciones` VALUES (5, '4', '4');
+INSERT INTO `tagsaplicaciones` VALUES (8, '3', 'vid');
+INSERT INTO `tagsaplicaciones` VALUES (7, '1', 'mus');
+INSERT INTO `tagsaplicaciones` VALUES (6, '1', 'vid');
+INSERT INTO `tagsaplicaciones` VALUES (11, '4', 'mus');
+INSERT INTO `tagsaplicaciones` VALUES (10, '4', 'vid');
+INSERT INTO `tagsaplicaciones` VALUES (9, '3', 'mus');
 
 -- --------------------------------------------------------
 

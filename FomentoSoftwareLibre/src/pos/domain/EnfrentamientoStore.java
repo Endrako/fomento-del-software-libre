@@ -64,5 +64,9 @@ public class EnfrentamientoStore {
 		new JDBCEnfrentamientoDAO().deleteEnfrentamiento(enfrentamiento);
 	}
 	
+	public List<Enfrentamiento> obtenerEnfrentamientosDeUsuario(String IDUsuario){
+		return new JDBCEnfrentamientoDAO().selectEnfrentamientoByUserCreator(IDUsuario);
+	}
+	
 
 }

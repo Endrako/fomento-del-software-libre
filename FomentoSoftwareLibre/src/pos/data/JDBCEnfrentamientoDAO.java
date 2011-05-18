@@ -45,10 +45,11 @@ public class JDBCEnfrentamientoDAO implements IEnfrentamientoDAO {
 				Integer votosAply2 = result.getInt("votosApp2");
 				Date fechaCreacion = result.getDate("fechaCreacion");
 				Date fechaFin = result.getDate("fechaFin");
+				String IDUsuario = result.getString("IDUsuario");
 				// Cuidaaaaaaaaaoooooooo!
 				Aplicacion aplicacion1 = apliDAO.selectAplicacionByID(IDapl1.toString());
 				Aplicacion aplicacion2 = apliDAO.selectAplicacionByID(IDapl2.toString());
-				enfrentamiento = new EnfrentamientoImpl(IDEnfrentamiento,aplicacion1,aplicacion2,descripcion,fechaCreacion,fechaFin,votosAply1,votosAply2);
+				enfrentamiento = new EnfrentamientoImpl(IDEnfrentamiento,aplicacion1,aplicacion2,descripcion,fechaCreacion,fechaFin,votosAply1,votosAply2,IDUsuario);
 				lista.add(enfrentamiento);
 			}
 			
@@ -92,10 +93,11 @@ public class JDBCEnfrentamientoDAO implements IEnfrentamientoDAO {
 				Integer votosAply2 = result.getInt("votosApp2");
 				Date fechaCreacion = result.getDate("fechaCreacion");
 				Date fechaFin = result.getDate("fechaFin");
+				String IDUsuario = result.getString("IDUsuario");
 				// Cuidaaaaaaaaaoooooooo!
 				Aplicacion aplicacion1 = apliDAO.selectAplicacionByID(IDapl1.toString());
 				Aplicacion aplicacion2 = apliDAO.selectAplicacionByID(IDapl2.toString());
-				enfrentamiento = new EnfrentamientoImpl(IDEnfrentamiento,aplicacion1,aplicacion2,descripcion,fechaCreacion,fechaFin,votosAply1,votosAply2);
+				enfrentamiento = new EnfrentamientoImpl(IDEnfrentamiento,aplicacion1,aplicacion2,descripcion,fechaCreacion,fechaFin,votosAply1,votosAply2,IDUsuario);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -117,8 +119,53 @@ public class JDBCEnfrentamientoDAO implements IEnfrentamientoDAO {
 	}
 
 	public List<Enfrentamiento> selectEnfrentamientoByUserCreator(String IDUser) {
-		// En la BD no hay un usuario creador.
-		return null;
+		Connection con = (Connection) ConnectionManager.getInstance()
+		.checkOut();
+
+		JDBCAplicacionDAO apliDAO = new JDBCAplicacionDAO();
+		List<Enfrentamiento> listaEnf = new ArrayList<Enfrentamiento>();
+		Enfrentamiento enfrentamiento = null;
+		String sql = "SELECT * FROM enfrentamientos WHERE ( IDUsuario = ? )";
+		PreparedStatement stm = null;
+		ResultSet result = null;
+		
+		try{
+			stm = con.prepareStatement(sql);
+			stm.setString(1,IDUser);
+			result = stm.executeQuery();
+			while(result.next()){
+				String IDEnfrentamiento = result.getString("IDEnfrentamiento");
+				String IDapl1 = result.getString("IDAplicacion1");
+				String IDapl2 = result.getString("IDAplicacion2");
+				String descripcion = result.getString("descripcion");
+				Integer votosAply1 = result.getInt("votosApp1");
+				Integer votosAply2 = result.getInt("votosApp2");
+				Date fechaCreacion = result.getDate("fechaCreacion");
+				Date fechaFin = result.getDate("fechaFin");
+				String IDUsuario = result.getString("IDUsuario");
+				// Cuidaaaaaaaaaoooooooo!
+				Aplicacion aplicacion1 = apliDAO.selectAplicacionByID(IDapl1.toString());
+				Aplicacion aplicacion2 = apliDAO.selectAplicacionByID(IDapl2.toString());
+				enfrentamiento = new EnfrentamientoImpl(IDEnfrentamiento,aplicacion1,aplicacion2,descripcion,fechaCreacion,fechaFin,votosAply1,votosAply2,IDUsuario);
+				listaEnf.add(enfrentamiento);				
+			}
+			
+		}catch (SQLException e) {
+			System.out.println("Message: " + e.getMessage());
+			System.out.println("SQLState: " + e.getSQLState());
+			System.out.println("ErrorCode: " + e.getErrorCode());
+		} finally {
+			try {
+				if (result != null) {
+					result.close();
+				}
+				if (stm != null) {
+					stm.close();
+				}
+			} catch (SQLException e) {
+			}
+		}
+		return listaEnf;
 	}
 
 	public List<Enfrentamiento> selectEnfrentamientoByAply(String IDAply) {
@@ -148,10 +195,12 @@ public class JDBCEnfrentamientoDAO implements IEnfrentamientoDAO {
 				Integer votosAply2 = result.getInt("votosApp2");
 				Date fechaCreacion = result.getDate("fechaCreacion");
 				Date fechaFin = result.getDate("fechaFin");
+				String IDUsuario = result.getString("IDUsuario");
+
 				// Cuidaaaaaaaaaoooooooo!
 				Aplicacion aplicacion1 = apliDAO.selectAplicacionByID(IDapl1.toString());
 				Aplicacion aplicacion2 = apliDAO.selectAplicacionByID(IDapl2.toString());
-				enfrentamiento = new EnfrentamientoImpl(IDEnfrentamiento,aplicacion1,aplicacion2,descripcion,fechaCreacion,fechaFin,votosAply1,votosAply2);
+				enfrentamiento = new EnfrentamientoImpl(IDEnfrentamiento,aplicacion1,aplicacion2,descripcion,fechaCreacion,fechaFin,votosAply1,votosAply2,IDUsuario);
 				lista.add(enfrentamiento);
 			}
 			
@@ -197,10 +246,12 @@ public class JDBCEnfrentamientoDAO implements IEnfrentamientoDAO {
 				Integer votosAply2 = result.getInt("votosApp2");
 				Date fechaCreacion = result.getDate("fechaCreacion");
 				Date fechaFin = result.getDate("fechaFin");
+				String IDUsuario = result.getString("IDUsuario");
+
 				// Cuidaaaaaaaaaoooooooo!
 				Aplicacion aplicacion1 = apliDAO.selectAplicacionByID(IDapl1.toString());
 				Aplicacion aplicacion2 = apliDAO.selectAplicacionByID(IDapl2.toString());
-				enfrentamiento = new EnfrentamientoImpl(IDEnfrentamiento,aplicacion1,aplicacion2,descripcion,fechaCreacion,fechaFin,votosAply1,votosAply2);
+				enfrentamiento = new EnfrentamientoImpl(IDEnfrentamiento,aplicacion1,aplicacion2,descripcion,fechaCreacion,fechaFin,votosAply1,votosAply2,IDUsuario);
 				lista.add(enfrentamiento);
 			}
 			
@@ -247,10 +298,11 @@ public class JDBCEnfrentamientoDAO implements IEnfrentamientoDAO {
 				Integer votosAply2 = result.getInt("votosApp2");
 				Date fechaCreacion = result.getDate("fechaCreacion");
 				Date fechaFin = result.getDate("fechaFin");
+				String IDUsuario = result.getString("IDUsuario");
 				// Cuidaaaaaaaaaoooooooo!
 				Aplicacion aplicacion1 = apliDAO.selectAplicacionByID(IDapl1.toString());
 				Aplicacion aplicacion2 = apliDAO.selectAplicacionByID(IDapl2.toString());
-				enfrentamiento = new EnfrentamientoImpl(IDEnfrentamiento,aplicacion1,aplicacion2,descripcion,fechaCreacion,fechaFin,votosAply1,votosAply2);
+				enfrentamiento = new EnfrentamientoImpl(IDEnfrentamiento,aplicacion1,aplicacion2,descripcion,fechaCreacion,fechaFin,votosAply1,votosAply2,IDUsuario);
 				lista.add(enfrentamiento);
 			}
 		} catch (SQLException e) {
@@ -415,11 +467,11 @@ public class JDBCEnfrentamientoDAO implements IEnfrentamientoDAO {
 				Integer votosAply2 = result.getInt("votosApp2");
 				Date fechaCreacion = result.getDate("fechaCreacion");
 				Date fechaFin = result.getDate("fechaFin");
+				String IDUsuario = result.getString("IDUsuario");
 				// Cuidaaaaaaaaaoooooooo!
 				Aplicacion aplicacion1 = apliDAO.selectAplicacionByID(IDapl1.toString());
 				Aplicacion aplicacion2 = apliDAO.selectAplicacionByID(IDapl2.toString());
-				enfrentamiento = new EnfrentamientoImpl(IDEnfrentamiento,aplicacion1,aplicacion2,descripcion,fechaCreacion,fechaFin,votosAply1,votosAply2);
-			}
+				enfrentamiento = new EnfrentamientoImpl(IDEnfrentamiento,aplicacion1,aplicacion2,descripcion,fechaCreacion,fechaFin,votosAply1,votosAply2,IDUsuario);			}
 		} catch (SQLException e) {
 			System.out.println("Message: " + e.getMessage());
 			System.out.println("SQLState: " + e.getSQLState());

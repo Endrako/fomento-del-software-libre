@@ -24,6 +24,8 @@ public interface Enfrentamiento {
 	public void setVotosAplicacion2(Integer votos);
 	public boolean equals(Object o);
 	public String toString();
+	public String getIDUsuario();
+	public void setIDUsuario(String IDUsuario);
 	
 
 }
