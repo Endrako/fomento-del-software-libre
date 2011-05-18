@@ -1,5 +1,6 @@
 package pos.domain;
 
+import java.util.Calendar;
 import java.util.Date;
 
 
@@ -84,6 +85,12 @@ public class ProyectoImpl implements Proyecto {
 	}
 	public Integer getNivelKarma(){
 		return nivelKarma;
+	}
+	public String toString(){
+		String s = "";
+		s += "Proyecto: " + nombreProyecto + "\n Info: " + descripcion + "\n Karma necesario para unirse al " +
+				"proyecto: " + nivelKarma + "\n";
+		return s;
 	}
 
 	
