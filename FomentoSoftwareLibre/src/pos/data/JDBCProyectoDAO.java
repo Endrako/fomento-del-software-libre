@@ -11,6 +11,7 @@ import pos.domain.Aplicacion;
 import pos.domain.AplicacionImpl;
 import pos.domain.Proyecto;
 import pos.domain.ProyectoImpl;
+import pos.domain.Usuario;
 import pos.utils.UIDGenerator;
 
 public class JDBCProyectoDAO implements IProyectoDAO {
@@ -339,18 +340,18 @@ public class JDBCProyectoDAO implements IProyectoDAO {
 		return a;
 	}
 
-	public List<Proyecto> obtenerProyectosAbiertosPorKarma(Integer karma) {
+	public List<Proyecto> obtenerProyectosAbiertosPorKarma(Usuario user) {
 
 		List<Proyecto> listaProyectos = new LinkedList<Proyecto>();
 		List<Proyecto> listaAux = obtenerProyectosAbiertos();
 
-		if (karma == null || karma < 0) {
+		if (user.getKarma() < 0) {
 			throw new IllegalArgumentException(
 					"El nivel de karma no puede ser nulo ni menor que 0");
 		}
 
 		for (Proyecto p : listaAux) {
-			if (p.getNivelKarma() >= karma) {
+			if (p.getNivelKarma() >= user.getKarma()) {
 				listaProyectos.add(p);
 			}
 		}

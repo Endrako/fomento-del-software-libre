@@ -4,6 +4,7 @@ import java.util.List;
 
 import pos.domain.Aplicacion;
 import pos.domain.Proyecto;
+import pos.domain.Usuario;
 
 public interface IProyectoDAO {
 	
@@ -16,5 +17,5 @@ public interface IProyectoDAO {
 	// Un proyecto no tiene N aplicaciones, solo tiene 1. No existen proyectos de varias apps a la vez
 	
 	public Aplicacion obtenerAplicacionDeProyecto(String idProyecto);
-
+	public List<Proyecto> obtenerProyectosAbiertosPorKarma(Usuario user);
 }
