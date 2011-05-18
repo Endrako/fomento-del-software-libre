@@ -8,24 +8,37 @@
 <%@ page import     = "pos.domain.PaisStore" %>
 <%@ page import     = "pos.domain.Pais" %>
 <%@ page import     = "pos.domain.ProvinciaStore" %>
+<%@ page import     = "pos.domain.AplicacionStore" %>
 <%@ page import     = "pos.domain.Provincia" %>
+<%@ page import     = "pos.domain.Aplicacion" %>
 <%@ page import     = "pos.domain.Usuario" %>
 <%@ page import     = "pos.domain.SoStore" %>
 <%@ page import     = "pos.domain.SO" %>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Configura tu Perfil</title>
+<title>Lista de Aplicaciones</title>
  <script language="JavaScript" src="js/funcionesComunes.js" type="text/javascript"></script>
 <script language="JavaScript" >
 			var css="css/estilos.css";
 		document.write("<link href='" + css + "' rel='stylesheet' type='text/css'>"); 
 		<%
-			//HttpSession session = request.getSession();
-			Boolean recomendado = (Boolean) session.getAttribute("haSidoRecomendado");
 			Usuario usuario = (Usuario)session.getAttribute("usuario");
 		%>
 
+		function recuperarAplicacion(idAplicacion){
+			document.formulario.action = "FrontController?accion=recuperarPerfilAplicacion&idAplicacion="+ idAplicacion ;
+			document.formulario.submit();
+		}
+		
+		function redirigir(){
+			window.location="index2.jsp";
+		}
+		
+		function nuevaAplicacion(){
+			document.formulario.action = "FrontController?accion=nuevaAplicacion";
+			document.formulario.submit();
+		}
 </script>
 </head>
 <body background="Imagenes/fondo.jpg">
@@ -54,13 +67,45 @@
 		</td>
 	</tr>
 </table>
-<div id="pestanas">
-   <ul>
-      <li><a href="encuesta.jsp">Encuestas</a></li>
-      <li class="activa"><a href="#">Enfrentamientos</a></li>
-      <li><a href="aplicaciones.jsp">Aplicaciones</a></li>
-      <li><a href="#">Proyectos</a></li>
-   </ul>
-</div>
+<form id="formulario" name="formulario" action="" method="POST">
+<table align="center" class="borde">
+	<tr>
+		<td width="100%" class="tabla_principal" align="center" colspan="2">
+			<strong> Listas de Aplicaciones </strong>
+		</td>
+	</tr>
+	<tr>
+		<td width="60%" class="tabla_principal2" align="left">
+			<strong>Nombre aplicación: </strong>
+		</td>
+		<td width="40%" class="tabla_principal2" align="left">
+			<strong>Descripción Detallada</strong>
+		</td>
+	</tr>
+	<%
+		AplicacionStore store = AplicacionStore.getInstance();
+		List<Aplicacion> lista = store.getAplicaciones();
+		for ( Aplicacion a : lista){
+			
+	%>
+	<tr>
+		<td width="60%" class="datos_tabla" align="left">
+			<%=a.getNombre() %>
+		</td>
+		<td width="40%" class="datos_tabla" align="left">
+			 <input type="button" id="<%=a.getIDAplicacion()%>" name="<%=a.getIDAplicacion()%>" onClick="javascript:recuperarAplicacion(this.id)" value="Ver descripción">
+		</td>
+	</tr>
+	<%} %>
+	<tr>
+		<td width="60%" align="left" class="datos_tabla">
+			<input type="button" id="nuevaAplicacion" name="nuevaAplicacion" value=" ¿ Nueva aplicación ?  " onclick="javascript:nuevaAplicacion()">
+		</td>
+		<td width="40%" align="left" class="datos_tabla">
+			<input type="button" id="atras" name="atras" value=" Atrás " onclick="javascript:redirigir()">
+		</td>
+	</tr>
+</table>
+</form>
 </body>
 </html>

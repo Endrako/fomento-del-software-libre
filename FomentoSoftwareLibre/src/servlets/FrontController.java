@@ -55,11 +55,25 @@ public class FrontController extends HttpServlet {
 			registrar(request,response);
 		}else if ( accion.equals("registroUsuario") ){
 			registroUsuario(request,response);
+		}else if ( accion.equals("recuperarPerfilAplicacion") ){
+			recuperarPerfilAplicacion(request,response);
+		}else if ( accion.equals("nuevaAplicacion") ){
+			nuevaAplicacion(request,response);
 		}else if ( accion.equals("nuevoPerfil") ){
 			guardarNuevoPerfil(request,response);
 		}
 	}
 	
+	private void recuperarPerfilAplicacion(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		request.getRequestDispatcher("descripcionDetalladaAplicacion.jsp").include(request,response);
+	}
+	
+	private void nuevaAplicacion(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		request.getRequestDispatcher("nuevaAplicacion.jsp").include(request,response);
+	}
+
 	private void registrar(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub

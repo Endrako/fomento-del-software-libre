@@ -8,24 +8,27 @@
 <%@ page import     = "pos.domain.PaisStore" %>
 <%@ page import     = "pos.domain.Pais" %>
 <%@ page import     = "pos.domain.ProvinciaStore" %>
+<%@ page import     = "pos.domain.AplicacionStore" %>
 <%@ page import     = "pos.domain.Provincia" %>
+<%@ page import     = "pos.domain.Aplicacion" %>
 <%@ page import     = "pos.domain.Usuario" %>
 <%@ page import     = "pos.domain.SoStore" %>
 <%@ page import     = "pos.domain.SO" %>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Configura tu Perfil</title>
+<title>Nueva Aplicacion</title>
  <script language="JavaScript" src="js/funcionesComunes.js" type="text/javascript"></script>
 <script language="JavaScript" >
 			var css="css/estilos.css";
 		document.write("<link href='" + css + "' rel='stylesheet' type='text/css'>"); 
 		<%
-			//HttpSession session = request.getSession();
-			Boolean recomendado = (Boolean) session.getAttribute("haSidoRecomendado");
 			Usuario usuario = (Usuario)session.getAttribute("usuario");
 		%>
-
+		
+		function redirigir(){
+			window.location="aplicaciones.jsp";
+		}
 </script>
 </head>
 <body background="Imagenes/fondo.jpg">
@@ -54,13 +57,62 @@
 		</td>
 	</tr>
 </table>
-<div id="pestanas">
-   <ul>
-      <li><a href="encuesta.jsp">Encuestas</a></li>
-      <li class="activa"><a href="#">Enfrentamientos</a></li>
-      <li><a href="aplicaciones.jsp">Aplicaciones</a></li>
-      <li><a href="#">Proyectos</a></li>
-   </ul>
-</div>
+<form id="formulario" name="formulario" action="" method="POST">
+<table align="center" class="borde">
+	<tr>
+		<td width="100%" class="tabla_principal" align="center" colspan="2">
+			<strong>Aplicación</strong>
+		</td>
+	</tr>
+	<tr>
+		<td width="50%" class="datos_tabla" align="left">
+			Nombre:
+		</td>
+		<td width="50%" class="datos_tabla" align="left">
+			<input type="text" id="nombre" name="nombre" value="">
+		</td>
+	</tr>
+	<tr>
+		<td width="50%" class="datos_tabla" align="left">
+			Descripción:
+		</td>
+		<td width="50%" class="datos_tabla" align="left">
+			<textarea id="descripcion" name="descripcion"></textarea>
+		</td>
+	</tr>
+	<tr>
+		<td width="50%" class="datos_tabla" align="left">
+			Fecha de Publicación:
+		</td>
+		<td width="50%" class="datos_tabla" align="left">
+			<%= FuncionesImpl.formateoFecha(new Date()) %>
+		</td>
+	</tr>
+<!-- 	FALTA CREAR EL STORE DE PROYECTOS <tr> -->
+<!-- 		<td width="50%" class="datos_tabla" align="left"> -->
+<!-- 			Proyecto al que pertenece: -->
+<!-- 		</td> -->
+<%-- 		<% --%>
+<!-- 			ProyectoStore storeP =  -->
+<!-- 		%> -->
+<!-- 		<td width="50%" class="datos_tabla" align="left"> -->
+<%-- 			<%=api.getVotosEnContra() %> --%>
+<!-- 		</td> -->
+<!-- 	</tr> -->
+	<tr>
+		<td width="50%" class="datos_tabla" align="left">
+			Sitio de descarga:
+		</td>
+		<td width="50%" class="datos_tabla" align="left">
+			<input type="text" id="sitioWeb" name="sitioWeb" value="">
+		</td>
+	</tr>
+	<tr>
+		<td width="100%" align="center" class="datos_tabla" colspan="2">
+			<input type="button" id="atras" name="atras" value=" Atrás " onclick="javascript:redirigir()">
+		</td>
+	</tr>
+</table>
+</form>
 </body>
 </html>
