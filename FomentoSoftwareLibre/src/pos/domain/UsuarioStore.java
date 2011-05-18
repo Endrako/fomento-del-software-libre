@@ -47,5 +47,8 @@ public class UsuarioStore implements IUsuarioDAO {
 	public Usuario recuperarUsuarioByNick(String nick){
 		return userDAO.recuperarUsuarioByNick(nick);
 	}
-
+	
+	public void actualizaKarmaUsuario(String idUser, int karma){
+		userDAO.actualizaKarmaUsuario(idUser, karma);
+	}
 }

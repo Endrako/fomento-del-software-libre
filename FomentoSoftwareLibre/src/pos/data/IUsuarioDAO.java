@@ -13,5 +13,5 @@ public interface IUsuarioDAO {
 	public List<Usuario> recuperarTODOS();
 	public void borrarUsuario(String idUsuario);
 	public Usuario recuperarUsuarioByNick(String nick);
-	
+	public void actualizaKarmaUsuario(String idUser,int Karma);
 }

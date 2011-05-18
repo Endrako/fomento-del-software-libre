@@ -12,6 +12,7 @@
 <%@ page import     = "pos.domain.Provincia" %>
 <%@ page import     = "pos.domain.Aplicacion" %>
 <%@ page import     = "pos.domain.Usuario" %>
+<%@ page import     = "pos.domain.UsuarioStore" %>
 <%@ page import     = "pos.domain.SoStore" %>
 <%@ page import     = "pos.domain.SO" %>
 <html>
@@ -105,6 +106,17 @@
 			<input type="button" id="atras" name="atras" value=" Atrás " onclick="javascript:redirigir()">
 		</td>
 	</tr>
+	<%
+			UsuarioStore storeUser = new UsuarioStore();
+			List<Usuario> listaUSuario = storeUser.recuperarTODOS();
+			for ( Usuario userito : listaUSuario){
+	%>
+	<tr>
+		<td width="60%" align="left" class="datos_tabla">
+			<%=userito.getNombreUsuario() %>
+		</td>
+	</tr>
+	<%} %>
 </table>
 </form>
 </body>

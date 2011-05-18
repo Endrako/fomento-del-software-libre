@@ -86,7 +86,7 @@ public class JDBCUsuarioDAO implements IUsuarioDAO {
 	            u.setNumeroRecomendaciones(result.getInt("numeroRecomendaciones"));
 	            
 	            // Recuperamos el Perfil
-	            if ( result.getString("IDPerfil") != null || !"".equals(result.getString("IDPerfil")) ){
+	            if ( result.getString("IDPerfil") != null && !"".equals(result.getString("IDPerfil")) ){
 		            IPerfilDAO daoP = new JDBCPerfilDAO();
 		            u.setPerfil(daoP.recuperarPerfil(result.getString("IDPerfil")));
 	            }else{
@@ -132,7 +132,7 @@ public class JDBCUsuarioDAO implements IUsuarioDAO {
 	            u.setNumeroRecomendaciones(result.getInt("numeroRecomendaciones"));
 	            
 	            // Recuperamos el Perfil
-	            if ( result.getString(result.getString("IDPerfil")) != null || !"".equals(result.getString(result.getString("IDPerfil"))) ){
+	            if ( result.getString("IDPerfil") != null && !"".equals(result.getString("IDPerfil")) ){
 		            IPerfilDAO daoP = new JDBCPerfilDAO();
 		            u.setPerfil(daoP.recuperarPerfil(result.getString("IDPerfil")));
 	            }else{
@@ -209,7 +209,7 @@ public class JDBCUsuarioDAO implements IUsuarioDAO {
 		            u.setNumeroRecomendaciones(result.getInt("numeroRecomendaciones"));
 		            
 		            // Recuperamos el Perfil
-		            if ( result.getString(result.getString("IDPerfil")) != null || !"".equals(result.getString(result.getString("IDPerfil"))) ){
+		            if ( result.getString("IDPerfil") != null && !"".equals(result.getString("IDPerfil")) ){
 			            IPerfilDAO daoP = new JDBCPerfilDAO();
 			            u.setPerfil(daoP.recuperarPerfil(result.getString("IDPerfil")));
 		            }else{
@@ -314,7 +314,7 @@ public class JDBCUsuarioDAO implements IUsuarioDAO {
 	            u.setNumeroRecomendaciones(result.getInt("numeroRecomendaciones"));
 	            
 	            // Recuperamos el Perfil
-	            if ( result.getString(result.getString("IDPerfil")) != null || !"".equals(result.getString(result.getString("IDPerfil"))) ){
+	            if ( result.getString("IDPerfil") != null && !"".equals(result.getString(result.getString("IDPerfil"))) ){
 		            IPerfilDAO daoP = new JDBCPerfilDAO();
 		            u.setPerfil(daoP.recuperarPerfil(result.getString("IDPerfil")));
 	            }else{
@@ -340,4 +340,28 @@ public class JDBCUsuarioDAO implements IUsuarioDAO {
 	        }
 	        return u;
 	} 
+	
+	public void actualizaKarmaUsuario(String idUser, int karma){
+		String sql = "UPDATE usuarios SET karma = ? WHERE (IDUsuario = ?)";
+		PreparedStatement stm = null;
+		try {
+			stm = conn.prepareStatement(sql);
+			stm.setInt(1, karma);
+			stm.setString(2, idUser);
+			stm.executeUpdate();
+
+		} catch (SQLException e) {
+			System.out.println("Message: " + e.getMessage());
+			System.out.println("SQLState: " + e.getSQLState());
+			System.out.println("ErrorCode: " + e.getErrorCode());
+		} finally {
+			try {
+				if (stm != null) {
+					stm.close();
+				}
+			} catch (SQLException e) {
+
+			}
+		}
+	}
 }
