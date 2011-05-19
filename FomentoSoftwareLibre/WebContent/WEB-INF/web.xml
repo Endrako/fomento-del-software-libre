@@ -69,4 +69,14 @@
     <servlet-name>Enfrentamiento</servlet-name>
     <url-pattern>/Enfrentamiento</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>InsertarAplicacion</display-name>
+    <servlet-name>InsertarAplicacion</servlet-name>
+    <servlet-class>servlets.InsertarAplicacion</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>InsertarAplicacion</servlet-name>
+    <url-pattern>/InsertarAplicacion</url-pattern>
+  </servlet-mapping>
 </web-app>

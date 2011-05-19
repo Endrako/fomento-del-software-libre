@@ -29,6 +29,12 @@
 		function redirigir(){
 			window.location="aplicaciones.jsp";
 		}
+		
+		function insertarA(){
+			alert("Debes saber que insertar una nueva aplicación te dará 20 puntos de Karma!! además de 5 puntos más cada vez que la voten positivamente.")
+			document.formulario.action = "FrontController?accion=insertarAplicacion";
+			document.formulario.submit();
+		}
 </script>
 </head>
 <body background="Imagenes/fondo.jpg">
@@ -108,7 +114,10 @@
 		</td>
 	</tr>
 	<tr>
-		<td width="100%" align="center" class="datos_tabla" colspan="2">
+		<td width="100%" align="center" class="datos_tabla">
+			<input type="button" id="aplicacion" name="aplicacion" value=" Insertar Aplicacion " onclick="javascript:insertarA()">
+		</td>
+		<td width="100%" align="center" class="datos_tabla">
 			<input type="button" id="atras" name="atras" value=" Atrás " onclick="javascript:redirigir()">
 		</td>
 	</tr>

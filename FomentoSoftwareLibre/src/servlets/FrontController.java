@@ -61,6 +61,8 @@ public class FrontController extends HttpServlet {
 			nuevaAplicacion(request,response);
 		}else if ( accion.equals("nuevoPerfil") ){
 			guardarNuevoPerfil(request,response);
+		}else if ( accion.equals("insertarAplicacion") ){
+			insertarApliacion(request,response);
 		}else if ( accion.equals("votarAFavor") ){
 			votarAFavor(request,response);
 		}else if ( accion.equals("votarEnContra") ){
@@ -73,6 +75,11 @@ public class FrontController extends HttpServlet {
 	private void recuperarPerfilAplicacion(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		request.getRequestDispatcher("descripcionDetalladaAplicacion.jsp").include(request,response);
+	}
+	
+	private void insertarApliacion(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		request.getRequestDispatcher("insertarAplicacion").include(request,response);
 	}
 	
 	private void nuevaAplicacion(HttpServletRequest request,

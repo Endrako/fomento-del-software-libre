@@ -55,7 +55,7 @@ public class NuevoUsuario extends HttpServlet {
 			
 			// Comprobamos que no exista el usuario. Si es vacio es que no existe ese usuario
 			Usuario usuarioNuevo = store.recuperarUsuarioByNick(nick);
-			if ( "".equals(usuarioNuevo.getIdUser()) ){
+			if ( usuarioNuevo.getIdUser() == null ){
 				user.setNombreUsuario(nick);
 				user.setContrasena(password);
 				user.setEmail(email);

@@ -36,7 +36,7 @@
 			window.location="index2.jsp";
 		}
 		
-		function nuevaAplicacion(){
+		function nuevaA(){
 			document.formulario.action = "FrontController?accion=nuevaAplicacion";
 			document.formulario.submit();
 		}
@@ -100,7 +100,7 @@
 	<%} %>
 	<tr>
 		<td width="60%" align="left" class="datos_tabla">
-			<input type="button" id="nuevaAplicacion" name="nuevaAplicacion" value=" ¿ Nueva aplicación ?  " onclick="javascript:nuevaAplicacion()">
+			<input type="button" id="nuevaAplicacion" name="nuevaAplicacion" value=" Nueva aplicación " onclick="javascript:nuevaA();">
 		</td>
 		<td width="40%" align="left" class="datos_tabla">
 			<input type="button" id="atras" name="atras" value=" Atrás " onclick="javascript:redirigir()">
