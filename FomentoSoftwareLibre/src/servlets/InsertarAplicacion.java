@@ -1,7 +1,9 @@
 package servlets;
 
 import java.io.IOException;
-import java.util.Date;
+import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -12,6 +14,11 @@ import javax.servlet.http.HttpSession;
 import pos.domain.Aplicacion;
 import pos.domain.AplicacionImpl;
 import pos.domain.AplicacionStore;
+import pos.domain.Proyecto;
+import pos.domain.ProyectoImpl;
+import pos.domain.ProyectoStore;
+import pos.domain.Tag;
+import pos.domain.TagStore;
 import pos.domain.Usuario;
 import pos.domain.UsuarioStore;
 
@@ -41,35 +48,37 @@ public class InsertarAplicacion extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
+		List<Tag> listaTags = new ArrayList<Tag>();
 		// recuperamos sesion
 		HttpSession sesion = request.getSession();
 		
 		// recuperamos parametros del formulario
 		String nombreAplicacion = request.getParameter("nombre");
 		String descripcion = request.getParameter("descripcion");
-		Date fechaPublicacion = new Date();
+		java.util.Date today = new java.util.Date();
+		java.sql.Date fechaPublicacion = new java.sql.Date(today.getTime());
 		String sitioWeb = request.getParameter("sitioWeb");
+		
+		// Creamos BO de tags para recuperarlos
+		TagStore storeT = TagStore.getInstance();
+		List<Tag> listaRecuperadaTags = storeT.getTags();
+		for ( Tag t : listaRecuperadaTags ){
+			String aux = request.getParameter(t.getIdTag());
+			if ( aux != null ){
+				Tag taux = storeT.getTagByID(aux);
+				listaTags.add(taux);
+			}
+		}
 		
 		// cogemos usuario de la sesion y actualizamos su karma por insertar la aplicacion 
 		Usuario user = (Usuario)sesion.getAttribute("usuario");
 		UsuarioStore storeUser = new UsuarioStore();
-		storeUser.actualizaKarmaUsuario(user.getIdUser(), 20);
+		storeUser.actualizaKarmaUsuario(user, 20);
 		
 		// creamos BO y TO
 		AplicacionStore storeAplicacion = AplicacionStore.getInstance();
-		Aplicacion api = new AplicacionImpl();
-		
-		//Introducimos nuevos parametros recogidos
-		api.setNombre(nombreAplicacion);
-		api.setDescripcion(descripcion);
-		api.setVotosEnContra(0);
-		api.setVotosAFavor(0);
-		api.setURLWeb(sitioWeb);
-		api.setFechaPublicacion(fechaPublicacion);
-		
-		
 		// insertarmos Aplicacion en bd
+		boolean seInserta = storeAplicacion.crearAplicacion(nombreAplicacion, descripcion, fechaPublicacion, sitioWeb, listaTags, null, user);
+		request.getRequestDispatcher("aplicaciones.jsp").include(request,response);
 	}
-
 }

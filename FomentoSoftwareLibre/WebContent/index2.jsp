@@ -46,10 +46,13 @@
 <!--  FIN TABLA CONTENEDORA DE TODAS LAS JSP / HTML -->
 <table border="0">
 	<tr>
-		<td width="50%" class="datos_tabla" align="left">
+		<td width="30%" class="datos_tabla" align="left">
 			Bienvenido <a href="ActualizarPerfil.jsp"><%=usuario.getNombreUsuario()%></a>, Hoy es <%=FuncionesImpl.formateoFecha(new Date())%>
 		</td>
-		<td width="50%" class="datos_tabla" align="left">
+		<td width="30%" class="datos_tabla" align="left">
+			Karma acumulado, <%=usuario.getKarma() %>
+		</td>
+		<td width="40%" class="datos_tabla" align="right">
 			<a href="FrontController?accion=logout">Salir</a>
 		</td>
 	</tr>

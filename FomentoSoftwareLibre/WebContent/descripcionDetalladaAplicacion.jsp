@@ -55,16 +55,16 @@
 
 <body background="Imagenes/fondo.jpg">
 <!--  INICIO TABLA CONTENEDORA DE TODAS LAS JSP / HTML -->
-<table align="center">
+<table border="0">
 	<tr>
-		<td width="15%" align="left">
-			<img src="Imagenes/tux.jpg">
+		<td width="30%" class="datos_tabla" align="left">
+			Bienvenido <a href="ActualizarPerfil.jsp"><%=usuario.getNombreUsuario()%></a>, Hoy es <%=FuncionesImpl.formateoFecha(new Date())%>
 		</td>
-		<td class="titular" align="center" width="70%">
-			<strong>Web Del Fomento Del Sofware Libre</strong>
+		<td width="30%" class="datos_tabla" align="left">
+			Karma acumulado, <%=usuario.getKarma() %>
 		</td>
-		<td width="15%" align="right">
-			<img src="Imagenes/tux.jpg">
+		<td width="40%" class="datos_tabla" align="right">
+			<a href="FrontController?accion=logout">Salir</a>
 		</td>
 	</tr>
 </table>

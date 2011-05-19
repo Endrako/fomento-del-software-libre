@@ -79,7 +79,7 @@ public class FrontController extends HttpServlet {
 	
 	private void insertarApliacion(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("insertarAplicacion").include(request,response);
+		request.getRequestDispatcher("InsertarAplicacion").include(request,response);
 	}
 	
 	private void nuevaAplicacion(HttpServletRequest request,

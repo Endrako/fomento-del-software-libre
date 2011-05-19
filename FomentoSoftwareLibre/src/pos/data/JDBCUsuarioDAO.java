@@ -341,13 +341,13 @@ public class JDBCUsuarioDAO implements IUsuarioDAO {
 	        return u;
 	} 
 	
-	public void actualizaKarmaUsuario(String idUser, int karma){
+	public void actualizaKarmaUsuario(Usuario user, int karma){
 		String sql = "UPDATE usuarios SET karma = ? WHERE (IDUsuario = ?)";
 		PreparedStatement stm = null;
 		try {
 			stm = conn.prepareStatement(sql);
-			stm.setInt(1, karma);
-			stm.setString(2, idUser);
+			stm.setInt(1,user.getKarma() + karma );
+			stm.setString(2, user.getIdUser());
 			stm.executeUpdate();
 
 		} catch (SQLException e) {

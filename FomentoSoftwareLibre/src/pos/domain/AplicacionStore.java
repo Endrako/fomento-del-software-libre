@@ -46,6 +46,8 @@ public class AplicacionStore {
 		aplicacion.setTags(tags);
 		aplicacion.setProyecto(proyecto);
 		aplicacion.setUsuarioCreador(usuario);
+		aplicacion.setVotosAFavor(0);
+		aplicacion.setVotosEnContra(0);
 		if(!(aplicaciones.contains(aplicacion))){
 			(new JDBCAplicacionDAO()).insertAplicacion(aplicacion, usuario);
 		}else{

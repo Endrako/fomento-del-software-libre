@@ -9,6 +9,8 @@
 <%@ page import     = "pos.domain.Pais" %>
 <%@ page import     = "pos.domain.ProvinciaStore" %>
 <%@ page import     = "pos.domain.AplicacionStore" %>
+<%@ page import     = "pos.domain.TagStore" %>
+<%@ page import     = "pos.domain.Tag" %>
 <%@ page import     = "pos.domain.Provincia" %>
 <%@ page import     = "pos.domain.Aplicacion" %>
 <%@ page import     = "pos.domain.Usuario" %>
@@ -113,11 +115,25 @@
 			<input type="text" id="sitioWeb" name="sitioWeb" value="">
 		</td>
 	</tr>
+	<%
+		TagStore storeTag = TagStore.getInstance();
+		List<Tag> listaTags = storeTag.getTags();
+		for ( Tag t: listaTags ){
+	%>
 	<tr>
-		<td width="100%" align="center" class="datos_tabla">
+		<td width="50%" class="datos_tabla" align="left">
+			<input type="checkbox" id="<%=t.getIdTag()%>" name="<%=t.getIdTag()%>" value="<%=t.getIdTag() %>"><%=t.getNombre()%>
+		</td>
+		<td width="50%" class="datos_tabla" align="left">
+			&nbsp;
+		</td>
+	</tr>
+	<%} %>
+	<tr>
+		<td width="50%" align="center" class="datos_tabla">
 			<input type="button" id="aplicacion" name="aplicacion" value=" Insertar Aplicacion " onclick="javascript:insertarA()">
 		</td>
-		<td width="100%" align="center" class="datos_tabla">
+		<td width="50%" align="center" class="datos_tabla">
 			<input type="button" id="atras" name="atras" value=" Atrás " onclick="javascript:redirigir()">
 		</td>
 	</tr>
