@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -130,6 +131,8 @@ public class JDBCProyectoDAO implements IProyectoDAO {
 	 * Método para insertar un nuevo proyecto en la tabla
 	 */
 	public void crearProyecto(Proyecto proyecto) {
+		
+		corrige los date tal y como lo pusiste en JDBCAplicacionDAO!!
 
 		Connection con = (Connection) ConnectionManager.getInstance()
 				.checkOut();
@@ -138,7 +141,7 @@ public class JDBCProyectoDAO implements IProyectoDAO {
 
 		String IDProyecto = UIDGenerator.getInstance().getKey();
 
-		String sql = "INSERT INTO proyecto(IDProyecto,nombre,descripcion,fechaInicio,fechaFin,"
+		String sql = "INSERT INTO proyectos (IDProyecto,nombre,descripcion,fechaInicio,fechaFin,"
 				+ "disponible,nivelKarma) VALUES (?,?,?,?,?,?,?)";
 
 		try {
@@ -151,6 +154,9 @@ public class JDBCProyectoDAO implements IProyectoDAO {
 			stmt.setString(5, proyecto.getFechaFin().toString());
 			stmt.setString(6, proyecto.getDisponibilidad().toString());
 			stmt.setString(7, proyecto.getNivelKarma().toString());
+			
+			// Tendría que tratar aquí el tema de que un proyecto crea la aplicación vinculada directamente.
+			
 
 			stmt.executeUpdate();
 
@@ -179,7 +185,7 @@ public class JDBCProyectoDAO implements IProyectoDAO {
 	 * Método para obtener un proyecto concreto por su identificador de
 	 * referencia
 	 */
-	public Proyecto obtenerProyectoPorID(Proyecto p) {
+	public Proyecto obtenerProyectoPorID(String idProyecto) {
 
 		Connection con = (Connection) ConnectionManager.getInstance()
 				.checkOut();
@@ -191,18 +197,18 @@ public class JDBCProyectoDAO implements IProyectoDAO {
 
 		// Consulta para seleccionar el proyecto
 
-		String sql = "SELECT * FROM proyecto p WHERE (p.IDProyecto = ?)";
+		String sql = "SELECT * FROM proyectos p WHERE (p.IDProyecto = ?)";
 
 		try {
 			// Ejecución de consulta
 			stmt = con.prepareStatement(sql);
-			stmt.setString(1, p.getIDProyecto());
+			stmt.setString(1, "IDProyecto");
 			result = stmt.executeQuery();
 
 			// Tratamiento de consulta
 			result.next();
 
-			pRes.setIDProyecto(p.getIDProyecto());
+			pRes.setIDProyecto("IDProyecto");
 			pRes.setNombreProyecto(result.getString("nombre"));
 			pRes.setDescripcionProyecto(result.getString("descripcion"));
 			pRes.setFechaInicio(result.getDate("fechaInicio"));
@@ -212,7 +218,7 @@ public class JDBCProyectoDAO implements IProyectoDAO {
 
 			// llamo al método creado para obtener la lista de aplicaciones
 			// vinculadas al proyecto
-			pRes.setAplicacion(obtenerAplicacionDeProyecto(p));
+			pRes.setAplicacion(obtenerAplicacionDeProyecto(pRes));
 
 		} catch (SQLException e) {
 			System.out.println("Message: " + e.getMessage());
