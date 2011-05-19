@@ -12,9 +12,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Crea un enfrentamiento</title>
-<% 
-	AplicacionStore aplSt = AplicacionStore.getInstance();
-	List<Aplicacion> listAplis = aplSt.getAplicationByTag((Tag)request.getAttribute("tags"));%>
+
 	
 <script type="text/javascript">
 function validar(nombre, maximoCheckbox){
@@ -81,7 +79,7 @@ function validar(nombre, maximoCheckbox){
 		<td width="15%" align="left">
 		</td>
 		<td class="titular" align="center" width="70%">
-			<% Tag tag = (Tag)request.getAttribute("tags");%>
+			<% Tag tag = (Tag)request.getSession().getAttribute("tags");%>
 			<strong><%=tag.getNombre() %></strong>
 			
 		</td>
@@ -104,7 +102,9 @@ function validar(nombre, maximoCheckbox){
 </table>
 
 <form id="formularioTags" name="formularioAplicaciones" action="FrontController?accion=AplicacionesEnfrentamiento" method="post" onsubmit="return validar(this,2)">
-
+<% 
+	AplicacionStore aplSt = AplicacionStore.getInstance();
+	List<Aplicacion> listAplis = aplSt.getAplicationByTag((Tag)request.getSession().getAttribute("tags"));%>
 	<table align="center">
 	
 	<%if(listAplis.size()<2){%>

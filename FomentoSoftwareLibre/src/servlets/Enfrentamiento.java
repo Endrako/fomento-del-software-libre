@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import pos.data.JDBCUsuarioDAO;
 import pos.domain.Aplicacion;
 import pos.domain.AplicacionStore;
 import pos.domain.EnfrentamientoStore;
@@ -49,9 +50,10 @@ public class Enfrentamiento extends HttpServlet {
 		if(request.getAttribute("evento").equals("selectTags")){
 			TagStore tagSt = TagStore.getInstance();
 			Tag tag = null;
-			
-			for(Tag t : tagSt.getTags()){
-				String par = request.getParameter(t.getIdTag());
+					
+			String par = null;
+			for(Tag t : tagSt.getTags()){				
+				par = request.getParameter(t.getIdTag());
 				System.out.println(par);
 				if(par != null){
 					if(!(par == "")){
@@ -60,15 +62,19 @@ public class Enfrentamiento extends HttpServlet {
 					}
 				}
 			}
-			request.setAttribute("tags", tag);
-			request.getRequestDispatcher("crearEnfrentamientoSelectAplicaciones.jsp").include(request, response);	
-		
+			//Validacion por parte del servidor: hay 1 tag?
+			if((par ==null) || (par =="")){				
+				request.getRequestDispatcher("crearEnfrentamientoSelectTag.jsp").include(request, response);	
+			}else{
+				request.getSession().setAttribute("tags", tag);
+				request.getRequestDispatcher("crearEnfrentamientoSelectAplicaciones.jsp").include(request, response);	
+			}
 		}else if(request.getAttribute("evento").equals("selectAplicaciones")){
+			
 			AplicacionStore aplSt = AplicacionStore.getInstance();
 			EnfrentamientoStore enfSt = EnfrentamientoStore.getInstance();
 			
 			List<Aplicacion> aplicaciones = new ArrayList<Aplicacion>();
-			//AQUI PIFIA mete nulos
 			for(Aplicacion ap : aplSt.getAplicaciones()){
 				String par = request.getParameter(ap.getIDAplicacion());
 				System.out.println(par);
@@ -77,30 +83,30 @@ public class Enfrentamiento extends HttpServlet {
 						aplicaciones.add(ap);
 					}					
 				}
-			}	
-			System.out.println("tamaño de aplisStore: "+aplSt.getAplicaciones().size());
-
-
-			//TODO sumar karma? agregar IDUsuario a tabla enfrentamientos
-			// como se yo el usuario que está trasteando?
-			Aplicacion apli1 = aplicaciones.get(0);
-			Aplicacion apli2 = aplicaciones.get(1);
-			String descripcion = request.getParameter("descripcionEnfrentamiento");
-			
-			//El enfrentamiento finaliza tras una semana
-			java.util.Date today = new java.util.Date();
-			java.sql.Date fechaInicio = new java.sql.Date(today.getTime());
-			Usuario usuario = (Usuario) request.getSession().getAttribute("user");
-			
-			
-			Date fechaFin = fechaMas(fechaInicio,7);
-			
-			boolean noExiste = enfSt.crearEnfrentamiento(apli1,apli2,descripcion,fechaInicio,fechaFin,usuario);
-			if(noExiste == true){
-				request.getRequestDispatcher("indexEnfrentamientos.jsp");				
+			}
+			//Validacion por parte del servidor:hay 2 aplicaciones?
+			if(aplicaciones.size()!=2){
+				request.getRequestDispatcher("crearEnfrentamientoSelectAplicaciones.jsp").include(request, response);
 			}else{
-				request.setAttribute("aplicaciones", aplicaciones);
-				request.getRequestDispatcher("crearEnfrentamientoError.jsp").include(request, response);
+				Usuario usuario = (Usuario) request.getSession().getAttribute("user");
+				
+				Aplicacion apli1 = aplicaciones.get(0);
+				Aplicacion apli2 = aplicaciones.get(1);
+				String descripcion = request.getParameter("descripcionEnfrentamiento");
+				
+				//El enfrentamiento finaliza tras una semana
+				java.util.Date today = new java.util.Date();
+				java.sql.Date hoy = new java.sql.Date(today.getTime());				
+				Date fechaFin = fechaMas(hoy,7);
+				
+				boolean noExiste = enfSt.crearEnfrentamiento(apli1,apli2,descripcion,hoy,fechaFin,usuario);
+				if(noExiste == true){
+					request.getRequestDispatcher("indexEnfrentamientos.jsp");	
+					(new JDBCUsuarioDAO()).actualizaKarmaUsuario(usuario, 100);
+				}else{
+					request.getSession().setAttribute("aplicaciones", aplicaciones);
+					request.getRequestDispatcher("crearEnfrentamientoError.jsp").include(request, response);
+				}				
 			}
 			
 		}

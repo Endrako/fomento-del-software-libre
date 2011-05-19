@@ -46,7 +46,7 @@
 	<tr>
 		<td width="15%" align="left">
 		<%List<Aplicacion> aplis = new ArrayList<Aplicacion>();
-		aplis = (List<Aplicacion>)request.getAttribute("aplicaciones");%>
+		aplis = (List<Aplicacion>)request.getSession().getAttribute("aplicaciones");%>
 		<%= aplis.get(0).getNombre() %>
 		</td>
 		<td class="titular" align="center" width="70%">
@@ -54,6 +54,17 @@
 		</td>
 		<td width="15%" align="right">
 		<%= aplis.get(1).getNombre() %>
+		</td>
+	</tr>
+	<tr>
+		<td width="15%" align="left">
+		</td>
+		<td class="titular" align="center" width="70%">
+			<% Tag tag = (Tag)request.getSession().getAttribute("tags");%>
+			<strong><%=tag.getNombre() %></strong>
+			
+		</td>
+		<td width="15%" align="right">
 		</td>
 	</tr>
 	
