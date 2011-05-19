@@ -11,7 +11,10 @@ import com.mysql.jdbc.Connection;
 
 import pos.domain.Aplicacion;
 import pos.domain.AplicacionImpl;
+import pos.domain.Proyecto;
 import pos.domain.Tag;
+import pos.domain.Usuario;
+import pos.utils.UIDGenerator;
 
 public class JDBCAplicacionDAO implements IAplicacionDAO {
 
@@ -41,8 +44,11 @@ public class JDBCAplicacionDAO implements IAplicacionDAO {
 				Integer votosEnContra = result.getInt("numeroVotosEnContra");
 				String IDProyecto = result.getString("IDProyecto");
 				List<Tag> tags = this.getAplicationTags(result.getString("IDAplicacion"));
+				String idUsuarioCreador = result.getString("idUsuarioCreador");
+				Proyecto proyecto = (new JDBCProyectoDAO()).obtenerProyectoPorID(IDProyecto);
+				Usuario usuarioCreador = (new JDBCUsuarioDAO()).recuperarUsuarioByIdUsuario(idUsuarioCreador);
 				
-				aplicacion = new AplicacionImpl(IDAplicacion,nombre,descripcion,fechaPublicacion,URLWeb,votosAFavor,votosEnContra,tags,IDProyecto);
+				aplicacion = new AplicacionImpl(IDAplicacion,nombre,descripcion,fechaPublicacion,URLWeb,votosAFavor,votosEnContra,tags,proyecto, usuarioCreador);
 				listaAplicaciones.add(aplicacion);
 			}
 		} catch (SQLException e) {
@@ -64,21 +70,26 @@ public class JDBCAplicacionDAO implements IAplicacionDAO {
 	}
 
 	@Override
-	public void insertAplicacion(Aplicacion aplicacion) {
+	public void insertAplicacion(Aplicacion aplicacion, Usuario usuario) {
 		Connection con = (Connection) ConnectionManager.getInstance()
 				.checkOut();
 
 		List<Tag> tags = aplicacion.getTags();
 		PreparedStatement stm = null;
-		String sql = "INSERT INTO aplicaciones(nombre,descripcion,fechaPublicacion,URLWeb,numeroVotosAFavor,numeroVotosEnContra) VALUES (?,?,?,?,?,?)";
+		String IDAplicacion = UIDGenerator.getInstance().getKey();
+		String IDUsuario = usuario.getIdUser();
+		String sql = "INSERT INTO aplicaciones(IDAplicacion,idUsuarioCreador,nombre,descripcion,fechaPublicacion,URLWeb,numeroVotosAFavor,numeroVotosEnContra) VALUES (?,?,?,?,?,?,?,?)";
 		try {
+			
 			stm = con.prepareStatement(sql);
-			stm.setString(1, aplicacion.getNombre());
-			stm.setString(2, aplicacion.getDescripcion());
-			stm.setDate(3, (java.sql.Date) aplicacion.getFechaPublicacion());
-			stm.setString(4, aplicacion.getURLWeb());
-			stm.setInt(5, aplicacion.getVotosAFavor());
-			stm.setInt(6, aplicacion.getVotosEnContra());
+			stm.setString(1, IDAplicacion);
+			stm.setString(2, IDUsuario);
+			stm.setString(3, aplicacion.getNombre());
+			stm.setString(4, aplicacion.getDescripcion());
+			stm.setDate(5, (java.sql.Date) aplicacion.getFechaPublicacion());
+			stm.setString(6, aplicacion.getURLWeb());
+			stm.setInt(7, aplicacion.getVotosAFavor());
+			stm.setInt(8, aplicacion.getVotosEnContra());
 
 			stm.executeUpdate();
 			for (Tag tag : tags) {
@@ -125,8 +136,11 @@ public class JDBCAplicacionDAO implements IAplicacionDAO {
 				Integer votosEnContra = result.getInt("numeroVotosEnContra");
 				String IDProyecto = result.getString("IDProyecto");
 				List<Tag> tags = this.getAplicationTags(result.getString("IDAplicacion"));
+				String idUsuarioCreador = result.getString("idUsuarioCreador");
+				Proyecto proyecto = (new JDBCProyectoDAO()).selectProyectByID(IDProyecto);
+				Usuario usuarioCreador = (new JDBCUsuarioDAO()).recuperarUsuarioByIdUsuario(idUsuarioCreador);
 				
-				aplicacion = new AplicacionImpl(IDAplicacion,nombre,descripcion,fechaPublicacion,URLWeb,votosAFavor,votosEnContra,tags,IDProyecto);
+				aplicacion = new AplicacionImpl(IDAplicacion,nombre,descripcion,fechaPublicacion,URLWeb,votosAFavor,votosEnContra,tags,proyecto,usuarioCreador);
 			}
 		} catch (SQLException e) {
 			System.out.println("SQLMessage: " + e.getMessage());
@@ -171,8 +185,10 @@ public class JDBCAplicacionDAO implements IAplicacionDAO {
 				Integer votosEnContra = result.getInt("numeroVotosEnContra");
 				String IDProyecto = result.getString("IDProyecto");
 				List<Tag> tags = this.getAplicationTags(result.getString("IDAplicacion"));
-				
-				aplicacion = new AplicacionImpl(IDAplicacion,nombre,descripcion,fechaPublicacion,URLWeb,votosAFavor,votosEnContra,tags,IDProyecto);
+				String idUsuarioCreador = result.getString("idUsuarioCreador");
+				Proyecto proyecto = (new JDBCProyectoDAO()).selectProyectByID(IDProyecto);
+				Usuario usuarioCreador = (new JDBCUsuarioDAO()).recuperarUsuarioByIdUsuario(idUsuarioCreador);
+				aplicacion = new AplicacionImpl(IDAplicacion,nombre,descripcion,fechaPublicacion,URLWeb,votosAFavor,votosEnContra,tags,proyecto,usuarioCreador);
 			}
 		} catch (SQLException e) {
 			System.out.println("SQLMessage: " + e.getMessage());

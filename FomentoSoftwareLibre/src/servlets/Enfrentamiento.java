@@ -5,7 +5,6 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-import java.util.LinkedList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -18,6 +17,7 @@ import pos.domain.AplicacionStore;
 import pos.domain.EnfrentamientoStore;
 import pos.domain.Tag;
 import pos.domain.TagStore;
+import pos.domain.Usuario;
 
 /**
  * Servlet implementation class Enfrentamiento
@@ -90,12 +90,12 @@ public class Enfrentamiento extends HttpServlet {
 			//El enfrentamiento finaliza tras una semana
 			java.util.Date today = new java.util.Date();
 			java.sql.Date fechaInicio = new java.sql.Date(today.getTime());
-			
+			Usuario usuario = (Usuario) request.getSession().getAttribute("user");
 			
 			
 			Date fechaFin = fechaMas(fechaInicio,7);
 			
-			boolean noExiste = enfSt.crearEnfrentamiento(apli1,apli2,descripcion,fechaInicio,fechaFin);
+			boolean noExiste = enfSt.crearEnfrentamiento(apli1,apli2,descripcion,fechaInicio,fechaFin,usuario);
 			if(noExiste == true){
 				request.getRequestDispatcher("indexEnfrentamientos.jsp");				
 			}else{

@@ -1,7 +1,6 @@
 package pos.data;
 
 import java.util.List;
-import com.mysql.jdbc.Connection;
 
 import pos.domain.Aplicacion;
 import pos.domain.Enfrentamiento;
@@ -15,7 +14,7 @@ public interface IEnfrentamientoDAO {
 	public List<Enfrentamiento> selectEnfrentamientoByAply(String IDAply);
 	public List<Enfrentamiento> selectEnfrentamientosAcept();
 	public List<Enfrentamiento> selectEnfrentamientosNonAcept();
-	public void insertEnfrentamiento(Enfrentamiento enfrentamiento);
+	public void insertEnfrentamiento(Enfrentamiento enfrentamiento,Usuario usuario);
 	public void deleteEnfrentamiento(Enfrentamiento enfrentamiento);
 	public void acceptEnfrentamiento(String IDEnfrentamiento);
 	public Enfrentamiento getEnfrentamientoByAplications(Aplicacion aply1, Aplicacion aply2);

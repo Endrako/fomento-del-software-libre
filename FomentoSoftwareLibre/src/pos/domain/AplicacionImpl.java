@@ -12,9 +12,18 @@ public class AplicacionImpl implements Aplicacion {
 	private Integer votosAFavor;
 	private Integer votosEnContra;
 	private List<Tag> tags;
-	private String IDProyecto; 
+	private Proyecto proyecto; //Aqui trabajamos on objetos, no con IDs
+	private Usuario usuarioCreador;
+	//A ver tios, que estoy empezando a cabrearme. HACED UPDATE COÑO
+	//Y si me borrais el constructor, ponedme POR QUE lo habeis borrado, hostia, 
+	//que me cascan las cosas porque parece que pasais del tema, joder
+	//Que luego se me echa en cara a mi que no informo
 	
-	public AplicacionImpl(String IDAplicacion, String nombre, String descripcion, Date fechaPublicacion, String URLWeb, Integer votosAFavor, Integer votosEnContra, List<Tag> listaTags,String IDProyecto){
+	public AplicacionImpl(){
+		//constructor vacio para aquel que le guste
+	}
+		
+	public AplicacionImpl(String IDAplicacion, String nombre, String descripcion, Date fechaPublicacion, String URLWeb, Integer votosAFavor, Integer votosEnContra, List<Tag> listaTags,Proyecto proyecto, Usuario usuarioCreador){
 		this.IDAplicacion = IDAplicacion;
 		this.nombre = nombre;
 		this.descripcion = descripcion;
@@ -23,7 +32,8 @@ public class AplicacionImpl implements Aplicacion {
 		this.votosAFavor = votosAFavor;
 		this.votosEnContra = votosEnContra;
 		this.tags = listaTags;
-		this.IDProyecto = IDProyecto;
+		this.proyecto = proyecto;
+		this.usuarioCreador = usuarioCreador;
 	}
 	
 	public AplicacionImpl(){
@@ -115,11 +125,11 @@ public class AplicacionImpl implements Aplicacion {
 		this.tags=tags;
 		
 	}
-	public String getIDProyecto(){
-		return this.IDProyecto;
+	public Proyecto getProyecto(){
+		return this.proyecto;
 	}
-	public void setIDProyecto(String IDProyecto){
-		this.IDProyecto=IDProyecto;
+	public void setProyecto(Proyecto proyecto){
+		this.proyecto=proyecto;
 	}
 	
 	public boolean equals(Object o){
@@ -131,6 +141,14 @@ public class AplicacionImpl implements Aplicacion {
 			}
 		}
 		return res;
+	}
+	@Override
+	public Usuario getUsuarioCreador() {
+		return usuarioCreador;
+	}
+	@Override
+	public void setUsuarioCreador(Usuario usuario) {
+		this.usuarioCreador = usuario;
 	}
 
 }

@@ -325,11 +325,11 @@ public class JDBCEnfrentamientoDAO implements IEnfrentamientoDAO {
 	}
 
 	@Override
-	public void insertEnfrentamiento(Enfrentamiento enfrentamiento) {
+	public void insertEnfrentamiento(Enfrentamiento enfrentamiento, Usuario usuario) {
 		Connection con = (Connection) ConnectionManager.getInstance()
 				.checkOut();
 
-		String sql = "INSERT INTO enfrentamientos (IDEnfrentamiento,IDAplicacion1,IDAplicacion2,descripcion,votosApp1,votosApp2,fechaCreacion,fechaFin,aceptado) VALUES (?,?,?,?,?,?,?,?,?) ";
+		String sql = "INSERT INTO enfrentamientos (IDEnfrentamiento,IDAplicacion1,IDAplicacion2,descripcion,votosApp1,votosApp2,fechaCreacion,fechaFin,aceptado,IDUsuario,finalizado) VALUES (?,?,?,?,?,?,?,?,?,?,?) ";
 		PreparedStatement stm = null;
 
 		String IDEnfrentamiento = UIDGenerator.getInstance().getKey();
@@ -354,6 +354,8 @@ public class JDBCEnfrentamientoDAO implements IEnfrentamientoDAO {
 			stm.setDate(7, (java.sql.Date) fechaCreacion);
 			stm.setDate(8, (java.sql.Date) fechaFin);
 			stm.setInt(9, 0);//por defecto, aceptado = 0
+			stm.setString(10,usuario.getIdUser());
+			stm.setInt(11, 0);//por defecto, finalizado = 0
 
 			stm.executeUpdate();
 		} catch (SQLException e) {

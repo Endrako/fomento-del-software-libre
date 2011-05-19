@@ -4,7 +4,6 @@ import java.util.Date;
 import java.util.List;
 
 import pos.data.JDBCEnfrentamientoDAO;
-import pos.data.JDBCUsuarioDAO;
 
 
 public class EnfrentamientoStore {
@@ -31,7 +30,7 @@ public class EnfrentamientoStore {
 		return (new JDBCEnfrentamientoDAO()).selectEnfrentamientoByID(enfrenID);
 	}
 	
-	public boolean crearEnfrentamiento(Aplicacion aply1,Aplicacion aply2,String descripcion,Date fechaInicio,Date fechaFin){
+	public boolean crearEnfrentamiento(Aplicacion aply1,Aplicacion aply2,String descripcion,Date fechaInicio,Date fechaFin,Usuario usuario){
 		boolean res=true;
 		Enfrentamiento enfrentamiento = new EnfrentamientoImpl();
 		enfrentamiento.setAplicacion1(aply1);
@@ -40,7 +39,7 @@ public class EnfrentamientoStore {
 		enfrentamiento.setFechaCreacion(fechaInicio);
 		enfrentamiento.setFechaFin(fechaFin);
 		if(!enfrentamientos.contains(enfrentamiento)){
-			(new JDBCEnfrentamientoDAO()).insertEnfrentamiento(enfrentamiento);
+			(new JDBCEnfrentamientoDAO()).insertEnfrentamiento(enfrentamiento,usuario);
 		}else{
 			res=false;
 		}

@@ -26,8 +26,11 @@ public interface Aplicacion {
 	public void setTags(List<Tag> tags);
 	public boolean equals(Object o);
 	
-	public String getIDProyecto();
-	public void setIDProyecto(String IDProyecto);
+	public Proyecto getProyecto();
+	public void setProyecto(Proyecto proyecto);
+	
+	public Usuario getUsuarioCreador();
+	public void setUsuarioCreador(Usuario usuario);
 	
 
 }
