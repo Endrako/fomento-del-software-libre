@@ -137,7 +137,7 @@ public class JDBCAplicacionDAO implements IAplicacionDAO {
 				String IDProyecto = result.getString("IDProyecto");
 				List<Tag> tags = this.getAplicationTags(result.getString("IDAplicacion"));
 				String idUsuarioCreador = result.getString("idUsuarioCreador");
-				Proyecto proyecto = (new JDBCProyectoDAO()).selectProyectByID(IDProyecto);
+				Proyecto proyecto = (new JDBCProyectoDAO()).obtenerProyectoPorID(IDProyecto);
 				Usuario usuarioCreador = (new JDBCUsuarioDAO()).recuperarUsuarioByIdUsuario(idUsuarioCreador);
 				
 				aplicacion = new AplicacionImpl(IDAplicacion,nombre,descripcion,fechaPublicacion,URLWeb,votosAFavor,votosEnContra,tags,proyecto,usuarioCreador);
@@ -186,7 +186,7 @@ public class JDBCAplicacionDAO implements IAplicacionDAO {
 				String IDProyecto = result.getString("IDProyecto");
 				List<Tag> tags = this.getAplicationTags(result.getString("IDAplicacion"));
 				String idUsuarioCreador = result.getString("idUsuarioCreador");
-				Proyecto proyecto = (new JDBCProyectoDAO()).selectProyectByID(IDProyecto);
+				Proyecto proyecto = (new JDBCProyectoDAO()).obtenerProyectoPorID(IDProyecto);
 				Usuario usuarioCreador = (new JDBCUsuarioDAO()).recuperarUsuarioByIdUsuario(idUsuarioCreador);
 				aplicacion = new AplicacionImpl(IDAplicacion,nombre,descripcion,fechaPublicacion,URLWeb,votosAFavor,votosEnContra,tags,proyecto,usuarioCreador);
 			}

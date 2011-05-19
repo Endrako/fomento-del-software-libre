@@ -132,10 +132,7 @@ public class JDBCProyectoDAO implements IProyectoDAO {
 	 */
 	public void crearProyecto(Proyecto proyecto) {
 		
-		corrige los date tal y como lo pusiste en JDBCAplicacionDAO!!
-
-		Connection con = (Connection) ConnectionManager.getInstance()
-				.checkOut();
+		Connection con = (Connection) ConnectionManager.getInstance().checkOut();
 
 		PreparedStatement stmt = null;
 
@@ -358,7 +355,7 @@ public class JDBCProyectoDAO implements IProyectoDAO {
 			a.setURLWeb(result.getString("URLWeb"));
 			a.setVotosAFavor(result.getInt("numeroVotosAFavor"));
 			a.setVotosEnContra(result.getInt("numeroVotosEnContra"));
-			a.setIDProyecto(result.getString("IDProyecto"));
+			a.setProyecto(this.obtenerProyectoPorID(result.getString("IDProyecto")));
 
 		} catch (SQLException e) {
 			System.out.println("Message: " + e.getMessage());

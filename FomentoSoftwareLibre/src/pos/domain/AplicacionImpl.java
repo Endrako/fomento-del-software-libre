@@ -19,9 +19,7 @@ public class AplicacionImpl implements Aplicacion {
 	//que me cascan las cosas porque parece que pasais del tema, joder
 	//Que luego se me echa en cara a mi que no informo
 	
-	public AplicacionImpl(){
-		//constructor vacio para aquel que le guste
-	}
+	
 		
 	public AplicacionImpl(String IDAplicacion, String nombre, String descripcion, Date fechaPublicacion, String URLWeb, Integer votosAFavor, Integer votosEnContra, List<Tag> listaTags,Proyecto proyecto, Usuario usuarioCreador){
 		this.IDAplicacion = IDAplicacion;
