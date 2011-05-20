@@ -14,6 +14,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script language="JavaScript" src="js/jsencuesta.js"
 	type="text/javascript"></script>
+	<link rel="stylesheet" type="text/css" href="css/encuesta.css"> 
 <title>Panel de control de Encuestas</title>
 </head>
 <body>
@@ -29,6 +30,13 @@
 		</tr>
 	</table>
 	<form>
+	<div id= titulo>
+	<label for= tit>Titulo de la encuesta</label> 
+	<input id = "tit" type = "text" size = 60 />
+	<input type = "button" value = "Publicar encuesta"/>
+	<br>
+	<hr>
+	</div>
 		<div id="pregunta">
 			<div id="enun">
 				<label for=enun">Enunciado de la pregunta 1:</label> <input id="enun"
@@ -40,9 +48,10 @@
 
 			<div id="respu"></div>
 
-			<input type="button" onClick="addRespuesta();"
+			<input type="button" onClick="addRespuesta('respu')"
 				value="Añadir Respuesta" />
 		</div>
+		<hr>
 		<div id="preg"></div>
 		<input type="button" onClick="addPregunta();" value="Añadir Pregunta" />
 	</form>

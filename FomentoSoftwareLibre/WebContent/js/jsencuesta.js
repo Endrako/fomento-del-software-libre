@@ -1,7 +1,8 @@
 var n = 3;
 var p = 2;
-function addRespuesta(){
-	var capa = document.getElementById("respu");
+
+function addRespuesta2(capa){
+	//var capa = document.getElementById("respu");
 	var capa2 = document.createElement("div");
 	var label = document.createElement("label");
 	var texto = document.createElement("input");
@@ -43,7 +44,7 @@ function addPregunta(){
 	textop2.id = "res"+p+"2";
 	capa2.id= "pre"+p;
 	boton.type = "button";
-	boton.onclick = function(){addRespuesta();};
+	boton.onclick = function(){addRespuesta2(capa2);};
 	boton.value = "Añadir Respuesta";
 	
 	capa.appendChild(capa2);
@@ -59,3 +60,20 @@ function addPregunta(){
 	capa2.appendChild(boton);
 	p++;
 }
+
+function addRespuesta(){
+	var capa = document.getElementById("respu");
+	var capa2 = document.createElement("div");
+	var label = document.createElement("label");
+	var texto = document.createElement("input");
+	label.innerHTML = "Respuesta "+n+" ";
+	texto.type = "text";
+	texto.name = "resp"+p+""+n;
+	texto.id ="res"+p+""+n;
+	capa2.id = "res"+p+""+n;
+	capa.appendChild(capa2);
+	capa2.appendChild(label);
+	capa2.appendChild(texto);
+	capa2.innerHTML+="<br/>";
+	n++;	
+} 
