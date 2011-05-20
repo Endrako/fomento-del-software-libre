@@ -20,7 +20,7 @@ function addRespuesta2(capa){
 
 function addPregunta(){
 	n=3;
-	var capa = document.getElementById("preg");
+	var capa = document.getElementById("preguntas");
 	var capa2 = document.createElement("div");
 	var label = document.createElement("label");
 	var labelp1 = document.createElement("label");
@@ -34,7 +34,7 @@ function addPregunta(){
 	labelp1.innerHTML="Respuesta 1";
 	labelp2.innerHTML="Respuesta 2";
 	texto.type = "text";
-	texto.name = "pre"+p;
+	texto.name = "preg"+p;
 	texto.id = "pre"+p;
 	textop1.type = "text";
 	textop1.name = "res"+p+"1";
@@ -62,15 +62,16 @@ function addPregunta(){
 }
 
 function addRespuesta(){
-	var capa = document.getElementById("respu");
+	p=1;
+	var capa = document.getElementById("preg1");
 	var capa2 = document.createElement("div");
 	var label = document.createElement("label");
 	var texto = document.createElement("input");
 	label.innerHTML = "Respuesta "+n+" ";
 	texto.type = "text";
-	texto.name = "resp"+p+""+n;
-	texto.id ="res"+p+""+n;
-	capa2.id = "res"+p+""+n;
+	texto.name = "resp"+p+"-"+n;
+	texto.id ="res"+p+"-"+n;
+	capa2.id = "res"+p+"-"+n;
 	capa.appendChild(capa2);
 	capa2.appendChild(label);
 	capa2.appendChild(texto);
