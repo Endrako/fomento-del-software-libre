@@ -32,6 +32,10 @@ function validar(nombre, maximoCheckbox){
     }
     return res;
 }
+
+function redirigir(){
+	window.location="crearEnfrentamientoSelectTag.jsp";
+}
 </script>
 <!--  SCRIPT PARA LIMITAR EL NUMERO DE CHECKBOXES -->
 <!-- SOLO TOCAR EL MENSAJE DEL alert  -->
@@ -152,6 +156,7 @@ function validar(nombre, maximoCheckbox){
 	</tr>	
 	<tr>
 		<td width="50%" aling="left">
+		
 		</td>
 		<td class="titular "width="50%" aling="center">				
 			<input type="submit" value="Enviar" id="submit" />
@@ -162,6 +167,16 @@ function validar(nombre, maximoCheckbox){
 	
 	</table>
 	<%}%>
+	<tr>
+		<td width="50%" aling="left">
+					<input type="button" id="atras" name="atras" value=" Atrás " onclick="javascript:redirigir()">
+		
+		</td>
+		<td class="titular "width="50%" aling="center">				
+
+		
+		</td>
+	</tr>
 </form>
 
 

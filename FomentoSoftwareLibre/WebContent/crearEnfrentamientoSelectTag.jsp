@@ -11,6 +11,9 @@
 <title>Crea un enfrentamiento</title>
 
 <script type="text/javascript">
+var css="css/estilos.css";
+document.write("<link href='" + css + "' rel='stylesheet' type='text/css'>"); 
+
 	function validar(nombre, maximoCheckbox){
 		var res = true;
 		var num_chequeados=0;
@@ -27,6 +30,9 @@
         	res = false;            	
         }
 	    return res;
+	}
+	function redirigir(){
+		window.location="indexEnfrentamiento.jsp";
 	}
 </script>
 <!--  SCRIPT PARA LIMITAR EL NUMERO DE CHECKBOXES -->
@@ -114,6 +120,7 @@
 	<table>
 		<tr>
 			<td width="60%" aling="left">
+				<input type="button" id="atras" name="atras" value=" Atrás " onclick="javascript:redirigir()">
 			</td>
 			<td class="titular "width="15%" aling="center">
 				<input type="submit" value="Enviar" id="submit" />

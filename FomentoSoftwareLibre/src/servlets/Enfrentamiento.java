@@ -45,7 +45,6 @@ public class Enfrentamiento extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		
 		if(request.getAttribute("evento").equals("selectTags")){
 			TagStore tagSt = TagStore.getInstance();
@@ -70,7 +69,7 @@ public class Enfrentamiento extends HttpServlet {
 				request.getRequestDispatcher("crearEnfrentamientoSelectAplicaciones.jsp").include(request, response);	
 			}
 		}else if(request.getAttribute("evento").equals("selectAplicaciones")){
-			
+						
 			AplicacionStore aplSt = AplicacionStore.getInstance();
 			EnfrentamientoStore enfSt = EnfrentamientoStore.getInstance();
 			

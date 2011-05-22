@@ -12,7 +12,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Crea un enfrentamiento</title>
-
+<script type="text/javascript">
+function redirigir(){
+	window.location="crearEnfrentamientoSelectAplicaciones.jsp";
+}
+</script>
 
 </head>
 <body background="Imagenes/fondo.jpg" onload="javascript:ini();">
@@ -73,14 +77,21 @@
 <table align="center">
 	<tr>
 		<td width="40%" align="left">
-			<strong><h3 style="color: purple;">&nbsp;&nbsp;&nbsp;&nbsp;Este enfrentamiento ya existe</h3></strong>
 		</td>
 		<td class="titular" align="center" width="30%">
+			<strong><h3 style="color: purple;">Este enfrentamiento ya existe</h3></strong>
 			
 		</td>
 		<td width="15%" align="right">
 		</td>
 	</tr>
+	<td width="60%" aling="left">
+				<input type="button" id="atras" name="atras" value=" Atrás " onclick="javascript:redirigir()">
+			</td>
+			<td class="titular "width="15%" aling="center">
+			</td>
+			<td width="15%" aling="right">
+			</td>
 </table>
 
 
