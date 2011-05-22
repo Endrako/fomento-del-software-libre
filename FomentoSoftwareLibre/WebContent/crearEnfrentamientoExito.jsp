@@ -17,7 +17,7 @@ var css="css/estilos.css";
 document.write("<link href='" + css + "' rel='stylesheet' type='text/css'>"); 
 
 function redirigir(){
-	window.location="crearEnfrentamientoSelectAplicaciones.jsp";
+	window.location="indexEnfrentamiento.jsp";
 }
 </script>
 
@@ -53,18 +53,46 @@ function redirigir(){
 </table>
 
 <form id="formularioTags" name="formularioAplicaciones" action="FrontController?accion=AplicacionesEnfrentamiento" method="post" onsubmit="return validar(this,2)">
+<% List<Aplicacion> aplicaciones = (List<Aplicacion>)request.getSession().getAttribute("aplicaciones");
+Aplicacion aplicacion1 = aplicaciones.get(0);
+Aplicacion aplicacion2 = aplicaciones.get(1);%>
 
 <table align="center" class="borde">
 <tr>
-	<td width="100%" class="tabla_principal" align="center" colspan="2">
-		<strong> Este enfrentamiento ya existe </strong>
+	<td width="100%" class="tabla_principal" align="center" colspan="3">
+		<strong> Se ha creado el siguiente enfrentamiento </strong>
 	</td>
 </tr>
 <tr>
-	<td width="50%" align="left">
+	<td width="35%" class="datos_tabla" align="right">
+	<%=aplicacion1.getNombre()%>
 	</td>
-	<td class="titular "width="50%" align="center">
-		<input type="button" id="atras" name="atras" value=" Atrás " onclick="javascript:redirigir()">
+	<td width="30%" class="datos_tabla" align="center">
+		<img src="Imagenes/versus.png">
+	</td>
+	<td width="35%" class="datos_tabla" align="left">
+	<%=aplicacion2.getNombre()%>
+	</td>
+</tr>
+<tr>
+	<td width="35%" class="datos_tabla" align="left">
+	
+	</td>
+	<td width="30%" class="datos_tabla" align="center">
+		¡Enhorabuena! Has ganado:
+		<br> 100 puntos de karma
+	</td>
+	<td width="35%" class="datos_tabla" align="right">
+	
+	</td>
+</tr>
+<tr>
+	<td width="35%" align="left">
+	</td>
+	<td class="titular "width="30%" align="center">
+		<input type="button" id="atras" name="atras" value=" Volver " onclick="javascript:redirigir()">
+	</td>
+	<td width="35%" align="right">
 	</td>
 </tr>
 </table>

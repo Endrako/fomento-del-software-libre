@@ -107,21 +107,15 @@ public class EnfrentamientoImpl implements Enfrentamiento {
 		boolean res = false;
 		if (o instanceof Enfrentamiento) {
 			Enfrentamiento e = (Enfrentamiento) o;
-			// boolean
-			// igualID=this.getIDEnfrentamiento().equals(e.getIDEnfrentamiento());
-			boolean igualAplicacion1 = this.getAplicacion1().equals(
-					e.getAplicacion1());
-			boolean igualAplicacion2 = this.getAplicacion2().equals(
-					e.getAplicacion2());
-			boolean aplicacion1IgualAplicacion2 = this.getAplicacion1().equals(
-					e.getAplicacion2());
-			boolean aplicacion2IgualAplicacion1 = this.getAplicacion2().equals(
-					e.getAplicacion1());
-			if (!(igualAplicacion1 && igualAplicacion2)
-					|| !(aplicacion1IgualAplicacion2 && aplicacion2IgualAplicacion1)) {
+			Aplicacion apl1vieja = this.getAplicacion1();
+			Aplicacion apl2vieja = this.getAplicacion2();
+			Aplicacion apl1nueva = e.getAplicacion1();
+			Aplicacion apl2nueva = e.getAplicacion2();
+			boolean mismoOrden = (apl1vieja).equals(apl1nueva) && (apl2vieja).equals(apl2nueva);
+			boolean ordenInverso = apl1vieja.equals(apl2nueva) && apl2vieja.equals(apl1nueva);
+			if((mismoOrden || ordenInverso)){
 				res = true;
 			}
-
 		}
 		return res;
 	}

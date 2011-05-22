@@ -71,35 +71,34 @@ document.write("<link href='" + css + "' rel='stylesheet' type='text/css'>");
 <form id="formularioTags" name="formularioTags" action="FrontController?accion=TagsEnfrentamiento" method="post" onsubmit="return validar(this,1)">
 
 <table align="center" class="borde">
-	<tr>
-		<td width="100%" class="tabla_principal" align="center" colspan="2">
-			<strong> 1º Seleccione un tag </strong>
-		</td>
-	</tr>
-	<% 
-	TagStore tagSt = TagStore.getInstance();
-	List<Tag> listTags = tagSt.getTags();
+<tr>
+	<td width="100%" class="tabla_principal" align="center" colspan="2">
+		<strong> 1º Seleccione un tag </strong>
+	</td>
+</tr>
+<%TagStore tagSt = TagStore.getInstance();
+List<Tag> listTags = tagSt.getTags();
+
+for (int i=0;i<listTags.size();i++ ) { 
+	Tag t = listTags.get(i);%>
 	
-	for (int i=0;i<listTags.size();i++ ) { 
-		Tag t = listTags.get(i);%>
-		
-	<tr>
-		<td width="50%" class="datos_tabla" align="left">
-			<input type="checkbox" id="<%=t.getIdTag()%>" name="<%=t.getIdTag()%>" value="<%=t.getIdTag() %>"><%=t.getNombre()%>
-		</td>
-		<td width="50%" class="datos_tabla" align="left">
-			&nbsp;
-		</td>
-	</tr>
-	<% } %>
-	<tr>
-		<td width="50%" align="left">
-			<input type="button" id="atras" name="atras" value=" Atrás " onclick="javascript:redirigir()">
-		</td>
-		<td class="titular "width="50%" align="center">
-			<input type="submit" value="Enviar" id="submit" />
-		</td>
-	</tr>
+<tr>
+	<td width="50%" class="datos_tabla" align="left">
+		<input type="checkbox" id="<%=t.getIdTag()%>" name="<%=t.getIdTag()%>" value="<%=t.getIdTag() %>"><%=t.getNombre()%>
+	</td>
+	<td width="50%" class="datos_tabla" align="left">
+		&nbsp;
+	</td>
+</tr>
+<% } %>
+<tr>
+	<td width="50%" align="left">
+		<input type="button" id="atras" name="atras" value=" Atrás " onclick="javascript:redirigir()">
+	</td>
+	<td class="titular "width="50%" align="center">
+		<input type="submit" value="Enviar" id="submit" />
+	</td>
+</tr>
 </table>
 </form>
 </body>

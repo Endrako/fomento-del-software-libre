@@ -12,9 +12,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Crea un enfrentamiento</title>
-
 	
 <script type="text/javascript">
+var css="css/estilos.css";
+document.write("<link href='" + css + "' rel='stylesheet' type='text/css'>"); 
 function validar(nombre, maximoCheckbox){
 	var res = true;
 	var num_chequeados=0;
@@ -39,8 +40,6 @@ function redirigir(){
 </script>
 <!--  SCRIPT PARA LIMITAR EL NUMERO DE CHECKBOXES -->
 <!-- SOLO TOCAR EL MENSAJE DEL alert  -->
-
-
 </head>
 <body background="Imagenes/fondo.jpg" onload="javascript:ini();">
 <table align="center">
@@ -59,124 +58,79 @@ function redirigir(){
 
 <table align="center">
 	<tr>
-		<td width="15%" align="left">
-		</td>
-		<td class="titular" align="center" width="70%">
-			<strong><h3 style="color: red;">Creación de enfrentamiento</h3></strong>
-		</td>
-		<td width="15%" align="right">
+		<td class="titularEnfrentamiento" align="center" width="100%">
+			Creación de enfrentamiento
 		</td>
 	</tr>
 </table>
-
 <table align="center">
 	<tr>
-		<td width="15%" align="left">
-		</td>
-		<td class="titular" align="center" width="70%">
-			<img src="Imagenes/Vs.png">
-		</td>
-		<td width="15%" align="right">
+		<td align="center" width="100%">
+			<img src="Imagenes/Vs.png" border="0" height="40" width="40"/>
 		</td>
 	</tr>
+</table>
+<table align="center">
 	<tr>
-		<td width="15%" align="left">
-		</td>
-		<td class="titular" align="center" width="70%">
+		<td align="center" width="100%">
 			<% Tag tag = (Tag)request.getSession().getAttribute("tags");%>
-			<strong><%=tag.getNombre() %></strong>
-			
-		</td>
-		<td width="15%" align="right">
+			<strong><%=tag.getNombre() %></strong>			
 		</td>
 	</tr>
 </table>
-
-<table align="center">
-	<tr>
-		<td width="40%" align="left">
-			<strong><h3 style="color: blue;">&nbsp;&nbsp;&nbsp;&nbsp;2º Selecciona las aplicaciones</h3></strong>
-		</td>
-		<td class="titular" align="center" width="30%">
-			
-		</td>
-		<td width="15%" align="right">
-		</td>
-	</tr>
-</table>
-
 <form id="formularioTags" name="formularioAplicaciones" action="FrontController?accion=AplicacionesEnfrentamiento" method="post" onsubmit="return validar(this,2)">
-<% 
-	AplicacionStore aplSt = AplicacionStore.getInstance();
+<% AplicacionStore aplSt = AplicacionStore.getInstance();
 	List<Aplicacion> listAplis = aplSt.getAplicationByTag((Tag)request.getSession().getAttribute("tags"));%>
-	<table align="center">
 	
-	<%if(listAplis.size()<2){%>
-		<tr>
-		<td class="titular" width="50%" align="center">
-			&nbsp;<h3 style="color: orange;">No hay aplicaciones con los tags seleccionados para hacer un enfrentamiento</h2>
-		</td>
-		<td align="right" width="5%">
-		</td>
-		
-	</tr>
-	<% }else{
-	for (int i=0;i<listAplis.size();i++ ) { 
-		Aplicacion ap = listAplis.get(i);%>	
-	<tr>
-		<td class="titular" width="50%" align="center">
-			&nbsp;&nbsp;&nbsp;&nbsp;<%=ap.getNombre()%>
-		</td>
-		<td align="right" width="15%">
-			&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" id=<%=ap.getIDAplicacion()%> name =<%=ap.getIDAplicacion()%> value=<%=ap.getNombre()%>>
-		</td>		
-	</tr>
-	
-	<%}
-	} %>
-	</table>
-	<br>
-	<br>	
-	<%if(listAplis.size()>=2){ %>
-	<table>
-	<tr>
-		<td width="60%" align="left">
-		</td>
-		<td class="titular" width="50%" align="center">
-			Pon una descripcion para el enfrentamiento
-		</td>
-	</tr>
-	<tr>
-		<td width="50%" align="left">
-		</td>
-		<td class="titular" width="50%" align="center">
-			<textarea id="descripcion" value="descripcion" name="descripcionEnfrentamiento" rows="7" cols="40">..pon una descripcion..</textarea>
-			<br /><br />
-		</td>		
-	</tr>	
-	<tr>
-		<td width="50%" aling="left">
-		
-		</td>
-		<td class="titular "width="50%" aling="center">				
-			<input type="submit" value="Enviar" id="submit" />
-			<input type="reset" value="Limpiar" />
-		
-		</td>
-	</tr>
-	
-	</table>
+<table align="center" class="borde">
+<%if(listAplis.size()<2){%>
+<tr>
+	<td width="100%" class="tabla_principal" align="center" colspan="2">
+		<strong> No hay aplicaciones con los tags seleccionados para hacer un enfrentamiento </strong>
+	</td>
+</tr>
+<tr>
+	<td width="50%" align="left">
+	</td>
+	<td class="titular "width="50%" align="center">
+		<input type="button" id="atras" name="atras" value=" Atrás " onclick="javascript:redirigir()">
+	</td>
+</tr>
+<%}else{%>
+<tr>
+	<td width="100%" class="tabla_principal" align="center" colspan="2">
+		<strong> 2º Seleccione dos aplicaciones </strong>
+	</td>
+</tr>
+	<%for (int i=0;i<listAplis.size();i++ ) { 
+		Aplicacion ap = listAplis.get(i);%>
+<tr>
+	<td width="50%" class="datos_tabla" align="left">
+		<input type="checkbox" id="<%=ap.getIDAplicacion()%>" name="<%=ap.getIDAplicacion()%>" value="<%=ap.getNombre() %>"><%=ap.getNombre()%>
+	</td>
+	<td width="50%" class="datos_tabla" align="left">
+		&nbsp;
+	</td>
+</tr>
 	<%}%>
-	<tr>
-		<td width="50%" aling="left">
-					<input type="button" id="atras" name="atras" value=" Atrás " onclick="javascript:redirigir()">
-		
-		</td>
-		<td class="titular "width="50%" aling="center">				
-
-		
-		</td>
-	</tr>
+<tr>
+	<td width="50%" class="datos_tabla" align="left">
+		Descripción del enfrentamiento:
+	</td>
+	<td width="50%" class="datos_tabla" align="left">
+		<textarea id="descripcion" value="descripcion" name="descripcionEnfrentamiento" rows="3" cols="30">..pon una descripcion..</textarea>
+	</td>
+</tr>	
+<tr>
+	<td width="50%" align="left">
+		<input type="button" id="atras" name="atras" value=" Atrás " onclick="javascript:redirigir()">
+	</td>
+	<td class="titular "width="50%" align="center">
+		<input type="submit" value="Enviar" id="submit" />
+	</td>
+</tr>
+</table>
+	<%}%>
 </form>
 
 

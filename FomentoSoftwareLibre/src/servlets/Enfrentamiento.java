@@ -87,7 +87,7 @@ public class Enfrentamiento extends HttpServlet {
 			if(aplicaciones.size()!=2){
 				request.getRequestDispatcher("crearEnfrentamientoSelectAplicaciones.jsp").include(request, response);
 			}else{
-				Usuario usuario = (Usuario) request.getSession().getAttribute("user");
+				Usuario usuario = (Usuario) request.getSession().getAttribute("usuario");
 				
 				Aplicacion apli1 = aplicaciones.get(0);
 				Aplicacion apli2 = aplicaciones.get(1);
@@ -100,10 +100,10 @@ public class Enfrentamiento extends HttpServlet {
 				
 				boolean noExiste = enfSt.crearEnfrentamiento(apli1,apli2,descripcion,hoy,fechaFin,usuario);
 				if(noExiste == true){
-					request.getRequestDispatcher("indexEnfrentamientos.jsp");	
-					(new JDBCUsuarioDAO()).actualizaKarmaUsuario(usuario, 100);
-				}else{
 					request.getSession().setAttribute("aplicaciones", aplicaciones);
+					(new JDBCUsuarioDAO()).actualizaKarmaUsuario(usuario, 100);
+					request.getRequestDispatcher("crearEnfrentamientoExito.jsp").include(request, response);	
+				}else{
 					request.getRequestDispatcher("crearEnfrentamientoError.jsp").include(request, response);
 				}				
 			}
