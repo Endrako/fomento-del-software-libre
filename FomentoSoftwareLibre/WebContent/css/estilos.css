@@ -51,6 +51,17 @@ td.titular{
 	text-decoration: underline;
 }
 
+td.titularEnfrentamiento{
+	font-family: "lucida sans unicode","lucida grande",sans-serif;
+	font-size: 30px;
+	font-weight: bold;
+	font-variant: small-caps;
+	letter-spacing: 2.2pt;
+	line-height: 1.8;
+	color:red;
+	text-decoration: underline;
+}
+
 td.letra_secundaria{
 	font-family: "isocpeur";
 	font-size: 13px;

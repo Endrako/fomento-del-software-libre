@@ -56,44 +56,26 @@ document.write("<link href='" + css + "' rel='stylesheet' type='text/css'>");
 
 <table align="center">
 	<tr>
-		<td width="15%" align="left">
-		</td>
-		<td class="titular" align="center" width="70%">
-			<strong><h3 style="color: red;">Creación de enfrentamiento</h3></strong>
-		</td>
-		<td width="15%" align="right">
+		<td class="titularEnfrentamiento" align="center" width="100%">
+			Creación de enfrentamiento
 		</td>
 	</tr>
 </table>
-
 <table align="center">
 	<tr>
-		<td width="15%" align="left">
-		</td>
-		<td class="titular" align="center" width="70%">
-			<img src="Imagenes/Vs.png">
-		</td>
-		<td width="15%" align="right">
+		<td align="center" width="100%">
+			<img src="Imagenes/Vs.png" border="0" height="40" width="40"/>
 		</td>
 	</tr>
 </table>
-
-<table align="center">
-	<tr>
-		<td width="40%" align="left">
-			<strong><h3 style="color: blue;">&nbsp;&nbsp;&nbsp;&nbsp;1º Selecciona un tag</h3></strong>
-		</td>
-		<td class="titular" align="center" width="30%">
-			
-		</td>
-		<td width="15%" align="right">
-		</td>
-	</tr>
-</table>
-
 <form id="formularioTags" name="formularioTags" action="FrontController?accion=TagsEnfrentamiento" method="post" onsubmit="return validar(this,1)">
 
-	<table align="center">
+<table align="center" class="borde">
+	<tr>
+		<td width="100%" class="tabla_principal" align="center" colspan="2">
+			<strong> 1º Seleccione un tag </strong>
+		</td>
+	</tr>
 	<% 
 	TagStore tagSt = TagStore.getInstance();
 	List<Tag> listTags = tagSt.getTags();
@@ -101,39 +83,24 @@ document.write("<link href='" + css + "' rel='stylesheet' type='text/css'>");
 	for (int i=0;i<listTags.size();i++ ) { 
 		Tag t = listTags.get(i);%>
 		
-	
 	<tr>
-		<td class="titular" width="50%" align="center">
-			&nbsp;&nbsp;&nbsp;&nbsp;<%=t.getNombre()%>
+		<td width="50%" class="datos_tabla" align="left">
+			<input type="checkbox" id="<%=t.getIdTag()%>" name="<%=t.getIdTag()%>" value="<%=t.getIdTag() %>"><%=t.getNombre()%>
 		</td>
-		<td align="right" width="15%">
-			&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" id=<%=t.getIdTag()%> name =<%=t.getIdTag()%> value=<%=t.getNombre()%>>
+		<td width="50%" class="datos_tabla" align="left">
+			&nbsp;
 		</td>
-		
 	</tr>
 	<% } %>
-	</table>
-	<br>
-	<br>
-	
-	
-	<table>
-		<tr>
-			<td width="60%" aling="left">
-				<input type="button" id="atras" name="atras" value=" Atrás " onclick="javascript:redirigir()">
-			</td>
-			<td class="titular "width="15%" aling="center">
-				<input type="submit" value="Enviar" id="submit" />
-				<input type="reset" value="Limpiar" />
-				
-			</td>
-			<td width="15%" aling="right">
-			</td>
-		</tr>
-	
-	</table>
-
+	<tr>
+		<td width="50%" align="left">
+			<input type="button" id="atras" name="atras" value=" Atrás " onclick="javascript:redirigir()">
+		</td>
+		<td class="titular "width="50%" align="center">
+			<input type="submit" value="Enviar" id="submit" />
+		</td>
+	</tr>
+</table>
 </form>
-
 </body>
 </html>

@@ -55,6 +55,21 @@
 
 <body background="Imagenes/fondo.jpg">
 <!--  INICIO TABLA CONTENEDORA DE TODAS LAS JSP / HTML -->
+<table align="center">
+	<tr>
+		<td width="15%" align="left">
+			<img src="Imagenes/tux.jpg">
+		</td>
+		<td class="titular" align="center" width="70%">
+			<strong>Web Del Fomento Del Sofware Libre</strong>
+		</td>
+		<td width="15%" align="right">
+			<img src="Imagenes/tux.jpg">
+		</td>
+	</tr>
+</table>
+<!--  FIN TABLA CONTENEDORA DE TODAS LAS JSP / HTML -->
+<!--  INICIO TABLA CONTENEDORA DE TODAS LAS JSP / HTML -->
 <table border="0">
 	<tr>
 		<td width="30%" class="datos_tabla" align="left">
@@ -69,16 +84,6 @@
 	</tr>
 </table>
 <!--  FIN TABLA CONTENEDORA DE TODAS LAS JSP / HTML -->
-<table border="0">
-	<tr>
-		<td width="50%" class="datos_tabla" align="left">
-			Bienvenido <a href="ActualizarPerfil.jsp"><%=usuario.getNombreUsuario()%></a>, Hoy es <%=FuncionesImpl.formateoFecha(new Date())%>
-		</td>
-		<td width="50%" class="datos_tabla" align="left">
-			<a href="FrontController?accion=logout">Salir</a>
-		</td>
-	</tr>
-</table>
 <form id="formulario" name="formulario" action="" method="POST">
 <table align="center" class="borde">
 	<tr>
