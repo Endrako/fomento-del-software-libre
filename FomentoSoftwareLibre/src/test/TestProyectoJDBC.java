@@ -8,7 +8,9 @@ import pos.data.JDBCAplicacionDAO;
 import pos.data.JDBCProyectoDAO;
 import pos.data.JDBCUsuarioDAO;
 import pos.domain.Aplicacion;
+import pos.domain.AplicacionImpl;
 import pos.domain.Proyecto;
+import pos.domain.ProyectoImpl;
 
 public class TestProyectoJDBC {
 
@@ -30,8 +32,8 @@ public class TestProyectoJDBC {
 			System.out.println(p.toString());
 		}
 		*/
-		Proyecto p = null;
-		Aplicacion a = null;
+		Proyecto p = new ProyectoImpl();
+		Aplicacion a = new AplicacionImpl();
 		a.setIDAplicacion("2");
 		p.setIDProyecto("3");
 		p.setAplicacion(a);

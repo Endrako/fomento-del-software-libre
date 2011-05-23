@@ -26,27 +26,11 @@ public class ProyectoStore {
 		return proyectos;
 	}
 
-	public void crearProyecto(Usuario u,Proyecto p) {
-		if(obtenerProyectoPorID(p.getIDProyecto())!=null){
-			throw new IllegalArgumentException("Ya existe un proyecto con este nombre");
-		} else{
-			new JDBCProyectoDAO().crearProyecto(p);
-			new JDBCProyectoDAO().asociarProyectoAUsuario(u, p);
-		}
-		
-
-	}
-
 	public Proyecto obtenerProyectoPorID(String IDProyecto) {
 
 		return new JDBCProyectoDAO().obtenerProyectoPorID(IDProyecto);
 	}
-
-	public void borrarProyecto(Proyecto p) {
-		new JDBCProyectoDAO().borrarProyecto(p);
-		new JDBCProyectoDAO().borrarAsociacionUsuariosConProyecto(p);
-
-	}
+	
 
 	public Aplicacion obtenerAplicacionDeProyecto(Proyecto p) {
 
@@ -72,13 +56,42 @@ public class ProyectoStore {
 		return listaProyectos;
 
 	}
+	
+	public List<Proyecto> obtenerProyectoPorUsuario(Usuario u){
+		return new JDBCProyectoDAO().obtenerProyectosPorUsuario(u);
+	}
 
-	public void unirUsuarioAProyecto(Usuario u, Proyecto p) {
-		Boolean b = new JDBCProyectoDAO().existeTuplaUsuarioProyecto(u, p);
-		if (b)
+	public void crearProyecto(Proyecto p, Usuario u) {
+		if (obtenerProyectoPorID(p.getIDProyecto()) != null) {
+			throw new IllegalArgumentException(
+					"Ya existe un proyecto con este nombre");
+		} else {
+			new JDBCProyectoDAO().crearProyecto(p, u);
 			new JDBCProyectoDAO().asociarProyectoAUsuario(u, p);
-		if (!b)
+		}
+	}
+
+	public void unirUsuarioAProyecto(Proyecto p, Usuario u) {
+		Boolean b = new JDBCProyectoDAO().existeTuplaUsuarioProyecto(p, u);
+		if (!b) // si no está ya asociado se une.
+			new JDBCProyectoDAO().asociarProyectoAUsuario(u, p);
+		else
 			throw new IllegalArgumentException("El usuario ya existe");
+	}
+
+	public void borrarUsuarioDeProyecto(Proyecto p, Usuario u) {
+		Boolean b = new JDBCProyectoDAO().existeTuplaUsuarioProyecto(p, u);
+		if (b)
+			new JDBCProyectoDAO().borrarUnUsuarioDeProyecto(p, u);
+		else {
+			throw new IllegalArgumentException("El usuario no existe");
+		}
+	}
+	
+	public void borrarProyecto(Proyecto p) {
+		new JDBCProyectoDAO().borrarProyecto(p);
+		new JDBCProyectoDAO().borrarAsociacionTodosUsuariosConProyecto(p);
+
 	}
 
 }

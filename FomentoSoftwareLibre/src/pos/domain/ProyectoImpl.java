@@ -1,6 +1,5 @@
 package pos.domain;
 
-import java.util.Calendar;
 import java.util.Date;
 
 
@@ -11,11 +10,12 @@ public class ProyectoImpl implements Proyecto {
 	private String descripcion;
 	private Date fechaInicio;
 	private Date fechaFin;
-	private Boolean disponibilidad;
+	private Integer disponibilidad;
 	private String numeroMaximoDesarrolladores;
 	private String numeroActualDesarrolladores;
 	private Aplicacion aplicacion;
 	private Integer nivelKarma;
+	private Usuario usuarioCreador;
 	
 	
 	
@@ -48,10 +48,10 @@ public class ProyectoImpl implements Proyecto {
 	public void setFechaFin(Date fechaFin) {
 		this.fechaFin = fechaFin;
 	}
-	public Boolean getDisponibilidad() {
+	public Integer getDisponibilidad() {
 		return disponibilidad;
 	}
-	public void setDisponibilidad(Boolean disponibilidad) {
+	public void setDisponibilidad(Integer disponibilidad) {
 		this.disponibilidad = disponibilidad;
 	}
 	public String getNumeroMaximoDesarrolladores() {
@@ -86,6 +86,13 @@ public class ProyectoImpl implements Proyecto {
 	public Integer getNivelKarma(){
 		return nivelKarma;
 	}
+	public Usuario getUsuarioCreador(){
+		return usuarioCreador;
+	}
+	public void setUsuarioCreador(Usuario u){
+		this.usuarioCreador = u;
+	}
+	
 	public String toString(){
 		String s = "";
 		s += "Proyecto: " + nombreProyecto + "\n Info: " + descripcion + "\n Karma necesario para unirse al " +
