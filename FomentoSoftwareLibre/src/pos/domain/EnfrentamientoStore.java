@@ -67,5 +67,18 @@ public class EnfrentamientoStore {
 		return new JDBCEnfrentamientoDAO().selectEnfrentamientoByUserCreator(IDUsuario);
 	}
 	
+	public List<Enfrentamiento> obtenerEnfrentamientosPorFechaFin(java.sql.Date fecha){
+		return new JDBCEnfrentamientoDAO().selectEnfrentamientoByDateEnd(fecha);
+	}
+	
+	public void finalizarEnfrentamiento(Enfrentamiento enfrentamiento){
+		new JDBCEnfrentamientoDAO().finalizarEnfrentamiento(enfrentamiento);
+	}
+	
+	public List<Enfrentamiento> obtenerEnfrentamientosVigentes(){
+		return new JDBCEnfrentamientoDAO().selectEnfrentamientosVigentes();
+	}
+	
+	
 
 }

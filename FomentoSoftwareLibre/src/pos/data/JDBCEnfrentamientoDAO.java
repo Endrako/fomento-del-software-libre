@@ -437,8 +437,7 @@ public class JDBCEnfrentamientoDAO implements IEnfrentamientoDAO {
 		}
 	}
 
-	public Enfrentamiento getEnfrentamientoByAplications(Aplicacion aply1,
-			Aplicacion aply2) {
+	public Enfrentamiento getEnfrentamientoByAplications(Aplicacion aply1,Aplicacion aply2) {
 		Connection con = (Connection) ConnectionManager.getInstance()
 				.checkOut();
 
@@ -636,5 +635,127 @@ public class JDBCEnfrentamientoDAO implements IEnfrentamientoDAO {
 			}
 		}
 		return listaIds;
+	}
+
+	@Override
+	public List<Enfrentamiento> selectEnfrentamientoByDateEnd(java.sql.Date fecha) {
+		List<Enfrentamiento> enfrentamientos = new ArrayList<Enfrentamiento>();
+		Connection con = (Connection) ConnectionManager.getInstance().checkOut();
+		ResultSet result = null;
+		PreparedStatement stm = null;
+		String sql = "SELECT * FROM enfrentamientos WHERE fechaFin = ?";
+		Enfrentamiento enfrent = null;
+		JDBCAplicacionDAO apliDAO = new JDBCAplicacionDAO();
+		try{
+			stm = con.prepareStatement(sql);
+			stm.setDate(1,fecha);
+			result = stm.executeQuery();
+			
+			while(result.next()){
+				String IDEnfrentamiento = result.getString("IDEnfrentamiento");
+				String IDapl1 = result.getString("IDAplicacion1");
+				String IDapl2 = result.getString("IDAplicacion2");
+				String descripcion = result.getString("descripcion");
+				Integer votosAply1 = result.getInt("votosApp1");
+				Integer votosAply2 = result.getInt("votosApp2");
+				Date fechaCreacion = result.getDate("fechaCreacion");
+				Date fechaFin = result.getDate("fechaFin");
+				String IDUsuario = result.getString("IDUsuario");
+				// Cuidaaaaaaaaaoooooooo!
+				Aplicacion aplicacion1 = apliDAO.selectAplicacionByID(IDapl1.toString());
+				Aplicacion aplicacion2 = apliDAO.selectAplicacionByID(IDapl2.toString());
+				enfrent = new EnfrentamientoImpl(IDEnfrentamiento,aplicacion1,aplicacion2,descripcion,fechaCreacion,fechaFin,votosAply1,votosAply2,IDUsuario);
+				enfrentamientos.add(enfrent);
+			}
+		}catch (SQLException e){
+			System.out.println("SQLMessage"+e.getMessage());
+			System.out.println("SQLState"+e.getSQLState());
+			System.out.println("ErrorCode"+e.getErrorCode());
+		} finally {
+			try{
+				if(stm != null){
+					stm.close();
+				}
+				if(result != null){
+					result.close();
+				}
+			}catch (SQLException e){
+				
+			}
+		}
+		return enfrentamientos;
+	}
+	
+	public void finalizarEnfrentamiento(Enfrentamiento enfrentamiento){
+		Connection con = (Connection) ConnectionManager.getInstance().checkOut();
+		String sql = "UPDATE enfrentamientos SET enfrentamientos.finalizado = 1 WHERE enfrentamientos.IDEnfrentamiento = ?";
+		PreparedStatement stm = null;
+		try {
+			stm = con.prepareStatement(sql);
+			stm.setString(1,enfrentamiento.getIDEnfrentamiento());
+			stm.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println("Message: " + e.getMessage());
+			System.out.println("SQLState: " + e.getSQLState());
+			System.out.println("ErrorCode: " + e.getErrorCode());
+		} finally {
+			try {
+				if (stm != null) {
+					stm.close();
+				}				
+			} catch (SQLException e) {
+
+			}
+		}
+	}
+	
+	public List<Enfrentamiento> selectEnfrentamientosVigentes() {
+		Connection con = (Connection) ConnectionManager.getInstance()
+				.checkOut();
+
+		Enfrentamiento enfrentamiento = null;
+		List<Enfrentamiento> lista = new ArrayList<Enfrentamiento>();
+		String sql = "SELECT * FROM enfrentamientos WHERE finalizado=0";
+		PreparedStatement stm = null;
+		ResultSet result = null;
+
+		try {
+			stm = con.prepareStatement(sql);
+			result = stm.executeQuery(sql);
+			JDBCAplicacionDAO apliDAO = new JDBCAplicacionDAO();
+			while(result.next()){
+				
+				String IDEnfrentamiento = result.getString("IDEnfrentamiento");
+				String IDapl1 = result.getString("IDAplicacion1");
+				String IDapl2 = result.getString("IDAplicacion2");
+				String descripcion = result.getString("descripcion");
+				Integer votosAply1 = result.getInt("votosApp1");
+				Integer votosAply2 = result.getInt("votosApp2");
+				Date fechaCreacion = result.getDate("fechaCreacion");
+				Date fechaFin = result.getDate("fechaFin");
+				String IDUsuario = result.getString("IDUsuario");
+				// Cuidaaaaaaaaaoooooooo!
+				Aplicacion aplicacion1 = apliDAO.selectAplicacionByID(IDapl1.toString());
+				Aplicacion aplicacion2 = apliDAO.selectAplicacionByID(IDapl2.toString());
+				enfrentamiento = new EnfrentamientoImpl(IDEnfrentamiento,aplicacion1,aplicacion2,descripcion,fechaCreacion,fechaFin,votosAply1,votosAply2,IDUsuario);
+				lista.add(enfrentamiento);
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("Message: " + e.getMessage());
+			System.out.println("SQLState: " + e.getSQLState());
+			System.out.println("ErrorCode: " + e.getErrorCode());
+		} finally {
+			try {
+				if (result != null) {
+					result.close();
+				}
+				if (stm != null) {
+					stm.close();
+				}
+			} catch (SQLException e) {
+			}
+		}
+		return lista;
 	}
 }

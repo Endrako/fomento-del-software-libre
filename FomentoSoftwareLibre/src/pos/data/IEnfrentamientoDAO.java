@@ -1,5 +1,6 @@
 package pos.data;
 
+import java.sql.Date;
 import java.util.List;
 
 import pos.domain.Aplicacion;
@@ -21,6 +22,8 @@ public interface IEnfrentamientoDAO {
 	public void votar(String IDEnfrentamiento,String IDUser,String IDAplicacion);
 	public List<Usuario> getUsuariosPorEnfrentamiento(String IDEnfrentamiento);
 	public List<String> getIDUsuariosVotantes(String IDEnfrentamiento);
+	public List<Enfrentamiento> selectEnfrentamientoByDateEnd(Date fecha);
+	public List<Enfrentamiento> selectEnfrentamientosVigentes();
 	
 
 }
