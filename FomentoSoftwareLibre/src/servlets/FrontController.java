@@ -67,6 +67,8 @@ public class FrontController extends HttpServlet {
 			votarAFavor(request,response);
 		}else if ( accion.equals("votarEnContra") ){
 			votarEnContra(request,response);
+		}else if ( accion.equals("votarEnfrentamiento")){
+			votarEnfrentamiento(request,response);
 		}
 	}
 	
@@ -136,6 +138,13 @@ public class FrontController extends HttpServlet {
 	private void votarEnContra(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.getRequestDispatcher("votarEnContra").include(request,response);
 			
+	}
+	
+	private void votarEnfrentamiento(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		request.setAttribute("evento", "votar");
+		request.setAttribute("IDEnfrentamiento",request.getParameter("idEnfrentamiento"));
+		request.setAttribute("NumeroAplicacion", request.getParameter("aplicacion"));
+		request.getRequestDispatcher("Enfrentamiento").include(request, response);
 	}
 
 }

@@ -108,6 +108,27 @@ public class Enfrentamiento extends HttpServlet {
 				}				
 			}
 			
+		}else if(request.getAttribute("evento").equals("votar")){
+			Usuario usuario= (Usuario) request.getSession().getAttribute("usuario");
+			EnfrentamientoStore enfSt = EnfrentamientoStore.getInstance();
+			String IDEnfrentamiento = (String) request.getAttribute("IDEnfrentamiento");
+			
+			pos.domain.Enfrentamiento enfr = (pos.domain.Enfrentamiento) enfSt.getEnfrentamiento(IDEnfrentamiento);
+			//Vemos cual de las aplicaciones ha sido seleccionada
+			String numeroAplicacion = (String) request.getAttribute("NumeroAplicacion");
+			String IDAplicacion = "";
+			if(numeroAplicacion.equals("1")){
+				IDAplicacion = enfr.getAplicacion1().getIDAplicacion();
+			}
+			if(numeroAplicacion.equals("2")){
+				IDAplicacion = enfr.getAplicacion2().getIDAplicacion();
+			}
+			
+			boolean noHaVotado = enfSt.votar(IDEnfrentamiento, usuario.getIdUser(), IDAplicacion);
+			if(noHaVotado){
+				(new JDBCUsuarioDAO()).actualizaKarmaUsuario(usuario, 10);
+			}
+			request.getRequestDispatcher("indexEnfrentamiento.jsp").include(request, response);
 		}
 		
 	}

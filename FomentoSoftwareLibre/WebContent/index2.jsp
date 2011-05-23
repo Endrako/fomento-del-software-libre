@@ -60,7 +60,7 @@
 <div id="pestanas">
    <ul>
       <li><a href="encuesta.jsp">Encuestas</a></li>
-      <li class="activa"><a href="crearEnfrentamientoSelectTag.jsp">Enfrentamientos</a></li>
+      <li class="activa"><a href="indexEnfrentamiento.jsp">Enfrentamientos</a></li>
       <li><a href="aplicaciones.jsp">Aplicaciones</a></li>
       <li><a href="#">Proyectos</a></li>
    </ul>

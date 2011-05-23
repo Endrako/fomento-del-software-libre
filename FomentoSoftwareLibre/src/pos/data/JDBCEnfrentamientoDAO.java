@@ -758,4 +758,39 @@ public class JDBCEnfrentamientoDAO implements IEnfrentamientoDAO {
 		}
 		return lista;
 	}
+	
+	public List<Enfrentamiento> selectEnfrentamientosVotadosPorUsuario(Usuario usuario){
+		List<Enfrentamiento> enfrentamientosVotados = new ArrayList<Enfrentamiento>();
+		Enfrentamiento enfrentamiento = null;
+		ResultSet result = null;
+		PreparedStatement stm = null;
+		Connection con = (Connection) ConnectionManager.getInstance().checkOut();
+		String sql = "SELECT IDEnfrentamiento FROM votosusuarioenfrentamiento WHERE IDUsuario = ?";
+		try {
+			stm = con.prepareStatement(sql);
+			stm.setString(1,usuario.getIdUser());
+			result = stm.executeQuery(sql);
+			while(result.next()){
+				String IDEnfrentamiento = result.getString("IDEnfrentamiento");
+				enfrentamiento = this.selectEnfrentamientoByID(IDEnfrentamiento);
+				enfrentamientosVotados.add(enfrentamiento);
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("Message: " + e.getMessage());
+			System.out.println("SQLState: " + e.getSQLState());
+			System.out.println("ErrorCode: " + e.getErrorCode());
+		} finally {
+			try {
+				if (result != null) {
+					result.close();
+				}
+				if (stm != null) {
+					stm.close();
+				}
+			} catch (SQLException e) {
+			}
+		}
+		return enfrentamientosVotados;
+	}
 }

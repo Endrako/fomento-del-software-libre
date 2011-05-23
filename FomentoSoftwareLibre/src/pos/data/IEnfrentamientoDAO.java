@@ -24,6 +24,7 @@ public interface IEnfrentamientoDAO {
 	public List<String> getIDUsuariosVotantes(String IDEnfrentamiento);
 	public List<Enfrentamiento> selectEnfrentamientoByDateEnd(Date fecha);
 	public List<Enfrentamiento> selectEnfrentamientosVigentes();
+	public List<Enfrentamiento> selectEnfrentamientosVotadosPorUsuario(Usuario usuario);
 	
 
 }

@@ -46,13 +46,16 @@ public class EnfrentamientoStore {
 		return res;
 	}
 	
-	public void votar(String IDEnfrentamiento,String IDUser,String IDAplicacion){
+	public boolean votar(String IDEnfrentamiento,String IDUser,String IDAplicacion){
+		boolean res = false;
 		JDBCEnfrentamientoDAO enfDAO = new JDBCEnfrentamientoDAO();
 		List<String> listaVotantes = enfDAO.getIDUsuariosVotantes(IDEnfrentamiento);
 				
 		if(!listaVotantes.contains(IDUser)){
 			enfDAO.votar(IDEnfrentamiento, IDUser, IDAplicacion);
+			res = true;
 		}
+		return res;
 	}
 	
 	public void aceptarEnfrentamiento(String IDEnfrentamiento){
@@ -79,6 +82,23 @@ public class EnfrentamientoStore {
 		return new JDBCEnfrentamientoDAO().selectEnfrentamientosVigentes();
 	}
 	
+	public void finalizarEnfrentamientos(){
+		JDBCEnfrentamientoDAO enfDAO = new JDBCEnfrentamientoDAO(); 
+		List<Enfrentamiento> enfrentamientosVigentes = enfDAO.selectEnfrentamientosVigentes();
+		
+		java.util.Date today = new java.util.Date();
+		java.sql.Date hoy = new java.sql.Date(today.getTime());
+		
+		for(Enfrentamiento enfrentamiento: enfrentamientosVigentes){
+			if(hoy.getTime()<enfrentamiento.getFechaFin().getTime()){
+				enfDAO.finalizarEnfrentamiento(enfrentamiento);
+			}
+		}
+	}
+	
+	public List<Enfrentamiento> obtenerEnfrentamientosVotadosPorUsuario(Usuario usuario){
+		return new JDBCEnfrentamientoDAO().selectEnfrentamientosVotadosPorUsuario(usuario);
+	}
 	
 
 }
