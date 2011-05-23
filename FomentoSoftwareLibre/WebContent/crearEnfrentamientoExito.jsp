@@ -16,9 +16,6 @@
 var css="css/estilos.css";
 document.write("<link href='" + css + "' rel='stylesheet' type='text/css'>"); 
 
-function redirigir(){
-	window.location="indexEnfrentamiento.jsp";
-}
 </script>
 
 </head>
@@ -90,7 +87,7 @@ Aplicacion aplicacion2 = aplicaciones.get(1);%>
 	<td width="35%" align="left">
 	</td>
 	<td class="titular "width="30%" align="center">
-		<input type="button" id="atras" name="atras" value=" Volver " onclick="javascript:redirigir()">
+	<a href="indexEnfrentamiento.jsp">Volver a la página de enfrentamientos</a>
 	</td>
 	<td width="35%" align="right">
 	</td>
