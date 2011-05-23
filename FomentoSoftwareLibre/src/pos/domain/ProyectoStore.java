@@ -27,7 +27,7 @@ public class ProyectoStore {
 	}
 
 	public void crearProyecto(Usuario u,Proyecto p) {
-		if(obtenerProyectoPorID(p)!=null){
+		if(obtenerProyectoPorID(p.getIDProyecto())!=null){
 			throw new IllegalArgumentException("Ya existe un proyecto con este nombre");
 		} else{
 			new JDBCProyectoDAO().crearProyecto(p);
@@ -37,9 +37,9 @@ public class ProyectoStore {
 
 	}
 
-	public Proyecto obtenerProyectoPorID(Proyecto p) {
+	public Proyecto obtenerProyectoPorID(String IDProyecto) {
 
-		return new JDBCProyectoDAO().obtenerProyectoPorID(p);
+		return new JDBCProyectoDAO().obtenerProyectoPorID(IDProyecto);
 	}
 
 	public void borrarProyecto(Proyecto p) {
