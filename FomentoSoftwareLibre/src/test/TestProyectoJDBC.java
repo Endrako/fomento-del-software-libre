@@ -1,8 +1,6 @@
 package test;
 
-import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 
 import pos.data.JDBCAplicacionDAO;
 import pos.data.JDBCProyectoDAO;
@@ -11,6 +9,8 @@ import pos.domain.Aplicacion;
 import pos.domain.AplicacionImpl;
 import pos.domain.Proyecto;
 import pos.domain.ProyectoImpl;
+import pos.domain.Usuario;
+import pos.domain.UsuarioImpl;
 
 public class TestProyectoJDBC {
 
@@ -39,14 +39,16 @@ public class TestProyectoJDBC {
 		p.setAplicacion(a);
 		p.setDescripcionProyecto("Los cerdos merecen su venganza");
 		p.setNombreProyecto("Angry pigs");
-		p.setDisponibilidad(false);
+		p.setDisponibilidad(0);
 		p.setFechaInicio(new Date(2011, 9, 25));
 		p.setFechaFin(new Date(2012, 9, 25));
+		
+		Usuario u = uDAO.recuperarUsuarioByNick("marc");
 		
 		p.toString();
 		
 		
-		pDAO.crearProyecto(p);
+		pDAO.crearProyecto(p, null);
 		
 		
 		
