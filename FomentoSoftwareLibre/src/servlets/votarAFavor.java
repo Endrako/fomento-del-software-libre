@@ -51,19 +51,13 @@ public class votarAFavor extends HttpServlet {
 		
 		if ( !"".equals(idVoto) && idVoto != null ){
 			voto = store.getVotoByIDVoto(idVoto);
-			voto.setUsuario(idUsuario);
-			voto.setAplicacion(idAplicacion);
-			voto.setValor(valor);
-			
-			store.crearVoto(voto);
+
 		}else{
 			voto = new VotoImpl();
-			voto.setUsuario(idUsuario);
-			voto.setAplicacion(idAplicacion);
-			voto.setValor(valor);
-			store.crearVoto(voto);
 		}
-		
-		
+		voto.setUsuario(idUsuario);
+		voto.setAplicacion(idAplicacion);
+		voto.setValor(valor);
+		store.crearVoto(voto);
 	}
 }
