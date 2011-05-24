@@ -48,7 +48,7 @@ public class TestProyectoJDBC {
 		p.toString();
 		
 		
-		pDAO.crearProyecto(p, null);
+		pDAO.crearProyecto(p, u);
 		
 		
 		
