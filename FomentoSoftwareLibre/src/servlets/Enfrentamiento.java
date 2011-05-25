@@ -19,6 +19,7 @@ import pos.domain.EnfrentamientoStore;
 import pos.domain.Tag;
 import pos.domain.TagStore;
 import pos.domain.Usuario;
+import pos.domain.UsuarioStore;
 
 /**
  * Servlet implementation class Enfrentamiento
@@ -87,6 +88,7 @@ public class Enfrentamiento extends HttpServlet {
 			if(aplicaciones.size()!=2){
 				request.getRequestDispatcher("crearEnfrentamientoSelectAplicaciones.jsp").include(request, response);
 			}else{
+				UsuarioStore usrSt = new UsuarioStore();
 				Usuario usuario = (Usuario) request.getSession().getAttribute("usuario");
 				
 				Aplicacion apli1 = aplicaciones.get(0);
@@ -101,7 +103,8 @@ public class Enfrentamiento extends HttpServlet {
 				boolean noExiste = enfSt.crearEnfrentamiento(apli1,apli2,descripcion,hoy,fechaFin,usuario);
 				if(noExiste == true){
 					request.getSession().setAttribute("aplicaciones", aplicaciones);
-					(new JDBCUsuarioDAO()).actualizaKarmaUsuario(usuario, 100);
+					usrSt.actualizaKarmaUsuario(usuario, 100);
+					request.getSession().setAttribute("usuario", usuario);
 					request.getRequestDispatcher("crearEnfrentamientoExito.jsp").include(request, response);	
 				}else{
 					request.getRequestDispatcher("crearEnfrentamientoError.jsp").include(request, response);
@@ -109,6 +112,7 @@ public class Enfrentamiento extends HttpServlet {
 			}
 			
 		}else if(request.getAttribute("evento").equals("votar")){
+			UsuarioStore usrSt = new UsuarioStore();
 			Usuario usuario= (Usuario) request.getSession().getAttribute("usuario");
 			EnfrentamientoStore enfSt = EnfrentamientoStore.getInstance();
 			String IDEnfrentamiento = (String) request.getAttribute("IDEnfrentamiento");
@@ -126,7 +130,8 @@ public class Enfrentamiento extends HttpServlet {
 			
 			boolean noHaVotado = enfSt.votar(IDEnfrentamiento, usuario.getIdUser(), IDAplicacion);
 			if(noHaVotado){
-				(new JDBCUsuarioDAO()).actualizaKarmaUsuario(usuario, 10);
+				usrSt.actualizaKarmaUsuario(usuario, 10);
+				request.getSession().setAttribute("usuario", usuario);
 			}
 			request.getRequestDispatcher("indexEnfrentamiento.jsp").include(request, response);
 		}

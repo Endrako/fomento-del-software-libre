@@ -33,7 +33,7 @@ public class JDBCEnfrentamientoDAO implements IEnfrentamientoDAO {
 
 		try {
 			stm = con.prepareStatement(sql);
-			result = stm.executeQuery(sql);
+			result = stm.executeQuery();
 			while(result.next()){
 				JDBCAplicacionDAO apliDAO = new JDBCAplicacionDAO();
 				
@@ -721,7 +721,7 @@ public class JDBCEnfrentamientoDAO implements IEnfrentamientoDAO {
 
 		try {
 			stm = con.prepareStatement(sql);
-			result = stm.executeQuery(sql);
+			result = stm.executeQuery();
 			JDBCAplicacionDAO apliDAO = new JDBCAplicacionDAO();
 			while(result.next()){
 				
@@ -765,11 +765,11 @@ public class JDBCEnfrentamientoDAO implements IEnfrentamientoDAO {
 		ResultSet result = null;
 		PreparedStatement stm = null;
 		Connection con = (Connection) ConnectionManager.getInstance().checkOut();
-		String sql = "SELECT IDEnfrentamiento FROM votosusuarioenfrentamiento WHERE IDUsuario = ?";
+		String sql = "SELECT * FROM votosusuarioenfrentamiento WHERE IDUsuario = ?";
 		try {
 			stm = con.prepareStatement(sql);
 			stm.setString(1,usuario.getIdUser());
-			result = stm.executeQuery(sql);
+			result = stm.executeQuery();
 			while(result.next()){
 				String IDEnfrentamiento = result.getString("IDEnfrentamiento");
 				enfrentamiento = this.selectEnfrentamientoByID(IDEnfrentamiento);

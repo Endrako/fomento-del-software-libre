@@ -72,7 +72,7 @@
       <li><a href="crearEnfrentamientoSelectTag.jsp">Crear enfrentamiento</a></li>
       <li class="activa"><a href="index2.jsp">Página principal</a></li>
       <li><a href="enfrentamientosUsuario">Tus enfrentamientos</a></li>
-   </ul>
+   </ul>	
 </div>
 <% EnfrentamientoStore enfStore = EnfrentamientoStore.getInstance();
 List<Enfrentamiento> enfrentamientos = enfStore.obtenerEnfrentamientosVigentes();
@@ -99,19 +99,13 @@ enfStore.finalizarEnfrentamientos();%>
 	Aplicacion apli2 = enfrentamiento.getAplicacion2();	%>
 <tr>
 	<td width="35%" class="datos_tabla" align="right">
-	<input type="button" id="<%=apli1.getIDAplicacion()%>" name="<%=apli1.getIDAplicacion()%>" onClick="javascript:recuperarAplicacion(this.id)" value="Ver descripción">
-	<%=apli1.getNombre()%>
-
+		<a title="Pincha en el nombre para ver la descripción" onClick="javascript:recuperarAplicacion(<%=apli1.getIDAplicacion()%>);"><%=apli1.getNombre()%></a>
 	</td>
 	<td width="30%" class="datos_tabla" align="center">
 		<img src="Imagenes/versus small.png">
 	</td>
 	<td width="35%" class="datos_tabla" align="left">
-	<%=apli2.getNombre()%>
-	<input type="button" id="<%=apli2.getIDAplicacion()%>" name="<%=apli2.getIDAplicacion()%>" onClick="javascript:recuperarAplicacion(this.id)" value="Ver descripción">
-	
-	
-	
+	<a title="Pincha en el nombre para ver la descripción" onClick="javascript:recuperarAplicacion(<%=apli2.getIDAplicacion()%>);"><%=apli2.getNombre()%></a>
 	</td>
 </tr>
 <tr>

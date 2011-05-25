@@ -90,7 +90,7 @@ public class EnfrentamientoStore {
 		java.sql.Date hoy = new java.sql.Date(today.getTime());
 		
 		for(Enfrentamiento enfrentamiento: enfrentamientosVigentes){
-			if(hoy.getTime()<enfrentamiento.getFechaFin().getTime()){
+			if(hoy.getTime()>enfrentamiento.getFechaFin().getTime()){
 				enfDAO.finalizarEnfrentamiento(enfrentamiento);
 			}
 		}
