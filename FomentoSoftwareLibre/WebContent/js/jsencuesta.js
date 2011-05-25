@@ -1,8 +1,8 @@
 var n = 3;
 var p = 2;
 
-function addRespuesta2(capa){
-	//var capa = document.getElementById("respu");
+function addRespuesta(divactual){
+	var capa = document.getElementById("divactual");
 	var capa2 = document.createElement("div");
 	var label = document.createElement("label");
 	var texto = document.createElement("input");
@@ -44,7 +44,7 @@ function addPregunta(){
 	textop2.id = "res"+p+"2";
 	capa2.id= "pre"+p;
 	boton.type = "button";
-	boton.onclick = function(){addRespuesta2(capa2);};
+	boton.onclick = function(){addRespuesta(capa2);};
 	boton.value = "Añadir Respuesta";
 	
 	capa.appendChild(capa2);
@@ -58,10 +58,11 @@ function addPregunta(){
 	capa2.appendChild(textop2);
 	capa2.innerHTML+="<br/>";
 	capa2.appendChild(boton);
+	//capa2.innerHTML+="<hr>";
 	p++;
 }
 
-function addRespuesta(){
+function addRespuesta2(){
 	p=1;
 	var capa = document.getElementById("preg1");
 	var capa2 = document.createElement("div");

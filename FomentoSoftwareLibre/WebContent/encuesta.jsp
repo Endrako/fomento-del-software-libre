@@ -1,6 +1,6 @@
 <%@page import="pos.data.JDBCRespuestaDAO"%>
 <%@page import="pos.data.IRespuestaDAO"%>
-<%@page import="org.apache.catalina.connector.Request"%>
+<%--  <%@page import="org.apache.catalina.connector.Request"%>--%>
 <%@page import="pos.data.JDBCEncuestaDAO"%>
 <%@page import="pos.data.IEncuestaDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -24,7 +24,8 @@
 				<td width="15%" align="left"><img src="Imagenes/tux.jpg">
 				</td>
 				<td class="titular" align="center" width="70%"><strong>Web
-						Del Fomento Del Sofware Libre</strong></td>
+						Del Fomento Del Sofware Libre</strong>
+				</td>
 				<td width="15%" align="right"><img src="Imagenes/tux.jpg">
 				</td>
 			</tr>
@@ -36,12 +37,19 @@
 				type="text" size=60 />
 			<div id="submit">
 				<input type="button" value="Publicar encuesta" />
+			<div id="addpreg">
+				<input type="button" onClick="addPregunta();"
+					value="Añadir Pregunta" />
 			</div>
-			<br>
+			</div>
 			<hr>
 		</div>
 		<div id="preguntas">
 			<div id=preg1>
+				<div id=addres>
+					<input type="button" onClick="addRespuesta2()"
+						value="Añadir Respuesta" />
+				</div>
 				<div id="enunpreg1">
 					<label for=enun">Enunciado de la pregunta 1:</label> <input
 						id="enun" type="text" size=40 /> <br>
@@ -54,19 +62,10 @@
 					<label for=res2> Respuesta 2</label> <input id=res2 type="text"
 						size=20 /> <br>
 				</div>
-				<div id="respu"></div>
-
-				<div id=addres>
-					<input type="button" onClick="addRespuesta()"
-						value="Añadir Respuesta" />
-				</div>
 			</div>
 			<hr>
 		</div>
 		<div id="preg"></div>
-		<div id="addpreg">
-		<input type="button" onClick="addPregunta();" value="Añadir Pregunta" />
-		</div>
 	</form>
 </body>
 </html>
