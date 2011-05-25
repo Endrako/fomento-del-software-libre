@@ -2,7 +2,7 @@ var n = 3;
 var p = 2;
 
 function addRespuesta(divactual){
-	var capa = document.getElementById("divactual");
+	var capa = document.getElementById(divactual);
 	var capa2 = document.createElement("div");
 	var label = document.createElement("label");
 	var texto = document.createElement("input");
@@ -44,7 +44,7 @@ function addPregunta(){
 	textop2.id = "res"+p+"2";
 	capa2.id= "pre"+p;
 	boton.type = "button";
-	boton.onclick = function(){addRespuesta(capa2);};
+	boton.onclick = "addRespuesta('capa2')";
 	boton.value = "Añadir Respuesta";
 	
 	capa.appendChild(capa2);
@@ -62,6 +62,7 @@ function addPregunta(){
 	p++;
 }
 
+/*
 function addRespuesta2(){
 	p=1;
 	var capa = document.getElementById("preg1");
@@ -78,4 +79,4 @@ function addRespuesta2(){
 	capa2.appendChild(texto);
 	capa2.innerHTML+="<br/>";
 	n++;	
-} 
+} */

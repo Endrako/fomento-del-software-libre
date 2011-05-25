@@ -47,7 +47,7 @@
 		<div id="preguntas">
 			<div id=preg1>
 				<div id=addres>
-					<input type="button" onClick="addRespuesta2()"
+					<input type="button" onClick="addRespuesta('preg1')"
 						value="Añadir Respuesta" />
 				</div>
 				<div id="enunpreg1">
