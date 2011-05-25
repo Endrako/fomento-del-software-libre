@@ -73,16 +73,6 @@
 	</tr>
 </table>
 <!--  FIN TABLA CONTENEDORA DE TODAS LAS JSP / HTML -->
-<table border="0">
-	<tr>
-		<td width="50%" class="datos_tabla" align="left">
-			Bienvenido <a href="index2.jsp"><%=usuario.getNombreUsuario()%></a>, Hoy es <%=FuncionesImpl.formateoFecha(new Date())%>
-		</td>
-		<td width="50%" class="datos_tabla" align="left">
-			<a href="FrontController?accion=logout">Salir</a>
-		</td>
-	</tr>
-</table>
 <form id="formulario" name="formulario" action="" method="post">
 	<input type="hidden" id="idPerfil" name="idPerfil" value="<%=idPerfil%>">
 	<table align="center" class="borde">
