@@ -42,10 +42,11 @@ public class JDBCProyectoDAO implements IProyectoDAO {
 				Proyecto proyecto = new ProyectoImpl();
 				proyecto.setIDProyecto(result.getString("idProyecto"));
 				proyecto.setDescripcionProyecto(result.getString("descripcion"));
-				proyecto.setFechaFin(result.getDate("fechaFin"));
 				proyecto.setFechaInicio(result.getDate("fechaInicio"));
+				proyecto.setFechaFin(result.getDate("fechaFin"));
 				proyecto.setNombreProyecto(result.getString("nombre"));
 				proyecto.setDisponibilidad(result.getInt("disponible"));
+				proyecto.setNivelKarma(result.getInt("nivelKarma"));
 				listaProyectos.add(proyecto);
 
 			}
@@ -97,8 +98,8 @@ public class JDBCProyectoDAO implements IProyectoDAO {
 				proyecto.setIDProyecto(result.getString("IDProyecto"));
 				// SI hago método obtenerUsuarioDeProyecto => setUsuario...
 				proyecto.setDescripcionProyecto(result.getString("descripcion"));
-				proyecto.setFechaFin(result.getDate("fechaFin"));
 				proyecto.setFechaInicio(result.getDate("fechaInicio"));
+				proyecto.setFechaFin(result.getDate("fechaFin"));
 				proyecto.setNombreProyecto(result.getString("nombre"));
 				proyecto.setDisponibilidad(result.getInt("disponible"));
 				proyecto.setNivelKarma(result.getInt("nivelKarma"));
@@ -139,7 +140,7 @@ public class JDBCProyectoDAO implements IProyectoDAO {
 		String IDProyecto = UIDGenerator.getInstance().getKey();
 
 		String sql = "INSERT INTO proyectos (IDProyecto,IDUsuarioCreador,nombre,descripcion,fechaInicio,fechaFin,"
-				+ "disponible,nivelKarma) VALUES (?,?,?,?,?,?,?)";
+				+ "disponible,nivelKarma) VALUES (?,?,?,?,?,?,?,?)";
 
 		try {
 			stmt = con.prepareStatement(sql);
@@ -148,8 +149,8 @@ public class JDBCProyectoDAO implements IProyectoDAO {
 			stmt.setString(2, u.getIdUser());
 			stmt.setString(3, proyecto.getNombreProyecto());
 			stmt.setString(4, proyecto.getDescripcionProyecto());
-			stmt.setString(5, proyecto.getFechaInicio().toString());
-			stmt.setString(6, proyecto.getFechaFin().toString());
+			stmt.setDate(5, (java.sql.Date) proyecto.getFechaInicio());
+			stmt.setDate(6, (java.sql.Date) proyecto.getFechaFin());
 			stmt.setInt(7, proyecto.getDisponibilidad());
 			stmt.setInt(8, proyecto.getNivelKarma());
 			
@@ -205,6 +206,7 @@ public class JDBCProyectoDAO implements IProyectoDAO {
 
 			// Tratamiento de consulta
 			result.next();
+			
 
 			pRes.setIDProyecto("IDProyecto");
 			pRes.setNombreProyecto(result.getString("nombre"));
@@ -263,8 +265,8 @@ public class JDBCProyectoDAO implements IProyectoDAO {
 				proyecto.setIDProyecto(result.getString("IDProyecto"));
 				proyecto.setUsuarioCreador(u);
 				proyecto.setDescripcionProyecto(result.getString("descripcion"));
-				proyecto.setFechaFin(result.getDate("fechaFin"));
 				proyecto.setFechaInicio(result.getDate("fechaInicio"));
+				proyecto.setFechaFin(result.getDate("fechaFin"));
 				proyecto.setNombreProyecto(result.getString("nombre"));
 				proyecto.setDisponibilidad(result.getInt("disponible"));
 				proyecto.setNivelKarma(result.getInt("nivelKarma"));

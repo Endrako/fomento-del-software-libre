@@ -12,16 +12,19 @@ public class AplicacionImpl implements Aplicacion {
 	private Integer votosAFavor;
 	private Integer votosEnContra;
 	private List<Tag> tags;
-	private Proyecto proyecto; //Aqui trabajamos on objetos, no con IDs
+	private Proyecto proyecto; // Aqui trabajamos on objetos, no con IDs
 	private Usuario usuarioCreador;
-	//A ver tios, que estoy empezando a cabrearme. HACED UPDATE COÑO
-	//Y si me borrais el constructor, ponedme POR QUE lo habeis borrado, hostia, 
-	//que me cascan las cosas porque parece que pasais del tema, joder
-	//Que luego se me echa en cara a mi que no informo
-	
-	
-		
-	public AplicacionImpl(String IDAplicacion, String nombre, String descripcion, Date fechaPublicacion, String URLWeb, Integer votosAFavor, Integer votosEnContra, List<Tag> listaTags,Proyecto proyecto, Usuario usuarioCreador){
+
+	// A ver tios, que estoy empezando a cabrearme. HACED UPDATE COï¿½O
+	// Y si me borrais el constructor, ponedme POR QUE lo habeis borrado,
+	// hostia,
+	// que me cascan las cosas porque parece que pasais del tema, joder
+	// Que luego se me echa en cara a mi que no informo
+
+	public AplicacionImpl(String IDAplicacion, String nombre,
+			String descripcion, Date fechaPublicacion, String URLWeb,
+			Integer votosAFavor, Integer votosEnContra, List<Tag> listaTags,
+			Proyecto proyecto, Usuario usuarioCreador) {
 		this.IDAplicacion = IDAplicacion;
 		this.nombre = nombre;
 		this.descripcion = descripcion;
@@ -33,16 +36,17 @@ public class AplicacionImpl implements Aplicacion {
 		this.proyecto = proyecto;
 		this.usuarioCreador = usuarioCreador;
 	}
-	
-	public AplicacionImpl(){
-		
+
+	public AplicacionImpl() {
+
 	}
-	
-	public String getIDAplicacion(){
+
+	public String getIDAplicacion() {
 		return IDAplicacion;
 	}
-	public void setIDAplicacion(String IDAplicacion){
-		this.IDAplicacion=IDAplicacion;
+
+	public void setIDAplicacion(String IDAplicacion) {
+		this.IDAplicacion = IDAplicacion;
 	}
 
 	@Override
@@ -94,7 +98,7 @@ public class AplicacionImpl implements Aplicacion {
 
 	@Override
 	public void anadirVotoAFavor(Integer votos) {
-		votosAFavor = votosAFavor+votos;
+		votosAFavor = votosAFavor + votos;
 	}
 
 	@Override
@@ -104,46 +108,53 @@ public class AplicacionImpl implements Aplicacion {
 
 	@Override
 	public void anadirVotoEnContra(Integer votos) {
-		votosEnContra = votosEnContra+votos;
+		votosEnContra = votosEnContra + votos;
 	}
-	
-	public void setVotosAFavor(Integer votos){
+
+	public void setVotosAFavor(Integer votos) {
 		this.votosAFavor = votos;
 	}
-	
-	public void setVotosEnContra(Integer votos){
+
+	public void setVotosEnContra(Integer votos) {
 		this.votosEnContra = votos;
 	}
+
 	@Override
 	public List<Tag> getTags() {
 		return tags;
 	}
+
 	@Override
 	public void setTags(List<Tag> tags) {
-		this.tags=tags;
-		
+		this.tags = tags;
+
 	}
-	public Proyecto getProyecto(){
+
+	public Proyecto getProyecto() {
 		return this.proyecto;
 	}
-	public void setProyecto(Proyecto proyecto){
-		this.proyecto=proyecto;
+
+	public void setProyecto(Proyecto proyecto) {
+		this.proyecto = proyecto;
 	}
-	
-	public boolean equals(Object o){
-		boolean res=false;
-		if(o instanceof Aplicacion){
-			Aplicacion ap1 = (Aplicacion)o;
-			if(ap1.getNombre().equals(this.getNombre()) && (ap1.getIDAplicacion().equals(this.getIDAplicacion()))){
-				res=true;
+
+	public boolean equals(Object o) {
+		boolean res = false;
+		if (o instanceof Aplicacion) {
+			Aplicacion ap1 = (Aplicacion) o;
+			if (ap1.getNombre().equals(this.getNombre())
+					&& (ap1.getIDAplicacion().equals(this.getIDAplicacion()))) {
+				res = true;
 			}
 		}
 		return res;
 	}
+
 	@Override
 	public Usuario getUsuarioCreador() {
 		return usuarioCreador;
 	}
+
 	@Override
 	public void setUsuarioCreador(Usuario usuario) {
 		this.usuarioCreador = usuario;

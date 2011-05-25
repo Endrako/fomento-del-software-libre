@@ -14,7 +14,7 @@ public interface Proyecto {
 	public void setNombreProyecto(String nombreProyecto);
 	public void setDescripcionProyecto(String descripcionProyecto);
 	public void setFechaInicio(Date fechaInicio);
-	public void setFechaFin(Date fechaFin);
+	public void setFechaFin (Date fechaFin);
 	public void setDisponibilidad(Integer disponibilidad);
 	public Aplicacion getAplicacion();
 	public void setAplicacion(Aplicacion aplicacion);

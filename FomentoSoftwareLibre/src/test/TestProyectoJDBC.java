@@ -5,12 +5,10 @@ import java.util.Date;
 import pos.data.JDBCAplicacionDAO;
 import pos.data.JDBCProyectoDAO;
 import pos.data.JDBCUsuarioDAO;
-import pos.domain.Aplicacion;
-import pos.domain.AplicacionImpl;
 import pos.domain.Proyecto;
 import pos.domain.ProyectoImpl;
 import pos.domain.Usuario;
-import pos.domain.UsuarioImpl;
+import pos.utils.FuncionesImpl;
 
 public class TestProyectoJDBC {
 
@@ -33,15 +31,23 @@ public class TestProyectoJDBC {
 		}
 		*/
 		Proyecto p = new ProyectoImpl();
-		Aplicacion a = new AplicacionImpl();
-		a.setIDAplicacion("2");
+		// a.setIDAplicacion("2");
 		p.setIDProyecto("3");
-		p.setAplicacion(a);
+		p.setAplicacion(aDAO.selectAplicacionByID("5"));
 		p.setDescripcionProyecto("Los cerdos merecen su venganza");
 		p.setNombreProyecto("Angry pigs");
 		p.setDisponibilidad(0);
-		p.setFechaInicio(new Date(2011, 9, 25));
-		p.setFechaFin(new Date(2012, 9, 25));
+		/*
+		 * TODO MANEJO DE FECHAS
+		 */
+		java.util.Date today = new java.util.Date();
+		java.sql.Date hoy = new java.sql.Date(today.getTime());	
+		Date fechaInicio = FuncionesImpl.fechaMas(hoy,0);
+		Date fechaFin = FuncionesImpl.fechaMas(hoy,365);
+		p.setFechaInicio(fechaInicio);
+		p.setFechaFin(fechaFin);
+
+		p.setNivelKarma(50);
 		
 		Usuario u = uDAO.recuperarUsuarioByNick("marc");
 		

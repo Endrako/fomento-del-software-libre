@@ -4,6 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import pos.data.JDBCProyectoDAO;
+import pos.data.JDBCUsuarioDAO;
 
 public class ProyectoStore {
 
@@ -68,13 +69,16 @@ public class ProyectoStore {
 		} else {
 			new JDBCProyectoDAO().crearProyecto(p, u);
 			new JDBCProyectoDAO().asociarProyectoAUsuario(u, p);
+			new JDBCUsuarioDAO().actualizaKarmaUsuario(u, 50);
 		}
 	}
 
 	public void unirUsuarioAProyecto(Proyecto p, Usuario u) {
 		Boolean b = new JDBCProyectoDAO().existeTuplaUsuarioProyecto(p, u);
-		if (!b) // si no está ya asociado se une.
+		if (!b){ // si no está ya asociado se une.
 			new JDBCProyectoDAO().asociarProyectoAUsuario(u, p);
+			new JDBCUsuarioDAO().actualizaKarmaUsuario(u, 10);
+		}
 		else
 			throw new IllegalArgumentException("El usuario ya existe");
 	}
