@@ -52,7 +52,10 @@
 		</td>
 	</tr>
 </table>
-<%Usuario usuario = (Usuario)session.getAttribute("usuario");%>
+<%Usuario usuario = (Usuario)session.getAttribute("usuario");
+EnfrentamientoStore enfStore = EnfrentamientoStore.getInstance();
+Boolean haCreadoEnfrentamiento = enfStore.usuarioHaCreadoEnfrentamientoHoy(usuario);
+Boolean noTieneKarmaSuficiente = enfStore.usuarioNoTieneSuficienteKarma(usuario);%>
 <table border="0">
 	<tr>
 		<td width="30%" class="datos_tabla" align="left">
@@ -67,40 +70,38 @@
 		</td>
 	</tr>
 </table>
-<%EnfrentamientoStore enfStore = EnfrentamientoStore.getInstance();
-Boolean haCreadoEnfrentamiento = enfStore.usuarioHaCreadoEnfrentamientoHoy(usuario);
-Boolean noTieneKarmaSuficiente = enfStore.usuarioNoTieneSuficienteKarma(usuario);%>
 <div id="pestanas">
    <ul>
-      <li><a title="Si no sabes de qué va esto, pincha aquí." href="enfrentamientosTutorial.jsp">Esto qué es</a></li>
+	  <li><a title="Si no sabes de qué va esto, pincha aquí." href="enfrentamientosTutorial.jsp">Esto qué es</a></li>
       <li><a href="enfrentamientosTotales.jsp">Todos los enfrentamientos</a></li>
       <%if(haCreadoEnfrentamiento){ %>
-      <li><a title="Ya has creado un enfrentamiento hoy." href="#"> Crear enfrentamiento</a><img src="Imagenes/prh2.png"></li>      
+      <li><a title="Ya has creado un enfrentamiento hoy." href="#"> Crear enfrentamiento</a><img src="Imagenes/prh2.png"></li>
       <%} else if(noTieneKarmaSuficiente){%>
-      <li><a title="No tienes suficiente karma para crear enfrentamientos." href="#"> Crear enfrentamiento</a><img src="Imagenes/prh3.png"></li>
+      <li><a title="No tienes suficiente karma para crear enfrentamientos." href="#"> Crear enfrentamiento</a><img src="Imagenes/prh3.png"></li>      
       <%} else if(!haCreadoEnfrentamiento){ %>
       <li><a href="crearEnfrentamientoSelectTag.jsp">Crear enfrentamiento</a></li>
       <%} %>
+      <li><a href="indexEnfrentamiento.jsp">Página principal de enfrentamientos</a></li>
       <li class="activa"><a href="index2.jsp">Página principal</a></li>
-      <li><a href="enfrentamientosUsuario.jsp">Tus enfrentamientos</a></li>
    </ul>	
 </div>
-<%List<Enfrentamiento> enfrentamientos = enfStore.obtenerEnfrentamientosVigentes();
+<%
+List<Enfrentamiento> enfrentamientos = enfStore.obtenerEnfrentamientosDeUsuario(usuario.getIdUser());
 List<Enfrentamiento> enfrentamientosDeusuario = enfStore.obtenerEnfrentamientosVotadosPorUsuario(usuario); 
-enfStore.finalizarEnfrentamientos();%>
+%>
 <div id="#arribaDcha">
 <form id="votacionesFormularios" name="votacionesFormularios" action="" method="post">
 <table align="center" class="borde">
 <%if(enfrentamientos.size()<1){%>
 <tr>
 	<td width="100%" class="tabla_principal" align="center" colspan="3">
-		<strong> No hay enfrentamientos vigentes </strong>
+		<strong> No has creado enfrentamientos </strong>
 	</td>
 </tr>
 <%}else{%> 
 <tr>
 	<td width="100%" class="tabla_principal" align="center" colspan="3">
-		<strong> Enfrentamientos vigentes </strong>
+		<strong> Enfrentamientos </strong>
 	</td>
 </tr>
 
@@ -145,17 +146,24 @@ enfStore.finalizarEnfrentamientos();%>
 </tr>
 	<%}else{ %>
 <tr>
-	<td width="35%" class="datos_tabla" align="right">		
+	<td width="35%" class="datos_tabla" align="right">	
+	<%Boolean haTerminado = enfStore.enfrentamientoTerminado(enfrentamiento); 
+	if(haTerminado){%>
+	Enfrentamiento finalizado
+	<%}else{ %>
 		<input type="button" id="<%=apli1.getIDAplicacion()%>" name="<%=enfrentamiento.getIDEnfrentamiento()%>" onClick="javascript:seleccionarApp1(this.name)" value="Votar">
-	
+	<%} %>
 	</td>
 	<td width="30%" class="datos_tabla" align="center">
 		Descripcion:<br>
 		<%=enfrentamiento.getDescripcion()%>
 	</td>
 	<td width="35%" class="datos_tabla" align="left">
+	<%if(haTerminado){%>
+	Enfrentamiento finalizado
+	<%}else{ %>
 		<input type="button" id="<%=apli2.getIDAplicacion()%>" name="<%=enfrentamiento.getIDEnfrentamiento()%>" onClick="javascript:seleccionarApp2(this.name)" value="Votar">
-	
+	<%} %>
 	</td>
 </tr>
 <%} %>
