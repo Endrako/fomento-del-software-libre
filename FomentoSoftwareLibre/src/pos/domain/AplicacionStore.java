@@ -22,7 +22,8 @@ public class AplicacionStore {
 	}
 	
 	public List<Aplicacion> getAplicaciones(){
-		return aplicaciones;
+		//return aplicaciones;
+		return (new JDBCAplicacionDAO()).selectAll();
 	}
 	
 	public Aplicacion getAplicacion(String aplyId){

@@ -77,6 +77,7 @@ public class JDBCAplicacionDAO implements IAplicacionDAO {
 		List<Tag> tags = aplicacion.getTags();
 		PreparedStatement stm = null;
 		String IDAplicacion = UIDGenerator.getInstance().getKey();
+		aplicacion.setIDAplicacion(IDAplicacion);
 		String IDUsuario = usuario.getIdUser();
 		String sql = "INSERT INTO aplicaciones(IDAplicacion,idUsuarioCreador,nombre,descripcion,fechaPublicacion,URLWeb,numeroVotosAFavor,numeroVotosEnContra) VALUES (?,?,?,?,?,?,?,?)";
 		try {
@@ -95,6 +96,7 @@ public class JDBCAplicacionDAO implements IAplicacionDAO {
 			for (Tag tag : tags) {
 				insertAplicationTagRelation(con, aplicacion, tag);
 			}
+			
 		} catch (SQLException e) {
 			System.out.println("SQLMessage: " + e.getMessage());
 			System.out.println("SQLState: " + e.getSQLState());

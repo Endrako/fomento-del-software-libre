@@ -74,6 +74,8 @@ public class InsertarAplicacion extends HttpServlet {
 		Usuario user = (Usuario)sesion.getAttribute("usuario");
 		UsuarioStore storeUser = new UsuarioStore();
 		storeUser.actualizaKarmaUsuario(user, 20);
+		Usuario userNuevo = storeUser.recuperarUsuarioByIdUsuario(user.getIdUser());
+		sesion.setAttribute("usuario", userNuevo);
 		
 		// creamos BO y TO
 		AplicacionStore storeAplicacion = AplicacionStore.getInstance();
