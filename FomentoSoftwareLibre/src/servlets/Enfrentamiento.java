@@ -104,7 +104,8 @@ public class Enfrentamiento extends HttpServlet {
 				if(noExiste == true){
 					request.getSession().setAttribute("aplicaciones", aplicaciones);
 					usrSt.actualizaKarmaUsuario(usuario, 100);
-					request.getSession().setAttribute("usuario", usuario);
+					Usuario usActualizado = usrSt.recuperarUsuarioByIdUsuario(usuario.getIdUser());
+					request.getSession().setAttribute("usuario", usActualizado);
 					request.getRequestDispatcher("crearEnfrentamientoExito.jsp").include(request, response);	
 				}else{
 					request.getRequestDispatcher("crearEnfrentamientoError.jsp").include(request, response);
@@ -131,7 +132,8 @@ public class Enfrentamiento extends HttpServlet {
 			boolean noHaVotado = enfSt.votar(IDEnfrentamiento, usuario.getIdUser(), IDAplicacion);
 			if(noHaVotado){
 				usrSt.actualizaKarmaUsuario(usuario, 10);
-				request.getSession().setAttribute("usuario", usuario);
+				Usuario usActualizado = usrSt.recuperarUsuarioByIdUsuario(usuario.getIdUser());
+				request.getSession().setAttribute("usuario", usActualizado);
 			}
 			request.getRequestDispatcher("indexEnfrentamiento.jsp").include(request, response);
 		}
