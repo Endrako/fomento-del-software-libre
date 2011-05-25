@@ -39,7 +39,6 @@
 <title>Bienvenido a la página de enfrentamientos</title>
 </head>
 <body>
-<%Usuario usuario = (Usuario)session.getAttribute("usuario");%>
 <table align="center">
 	<tr>
 		<td width="15%" align="left">
@@ -53,6 +52,7 @@
 		</td>
 	</tr>
 </table>
+<%Usuario usuario = (Usuario)session.getAttribute("usuario");%>
 <table border="0">
 	<tr>
 		<td width="30%" class="datos_tabla" align="left">

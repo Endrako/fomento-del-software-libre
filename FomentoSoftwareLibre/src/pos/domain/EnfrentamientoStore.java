@@ -11,10 +11,8 @@ public class EnfrentamientoStore {
 	private static EnfrentamientoStore enfStore;
 	private List<Enfrentamiento> enfrentamientos;
 	
-	public static synchronized EnfrentamientoStore getInstance(){
-		if(enfStore ==null){
-			enfStore = new EnfrentamientoStore();
-		}
+	public static synchronized EnfrentamientoStore getInstance(){		
+		enfStore = new EnfrentamientoStore();		
 		return enfStore;
 	}
 	
@@ -39,6 +37,7 @@ public class EnfrentamientoStore {
 		enfrentamiento.setFechaCreacion(fechaInicio);
 		enfrentamiento.setFechaFin(fechaFin);
 		if(!enfrentamientos.contains(enfrentamiento)){
+			//no actualiza el estado de la lista de enfrentamientos de BD
 			(new JDBCEnfrentamientoDAO()).insertEnfrentamiento(enfrentamiento,usuario);
 		}else{
 			res=false;

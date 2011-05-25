@@ -101,7 +101,7 @@ public class EnfrentamientoImpl implements Enfrentamiento {
 	}
 
 	// Dos enfrentamientos son iguales si
-	// *Aplicacion1 y 2 en ese orden son iguales ó
+	// *Aplicacion1 y 2 en ese orden son iguales ï¿½
 	// *Aplicacion1=nuevaAplicacion2 y Aplicacion2=nuevaAplicacion1
 	public boolean equals(Object o) {
 		boolean res = false;
@@ -111,7 +111,7 @@ public class EnfrentamientoImpl implements Enfrentamiento {
 			Aplicacion apl2vieja = this.getAplicacion2();
 			Aplicacion apl1nueva = e.getAplicacion1();
 			Aplicacion apl2nueva = e.getAplicacion2();
-			boolean mismoOrden = (apl1vieja).equals(apl1nueva) && (apl2vieja).equals(apl2nueva);
+			boolean mismoOrden = apl1vieja.equals(apl1nueva) && apl2vieja.equals(apl2nueva);
 			boolean ordenInverso = apl1vieja.equals(apl2nueva) && apl2vieja.equals(apl1nueva);
 			if((mismoOrden || ordenInverso)){
 				res = true;

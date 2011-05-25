@@ -7,11 +7,15 @@
 <%@ page import     = "java.util.*" %>
 <%@ page import		= "java.sql.Date"%>
 <%@ page import 	= "java.util.Calendar" %>
+<%@ page import     = "pos.utils.FuncionesImpl" %>
+<%@ page import     = "pos.domain.Usuario" %>
+<%@ page import     = "pos.domain.UsuarioStore" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Crea un enfrentamiento</title>
+<script language="JavaScript" src="js/funcionesComunes.js" type="text/javascript"></script>
 <script type="text/javascript">
 var css="css/estilos.css";
 document.write("<link href='" + css + "' rel='stylesheet' type='text/css'>"); 
@@ -33,7 +37,20 @@ document.write("<link href='" + css + "' rel='stylesheet' type='text/css'>");
 		</td>
 	</tr>
 </table>
-
+<%Usuario usuario = (Usuario)session.getAttribute("usuario");%>
+<table border="0">
+	<tr>
+		<td width="30%" class="datos_tabla" align="left">
+			Bienvenido <a href="ActualizarPerfil.jsp"><%=usuario.getNombreUsuario()%></a>, Hoy es <%=FuncionesImpl.formateoFecha(new java.util.Date())%>
+		</td>
+		<td width="30%" class="datos_tabla" align="left">
+			Karma acumulado, <%=usuario.getKarma() %>
+		</td>
+		<td width="40%" class="datos_tabla" align="right">
+			<a href="FrontController?accion=logout">Salir</a>
+		</td>
+	</tr>
+</table>
 <table align="center">
 	<tr>
 		<td class="titularEnfrentamiento" align="center" width="100%">
@@ -86,7 +103,7 @@ Aplicacion aplicacion2 = aplicaciones.get(1);%>
 <tr>
 	<td width="35%" align="left">
 	</td>
-	<td class="titular "width="30%" align="center">
+	<td width="30%" align="center">
 	<a href="indexEnfrentamiento.jsp">Volver a la página de enfrentamientos</a>
 	</td>
 	<td width="35%" align="right">
