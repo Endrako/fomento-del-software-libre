@@ -15,6 +15,20 @@
 <%@ page import     = "pos.utils.UIDGenerator" %>
 <html>
 <head>
+<!-- Borrado de atributos innecesarios de la session -->
+<%if(request.getSession().getAttribute("tags")!=null){
+	request.getSession().removeAttribute("tags");
+}
+if(request.getSession().getAttribute("aplicaciones")!=null){
+	request.getSession().removeAttribute("aplicaciones");
+}
+if(request.getSession().getAttribute("IDEnfrentamiento")!=null){
+	request.getSession().removeAttribute("IDEnfrentamiento");
+}
+if(request.getSession().getAttribute("NumeroAplicacion")!=null){
+	request.getSession().removeAttribute("NumeroAplicacion");
+}%>
+
 <script language="JavaScript" src="js/funcionesComunes.js" type="text/javascript"></script>
 <script language="JavaScript" >
 			var css="css/estilos.css";
