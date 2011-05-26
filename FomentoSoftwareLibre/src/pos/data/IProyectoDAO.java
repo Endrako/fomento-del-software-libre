@@ -13,6 +13,8 @@ public interface IProyectoDAO {
 	public void crearProyecto(Proyecto proyecto, Usuario u);
 	public Proyecto obtenerProyectoPorID(String idProyecto);
 	public Aplicacion obtenerAplicacionDeProyecto(Proyecto p);
+	public List<Proyecto> obtenerProyectosCreadosPorUsuario(Usuario u);
+	
 	public void borrarProyecto(Proyecto p);
 	public void borrarAsociacionTodosUsuariosConProyecto(Proyecto p);	
 	public boolean existeTuplaUsuarioProyecto(Proyecto p,Usuario u);

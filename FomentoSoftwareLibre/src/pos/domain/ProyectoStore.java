@@ -31,7 +31,6 @@ public class ProyectoStore {
 
 		return new JDBCProyectoDAO().obtenerProyectoPorID(IDProyecto);
 	}
-	
 
 	public Aplicacion obtenerAplicacionDeProyecto(Proyecto p) {
 
@@ -50,48 +49,71 @@ public class ProyectoStore {
 		}
 
 		for (Proyecto p : listaAux) {
-			if (p.getNivelKarma() >= user.getKarma()) {
+
+			if (user.getKarma() >= p.getNivelKarma() || p.getUsuarioCreador().getNombreUsuario().equals(user.getNombreUsuario())) {
 				listaProyectos.add(p);
+			} // si no hay proyectos abiertos suficientes
+			else {
+				throw new IllegalArgumentException(
+						"No existe ningún proyecto disponible para el karma de este usuario, ni es el creador");
 			}
 		}
 		return listaProyectos;
 
 	}
-	
-	public List<Proyecto> obtenerProyectoPorUsuario(Usuario u){
-		return new JDBCProyectoDAO().obtenerProyectosPorUsuario(u);
+
+	/*
+	 * Obtengo todos los proyectos que ha creado el usuario
+	 */
+	public List<Proyecto> obtenerProyectosCreadosPorUsuario(Usuario u) {
+		return new JDBCProyectoDAO().obtenerProyectosCreadosPorUsuario(u);
 	}
 
 	public void crearProyecto(Proyecto p, Usuario u) {
-		if (obtenerProyectoPorID(p.getIDProyecto()) != null) {
+		if (obtenerProyectoPorID(p.getIDProyecto()) == null) {
 			throw new IllegalArgumentException(
 					"Ya existe un proyecto con este nombre");
 		} else {
-			new JDBCProyectoDAO().crearProyecto(p, u);
-			new JDBCProyectoDAO().asociarProyectoAUsuario(u, p);
-			new JDBCUsuarioDAO().actualizaKarmaUsuario(u, 50);
+			if (u.getKarma() >= 200) { // Puede crear proyecto si nivel karma
+										// >=200
+				new JDBCProyectoDAO().crearProyecto(p, u);
+				new JDBCProyectoDAO().asociarProyectoAUsuario(u, p);
+				new JDBCUsuarioDAO().actualizaKarmaUsuario(u, 50);
+			} else {
+				throw new IllegalArgumentException(
+						"Karma inferior al requerido para crear proyecto");
+			}
 		}
 	}
 
 	public void unirUsuarioAProyecto(Proyecto p, Usuario u) {
 		Boolean b = new JDBCProyectoDAO().existeTuplaUsuarioProyecto(p, u);
-		if (!b){ // si no está ya asociado se une.
-			new JDBCProyectoDAO().asociarProyectoAUsuario(u, p);
-			new JDBCUsuarioDAO().actualizaKarmaUsuario(u, 10);
-		}
-		else
-			throw new IllegalArgumentException("El usuario ya existe");
+
+		if (!b) {// si no está ya asociado
+			if (u.getKarma() >= p.getNivelKarma()) {
+				// y su nivel de karma es igual o superior al requerido se une
+				new JDBCProyectoDAO().asociarProyectoAUsuario(u, p);
+				new JDBCUsuarioDAO().actualizaKarmaUsuario(u, 20);
+			} else {
+				throw new IllegalArgumentException(
+						"El karma del usuario es insuficiente");
+			}
+		} else
+			throw new IllegalArgumentException(
+					"El usuario ya está en este proyecto");
 	}
 
 	public void borrarUsuarioDeProyecto(Proyecto p, Usuario u) {
 		Boolean b = new JDBCProyectoDAO().existeTuplaUsuarioProyecto(p, u);
-		if (b)
+		if (b) {
 			new JDBCProyectoDAO().borrarUnUsuarioDeProyecto(p, u);
-		else {
-			throw new IllegalArgumentException("El usuario no existe");
+			new JDBCUsuarioDAO().actualizaKarmaUsuario(u, -10);
+		} else {
+			throw new IllegalArgumentException(
+					"El usuario no está vinculado a este proyecto");
 		}
 	}
-	
+
 	public void borrarProyecto(Proyecto p) {
 		new JDBCProyectoDAO().borrarProyecto(p);
 		new JDBCProyectoDAO().borrarAsociacionTodosUsuariosConProyecto(p);

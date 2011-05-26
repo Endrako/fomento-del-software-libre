@@ -159,5 +159,12 @@ public class AplicacionImpl implements Aplicacion {
 	public void setUsuarioCreador(Usuario usuario) {
 		this.usuarioCreador = usuario;
 	}
+	
+	public String toString(){
+		String s= "";
+		s += "Nombre Aplicación: "+ this.nombre + "\nDescripción: "+ this.descripcion;
+		
+		return s;
+	}
 
 }

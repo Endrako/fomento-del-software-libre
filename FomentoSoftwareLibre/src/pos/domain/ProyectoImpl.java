@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class ProyectoImpl implements Proyecto {
 
-	private String idProyecto;
+	private String idProyecto ="";
 	private String nombreProyecto;
 	private String descripcion;
 	public Date fechaInicio;
@@ -116,7 +116,7 @@ public class ProyectoImpl implements Proyecto {
 		String s = "";
 		s += "Proyecto: " + nombreProyecto + "\n Info: " + descripcion
 				+ "\n Karma necesario para unirse al " + "proyecto: "
-				+ nivelKarma + "\n";
+				+ nivelKarma + "\nUsuario creador: " + this.usuarioCreador.getIdUser();
 		return s;
 	}
 
