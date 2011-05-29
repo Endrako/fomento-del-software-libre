@@ -70,7 +70,8 @@ public class ProyectoStore {
 	}
 
 	public void crearProyecto(Proyecto p, Usuario u) {
-		if (obtenerProyectoPorID(p.getIDProyecto()) == null) {
+		Boolean b = new JDBCProyectoDAO().existeProyecto(p.getNombreProyecto());
+		if (b) {
 			throw new IllegalArgumentException(
 					"Ya existe un proyecto con este nombre");
 		} else {

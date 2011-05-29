@@ -102,7 +102,9 @@ public class JDBCProyectoDAO implements IProyectoDAO {
 				p.setNombreProyecto(result.getString("nombre"));
 				p.setDisponibilidad(result.getInt("disponible"));
 				p.setNivelKarma(result.getInt("nivelKarma"));
-				p.setUsuarioCreador(new JDBCUsuarioDAO().recuperarUsuarioByIdUsuario(result.getString("IDUsuarioCreador")));
+				p.setUsuarioCreador(new JDBCUsuarioDAO()
+						.recuperarUsuarioByIdUsuario(result
+								.getString("IDUsuarioCreador")));
 				listaProyectos.add(p);
 
 			}
@@ -191,7 +193,6 @@ public class JDBCProyectoDAO implements IProyectoDAO {
 				.checkOut();
 
 		Proyecto pRes = new ProyectoImpl();
-
 		ResultSet result = null;
 		PreparedStatement stmt = null;
 
@@ -208,13 +209,16 @@ public class JDBCProyectoDAO implements IProyectoDAO {
 			// Tratamiento de consulta
 			while (result.next()) {
 
-				pRes.setIDProyecto("IDProyecto");
+				pRes.setIDProyecto(idProyecto);
 				pRes.setNombreProyecto(result.getString("nombre"));
 				pRes.setDescripcionProyecto(result.getString("descripcion"));
 				pRes.setFechaInicio(result.getDate("fechaInicio"));
 				pRes.setFechaFin(result.getDate("fechaFin"));
 				pRes.setDisponibilidad(result.getInt("disponible"));
 				pRes.setNivelKarma(result.getInt("nivelKarma"));
+				pRes.setUsuarioCreador(new JDBCUsuarioDAO()
+						.recuperarUsuarioByIdUsuario(result
+								.getString("IDUsuarioCreador")));
 
 				// llamo al método creado para obtener la lista de aplicaciones
 				// vinculadas al proyecto
@@ -257,14 +261,16 @@ public class JDBCProyectoDAO implements IProyectoDAO {
 
 		try {
 			stmt = con.prepareStatement(sql);
-			stmt.setString(1, "IDUsuarioCreador");
+			stmt.setString(1, u.getIdUser());
 			result = stmt.executeQuery();
 
 			while (result.next()) {
 				Proyecto proyecto = new ProyectoImpl();
 
 				proyecto.setIDProyecto(result.getString("IDProyecto"));
-				proyecto.setUsuarioCreador(u);
+				proyecto.setUsuarioCreador(new JDBCUsuarioDAO()
+						.recuperarUsuarioByIdUsuario(result
+								.getString("IDUsuarioCreador")));
 				proyecto.setDescripcionProyecto(result.getString("descripcion"));
 				proyecto.setFechaInicio(result.getDate("fechaInicio"));
 				proyecto.setFechaFin(result.getDate("fechaFin"));
@@ -353,7 +359,7 @@ public class JDBCProyectoDAO implements IProyectoDAO {
 
 		PreparedStatement stmt = null;
 		// Borrará todas las tuplas donde se encuentre el proyecto.
-		String sql = "DELETE FROM colaboracionusuariosproyectos c WHERE (c.IDProyecto = ?)";
+		String sql = "DELETE FROM colaboracionusuariosproyectos WHERE (IDProyecto = ?)";
 
 		try {
 			stmt = con.prepareStatement(sql);
@@ -456,16 +462,59 @@ public class JDBCProyectoDAO implements IProyectoDAO {
 			stmt.setString(2, p.getIDProyecto());
 			result = stmt.executeQuery();
 
-			while (result.next()) {
+			if(result.next()==false) {
 
 				// Si uno de los dos parámetros no está en la tupla obtenida =>
 				// no existe asociación
-				if ((result.getString("IDUsuario") != null && result
-						.getString("IDProyecto") != null)) {
+//				if ((result.getString("IDUsuario") != null && result
+//						.getString("IDProyecto") != null)) {
 					// || (result.getString("IDUsuario") != null && result
 					// .getString("IDProyecto") == null)
 					// || (result.getString("IDUsuario") == null && result
 					// .getString("IDProyecto") != null)) {
+					res = false;
+				} else {
+					res = true;
+				}
+		//	}
+
+		} catch (SQLException e) {
+			System.out.println("Message: " + e.getMessage());
+			System.out.println("SQLState: " + e.getSQLState());
+			System.out.println("Error Code: " + e.getErrorCode());
+			System.out.println("Cause: " + e.getCause());
+		} finally {
+			try {
+				if (stmt != null) {
+					con.close();
+				}
+				if (result != null) {
+					con.close();
+				}
+			} catch (Exception e) {
+			}
+		}
+		return res;
+
+	}
+
+	public boolean existeProyecto(String nombreProyecto) {
+		Connection con = ConnectionManager.getInstance().checkOut();
+
+		PreparedStatement stmt = null;
+		ResultSet result = null;
+
+		String sql = "SELECT * FROM proyectos WHERE (nombre = ?)";
+		boolean res = false;
+
+		try {
+
+			stmt = con.prepareStatement(sql);
+			stmt.setString(1, nombreProyecto);
+			result = stmt.executeQuery();
+
+			while (result.next()) {
+				if (result.getString("nombre").equals(nombreProyecto)) {
 					res = true;
 				} else {
 					res = false;
@@ -502,10 +551,12 @@ public class JDBCProyectoDAO implements IProyectoDAO {
 		String sql = "INSERT INTO colaboracionusuariosproyectos (IDUsuario,IDProyecto) VALUES (?,?)";
 
 		try {
+			
+			String proy=p.getIDProyecto();
 
 			stmt = con.prepareStatement(sql);
 			stmt.setString(1, u.getIdUser());
-			stmt.setString(2, p.getIDProyecto());
+			stmt.setString(2, proy);
 			stmt.executeUpdate();
 
 		} catch (SQLException e) {

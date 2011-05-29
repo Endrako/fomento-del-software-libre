@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import pos.data.JDBCAplicacionDAO;
+import pos.data.JDBCProyectoDAO;
 import pos.data.JDBCUsuarioDAO;
 import pos.domain.Proyecto;
 import pos.domain.ProyectoImpl;
@@ -33,7 +34,7 @@ public class TestProyectoJDBC {
 		*/
 		Proyecto p = new ProyectoImpl();
 		//a.setIDAplicacion("2");
-		p.setIDProyecto("13063112828323e1353ff");
+		p.setIDProyecto("13064321951263b4fd69b");
 		p.setAplicacion(aDAO.selectAplicacionByID("5"));
 		p.setDescripcionProyecto("Los cerdos merecen su venganza");
 		p.setNombreProyecto("Angry pigs");
@@ -52,20 +53,28 @@ public class TestProyectoJDBC {
 		
 		Usuario u = uDAO.recuperarUsuarioByNick("francis");
 		p.setUsuarioCreador(u);
-		System.out.println(u.getIdUser());
-
 		
-		//u.setKarma(50);		
+//		OK Proyecto pa = new JDBCProyectoDAO().obtenerProyectoPorID("1306427922189ffffffff9b07f062");
+//		System.out.println(pa);
 		
-		// pStore.crearProyecto(p, u);
-		//pStore.unirUsuarioAProyecto(p, u);
-		// pStore.borrarUsuarioDeProyecto(p, u);
+		u.setKarma(200);		
+		System.out.println(p.getIDProyecto());
 		
-//		Aplicacion a = new JDBCProyectoDAO().obtenerAplicacionDeProyecto(p);
+		//pStore.crearProyecto(p, u); // Y comprobado que no se crean 2 con mismo nombre
+		// OK pStore.unirUsuarioAProyecto(p, u);
+		 
+		 
+		// OK pStore.unirUsuarioAProyecto(p, u);
+		// OK pStore.borrarUsuarioDeProyecto(p, u);
+		
+//		OK Aplicacion a = new JDBCProyectoDAO().obtenerAplicacionDeProyecto(p);
 //		System.out.println(a.toString());
 	
-		List<Proyecto> abiertosKarma = new ProyectoStore().obtenerProyectosAbiertosPorKarma(u);
-		System.out.println(abiertosKarma.toString());
+		
+//		OK List<Proyecto> abiertosKarma = new ProyectoStore().obtenerProyectosAbiertosPorKarma(u);
+//		OK List<Proyecto> creadosUser = new ProyectoStore().obtenerProyectosCreadosPorUsuario(u);
+//		System.out.println(abiertosKarma.toString());
+		 pStore.borrarProyecto(p);
 		
 		
 		
