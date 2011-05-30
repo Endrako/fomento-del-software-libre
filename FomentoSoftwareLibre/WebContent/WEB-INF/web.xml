@@ -79,4 +79,14 @@
     <servlet-name>InsertarAplicacion</servlet-name>
     <url-pattern>/InsertarAplicacion</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ServletProyecto</display-name>
+    <servlet-name>ServletProyecto</servlet-name>
+    <servlet-class>servlets.ServletProyecto</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletProyecto</servlet-name>
+    <url-pattern>/ServletProyecto</url-pattern>
+  </servlet-mapping>
 </web-app>

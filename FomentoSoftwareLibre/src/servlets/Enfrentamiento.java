@@ -54,7 +54,6 @@ public class Enfrentamiento extends HttpServlet {
 			String par = null;
 			for(Tag t : tagSt.getTags()){				
 				par = request.getParameter(t.getIdTag());
-				System.out.println(par);
 				if(par != null){
 					if(!(par == "")){
 						tag=t;
