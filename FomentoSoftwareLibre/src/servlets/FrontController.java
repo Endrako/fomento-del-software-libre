@@ -146,5 +146,9 @@ public class FrontController extends HttpServlet {
 		request.setAttribute("NumeroAplicacion", request.getParameter("aplicacion"));
 		request.getRequestDispatcher("Enfrentamiento").include(request, response);
 	}
+	
+	private void unirseAProyecto(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		request.setAttribute("", arg1);
+	}
 
 }

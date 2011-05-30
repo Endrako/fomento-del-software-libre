@@ -36,7 +36,7 @@
 			<img src="Imagenes/tux.jpg">
 		</td>
 		<td class="titular" align="center" width="70%">
-			<strong>Web Del Fomento Del Sofware Libre</strong>
+			<strong>Web De Fomento Del Software Libre</strong>
 		</td>
 		<td width="15%" align="right">
 			<img src="Imagenes/tux.jpg">
@@ -62,7 +62,7 @@
       <li><a href="encuesta.jsp">Encuestas</a></li>
       <li class="activa"><a href="indexEnfrentamiento.jsp">Enfrentamientos</a></li>
       <li><a href="aplicaciones.jsp">Aplicaciones</a></li>
-      <li><a href="#">Proyectos</a></li>
+      <li><a href="indexProyectos.jsp">Proyectos</a></li>
    </ul>
 </div>
 </body>

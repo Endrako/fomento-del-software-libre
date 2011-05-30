@@ -59,7 +59,7 @@ if(request.getSession().getAttribute("NumeroAplicacion")!=null){
 			<img src="Imagenes/tux.jpg">
 		</td>
 		<td class="titular" align="center" width="70%">
-			<strong>Web Del Fomento Del Sofware Libre</strong>
+			<strong>Web De Fomento Del Software Libre</strong>
 		</td>
 		<td width="15%" align="right">
 			<img src="Imagenes/tux.jpg">
