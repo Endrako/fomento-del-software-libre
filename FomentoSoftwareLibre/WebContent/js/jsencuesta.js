@@ -73,41 +73,16 @@ function addPregunta(){
 	};
 	div_boton.appendChild(boton);
 	
-	
+	//añadir todo al contenedor de pregunta.
 	div_preg.appendChild (div_enun);
 	div_preg.appendChild (div_boton);
 	div_preg.appendChild (div_res1);
 	div_preg.appendChild (div_res2);
 	capa.appendChild(div_preg);
-	/*capa2.appendChild(label);
-	capa2.appendChild(texto);
-	capa2.innerHTML+="<br/>";
-	capa2.appendChild(labelp1);
-	capa2.appendChild(textop1);
-	capa2.innerHTML+="<br/>";
-	capa2.appendChild(labelp2);
-	capa2.appendChild(textop2);
-	capa2.innerHTML+="<br/>";
-	capa2.appendChild(boton);
-	//capa2.innerHTML+="<hr>";*/
 	p++;
 }
 
-/*
-function addRespuesta2(){
-	p=1;
-	var capa = document.getElementById("preg1");
-	var capa2 = document.createElement("div");
-	var label = document.createElement("label");
-	var texto = document.createElement("input");
-	label.innerHTML = "Respuesta "+n+" ";
-	texto.type = "text";
-	texto.name = "resp"+p+"-"+n;
-	texto.id ="res"+p+"-"+n;
-	capa2.id = "res"+p+"-"+n;
-	capa.appendChild(capa2);
-	capa2.appendChild(label);
-	capa2.appendChild(texto);
-	capa2.innerHTML+="<br/>";
-	n++;	
-} */
+function getId(divId){
+	 var div = document.getElementById("divId");
+	 var res = div.getAttribute("id");
+}
