@@ -1,6 +1,9 @@
 package servlets;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -37,7 +40,15 @@ public class ServletProyecto extends HttpServlet {
 		
 		if(request.getAttribute("evento").equals("selectProyects")){
 			ProyectoStore pstore = ProyectoStore.getInstance();
-			Proyecto p = null;
+			List<Proyecto> list = new ArrayList<Proyecto>();
+			
+			for (Proyecto p: pstore.obtenerTodosProyectos()){
+				String par = request.getParameter(p.getIDProyecto());
+				if((par!=null) && (par != "")){
+					
+				}
+				
+			}
 			
 			
 		}
