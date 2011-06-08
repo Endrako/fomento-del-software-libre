@@ -80,7 +80,7 @@ public class FrontController extends HttpServlet {
 
 	private void insertarEncuesta(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("servletInsertarEncuesta").include(request, response);
+		request.getRequestDispatcher("ServletInsertarEncuesta").include(request, response);
 		
 	}
 
