@@ -71,10 +71,18 @@ public class FrontController extends HttpServlet {
 			votarEnfrentamiento(request,response);
 		}else if(accion.equals("seleccionarProyectoParaUnirse")){
 			seleccionarProyectoParaUnirse(request, response);
+		}else if (accion.equals("insertarEncuesta")){
+			insertarEncuesta(request,response);
 		}
 	}
 	
 
+
+	private void insertarEncuesta(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		request.getRequestDispatcher("servletInsertarEncuesta").include(request, response);
+		
+	}
 
 	private void recuperarPerfilAplicacion(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
