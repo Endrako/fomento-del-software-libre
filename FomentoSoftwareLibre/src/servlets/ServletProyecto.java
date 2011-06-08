@@ -17,43 +17,51 @@ import pos.domain.ProyectoStore;
  */
 public class ServletProyecto extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public ServletProyecto() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public ServletProyecto() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 		doPost(request, response);
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		if(request.getAttribute("evento").equals("selectProyects")){
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+
+		if (request.getAttribute("evento").equals("selectProyects")) {
 			ProyectoStore pstore = ProyectoStore.getInstance();
 			List<Proyecto> list = new ArrayList<Proyecto>();
-			
-			for (Proyecto p: pstore.obtenerTodosProyectos()){
+
+			for (Proyecto p : pstore.obtenerTodosProyectos()) {
 				String par = request.getParameter(p.getIDProyecto());
-				if((par!=null) && (par != "")){
-					
+				if ((par != null) && (par != "")) {
+					if (par.equals(p.getIDProyecto())) {
+						list.add(p);
+					}
 				}
+			}
+			if (list.size() <= 0) {
+				request.getRequestDispatcher("indexProyectos.jsp");
+			} else {
 				
 			}
-			
-			
+
 		}
-		
-		
+
 	}
 
 }
