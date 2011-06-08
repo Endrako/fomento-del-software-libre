@@ -24,28 +24,35 @@
 				<td width="15%" align="left"><img src="Imagenes/tux.jpg">
 				</td>
 				<td class="titular" align="center" width="70%"><strong>Web
-						Del Fomento Del Sofware Libre</strong>
-				</td>
+						Del Fomento Del Sofware Libre</strong></td>
 				<td width="15%" align="right"><img src="Imagenes/tux.jpg">
 				</td>
 			</tr>
 		</table>
 	</div>
-	<form>
+	<form name=encuesta>
 		<div id=titulo>
 			<label for=tit>Titulo de la encuesta</label> <input id="tit"
 				type="text" size=60 />
 			<div id="submit">
 				<input type="button" value="Publicar encuesta" />
-			<div id="addpreg">
-				<input type="button" onClick="addPregunta();"
-					value="Añadir Pregunta" />
-			</div>
+				<div id="removepreg">
+					<input type="button" onClick="removePregunta();"
+						value="Quitar Pregunta" />
+				</div>
+				<div id="addpreg">
+					<input type="button" onClick="addPregunta();"
+						value="Añadir Pregunta" />
+				</div>
 			</div>
 			<hr>
 		</div>
 		<div id="preguntas">
 			<div id=preg1>
+				<div id=removeres>
+					<input type="button" onClick="removeRespuesta('preg1')"
+						value="Quitar Respuesta" />
+				</div>
 				<div id=addres>
 					<input type="button" onClick="addRespuesta('preg1')"
 						value="Añadir Respuesta" />
@@ -63,7 +70,6 @@
 						size=20 /> <br>
 				</div>
 			</div>
-				<hr>
 		</div>
 	</form>
 </body>

@@ -2,6 +2,12 @@ body {
 	background:	#FFFF99;
 }
 div {border :2px solid black}
+#removepreg{
+	float:right;	
+}
+#removeres{
+	float:right;
+}
 #addpreg{
 	float: right; 
 }
