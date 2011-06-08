@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 3.2.4
+-- version 3.3.9
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 19-05-2011 a las 16:14:29
--- Versión del servidor: 5.1.44
--- Versión de PHP: 5.3.1
+-- Tiempo de generación: 08-06-2011 a las 19:48:13
+-- Versión del servidor: 5.5.8
+-- Versión de PHP: 5.3.5
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 
@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS `aplicaciones` (
   `IDProyecto` varchar(50) COLLATE latin1_spanish_ci DEFAULT NULL,
   PRIMARY KEY (`OIDAplicacion`),
   UNIQUE KEY `nombre` (`nombre`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci AUTO_INCREMENT=5 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci AUTO_INCREMENT=7 ;
 
 --
 -- Volcar la base de datos para la tabla `aplicaciones`
@@ -136,7 +136,7 @@ CREATE TABLE IF NOT EXISTS `enfrentamientos` (
 --
 
 INSERT INTO `enfrentamientos` (`OIDEnfrentamiento`, `IDEnfrentamiento`, `IDAplicacion1`, `IDAplicacion2`, `descripcion`, `votosApp1`, `votosApp2`, `fechaCreacion`, `fechaFin`, `aceptado`, `IDUsuario`, `finalizado`) VALUES
-(1, 'en1', '1', '3', 'VLC vs Winamp ¿Quien ganra? voten', 0, 0, '2011-04-29 14:53:05', '2011-04-30 14:53:09', 1, '', 0);
+(1, 'en1', '1', '3', 'VLC vs Winamp ¿Quien ganra? voten', 0, 0, '2011-04-29 14:53:05', '2011-04-30 14:53:09', 1, '', 1);
 
 -- --------------------------------------------------------
 
@@ -177,7 +177,7 @@ CREATE TABLE IF NOT EXISTS `perfiles` (
   `IDSO1` varchar(50) COLLATE latin1_spanish_ci DEFAULT NULL,
   `IDSO2` varchar(50) COLLATE latin1_spanish_ci DEFAULT NULL,
   PRIMARY KEY (`OIDPerfil`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci AUTO_INCREMENT=16 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci AUTO_INCREMENT=17 ;
 
 --
 -- Volcar la base de datos para la tabla `perfiles`
@@ -187,7 +187,8 @@ INSERT INTO `perfiles` (`OIDPerfil`, `IDPerfil`, `nombre`, `apellidos`, `edad`, 
 (14, '130581714241341a241b4', 'Juan Antonio', 'Sanchez Madero', 24, '1', '3', '1', '4'),
 (13, '1305740927043ffffffffa76acf18', 'mar', 'beyond', 56, '1', '2', '1', '4'),
 (12, '1305740818995ffffffffedba705a', 'Juan Antonio', 'Sanchez Madero', 23, '1', '1', '1', '4'),
-(15, '1305817206316ffffffff8d4dab94', 'Marc', 'Bayon', 23, '1', '1', '1', '4');
+(15, '1305817206316ffffffff8d4dab94', 'Marc', 'Bayon', 23, '1', '1', '1', '4'),
+(16, '13075319160103146e62', 'Fray', 'Daza', 26, '1', '1', '3', '4');
 
 -- --------------------------------------------------------
 
@@ -261,6 +262,7 @@ INSERT INTO `provincias` (`OIDProvincia`, `IDProvincia`, `nombre`) VALUES
 CREATE TABLE IF NOT EXISTS `proyectos` (
   `OIDProyecto` int(11) NOT NULL AUTO_INCREMENT,
   `IDProyecto` varchar(50) COLLATE latin1_spanish_ci NOT NULL,
+  `IDUsuarioCreador` varchar(50) COLLATE latin1_spanish_ci NOT NULL,
   `nombre` varchar(50) COLLATE latin1_spanish_ci NOT NULL,
   `descripcion` text COLLATE latin1_spanish_ci NOT NULL,
   `fechaInicio` datetime NOT NULL,
@@ -268,15 +270,15 @@ CREATE TABLE IF NOT EXISTS `proyectos` (
   `disponible` tinyint(1) NOT NULL,
   `nivelKarma` int(11) NOT NULL,
   PRIMARY KEY (`OIDProyecto`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci AUTO_INCREMENT=3 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci AUTO_INCREMENT=5 ;
 
 --
 -- Volcar la base de datos para la tabla `proyectos`
 --
 
-INSERT INTO `proyectos` (`OIDProyecto`, `IDProyecto`, `nombre`, `descripcion`, `fechaInicio`, `fechaFin`, `disponible`, `nivelKarma`) VALUES
-(1, '', 'Pacome', 'Calendario de comidas para lpersonas de la tercera edad', '2011-04-29 15:45:54', '2012-04-27 15:45:58', 1, 0),
-(2, '', 'Pacorrer', 'Calendario de marchas y senderismo en España.', '2011-04-29 15:46:29', '2012-04-27 15:46:32', 1, 0);
+INSERT INTO `proyectos` (`OIDProyecto`, `IDProyecto`, `IDUsuarioCreador`, `nombre`, `descripcion`, `fechaInicio`, `fechaFin`, `disponible`, `nivelKarma`) VALUES
+(1, '1', '1', 'Pacome', 'Calendario de comidas para lpersonas de la tercera edad', '2011-04-29 15:45:54', '2012-04-27 15:45:58', 1, 0),
+(2, '2', '1', 'Pacorrer', 'Calendario de marchas y senderismo en España.', '2011-04-29 15:46:29', '2012-04-27 15:46:32', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -377,7 +379,7 @@ CREATE TABLE IF NOT EXISTS `tagsaplicaciones` (
   `IDAplicacion` varchar(50) COLLATE latin1_spanish_ci NOT NULL,
   `IDTag` varchar(50) COLLATE latin1_spanish_ci NOT NULL,
   PRIMARY KEY (`OIDRelacion`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci AUTO_INCREMENT=12 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci AUTO_INCREMENT=16 ;
 
 --
 -- Volcar la base de datos para la tabla `tagsaplicaciones`
@@ -389,7 +391,11 @@ INSERT INTO `tagsaplicaciones` (`OIDRelacion`, `IDAplicacion`, `IDTag`) VALUES
 (6, '1', 'vid'),
 (11, '4', 'mus'),
 (10, '4', 'vid'),
-(9, '3', 'mus');
+(9, '3', 'mus'),
+(12, '7', '4'),
+(13, '7', '5'),
+(14, '7', '4'),
+(15, '7', '5');
 
 -- --------------------------------------------------------
 
@@ -428,7 +434,7 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `numeroRecomendaciones` int(11) NOT NULL,
   PRIMARY KEY (`OIDUsuario`),
   UNIQUE KEY `nombreUsuario` (`nombreUsuario`,`email`,`IDPerfil`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci AUTO_INCREMENT=16 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci AUTO_INCREMENT=17 ;
 
 --
 -- Volcar la base de datos para la tabla `usuarios`
@@ -436,7 +442,8 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
 
 INSERT INTO `usuarios` (`OIDUsuario`, `IDUsuario`, `nombreUsuario`, `contrasenna`, `email`, `IDPerfil`, `karma`, `numeroRecomendaciones`) VALUES
 (14, '1305817111314288eb5b0', 'sheinx', 's', 'shx@isg3.com', '130581714241341a241b4', 20, 1),
-(15, '1305817188803ffffffffd20a59cf', 'marc', 'm', 'marc@isg3.com', '1305817206316ffffffff8d4dab94', 20, 0);
+(15, '1305817188803ffffffffd20a59cf', 'marc', 'm', 'marc@isg3.com', '1305817206316ffffffff8d4dab94', 20, 0),
+(16, '1307531898645ffffffffa3aa848a', 'francis', 'f', 'fragelbreak@gmail.com', '13075319160103146e62', 10, 0);
 
 -- --------------------------------------------------------
 
