@@ -115,7 +115,12 @@ function removeRespuesta(divactual){
 function removePregunta(){
 	var capa = document.getElementById("preguntas");
 	var divs = capa.getElementsByTagName("div");
-	var divAEliminar= divs[divs.length-1];
+	var divAEliminar= divs[divs.length-1].id;
 	alert (divAEliminar);
-	//capa.removeChild(divAEliminar);
+	capa.removeChild(divAEliminar);
+}
+
+function validate (){
+	document.formulario.action = "FrontController?accion=insertarEncuesta";
+	document.formulario.submit();
 }

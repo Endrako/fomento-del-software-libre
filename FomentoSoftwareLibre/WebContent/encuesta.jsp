@@ -30,12 +30,12 @@
 			</tr>
 		</table>
 	</div>
-	<form name=encuesta>
+	<form id="formulario" name="formulario" action="" method="POST">
 		<div id=titulo>
 			<label for=tit>Titulo de la encuesta</label> <input id="tit"
 				type="text" size=60 />
 			<div id="submit">
-				<input type="button" value="Publicar encuesta" />
+				<input type="button" value="Publicar encuesta" onclick="validate();" />
 				<div id="removepreg">
 					<input type="button" onClick="removePregunta();"
 						value="Quitar Pregunta" />

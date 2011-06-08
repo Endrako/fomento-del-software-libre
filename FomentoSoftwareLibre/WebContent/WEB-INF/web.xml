@@ -21,13 +21,13 @@
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>TratarEncuesta</display-name>
-    <servlet-name>TratarEncuesta</servlet-name>
-    <servlet-class>servlets.TratarEncuesta</servlet-class>
+    <display-name>ServletInsertarEncuesta</display-name>
+    <servlet-name>ServletInsertarEncuesta</servlet-name>
+    <servlet-class>servlets.ServletInsertarEncuesta</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>TratarEncuesta</servlet-name>
-    <url-pattern>/TratarEncuesta</url-pattern>
+    <servlet-name>ServletInsertarEncuesta</servlet-name>
+    <url-pattern>/ServletInsertarEncuesta</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
