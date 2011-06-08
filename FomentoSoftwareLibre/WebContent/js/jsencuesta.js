@@ -1,5 +1,7 @@
 var p = 2;
 
+deshabilitar_preg();
+
 function addRespuesta(divactual){
 	var capa = document.getElementById(divactual);
 	
@@ -108,19 +110,36 @@ function removeRespuesta(divactual){
 	var capa = document.getElementById(divactual);
 	var divs = capa.getElementsByTagName("div");
 	var divAEliminar= divs[divs.length-1];
-	//var padre = capa.parentNode;
-	capa.removeChild(divAEliminar);
+	var cadena =divs[divs.length-1].id;
+	var numres = cadena[cadena.length-1];
+	var n= parseInt(numres);
+	if (n>2){
+		capa.removeChild(divAEliminar);
+	}
 }
 
 function removePregunta(){
 	var capa = document.getElementById("preguntas");
 	var divs = capa.getElementsByTagName("div");
-	var divAEliminar= divs[divs.length-1].id;
-	alert (divAEliminar);
-	capa.removeChild(divAEliminar);
+	var i=0;
+	for (i=divs.length-1; i>=0; i--){
+		var cadena= divs[i].id;
+		if (cadena[0] == 'p' && p!=2){
+			var divAEliminar = document.getElementById(cadena);
+			p--;
+			capa.removeChild(divAEliminar);
+			break;
+		}
+	}
 }
 
 function validate (){
 	document.formulario.action = "FrontController?accion=insertarEncuesta";
 	document.formulario.submit();
+}
+
+function deshabilitar_preg(){
+	if (p==2){
+		document.quitar_pregunta.value="disabled";
+	}
 }

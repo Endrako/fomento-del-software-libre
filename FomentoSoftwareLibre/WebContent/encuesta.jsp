@@ -37,11 +37,11 @@
 			<div id="submit">
 				<input type="button" value="Publicar encuesta" onclick="validate();" />
 				<div id="removepreg">
-					<input type="button" onClick="removePregunta();"
+					<input id ="quitar_pregunta" type="button" onClick="removePregunta();"name = "quitar_pregunta"
 						value="Quitar Pregunta" />
 				</div>
 				<div id="addpreg">
-					<input type="button" onClick="addPregunta();"
+					<input type="button" onClick="addPregunta();" 
 						value="Añadir Pregunta" />
 				</div>
 			</div>
@@ -50,7 +50,7 @@
 		<div id="preguntas">
 			<div id=preg1>
 				<div id=removeres>
-					<input type="button" onClick="removeRespuesta('preg1')"
+					<input type="button" onClick="removeRespuesta('preg1') " name ="quitar_respuesta"
 						value="Quitar Respuesta" />
 				</div>
 				<div id=addres>
