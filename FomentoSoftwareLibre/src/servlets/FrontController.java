@@ -16,150 +16,183 @@ import pos.domain.UsuarioStore;
  */
 public class FrontController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public FrontController() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doPost(request,response);
+	public FrontController() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doPost(request, response);
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String accion = request.getParameter("accion");
-		procesarAccion(accion,request,response);
+		procesarAccion(accion, request, response);
 	}
-	
-	public void procesarAccion(String accion, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		if ( accion.equals("entrar") ){
-			entrar(request,response);
-		}else if (accion.equals("TagsEnfrentamiento")){
-			seleccionarTagParaEnfrentamiento(request,response);
-		}else if(accion.equals("AplicacionesEnfrentamiento")){
-			seleccionarAplicacionesEnfrentamiento(request,response);
-		}else if ( accion.equals("logout") ){
-			logout(request,response);
-		}else if ( accion.equals("registrar") ){
-			registrar(request,response);
-		}else if ( accion.equals("registroUsuario") ){
-			registroUsuario(request,response);
-		}else if ( accion.equals("recuperarPerfilAplicacion") ){
-			recuperarPerfilAplicacion(request,response);
-		}else if ( accion.equals("nuevaAplicacion") ){
-			nuevaAplicacion(request,response);
-		}else if ( accion.equals("nuevoPerfil") ){
-			guardarNuevoPerfil(request,response);
-		}else if ( accion.equals("insertarAplicacion") ){
-			insertarApliacion(request,response);
-		}else if ( accion.equals("votarAFavor") ){
-			votarAFavor(request,response);
-		}else if ( accion.equals("votarEnContra") ){
-			votarEnContra(request,response);
-		}else if ( accion.equals("votarEnfrentamiento")){
-			votarEnfrentamiento(request,response);
-		}else if(accion.equals("seleccionarProyectoParaUnirse")){
-			seleccionarProyectoParaUnirse(request, response);
-		}else if (accion.equals("insertarEncuesta")){
-			insertarEncuesta(request,response);
-		}
-	}
-	
 
+	public void procesarAccion(String accion, HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		if (accion.equals("entrar")) {
+			entrar(request, response);
+		} else if (accion.equals("TagsEnfrentamiento")) {
+			seleccionarTagParaEnfrentamiento(request, response);
+		} else if (accion.equals("AplicacionesEnfrentamiento")) {
+			seleccionarAplicacionesEnfrentamiento(request, response);
+		} else if (accion.equals("logout")) {
+			logout(request, response);
+		} else if (accion.equals("registrar")) {
+			registrar(request, response);
+		} else if (accion.equals("registroUsuario")) {
+			registroUsuario(request, response);
+		} else if (accion.equals("recuperarPerfilAplicacion")) {
+			recuperarPerfilAplicacion(request, response);
+		} else if (accion.equals("nuevaAplicacion")) {
+			nuevaAplicacion(request, response);
+		} else if (accion.equals("nuevoPerfil")) {
+			guardarNuevoPerfil(request, response);
+		} else if (accion.equals("insertarAplicacion")) {
+			insertarApliacion(request, response);
+		} else if (accion.equals("votarAFavor")) {
+			votarAFavor(request, response);
+		} else if (accion.equals("votarEnContra")) {
+			votarEnContra(request, response);
+		} else if (accion.equals("votarEnfrentamiento")) {
+			votarEnfrentamiento(request, response);
+		} else if (accion.equals("seleccionarProyectoParaUnirse")) {
+			seleccionarProyectoParaUnirse(request, response);
+		} else if (accion.equals("recuperarPerfilProyecto")) {
+			recuperarPerfilProyecto(request, response);
+		} else if (accion.equals("insertarEncuesta")) {
+			insertarEncuesta(request, response);
+		}
+		
+	}
 
 	private void insertarEncuesta(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("ServletInsertarEncuesta").include(request, response);
-		
+		request.getRequestDispatcher("ServletInsertarEncuesta").include(
+				request, response);
+
 	}
 
 	private void recuperarPerfilAplicacion(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("descripcionDetalladaAplicacion.jsp").include(request,response);
+		request.getRequestDispatcher("descripcionDetalladaAplicacion.jsp")
+				.include(request, response);
 	}
-	
+
 	private void insertarApliacion(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("InsertarAplicacion").include(request,response);
+		request.getRequestDispatcher("InsertarAplicacion").include(request,
+				response);
 	}
-	
+
 	private void nuevaAplicacion(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("nuevaAplicacion.jsp").include(request,response);
+		request.getRequestDispatcher("nuevaAplicacion.jsp").include(request,
+				response);
 	}
 
 	private void registrar(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.getRequestDispatcher("registroUsuario.jsp").include(request,response);
-		
+		request.getRequestDispatcher("registroUsuario.jsp").include(request,
+				response);
+
 	}
-	
-	private void logout(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
+
+	private void logout(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		request.setAttribute("logout", "si");
-		request.getRequestDispatcher("Logear").include(request,response);
-		
+		request.getRequestDispatcher("Logear").include(request, response);
+
 	}
-	
+
 	private void guardarNuevoPerfil(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.getRequestDispatcher("nuevoPerfil").include(request,response);
-		
-	}
-	
-	public void registroUsuario(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		request.getRequestDispatcher("NuevoUsuario").include(request,response);
+		request.getRequestDispatcher("nuevoPerfil").include(request, response);
+
 	}
 
-	public void entrar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-	
-		request.getRequestDispatcher("Logear").include(request,response);
-		
+	public void registroUsuario(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		request.getRequestDispatcher("NuevoUsuario").include(request, response);
 	}
-	
-	private void seleccionarTagParaEnfrentamiento (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+
+	public void entrar(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		request.getRequestDispatcher("Logear").include(request, response);
+
+	}
+
+	private void seleccionarTagParaEnfrentamiento(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 		request.setAttribute("evento", "selectTags");
-		request.getRequestDispatcher("Enfrentamiento").include(request, response);
+		request.getRequestDispatcher("Enfrentamiento").include(request,
+				response);
 	}
-	
-	private void seleccionarAplicacionesEnfrentamiento (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+
+	private void seleccionarAplicacionesEnfrentamiento(
+			HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		request.setAttribute("evento", "selectAplicaciones");
-		request.setAttribute("tags", (Tag)request.getAttribute("tags"));
-		request.getRequestDispatcher("Enfrentamiento").include(request, response);
+		request.setAttribute("tags", (Tag) request.getAttribute("tags"));
+		request.getRequestDispatcher("Enfrentamiento").include(request,
+				response);
 	}
-	
-	private void votarAFavor(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("votarAFavor").include(request,response);
+
+	private void votarAFavor(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		request.getRequestDispatcher("votarAFavor").include(request, response);
 	}
-	private void votarEnContra(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("votarEnContra").include(request,response);
-			
+
+	private void votarEnContra(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		request.getRequestDispatcher("votarEnContra")
+				.include(request, response);
+
 	}
-	
-	private void votarEnfrentamiento(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+
+	private void votarEnfrentamiento(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 		request.setAttribute("evento", "votar");
-		request.setAttribute("IDEnfrentamiento",request.getParameter("idEnfrentamiento"));
-		request.setAttribute("NumeroAplicacion", request.getParameter("aplicacion"));
-		request.getRequestDispatcher("Enfrentamiento").include(request, response);
+		request.setAttribute("IDEnfrentamiento",
+				request.getParameter("idEnfrentamiento"));
+		request.setAttribute("NumeroAplicacion",
+				request.getParameter("aplicacion"));
+		request.getRequestDispatcher("Enfrentamiento").include(request,
+				response);
 	}
-	
-	private void seleccionarProyectoParaUnirse(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+
+	private void seleccionarProyectoParaUnirse(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 		request.setAttribute("evento", "selectProyects");
 		request.getRequestDispatcher("ServletProyecto");
+	}
+
+	private void recuperarPerfilProyecto(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		request.getRequestDispatcher("descripcionDetalladaProyecto.jsp")
+				.include(request, response);
 	}
 
 }
