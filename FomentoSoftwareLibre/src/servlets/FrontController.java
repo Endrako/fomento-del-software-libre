@@ -69,6 +69,8 @@ public class FrontController extends HttpServlet {
 			votarEnContra(request,response);
 		}else if ( accion.equals("votarEnfrentamiento")){
 			votarEnfrentamiento(request,response);
+		}else if(accion.equals("seleccionarProyectoParaUnirse")){
+			seleccionarProyectoParaUnirse(request, response);
 		}
 	}
 	
@@ -148,7 +150,8 @@ public class FrontController extends HttpServlet {
 	}
 	
 	private void seleccionarProyectoParaUnirse(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		request.setAttribute("", arg1);
+		request.setAttribute("evento", "selectProyects");
+		request.getRequestDispatcher("ServletProyecto");
 	}
 
 }
