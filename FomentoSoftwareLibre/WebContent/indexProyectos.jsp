@@ -110,11 +110,11 @@
 					;
 					value="Ver descripción">
 				</td>
-				<td width="33%" class="datos_tabla" align="left"><input type="button" id="<%=a.getIDAplicacion()%>"
+				<%-- <td width="33%" class="datos_tabla" align="left"><input type="button" id="<%=a.getIDAplicacion()%>"
 				name="<%=a.getNombre()%>"
 				onClick="javascript:recuperarAplicacion(this.id)";
 				value="Ver aplicación asociada";>
-				</td>
+				</td> --%>
 			</tr>
 			<%
 				}
