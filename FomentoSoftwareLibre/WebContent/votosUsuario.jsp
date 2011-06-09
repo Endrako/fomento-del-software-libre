@@ -80,7 +80,7 @@
 <table align="center" class="borde">
 	<tr>
 		<td width="100%" class="tabla_principal" align="center" colspan="2">
-			<strong> Listas de Votos </strong>
+			<strong> Lista de Votos del Usuario <%=usuario.getNombreUsuario()  %> </strong>
 		</td>
 	</tr>
 	<tr>
@@ -93,11 +93,10 @@
 	</tr>
 	<%
 		VotoStore store = VotoStore.getInstance();
-		List<Voto> lista = store.getVotos();
+		List<Voto> lista = store.getVotoByIDUser(usuario.getIdUser());
 		for (Voto v : lista){
 			String apli;
 			String val;
-			if(v.getUsuario().equals(usuario.getIdUser())){
 	%>
 	<tr>
 		<td width="50%" class="datos_tabla" align="left">
@@ -118,7 +117,7 @@
 			<%=val %>
 		</td>
 	</tr>
-	<%}} %>
+	<%} %>
 	<tr>
 		<td width="40%" align="left" class="datos_tabla">
 			<input type="button" id="atras" name="atras" value=" Atrás " onclick="javascript:redirigir()">

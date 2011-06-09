@@ -23,11 +23,14 @@
 		document.write("<link href='" + css + "' rel='stylesheet' type='text/css'>"); 
 		<%
 			Usuario usuario = (Usuario)session.getAttribute("usuario");
+			String nombre = request.getParameter("nombre");
 		%>
 
 		function redirigir(){
 			window.location="votosUsuario.jsp";
 		}
+		
+		
 		
 </script>
 </head>
@@ -66,7 +69,7 @@
 <table align="center" class="borde">
 	<tr>
 		<td width="100%" class="tabla_principal" align="center" colspan="2">
-			<strong> Listas de Votos </strong>
+			<strong> Lista de Votos de la aplicacion <%=nombre %></strong>
 		</td>
 	</tr>
 	<tr>
@@ -79,9 +82,8 @@
 	</tr>
 	<%
 		VotoStore store = VotoStore.getInstance();
-		List<Voto> lista = store.getVotos();
 		
-		String nombre = request.getParameter("nombre");
+		
 		
 		AplicacionStore apliStore = AplicacionStore.getInstance();
 		List<Aplicacion> listApli = apliStore.getAplicaciones();
@@ -89,14 +91,16 @@
 		String idApli = "";
 		
 		for (Aplicacion a : listApli){
-			if(a.getNombre().equals(nombre))
+			if(a.getNombre().equals(nombre)){
 				idApli = a.getIDAplicacion();
+				break;
+			}
 		}
 		
+		List<Voto> lista = store.getVotoByAplicacion(idApli);
 		for (Voto v : lista){
 			String user;
 			String val;
-			if(v.getAplicacion().equals(idApli)){
 	%>
 	<tr>
 		<td width="50%" class="datos_tabla" align="left">
@@ -117,7 +121,7 @@
 			<%=val %>
 		</td>
 	</tr>
-	<%}} %>
+	<%} %>
 	<tr>
 		<td width="40%" align="left" class="datos_tabla">
 			<input type="button" id="atras" name="atras" value=" Atrás " onclick="javascript:redirigir()">
