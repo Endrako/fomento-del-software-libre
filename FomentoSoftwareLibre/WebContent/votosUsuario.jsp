@@ -89,14 +89,27 @@
 		VotoStore store = VotoStore.getInstance();
 		List<Voto> lista = store.getVotos();
 		for (Voto v : lista){
+			String apli;
+			String val;
 			if(v.getUsuario().equals(usuario.getIdUser())){
 	%>
 	<tr>
 		<td width="50%" class="datos_tabla" align="left">
-			<%=v.getAplicacion() %>
+		<%
+		AplicacionStore astore = AplicacionStore.getInstance();
+		Aplicacion ap = astore.getAplicacion(v.getAplicacion());
+		apli = ap.getNombre();
+		%>
+			<%=apli %>
 		</td>
 		<td width="50%" class="datos_tabla" align="left">
-			<%=v.getValor() %>
+		<% if(v.getValor()){
+			val = "positivo";
+		}else{
+			val = "negativo";
+		}
+			%>
+			<%=val %>
 		</td>
 	</tr>
 	<%}} %>
