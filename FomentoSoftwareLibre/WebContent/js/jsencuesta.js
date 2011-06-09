@@ -1,6 +1,5 @@
 var p = 2;
 
-deshabilitar_preg();
 
 function addRespuesta(divactual){
 	var capa = document.getElementById(divactual);
@@ -138,8 +137,3 @@ function validate (){
 	document.formulario.submit();
 }
 
-function deshabilitar_preg(){
-	if (p==2){
-		document.quitar_pregunta.value="disabled";
-	}
-}

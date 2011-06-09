@@ -59,7 +59,7 @@
 				</div>
 				<div id="enunpreg1">
 					<label for=enun1">Enunciado de la pregunta 1:</label> <input
-						id="enun1" type="text" size=40 /> <br>
+						name= "enunpreg1" id="enun1" type="text" size=40 /> <br>
 				</div>
 				<div id="res1-1">
 					<label for=res1> Respuesta 1</label> <input id=res1 type="text"
