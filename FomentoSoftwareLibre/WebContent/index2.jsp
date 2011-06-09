@@ -63,6 +63,7 @@
       <li class="activa"><a href="indexEnfrentamiento.jsp">Enfrentamientos</a></li>
       <li><a href="aplicaciones.jsp">Aplicaciones</a></li>
       <li><a href="indexProyectos.jsp">Proyectos</a></li>
+      <li><a href="votosUsuario.jsp">Votos del Usuario</a></li>
    </ul>
 </div>
 </body>
