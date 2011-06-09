@@ -51,9 +51,9 @@
 	String idAplicacion = request.getParameter("idAplicacion");
 	AplicacionStore store = AplicacionStore.getInstance();
 	Aplicacion api = store.getAplicacion(idAplicacion);
+	
 	VotoStore vstore = VotoStore.getInstance();
 	Boolean valido = vstore.isVoto(usuario.getIdUser(),idAplicacion);
-	String boton;
 %>
 </head>
 

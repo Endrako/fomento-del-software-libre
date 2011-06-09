@@ -80,6 +80,8 @@ public class FrontController extends HttpServlet {
 			recuperarPerfilProyecto(request, response);
 		} else if (accion.equals("insertarEncuesta")) {
 			insertarEncuesta(request, response);
+		} else if (accion.equals("votosAplicacion")){
+			votosAplicacion(request, response);
 		}
 		
 	}
@@ -167,9 +169,7 @@ public class FrontController extends HttpServlet {
 
 	private void votarEnContra(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("ServletVotarEnContra")
-				.include(request, response);
-
+		request.getRequestDispatcher("ServletVotarEnContra").include(request, response);
 	}
 
 	private void votarEnfrentamiento(HttpServletRequest request,
@@ -193,6 +193,11 @@ public class FrontController extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		request.getRequestDispatcher("descripcionDetalladaProyecto.jsp")
 				.include(request, response);
+	}
+	
+	private void votosAplicacion(HttpServletRequest request,
+			HttpServletResponse response)throws ServletException, IOException {
+		request.getRequestDispatcher("votosApli.jsp").include(request, response);
 	}
 
 }

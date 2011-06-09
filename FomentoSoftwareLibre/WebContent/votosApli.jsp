@@ -14,6 +14,7 @@
 
 <html>
 <head>
+
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Lista de Votos</title>
  <script language="JavaScript" src="js/funcionesComunes.js" type="text/javascript"></script>
@@ -24,25 +25,10 @@
 			Usuario usuario = (Usuario)session.getAttribute("usuario");
 		%>
 
-		function recuperarAplicacion(idAplicacion){
-			document.formulario.action = "FrontController?accion=recuperarPerfilAplicacion&idAplicacion="+ idAplicacion ;
-			document.formulario.submit();
-		}
-
 		function redirigir(){
-			window.location="index2.jsp";
+			window.location="votosUsuario.jsp";
 		}
 		
-		function votosapli(){
-			var nombreApli = document.getElementById("nombreApli").value;
-			document.formulario.action = "FrontController?accion=votosAplicacion&nombre="+ nombreApli ;
-			document.formulario.submit();
-		}
-		
-		function nuevaA(){
-			document.formulario.action = "FrontController?accion=nuevaAplicacion";
-			document.formulario.submit();
-		}
 </script>
 </head>
 <body background="Imagenes/fondo.jpg">
@@ -85,7 +71,7 @@
 	</tr>
 	<tr>
 		<td width="50%" class="tabla_principal2" align="left">
-			<strong>Nombre aplicación: </strong>
+			<strong>Nombre usuario: </strong>
 		</td>
 		<td width="50%" class="tabla_principal2" align="left">
 			<strong>Valor</strong>
@@ -94,19 +80,32 @@
 	<%
 		VotoStore store = VotoStore.getInstance();
 		List<Voto> lista = store.getVotos();
+		
+		String nombre = request.getParameter("nombre");
+		
+		AplicacionStore apliStore = AplicacionStore.getInstance();
+		List<Aplicacion> listApli = apliStore.getAplicaciones();
+		
+		String idApli = "";
+		
+		for (Aplicacion a : listApli){
+			if(a.getNombre().equals(nombre))
+				idApli = a.getIDAplicacion();
+		}
+		
 		for (Voto v : lista){
-			String apli;
+			String user;
 			String val;
-			if(v.getUsuario().equals(usuario.getIdUser())){
+			if(v.getAplicacion().equals(idApli)){
 	%>
 	<tr>
 		<td width="50%" class="datos_tabla" align="left">
 		<%
-		AplicacionStore astore = AplicacionStore.getInstance();
-		Aplicacion ap = astore.getAplicacion(v.getAplicacion());
-		apli = ap.getNombre();
+		UsuarioStore ustore = new UsuarioStore();
+		Usuario us = ustore.recuperarUsuarioByIdUsuario(v.getUsuario());
+		user = us.getNombreUsuario();
 		%>
-			<%=apli %>
+			<%=user %>
 		</td>
 		<td width="50%" class="datos_tabla" align="left">
 		<% if(v.getValor()){
@@ -123,15 +122,6 @@
 		<td width="40%" align="left" class="datos_tabla">
 			<input type="button" id="atras" name="atras" value=" Atrás " onclick="javascript:redirigir()">
 		</td>
-	</tr>
-	<tr>
-		<td width="40%" align="left" class="datos_tabla">
-			<input type="text" id="nombreApli" name="nombreApli">
-		</td>
-		<td width="40%" align="right" class="datos_tabla">
-			<input type="button" id="votosApli" name="votosApli" value=" Votos de la Aplicacion " onclick="javascript:votosapli(nombreApli)">
-		</td>
-	
 	</tr>
 </table>
 </form>
