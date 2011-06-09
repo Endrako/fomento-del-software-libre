@@ -85,7 +85,7 @@
 	</tr>
 	<tr>
 		<td width="50%" class="tabla_principal2" align="left">
-			<strong>Nombre aplicación: </strong>
+			<strong>Nombre aplicación </strong>
 		</td>
 		<td width="50%" class="tabla_principal2" align="left">
 			<strong>Valor</strong>

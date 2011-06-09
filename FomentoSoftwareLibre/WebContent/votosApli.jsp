@@ -71,7 +71,7 @@
 	</tr>
 	<tr>
 		<td width="50%" class="tabla_principal2" align="left">
-			<strong>Nombre usuario: </strong>
+			<strong>Nombre usuario </strong>
 		</td>
 		<td width="50%" class="tabla_principal2" align="left">
 			<strong>Valor</strong>
