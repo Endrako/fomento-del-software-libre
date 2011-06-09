@@ -34,13 +34,15 @@
 			window.location="aplicaciones.jsp";
 		}
 		
-		function votarafavor(){
-			document.formulario.action = "FrontController?accion=votarAFavor";
+		function votarafavor(idAplicacion){
+			document.formulario.action = "FrontController?accion=votarAFavor&idAplicacion="+idAplicacion;
 			document.formulario.submit();
+			window.location="aplicaciones.jsp";
 		}
-		function votarencontra(){
-			document.formulario.action = "FrontController?accion=votarEnContra";
+		function votarencontra(idAplicacion){
+			document.formulario.action = "FrontController?accion=votarEnContra&idAplicacion="+idAplicacion;
 			document.formulario.submit();
+			window.location="aplicaciones.jsp";
 		}
 		
 
@@ -49,7 +51,9 @@
 	String idAplicacion = request.getParameter("idAplicacion");
 	AplicacionStore store = AplicacionStore.getInstance();
 	Aplicacion api = store.getAplicacion(idAplicacion);
-	
+	VotoStore vstore = VotoStore.getInstance();
+	Boolean valido = vstore.isVoto(usuario.getIdUser(),idAplicacion);
+	String boton;
 %>
 </head>
 
@@ -150,14 +154,16 @@
 			<a href=<%=api.getURLWeb()%>></a>
 		</td>
 	</tr>
+	<% if(valido){ %>
 	<tr>
 		<td width="50%" align="left" class="datos_tabla">
-			&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" id="votarAFavor" name="votarAFavor" value=" Votar a Favor "  onclick="javascript:votarafavor();">
+			&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" id="votarAFavor" name="votarAFavor"  value=" Votar a Favor " onclick="javascript:votarafavor(<%=idAplicacion%>);">
 		</td>
 		<td width="50%" align="center" class="datos_tabla">
-			&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" id="votarEnContra" name="votarEnContra" value=" Votar en Contra " onclick="javascript:votarencontra();">
+			<input type="button" id="votarEnContra" name="votarEnContra" value=" Votar en Contra " onclick="javascript:votarencontra(<%=idAplicacion%>);">
 		</td>
 	</tr>
+	<% } %>
 	<tr>
 		<td width="100%" align="center" class="datos_tabla" colspan="2">
 			<input type="button" id="atras" name="atras" value=" Atrás " onclick="javascript:redirigir()">

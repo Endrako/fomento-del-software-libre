@@ -162,12 +162,12 @@ public class FrontController extends HttpServlet {
 
 	private void votarAFavor(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("votarAFavor").include(request, response);
+		request.getRequestDispatcher("ServletVotarAFavor").include(request, response);
 	}
 
 	private void votarEnContra(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("votarEnContra")
+		request.getRequestDispatcher("ServletVotarEnContra")
 				.include(request, response);
 
 	}

@@ -1,29 +1,38 @@
 package servlets;
 
 import java.io.IOException;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import pos.domain.Aplicacion;
 import pos.domain.Usuario;
 import pos.domain.Voto;
 import pos.domain.VotoImpl;
 import pos.domain.VotoStore;
+import pos.utils.UIDGenerator;
 
-public class votarAFavor extends HttpServlet {
+/**
+ * Servlet implementation class ServletVotarAFavor
+ */
+public class ServletVotarAFavor extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
-	public votarAFavor() {
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public ServletVotarAFavor() {
         super();
+        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		doPost(request,response);
 	}
 
@@ -31,33 +40,29 @@ public class votarAFavor extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		
-		// recuperamos Variables
-		String idVoto = request.getParameter("idVoto");
-		String idAplicacion = request.getParameter("idAplicacion");
+		UIDGenerator id = UIDGenerator.getInstance();
+		String idVoto = id.getKey();
+		
 		Boolean valor = true;
 		
 		HttpSession sesion = request.getSession();
 		Usuario user = (Usuario) sesion.getAttribute("usuario");
+
+		String idAplicacion = request.getParameter("idAplicacion");
 		
 		String idUsuario = user.getIdUser();
 		
-		// BO necesarios
 		VotoStore store = VotoStore.getInstance();
-		
-		// TO necesarios
-		Voto voto;
-		
-		if ( !"".equals(idVoto) && idVoto != null ){
-			voto = store.getVotoByIDVoto(idVoto);
 
-		}else{
-			voto = new VotoImpl();
-		}
+		Voto voto = new VotoImpl();
+		
+		voto.setIDVoto(idVoto);
 		voto.setUsuario(idUsuario);
 		voto.setAplicacion(idAplicacion);
 		voto.setValor(valor);
+
 		store.crearVoto(voto);
 	}
+
 }

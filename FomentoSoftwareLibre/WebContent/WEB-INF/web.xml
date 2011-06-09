@@ -89,4 +89,24 @@
     <servlet-name>ServletProyecto</servlet-name>
     <url-pattern>/ServletProyecto</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ServletVotarAFavor</display-name>
+    <servlet-name>ServletVotarAFavor</servlet-name>
+    <servlet-class>servlets.ServletVotarAFavor</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletVotarAFavor</servlet-name>
+    <url-pattern>/ServletVotarAFavor</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ServletVotarEnContra</display-name>
+    <servlet-name>ServletVotarEnContra</servlet-name>
+    <servlet-class>servlets.ServletVotarEnContra</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletVotarEnContra</servlet-name>
+    <url-pattern>/ServletVotarEnContra</url-pattern>
+  </servlet-mapping>
 </web-app>

@@ -1,7 +1,6 @@
 package servlets;
 
 import java.io.IOException;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -12,19 +11,27 @@ import pos.domain.Usuario;
 import pos.domain.Voto;
 import pos.domain.VotoImpl;
 import pos.domain.VotoStore;
+import pos.utils.UIDGenerator;
 
-public class votarEnContra extends HttpServlet {
-
+/**
+ * Servlet implementation class ServletVotarEnContra
+ */
+public class ServletVotarEnContra extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
-	public votarEnContra() {
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public ServletVotarEnContra() {
         super();
+        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		doPost(request,response);
 	}
 
@@ -32,33 +39,28 @@ public class votarEnContra extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		UIDGenerator id = UIDGenerator.getInstance();
+		String idVoto = id.getKey();
 		
-		// recuperamos Variables
-		String idVoto = request.getParameter("idVoto");
-		String idAplicacion = request.getParameter("idAplicacion");
 		Boolean valor = false;
 		
 		HttpSession sesion = request.getSession();
 		Usuario user = (Usuario) sesion.getAttribute("usuario");
+
+		String idAplicacion = request.getParameter("idAplicacion");
 		
 		String idUsuario = user.getIdUser();
 		
-		// BO necesarios
 		VotoStore store = VotoStore.getInstance();
+
+		Voto voto = new VotoImpl();
 		
-		// TO necesarios
-		Voto voto;
-		
-		if ( !"".equals(idVoto) && idVoto != null ){
-			voto = store.getVotoByIDVoto(idVoto);
-		}else{
-			voto = new VotoImpl();
-		}
+		voto.setIDVoto(idVoto);
 		voto.setUsuario(idUsuario);
 		voto.setAplicacion(idAplicacion);
 		voto.setValor(valor);
+
 		store.crearVoto(voto);
-	}
+		}
 
 }
