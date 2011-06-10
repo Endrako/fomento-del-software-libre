@@ -1,21 +1,13 @@
-<%@page import="pos.data.JDBCRespuestaDAO"%>
-<%@page import="pos.data.IRespuestaDAO"%>
-<%--  <%@page import="org.apache.catalina.connector.Request"%>--%>
-<%@page import="pos.data.JDBCEncuestaDAO"%>
-<%@page import="pos.data.IEncuestaDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<%@page import="pos.domain.*"%>
-<%@page import="java.util.*"%>
-<%@page import="pos.*"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script language="JavaScript" src="js/jsencuesta.js"
 	type="text/javascript"></script>
 <link rel="stylesheet" type="text/css" href="css/encuesta.css">
-<title>Panel de control de Encuestas</title>
+<title>Fomento del Software Libre - Formalizar Encuesta</title>
 </head>
 <body>
 	<div id="encabezado">
@@ -66,11 +58,12 @@
 						size=20 /> <br>
 				</div>
 				<div id="res1-2">
-					<label for=res2> Respuesta 2</label> <input id=res2 name="res1-2"  type="text"
+					<label for=res2> Respuesta 2</label> <input id=res2 name="res2-1"  type="text"
 						size=20 /> <br>
 				</div>
 			</div>
 		</div>
+		<input id=numpreg name="num"  type="hidden"/> <br>
 	</form>
 </body>
 </html>

@@ -19,7 +19,7 @@ function addRespuesta(divactual){
 	var texto = document.createElement("input");
 	label.innerHTML = "Respuesta "+n+" ";
 	texto.type = "text";
-	texto.name = "res"+p+"-"+n;
+	texto.name = "res"+n+"-"+p;
 	texto.id ="res"+p+"-"+n;
 	capa2.id = "res"+p+"-"+n;
 	capa.appendChild(capa2);
@@ -62,7 +62,7 @@ function addPregunta(){
 	label_res1.innerHTML="Respuesta 1 ";
 	texto_res1.id = "res"+p+"_1";
 	texto_res1.type = "text";
-	texto_res1.name = "res"+p+"-1";
+	texto_res1.name = "res1-"+p;
 	div_res1.id = "res"+p+"-1";
 	div_res1.appendChild(label_res1);
 	div_res1.appendChild(texto_res1);
@@ -71,7 +71,7 @@ function addPregunta(){
 	label_res2.innerHTML="Respuesta 2 ";
 	texto_res2.id = "res"+p+"_2";
 	texto_res2.type = "text";
-	texto_res2.name = "res"+p+"-2";
+	texto_res2.name = "res2-"+p;
 	div_res2.id = "res"+p+"-2";
 	div_res2.appendChild(label_res2);
 	div_res2.appendChild(texto_res2);
@@ -134,6 +134,7 @@ function removePregunta(){
 }
 
 function validate (){
+	document.formulario.numpreg.value =p;
 	document.formulario.action = "FrontController?accion=insertarEncuesta";
 	document.formulario.submit();
 }
