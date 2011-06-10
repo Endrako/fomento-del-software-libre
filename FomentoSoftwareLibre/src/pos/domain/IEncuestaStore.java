@@ -5,7 +5,7 @@ import java.util.List;
 public interface IEncuestaStore {
 	
 	public void insertarEncuesta(Encuesta enc);
-	public void borrarEncuesta(Integer idEncuesta);
+	public void borrarEncuesta(String idEncuesta);
 	public void borrarPregunta(Integer idPregunta);
 	public void borrarRespuesta(Integer idRespuesta);
 	public void modificarPregunta(Integer idPregunta);
@@ -16,4 +16,5 @@ public interface IEncuestaStore {
 	public Integer obtenerIDEncuesta(Encuesta enc);
 	public Integer obtenerIDPregunta(Pregunta preg);
 	public Integer obtenerIDRespuesta(Respuesta res);
+	
 }

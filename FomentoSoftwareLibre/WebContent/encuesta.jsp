@@ -32,7 +32,7 @@
 	</div>
 	<form id="formulario" name="formulario" action="" method="POST">
 		<div id=titulo>
-			<label for=tit>Titulo de la encuesta</label> <input id="tit"
+			<label for=tit>Titulo de la encuesta</label> <input id="tit" name="tit"
 				type="text" size=60 />
 			<div id="submit">
 				<input type="button" value="Publicar encuesta" onclick="validate();" />
@@ -62,11 +62,11 @@
 						name= "enunpreg1" id="enun1" type="text" size=40 /> <br>
 				</div>
 				<div id="res1-1">
-					<label for=res1> Respuesta 1</label> <input id=res1 type="text"
+					<label for=res1> Respuesta 1</label> <input id=res1 name="res1-1"  type="text"
 						size=20 /> <br>
 				</div>
 				<div id="res1-2">
-					<label for=res2> Respuesta 2</label> <input id=res2 type="text"
+					<label for=res2> Respuesta 2</label> <input id=res2 name="res1-2"  type="text"
 						size=20 /> <br>
 				</div>
 			</div>

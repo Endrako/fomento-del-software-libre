@@ -1,6 +1,5 @@
 package pos.domain;
 
-import java.sql.Date;
 import java.util.List;
 
 import pos.data.IEncuestaDAO;
@@ -25,13 +24,13 @@ public class EncuestaStore implements IEncuestaStore {
 
 	@Override
 	public void insertarEncuesta(Encuesta enc) {
-		// TODO Auto-generated method stub
+		edao.insertarEncuesta(enc);
 
 	}
 
 	@Override
-	public void borrarEncuesta(Integer idEncuesta) {
-		// TODO Auto-generated method stub
+	public void borrarEncuesta(String idEncuesta) {
+		edao.Borrar(idEncuesta);
 
 	}
 
