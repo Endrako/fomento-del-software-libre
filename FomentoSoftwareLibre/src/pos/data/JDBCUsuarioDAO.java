@@ -65,52 +65,6 @@ public class JDBCUsuarioDAO implements IUsuarioDAO {
 		return res;
 	}
 	
-	 public Usuario recuperarUsuario(String IDUsuario) {
-	        PreparedStatement stmt = null;
-	        ResultSet result = null;
-	        Usuario u = null;
-	        String sql = "SELECT * FROM usuarios WHERE (nombreUsuario = ?) ";
-
-	        try {
-	            stmt = conn.prepareStatement(sql);
-	            stmt.setString(1, IDUsuario);
-	            result = stmt.executeQuery();
-
-	            result.next();
-	            u = new UsuarioImpl();
-	            u.setEmail(result.getString("email"));
-	            u.setContrasena(result.getString("contrasenna"));
-	            u.setIdUser(result.getString("IDUsuario"));
-	            u.setNombreUsuario(result.getString("nombreUsuario"));
-	            u.setKarma(result.getInt("karma"));
-	            u.setNumeroRecomendaciones(result.getInt("numeroRecomendaciones"));
-	            
-	            // Recuperamos el Perfil
-	            if ( result.getString("IDPerfil") != null && !"".equals(result.getString("IDPerfil")) ){
-		            IPerfilDAO daoP = new JDBCPerfilDAO();
-		            u.setPerfil(daoP.recuperarPerfil(result.getString("IDPerfil")));
-	            }else{
-	            	u.setPerfil(null);
-	            }
-	           
-	        } catch (SQLException e) {
-	            System.out.println("Message: " + e.getMessage());
-	            System.out.println("SQLState: " + e.getSQLState());
-	            System.out.println("ErrorCode: " + e.getErrorCode());
-	        } finally {
-	            try {
-	                if (result != null) {
-	                    result.close();
-	                }
-	                if (stmt != null) {
-	                    stmt.close();
-	                }
-	            } catch (SQLException e) {
-	            }
-	        }
-	        return u;
-	    }
-	 
 	 public Usuario recuperarUsuarioByIdUsuario(String IDUsuario) {
 	        PreparedStatement stmt = null;
 	        ResultSet result = null;

@@ -151,7 +151,7 @@
 			Sitio de descarga:
 		</td>
 		<td width="50%" class="datos_tabla" align="left">
-			<a href=<%=api.getURLWeb()%>></a>
+			<%=api.getURLWeb()%>
 		</td>
 	</tr>
 	<% if(valido){ %>

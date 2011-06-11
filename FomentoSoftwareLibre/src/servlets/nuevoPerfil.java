@@ -63,6 +63,8 @@ public class nuevoPerfil extends HttpServlet {
 		Perfil perfil;
 		Perfil perfCOM = new PerfilImpl();
 		
+		// COMPROBAMOS QUE EL PERFIL NO SE VACIO NI NULLO PARA EVITAR NULL POINTER EXCEPTION Y ACTULIZAMOS DATOS
+		// SI NO EXISTE EL PERFIL LO CREAMOS VACIO
 		if ( !"".equals(idPerfil) && idPerfil != null ){
 			perfil = store.recuperarPerfil(idPerfil);
 			perfil.setNombreUsuario(nombre);

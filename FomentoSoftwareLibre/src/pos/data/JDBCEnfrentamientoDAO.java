@@ -17,7 +17,7 @@ import pos.utils.UIDGenerator;
 
 public class JDBCEnfrentamientoDAO implements IEnfrentamientoDAO {
 
-	// Para obtener un objeto Aplicacion mediante la ID utiliza el método
+	// Para obtener un objeto Aplicacion mediante la ID utiliza el mï¿½todo
 	// getAplicacionByID
 	// de la clase JDBCAplicacionDAO
 
@@ -383,7 +383,7 @@ public class JDBCEnfrentamientoDAO implements IEnfrentamientoDAO {
 		// Integer IDAply2=
 		// getIDFromAplication(enfrentamiento.getAplicacion2());
 
-		// Me hace falta un método que dandole una aplicacion me de su ID
+		// Me hace falta un mï¿½todo que dandole una aplicacion me de su ID
 		String sql = "DELETE FROM enfrentamientos WHERE (IDEnfrentamiento = ?)";
 		// String sql =
 		// "DELETE FROM Enfrentamientos WHERE ( IDAplicacion1 = ?) AND (idAplicacion2 = ?)";
@@ -537,7 +537,7 @@ public class JDBCEnfrentamientoDAO implements IEnfrentamientoDAO {
 			stm.setString(1, IDEnfrentamiento);
 			result = stm.executeQuery();
 			while (result.next()) {
-				usuario = (new JDBCUsuarioDAO()).recuperarUsuario(result
+				usuario = (new JDBCUsuarioDAO()).recuperarUsuarioByIdUsuario(result
 						.getString("IDUsuario"));
 				listaUsuarios.add(usuario);
 			}
