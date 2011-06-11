@@ -36,8 +36,8 @@ public class EnfrentamientoStore {
 		enfrentamiento.setDescripcion(descripcion);
 		enfrentamiento.setFechaCreacion(fechaInicio);
 		enfrentamiento.setFechaFin(fechaFin);
+		//validacion
 		if(!enfrentamientos.contains(enfrentamiento)){
-			//no actualiza el estado de la lista de enfrentamientos de BD
 			(new JDBCEnfrentamientoDAO()).insertEnfrentamiento(enfrentamiento,usuario);
 		}else{
 			res=false;
@@ -49,18 +49,18 @@ public class EnfrentamientoStore {
 		boolean res = false;
 		JDBCEnfrentamientoDAO enfDAO = new JDBCEnfrentamientoDAO();
 		List<String> listaVotantes = enfDAO.getIDUsuariosVotantes(IDEnfrentamiento);
-				
+		//Validacion de votos	
 		if(!listaVotantes.contains(IDUser)){
 			enfDAO.votar(IDEnfrentamiento, IDUser, IDAplicacion);
 			res = true;
 		}
 		return res;
 	}
-	
+	//No se usa
 	public void aceptarEnfrentamiento(String IDEnfrentamiento){
 		(new JDBCEnfrentamientoDAO()).acceptEnfrentamiento(IDEnfrentamiento);
 	}
-	
+	//No se usa
 	public void borrarEnfrentamiento(Enfrentamiento enfrentamiento){
 		new JDBCEnfrentamientoDAO().deleteEnfrentamiento(enfrentamiento);
 	}
@@ -68,11 +68,11 @@ public class EnfrentamientoStore {
 	public List<Enfrentamiento> obtenerEnfrentamientosDeUsuario(String IDUsuario){
 		return new JDBCEnfrentamientoDAO().selectEnfrentamientoByUserCreator(IDUsuario);
 	}
-	
+	//No se usa
 	public List<Enfrentamiento> obtenerEnfrentamientosPorFechaFin(java.sql.Date fecha){
 		return new JDBCEnfrentamientoDAO().selectEnfrentamientoByDateEnd(fecha);
 	}
-	
+	//No se usa
 	public void finalizarEnfrentamiento(Enfrentamiento enfrentamiento){
 		new JDBCEnfrentamientoDAO().finalizarEnfrentamiento(enfrentamiento);
 	}
@@ -85,8 +85,6 @@ public class EnfrentamientoStore {
 		JDBCEnfrentamientoDAO enfDAO = new JDBCEnfrentamientoDAO(); 
 		List<Enfrentamiento> enfrentamientosVigentes = enfDAO.selectEnfrentamientosVigentes();
 		
-//		java.util.Date today = new java.util.Date();
-//		java.sql.Date hoy = new java.sql.Date(today.getTime());
 		java.sql.Date hoy = fechaDeHoy();
 		
 		for(Enfrentamiento enfrentamiento: enfrentamientosVigentes){

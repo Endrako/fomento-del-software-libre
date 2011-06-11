@@ -15,12 +15,6 @@ public class AplicacionImpl implements Aplicacion {
 	private Proyecto proyecto; // Aqui trabajamos on objetos, no con IDs
 	private Usuario usuarioCreador;
 
-	// A ver tios, que estoy empezando a cabrearme. HACED UPDATE CO�O
-	// Y si me borrais el constructor, ponedme POR QUE lo habeis borrado,
-	// hostia,
-	// que me cascan las cosas porque parece que pasais del tema, joder
-	// Que luego se me echa en cara a mi que no informo
-
 	public AplicacionImpl(String IDAplicacion, String nombre,
 			String descripcion, Date fechaPublicacion, String URLWeb,
 			Integer votosAFavor, Integer votosEnContra, List<Tag> listaTags,
