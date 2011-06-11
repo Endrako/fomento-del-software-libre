@@ -5,6 +5,7 @@ import java.util.List;
 import pos.data.IEncuestaDAO;
 import pos.data.IPreguntaDAO;
 import pos.data.IRespuestaDAO;
+import pos.data.JDBCEncuestaDAO;
 
 public class EncuestaStore implements IEncuestaStore {
 	
@@ -12,14 +13,12 @@ public class EncuestaStore implements IEncuestaStore {
 	private List<Pregunta> lp;
 	private List<Respuesta> lr;
 	private IEncuestaDAO edao;
-	private IPreguntaDAO pdao;
-	private IRespuestaDAO rdao;
 	private Integer encID;
 	private Integer pregID;
 	private Integer resID;
 	
 	public EncuestaStore(){
-		le = edao.seleccionarTodasEncuestas();
+		edao = new JDBCEncuestaDAO();
 	}
 
 	@Override

@@ -19,7 +19,7 @@ function addRespuesta(divactual){
 	var texto = document.createElement("input");
 	label.innerHTML = "Respuesta "+n+" ";
 	texto.type = "text";
-	texto.name = "res"+n+"-"+p;
+	texto.name = "res0"+n+"-0"+p;
 	texto.id ="res"+p+"-"+n;
 	capa2.id = "res"+p+"-"+n;
 	capa.appendChild(capa2);
@@ -53,7 +53,7 @@ function addPregunta(){
 	label_enun.innerHTML ="Enunciado de la pregunta "+p+": ";
 	texto_enun.id = "enun"+p;
 	texto_enun.type = "text";
-	texto_enun.name = "enunpreg"+p;
+	texto_enun.name = "enunpreg0"+p;
 	div_enun.id= "enunpreg"+p;
 	div_enun.appendChild(label_enun);
 	div_enun.appendChild(texto_enun);
@@ -62,7 +62,7 @@ function addPregunta(){
 	label_res1.innerHTML="Respuesta 1 ";
 	texto_res1.id = "res"+p+"_1";
 	texto_res1.type = "text";
-	texto_res1.name = "res1-"+p;
+	texto_res1.name = "res01-0"+p;
 	div_res1.id = "res"+p+"-1";
 	div_res1.appendChild(label_res1);
 	div_res1.appendChild(texto_res1);
@@ -71,7 +71,7 @@ function addPregunta(){
 	label_res2.innerHTML="Respuesta 2 ";
 	texto_res2.id = "res"+p+"_2";
 	texto_res2.type = "text";
-	texto_res2.name = "res2-"+p;
+	texto_res2.name = "res02-0"+p;
 	div_res2.id = "res"+p+"-2";
 	div_res2.appendChild(label_res2);
 	div_res2.appendChild(texto_res2);
