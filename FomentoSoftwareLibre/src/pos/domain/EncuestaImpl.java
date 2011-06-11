@@ -5,6 +5,7 @@ import java.util.List;
 public class EncuestaImpl implements Encuesta {
 	
 	private String encuestaID;
+	private String usuarioID;
 	private String titulo;
 	private List<Pregunta> lp;
 	
@@ -33,6 +34,16 @@ public class EncuestaImpl implements Encuesta {
 	@Override
 	public void setPreguntas(List<Pregunta> lpreg) {
 		lp=lpreg;
+	}
+
+	@Override
+	public String getUsuario() {
+		return usuarioID;
+	}
+
+	@Override
+	public void setUsuario(String IDUsuario) {
+		usuarioID=IDUsuario;
 	}
 
 }

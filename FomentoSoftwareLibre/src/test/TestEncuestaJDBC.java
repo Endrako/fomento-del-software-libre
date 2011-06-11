@@ -31,7 +31,7 @@ public class TestEncuestaJDBC {
 		List<Respuesta> lr= new LinkedList<Respuesta>();
 		IRespuestaDAO rdao = new JDBCRespuestaDAO();
 		Respuesta r = new RespuestaImpl();
-		
+		String idUsusario = "PerryMayson";
 		
 		//Insertar una encuesta
 		Pregunta preg = new PreguntaImpl();
@@ -74,6 +74,7 @@ public class TestEncuestaJDBC {
 		lp1.add(preg2);
 		e.setTituloEncuesta("Encuesta sobre el sexo de los grillos");
 		e.setPreguntas(lp1);
+		e.setUsuario(idUsusario);
 		edao.insertarEncuesta(e);
 		
 		//Borrar encuesta

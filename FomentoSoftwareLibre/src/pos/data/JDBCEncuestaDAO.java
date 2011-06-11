@@ -139,13 +139,13 @@ public class JDBCEncuestaDAO implements IEncuestaDAO {
 
 		//insertar Encuesta
 		PreparedStatement stmt = null;
-		String sql = "INSERT INTO encuestas (IDEncuesta, nombre	) VALUES (?, ?) ";
+		String sql = "INSERT INTO encuestas (IDEncuesta, IDUsuario, nombre	) VALUES (?, ?, ?) ";
 		try {
 			stmt = conn.prepareStatement(sql);
 
 			stmt.setString(1, eId);
-			stmt.setString(2, enc.getTituloEncuesta());
-
+			stmt.setString(2, enc.getUsuario());
+			stmt.setString(3, enc.getTituloEncuesta());
 			stmt.executeUpdate();
 
 		} catch (SQLException e) {

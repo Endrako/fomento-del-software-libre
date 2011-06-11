@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import     = "pos.domain.Usuario" %>
+<%@ page import     = "pos.utils.FuncionesImpl" %>
+<%@ page import     = "java.util.Date" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -8,6 +11,7 @@
 	type="text/javascript"></script>
 <link rel="stylesheet" type="text/css" href="css/encuesta.css">
 <title>Fomento del Software Libre - Formalizar Encuesta</title>
+<%Usuario usuario = (Usuario)session.getAttribute("usuario"); %>
 </head>
 <body>
 	<div id="encabezado">
@@ -21,6 +25,21 @@
 				</td>
 			</tr>
 		</table>
+	</div>
+	<div id="info">
+	<table border="0">
+	<tr>
+		<td width="30%" class="datos_tabla" align="left">
+			Bienvenido <a href="ActualizarPerfil.jsp"><%=usuario.getNombreUsuario()%></a>, Hoy es <%=FuncionesImpl.formateoFecha(new Date())%>
+		</td>
+		<td width="30%" class="datos_tabla" align="left">
+			Karma acumulado, <%=usuario.getKarma() %> 
+		</td>
+		<td width="40%" class="datos_tabla" align="right">
+			<a href="FrontController?accion=logout">Salir</a>
+		</td>
+	</tr>
+</table>
 	</div>
 	<form id="formulario" name="formulario" action="" method="POST">
 		<div id=titulo>

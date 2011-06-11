@@ -22,9 +22,34 @@ public class EncuestaStore implements IEncuestaStore {
 	}
 
 	@Override
-	public void insertarEncuesta(Encuesta enc) {
-		edao.insertarEncuesta(enc);
+	public boolean insertarEncuesta(Encuesta enc) {
+		boolean res = false;
+		if (enc.getUsuario().isEmpty()){
+			res=false;
+		}else{
+		if (enc.getTituloEncuesta().isEmpty()){
+			res = true;
+		}else{
+			List<Pregunta> l1= enc.getPreguntas();
+			for (Pregunta p : l1){
+				for (Respuesta r : p.getRespuestas()){
+					if (r.getDescripcionRespuesta().isEmpty()){
+						res = true;
+						break;
+					}
+				}
+				if (p.getEnunciado().isEmpty()){
+					res= true;
+					break;
+				}
+			}
+		}
+		}
 
+		if (res == false){
+			edao.insertarEncuesta(enc);
+		}
+		return res;
 	}
 
 	@Override

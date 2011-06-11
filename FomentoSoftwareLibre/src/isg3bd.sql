@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 08-06-2011 a las 19:48:13
+-- Tiempo de generación: 11-06-2011 a las 17:33:18
 -- Versión del servidor: 5.5.8
 -- Versión de PHP: 5.3.5
 
@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS `aplicaciones` (
   `IDProyecto` varchar(50) COLLATE latin1_spanish_ci DEFAULT NULL,
   PRIMARY KEY (`OIDAplicacion`),
   UNIQUE KEY `nombre` (`nombre`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci AUTO_INCREMENT=7 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci AUTO_INCREMENT=8 ;
 
 --
 -- Volcar la base de datos para la tabla `aplicaciones`
@@ -48,7 +48,8 @@ INSERT INTO `aplicaciones` (`OIDAplicacion`, `IDAplicacion`, `idUsuarioCreador`,
 (1, '1', '1305817111314288eb5b0', 'VLC', 'Reproductor de video multicodecs.', '2011-04-29', 'www.url1.com', 0, 0, NULL),
 (2, '2', '1305817111314288eb5b0', 'Open Office', 'Programa de ofimatica parecida al Microsoft Office', '2011-04-28', 'www.url2.com', 0, 0, NULL),
 (3, '3', '1305817111314288eb5b0', 'Winamp', 'Reproductor de audio y video normalito', '2011-04-22', 'www.url3.com', 0, 0, NULL),
-(4, '4', '1305817111314288eb5b0', 'Calculetor', 'Calculadora para estadisticos', '2011-04-23', 'www.url4.com', 0, 0, NULL);
+(4, '4', '1305817111314288eb5b0', 'Calculetor', 'Calculadora para estadisticos', '2011-04-23', 'www.url4.com', 0, 0, NULL),
+(7, '1307796716138ffffffffeaa0803b', '1307796693466ffffffffdeb6e35c', '', '', '2011-06-11', '', 0, 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -97,17 +98,17 @@ CREATE TABLE IF NOT EXISTS `comentarios` (
 CREATE TABLE IF NOT EXISTS `encuestas` (
   `OIDEncuesta` int(11) NOT NULL AUTO_INCREMENT,
   `IDEncuesta` varchar(50) COLLATE latin1_spanish_ci NOT NULL,
+  `IDUsuario` varchar(50) COLLATE latin1_spanish_ci NOT NULL,
   `nombre` varchar(100) COLLATE latin1_spanish_ci NOT NULL,
   PRIMARY KEY (`OIDEncuesta`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci AUTO_INCREMENT=3 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci AUTO_INCREMENT=2 ;
 
 --
 -- Volcar la base de datos para la tabla `encuestas`
 --
 
-INSERT INTO `encuestas` (`OIDEncuesta`, `IDEncuesta`, `nombre`) VALUES
-(1, '', 'Reproductores de video'),
-(2, '', 'Programas de ofimatica');
+INSERT INTO `encuestas` (`OIDEncuesta`, `IDEncuesta`, `IDUsuario`, `nombre`) VALUES
+(1, '1307806303227295412e4', 'PerryMayson', 'Encuesta sobre el sexo de los grillos');
 
 -- --------------------------------------------------------
 
@@ -177,7 +178,7 @@ CREATE TABLE IF NOT EXISTS `perfiles` (
   `IDSO1` varchar(50) COLLATE latin1_spanish_ci DEFAULT NULL,
   `IDSO2` varchar(50) COLLATE latin1_spanish_ci DEFAULT NULL,
   PRIMARY KEY (`OIDPerfil`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci AUTO_INCREMENT=17 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci AUTO_INCREMENT=18 ;
 
 --
 -- Volcar la base de datos para la tabla `perfiles`
@@ -188,7 +189,8 @@ INSERT INTO `perfiles` (`OIDPerfil`, `IDPerfil`, `nombre`, `apellidos`, `edad`, 
 (13, '1305740927043ffffffffa76acf18', 'mar', 'beyond', 56, '1', '2', '1', '4'),
 (12, '1305740818995ffffffffedba705a', 'Juan Antonio', 'Sanchez Madero', 23, '1', '1', '1', '4'),
 (15, '1305817206316ffffffff8d4dab94', 'Marc', 'Bayon', 23, '1', '1', '1', '4'),
-(16, '13075319160103146e62', 'Fray', 'Daza', 26, '1', '1', '3', '4');
+(16, '13075319160103146e62', 'Fray', 'Daza', 26, '1', '1', '3', '4'),
+(17, '130779669917929e8c823', '', '', 0, '1', '1', '1', '4');
 
 -- --------------------------------------------------------
 
@@ -209,8 +211,8 @@ CREATE TABLE IF NOT EXISTS `preguntas` (
 --
 
 INSERT INTO `preguntas` (`OIDPregunta`, `IDPregunta`, `IDEncuesta`, `descripcionPregunta`) VALUES
-(1, '', '1', '¿Cual tiene mejor calidad de video?'),
-(2, '', '1', '¿Cual tiene mejor calidad de sonido?');
+(1, '1307806303228fffffffff87824c8', '1307806303227295412e4', '¿Que sistema operativo usas?'),
+(2, '130780630324825c5aa1a', '1307806303227295412e4', '¿Que personaje de los siguientes te pone más cachondo?');
 
 -- --------------------------------------------------------
 
@@ -223,12 +225,21 @@ CREATE TABLE IF NOT EXISTS `preguntasrespuestas` (
   `IDRespuesta` varchar(50) COLLATE latin1_spanish_ci NOT NULL,
   `IDPregunta` varchar(50) COLLATE latin1_spanish_ci NOT NULL,
   PRIMARY KEY (`OIDRelacion`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci AUTO_INCREMENT=9 ;
 
 --
 -- Volcar la base de datos para la tabla `preguntasrespuestas`
 --
 
+INSERT INTO `preguntasrespuestas` (`OIDRelacion`, `IDRespuesta`, `IDPregunta`) VALUES
+(1, '1307806303228ffffffffc4753353', '1307806303228fffffffff87824c8'),
+(2, '1307806303244ffffffff8e037bd9', '1307806303228fffffffff87824c8'),
+(3, '130780630324535c1bf72', '1307806303228fffffffff87824c8'),
+(4, '1307806303246ffffffff9cc4027b', '1307806303228fffffffff87824c8'),
+(5, '1307806303248630fbc54', '130780630324825c5aa1a'),
+(6, '1307806303252400c16c4', '130780630324825c5aa1a'),
+(7, '1307806303253ffffffffe0b3e7cd', '130780630324825c5aa1a'),
+(8, '1307806303254ffffffffc50c270e', '130780630324825c5aa1a');
 
 -- --------------------------------------------------------
 
@@ -311,12 +322,21 @@ CREATE TABLE IF NOT EXISTS `respuestas` (
   `numeroVotos` int(11) NOT NULL,
   PRIMARY KEY (`OIDRespuesta`),
   UNIQUE KEY `IDRespuesta` (`IDRespuesta`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci AUTO_INCREMENT=9 ;
 
 --
 -- Volcar la base de datos para la tabla `respuestas`
 --
 
+INSERT INTO `respuestas` (`OIDRespuesta`, `IDRespuesta`, `descripcionRespuesta`, `numeroVotos`) VALUES
+(1, '1307806303228ffffffffc4753353', 'windows', 0),
+(2, '1307806303244ffffffff8e037bd9', 'Linux', 0),
+(3, '130780630324535c1bf72', 'Mac', 0),
+(4, '1307806303246ffffffff9cc4027b', 'Soy Chuck Norris y no necesito un sistema operativo', 0),
+(5, '1307806303248630fbc54', 'Bill Gates', 0),
+(6, '1307806303252400c16c4', 'Papa Pitufo', 0),
+(7, '1307806303253ffffffffe0b3e7cd', 'David el Gnomo', 0),
+(8, '1307806303254ffffffffc50c270e', 'Chuck Norris', 0);
 
 -- --------------------------------------------------------
 
@@ -434,7 +454,7 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `numeroRecomendaciones` int(11) NOT NULL,
   PRIMARY KEY (`OIDUsuario`),
   UNIQUE KEY `nombreUsuario` (`nombreUsuario`,`email`,`IDPerfil`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci AUTO_INCREMENT=17 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci AUTO_INCREMENT=18 ;
 
 --
 -- Volcar la base de datos para la tabla `usuarios`
@@ -443,7 +463,8 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
 INSERT INTO `usuarios` (`OIDUsuario`, `IDUsuario`, `nombreUsuario`, `contrasenna`, `email`, `IDPerfil`, `karma`, `numeroRecomendaciones`) VALUES
 (14, '1305817111314288eb5b0', 'sheinx', 's', 'shx@isg3.com', '130581714241341a241b4', 20, 1),
 (15, '1305817188803ffffffffd20a59cf', 'marc', 'm', 'marc@isg3.com', '1305817206316ffffffff8d4dab94', 20, 0),
-(16, '1307531898645ffffffffa3aa848a', 'francis', 'f', 'fragelbreak@gmail.com', '13075319160103146e62', 10, 0);
+(16, '1307531898645ffffffffa3aa848a', 'francis', 'f', 'fragelbreak@gmail.com', '13075319160103146e62', 10, 0),
+(17, '1307796693466ffffffffdeb6e35c', 'arundil', '1234', '1', '130779669917929e8c823', 30, 0);
 
 -- --------------------------------------------------------
 

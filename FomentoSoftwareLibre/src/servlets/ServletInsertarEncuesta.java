@@ -12,6 +12,7 @@ import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.mysql.jdbc.EscapeTokenizer;
 import com.sun.org.apache.bcel.internal.generic.NEW;
@@ -23,6 +24,7 @@ import pos.domain.Pregunta;
 import pos.domain.PreguntaImpl;
 import pos.domain.Respuesta;
 import pos.domain.RespuestaImpl;
+import pos.domain.Usuario;
 
 /**
  * Servlet implementation class TratarEncuesta
@@ -55,22 +57,22 @@ public class ServletInsertarEncuesta extends HttpServlet {
     	List<Pregunta> lpaux = new LinkedList<Pregunta>();
     	List<Pregunta> lp = new LinkedList<Pregunta>();
     	List<Respuesta>lr = new LinkedList<Respuesta>();
-
+    	Boolean hayError = false;
     	
-    	response.getWriter().println("HAS LOGRADO TENER CHANCE!!!!!! JAVA CHANCEADO CON JSP");
     	//response.getWriter().println(numpreg);
 
+    	HttpSession sesion = request.getSession();
     	Enumeration<?> e=request.getParameterNames(); 	
-    	
     	//Recogida de información
-    	
+    	Usuario user = (Usuario)sesion.getAttribute("usuario");
+    	encuesta.setUsuario(user.getIdUser());
     	while (e.hasMoreElements()){
     		String cad = (String) e.nextElement();
-    		response.getWriter().println("Enumeration : "+cad);
+    		//response.getWriter().println("Enumeration : "+cad);
     		
     		//Recoguda del titulo de la encuesta
     		//OK
-    		
+    	  		
     		if (cad.contains("tit")){
     			encuesta.setTituloEncuesta(request.getParameter(cad));
     			//response.getWriter().println(encuesta.getTituloEncuesta());
@@ -106,15 +108,15 @@ public class ServletInsertarEncuesta extends HttpServlet {
     				lraux.add(r);
     				System.out.println("Soy C3 :"+c3);
     				mp.put(c3, lraux);
-    				response.getWriter().println("DESCRIPCION PREGUNTA --> "+lraux.get(lraux.size()-1).getDescripcionRespuesta());
+    				//response.getWriter().println("DESCRIPCION PREGUNTA --> "+lraux.get(lraux.size()-1).getDescripcionRespuesta());
     			}
     			else{
     				List<Respuesta> lraux = new LinkedList<Respuesta>();
     				lraux.add(r);
     				mp.put(c3, lraux);
-    				response.getWriter().println("DESCRIPCION PREGUNTA --> "+lraux.get(lraux.size()-1).getDescripcionRespuesta());
+    				//response.getWriter().println("DESCRIPCION PREGUNTA --> "+lraux.get(lraux.size()-1).getDescripcionRespuesta());
     			}
-    			response.getWriter().println(cad+" "+mp.keySet());
+    			//response.getWriter().println(cad+" "+mp.keySet());
     		}
     		//ok!
     		if (cad.contains("pre")){
@@ -163,14 +165,19 @@ public class ServletInsertarEncuesta extends HttpServlet {
     	//inserción de preguntas
     	encuesta.setPreguntas(lp);
     	//inserción en la Base de datos
-    	encStore.insertarEncuesta(encuesta);
+    	hayError=encStore.insertarEncuesta(encuesta);
     	
+    	if (hayError){
+    		request.getRequestDispatcher("errorEncuesta.jsp").include(request, response);
+    	}else{
+    		request.getRequestDispatcher("exitoEncuesta.jsp").include(request, response);
+    	}
     	
     	
     	/*for (Respuesta r : lp.get(0).getRespuestas()){
     		response.getWriter().println("Respuestas "+r.getDescripcionRespuesta());
     	}*/
-    	
+    	/*
     	response.getWriter().println("Titulo de la encuesta: "+encuesta.getTituloEncuesta());
     	List<Pregunta> l1= encuesta.getPreguntas();
     	for (Pregunta p : l1){
@@ -178,7 +185,7 @@ public class ServletInsertarEncuesta extends HttpServlet {
     		for (Respuesta r : p.getRespuestas()){
     			response.getWriter().println("Respuesta "+r.getIDRespuesta()+": "+r.getDescripcionRespuesta());
     		}
-    	}
+    	}*/
     	
     }
     

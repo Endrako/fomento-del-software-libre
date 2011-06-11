@@ -10,5 +10,7 @@ public interface Encuesta {
 	void setTituloEncuesta(String t);
 	public List<Pregunta> getPreguntas();
 	public void setPreguntas(List<Pregunta> lp);
+	public String getUsuario();
+	public void setUsuario(String IDUsuario);
 	
 }

@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface IEncuestaStore {
 	
-	public void insertarEncuesta(Encuesta enc);
+	public boolean insertarEncuesta(Encuesta enc);
 	public void borrarEncuesta(String idEncuesta);
 	public void borrarPregunta(Integer idPregunta);
 	public void borrarRespuesta(Integer idRespuesta);
