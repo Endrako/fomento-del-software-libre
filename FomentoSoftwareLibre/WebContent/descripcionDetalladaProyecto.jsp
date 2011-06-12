@@ -137,7 +137,7 @@
 				<td width=50% class="datos_tabla" align="left">Desarrolladores
 					actuales:</td>
 				<%%>
-				<td width=50% class="datos_tabla" align="left"></td>
+				<td width=50% class="datos_tabla" align="left"><%=pstore.obtenerUsuariosDeProyecto(p) %></td>
 
 			</tr>
 			<tr>
@@ -163,7 +163,7 @@
 			<tr>
 				<td width="50%" class="datos_tabla" align="left">Aplicación
 					asociada:</td>
-				<td width="50%" class="datos_tabla" align="left"><input
+				<td width="50%" class="datos_tabla" align="left"><%=a.getNombre()%> <input
 					type="button" id="<%=p.getAplicacion().getIDAplicacion()%>"
 					name="<%=a.getNombre()%>" 
 					onClick="javascript:recuperarAplicacion(this.id)";

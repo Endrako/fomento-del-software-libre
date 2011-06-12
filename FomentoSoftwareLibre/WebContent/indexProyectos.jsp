@@ -89,9 +89,7 @@
 				<td width="33%" class="tabla_principal2" align="left"><strong>Descripción
 						Detallada</strong>
 				</td>
-				<td width="33%" class="tabla_principal2" align="left"><strong>Aplicación asociada
-						</strong>
-				</td>
+
 			</tr>
 			<%
 				ProyectoStore store = ProyectoStore.getInstance();
