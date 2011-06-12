@@ -25,26 +25,11 @@
 	document
 			.write("<link href='" + css + "' rel='stylesheet' type='text/css'>");
 <%Usuario usuario = (Usuario) session.getAttribute("usuario");%>
-	function recuperarProyecto(idProyecto) {
-		document.formulario.action = "FrontController?accion=recuperarPerfilProyecto&idProyecto="
-				+ idProyecto;
-		document.formulario.submit();
-	}
-
-	function recuperarAplicacion(idAplicacion) {
-		document.formulario.action = "FrontController?accion=recuperarPerfilAplicacion&idAplicacion="
-				+ idAplicacion;
-		document.formulario.submit();
-	}
 
 	function redirigir() {
 		window.location = "index2.jsp";
 	}
 
-	function nuevaA() {
-		document.formulario.action = "FrontController?accion=nuevaAplicacion";
-		document.formulario.submit();
-	}
 </script>
 </head>
 <body background="Imagenes/fondo.jpg">
@@ -118,8 +103,8 @@
 			%>
 			<tr>
 				<td width="60%" align="left" class="datos_tabla"><input
-					type="button" id="nuevaAplicacion" name="nuevaAplicacion"
-					value=" Nueva aplicación " onclick="javascript:nuevaA();">
+					type="button" id="nuevoProyecto" name="nuevoProyecto"
+					value=" Nuevo Proyecto " onclick="javascript:nuevoProyecto();">
 				</td>
 				<td width="40%" align="left" class="datos_tabla"><input
 					type="button" id="atras" name="atras" value=" Atrás "
