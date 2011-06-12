@@ -56,27 +56,11 @@ public class EnfrentamientoStore {
 		}
 		return res;
 	}
-	//No se usa
-	public void aceptarEnfrentamiento(String IDEnfrentamiento){
-		(new JDBCEnfrentamientoDAO()).acceptEnfrentamiento(IDEnfrentamiento);
-	}
-	//No se usa
-	public void borrarEnfrentamiento(Enfrentamiento enfrentamiento){
-		new JDBCEnfrentamientoDAO().deleteEnfrentamiento(enfrentamiento);
-	}
 	
 	public List<Enfrentamiento> obtenerEnfrentamientosDeUsuario(String IDUsuario){
 		return new JDBCEnfrentamientoDAO().selectEnfrentamientoByUserCreator(IDUsuario);
 	}
-	//No se usa
-	public List<Enfrentamiento> obtenerEnfrentamientosPorFechaFin(java.sql.Date fecha){
-		return new JDBCEnfrentamientoDAO().selectEnfrentamientoByDateEnd(fecha);
-	}
-	//No se usa
-	public void finalizarEnfrentamiento(Enfrentamiento enfrentamiento){
-		new JDBCEnfrentamientoDAO().finalizarEnfrentamiento(enfrentamiento);
-	}
-	
+		
 	public List<Enfrentamiento> obtenerEnfrentamientosVigentes(){
 		return new JDBCEnfrentamientoDAO().selectEnfrentamientosVigentes();
 	}
