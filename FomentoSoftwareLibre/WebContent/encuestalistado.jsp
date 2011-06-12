@@ -17,7 +17,6 @@
 <script language="JavaScript" >
 
 		function recuperarEncuesta(idEncuesta){
-			alert(idEncuesta);
 			document.formulario.action = "FrontController?accion=recuperarEncuesta&idEncuesta="+ idEncuesta ;
 			document.formulario.submit();
 		}
@@ -83,7 +82,7 @@
 			 <input type="button" id="<%=e.getEncuestaId()%>" name="<%=e.getEncuestaId()%>" onClick="recuperarEncuesta(this.id)" value="Realizar Encuesta">
 		</td>
 	</tr>
-	<%} %>
+	<%}%>
 	<tr>
 		<td width="40%" align="left" class="datos_tabla">
 			<input type="button" id="atras" name="atras" value=" Atrás " onclick="javascript:redirigir()">

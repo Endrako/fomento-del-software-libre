@@ -36,7 +36,7 @@
 	<ul>
 	<li>Se ha desactivado JavaScript, compruebe que est&aacute activado</li>
 	<li>Hay campos sin rellenar en su encuesta</li>
-	<li>La conexi&oacuten con el servidor fue interrumpida</li>
+	<li>La conexion con el servidor fue interrumpida</li>
 	</ul>
 	<h4>Para recuperar sus encuesta, pulse <font color="red">ATRAS</font> en su navegador</h4>
 	Sentimos las molestias. 
