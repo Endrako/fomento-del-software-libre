@@ -11,8 +11,14 @@ function addRespuesta(divactual){
 	var n= parseInt(numres)+1;
 	
 	var cadena2 = capa.getAttribute("id");
-	var numpreg = cadena2[cadena2.length-1];
-	var p= parseInt(numpreg);
+	var decenas = cadena2[cadena2.length-2];
+	var unidades = cadena2[cadena2.length-1];
+	if (parseInt(decenas)<0){
+		var p= parseInt(unidades);		
+	}else{
+		var npreg = unidades+decenas;
+		var p= parseInt(npreg);
+	}
 	
 	var capa2 = document.createElement("div");
 	var label = document.createElement("label");
@@ -134,7 +140,6 @@ function removePregunta(){
 }
 
 function validate (){
-	document.formulario.numpreg.value =p;
 	document.formulario.action = "FrontController?accion=insertarEncuesta";
 	document.formulario.submit();
 }
