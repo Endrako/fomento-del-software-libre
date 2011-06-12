@@ -11,8 +11,22 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <%Usuario usuario = (Usuario)session.getAttribute("usuario"); %>
-<link rel="stylesheet" type="text/css" href="css/encuesta.css">
-<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="css/estilos.css">
+<title>Fomento del Software Libre - Listado de encuestas</title>
+ <script language="JavaScript" src="js/funcionesComunes.js" type="text/javascript"></script>
+<script language="JavaScript" >
+
+		function recuperarEncuesta(idEncuesta){
+			alert(idEncuesta);
+			document.formulario.action = "FrontController?accion=recuperarEncuesta&idEncuesta="+ idEncuesta ;
+			document.formulario.submit();
+		}
+		
+		function redirigir(){
+			window.location="encuestaindex.jsp";
+		}
+		
+</script>
 </head>
 <body>
 <table align="center">
@@ -66,14 +80,11 @@
 			<%=e.getTituloEncuesta() %>
 		</td>
 		<td width="50%" class="datos_tabla" align="left">
-			 <input type="button" id="<%=%>" name="<%=%>" onClick="javascript:recuperarAplicacion(this.id)" value="Ver descripción">
+			 <input type="button" id="<%=e.getEncuestaId()%>" name="<%=e.getEncuestaId()%>" onClick="recuperarEncuesta(this.id)" value="Realizar Encuesta">
 		</td>
 	</tr>
 	<%} %>
 	<tr>
-		<td width="60%" align="left" class="datos_tabla">
-			<input type="button" id="nuevaAplicacion" name="nuevaAplicacion" value=" Nueva aplicación " onclick="javascript:nuevaA();">
-		</td>
 		<td width="40%" align="left" class="datos_tabla">
 			<input type="button" id="atras" name="atras" value=" Atrás " onclick="javascript:redirigir()">
 		</td>
