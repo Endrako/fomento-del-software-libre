@@ -51,6 +51,10 @@ public class EncuestaStore implements IEncuestaStore {
 		}
 		return res;
 	}
+	
+	public Encuesta obtenerEncuesta (String idEncuesta){
+		return edao.recuperarEncuesta(idEncuesta);
+	}
 
 	@Override
 	public void borrarEncuesta(String idEncuesta) {
@@ -84,20 +88,7 @@ public class EncuestaStore implements IEncuestaStore {
 
 	@Override
 	public List<Encuesta> obtenerEncuestas() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Pregunta> obtenerPreguntas(Integer idEncuesta) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Respuesta> obtenerRespuestas(Integer idPregunta) {
-		// TODO Auto-generated method stub
-		return null;
+		return edao.seleccionarTodasEncuestas();
 	}
 
 	@Override
@@ -114,6 +105,18 @@ public class EncuestaStore implements IEncuestaStore {
 
 	@Override
 	public Integer obtenerIDRespuesta(Respuesta res) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Pregunta> obtenerPreguntas(Integer idEncuesta) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Respuesta> obtenerRespuestas(Integer idPregunta) {
 		// TODO Auto-generated method stub
 		return null;
 	}

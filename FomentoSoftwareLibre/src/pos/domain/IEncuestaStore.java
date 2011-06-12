@@ -16,5 +16,6 @@ public interface IEncuestaStore {
 	public Integer obtenerIDEncuesta(Encuesta enc);
 	public Integer obtenerIDPregunta(Pregunta preg);
 	public Integer obtenerIDRespuesta(Respuesta res);
+	public Encuesta obtenerEncuesta (String idEncuesta);
 	
 }

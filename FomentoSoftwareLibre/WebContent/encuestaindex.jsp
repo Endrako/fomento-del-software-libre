@@ -43,7 +43,7 @@
    <ul>
       <li><a href="encuesta.jsp">Crear una encuesta [Necesario 100 Karma]</a></li>
       <li><a href="">Gestiona tus encuestas</a></li>
-      <li><a href="">Ver listado de encuestas</a></li>
+      <li><a href="encuestalistado.jsp">Ver listado de encuestas</a></li>
       <li><a href="index2.jsp">Volver a la página principal</a></li>
    </ul>
 </div>
