@@ -63,7 +63,7 @@ public class JDBCPreguntaDAO implements IPreguntaDAO {
 		PreparedStatement stmt = null;
 		ResultSet result = null;
 		List<Pregunta> res = new LinkedList<Pregunta>();
-
+		List<Respuesta> lr = new LinkedList<Respuesta>();
 		try {
 			stmt = conn.prepareStatement(sql);
 			stmt.setString(1, idEncuesta);
@@ -72,7 +72,10 @@ public class JDBCPreguntaDAO implements IPreguntaDAO {
 
 			while(result.next()){
 				Pregunta p = new PreguntaImpl();
+				p.setIDPregunta(result.getString("IDPregunta"));
 				p.setEnunciado(result.getString("descripcionPregunta"));
+				rdao.seleccionarTodasRespuestasPorPregunta(p.getIDPregunta());
+				p.setRespuestas(lr);
 				res.add(p);
 			}
 		} catch (SQLException e) {

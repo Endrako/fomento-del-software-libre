@@ -2,6 +2,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import     = "pos.domain.Usuario" %>
+<%@ page import     = "pos.domain.Pregunta" %>
+<%@ page import     = "pos.domain.Respuesta" %>
 <%@ page import     = "pos.utils.FuncionesImpl" %>
 <%@ page import     = "java.util.Date" %>
 <%@ page import		= "pos.domain.Encuesta" %>
@@ -10,7 +12,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" type="text/css" href="css/estilos.css">
+<link rel="stylesheet" type="text/css" href="css/encuesta.css">
 <%
 	Usuario usuario = (Usuario) session.getAttribute("usuario");
 %>
@@ -44,16 +46,31 @@
 		</td>
 	</tr>
 </table>
-<%
-	EncuestaStore eStore = new EncuestaStore();
-	Encuesta e = eStore.obtenerEncuesta(request
-			.getParameter("idEncuesta"));
-%>
+	<%
+		EncuestaStore eStore = new EncuestaStore();
+		Encuesta e = eStore.obtenerEncuesta(request
+				.getParameter("idEncuesta"));
+	%>
 	<div id="encuesta">
 		<div id="titulo">
-			<h2><%=e.getEncuestaId()%></h2>
+			<h1><%=e.getTituloEncuesta()%></h1>
 		</div>
-		
+		<div id="preguntas">
+			<%
+				for (Pregunta p : e.getPreguntas()) {
+			%>
+			<div id="enun">
+			<h4><%=p.getEnunciado()%></h4>
+			</div>
+			<div id=res>
+			<%=p.getRespuestas().get(0).getDescripcionRespuesta() %>
+			</div>
+		<%
+		}
+		%>
+		</div>
 	</div>
+
+
 </body>
 </html>

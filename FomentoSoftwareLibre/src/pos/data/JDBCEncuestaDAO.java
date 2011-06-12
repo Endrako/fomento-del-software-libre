@@ -100,7 +100,7 @@ public class JDBCEncuestaDAO implements IEncuestaDAO {
 		PreparedStatement stmt = null;
 		ResultSet result = null;
 		Encuesta res = null;
-
+		List<Pregunta>lp= pdao.seleccionarTodasPreguntasPorEncuesta(idEncuesta);
 		try {
 			stmt = conn.prepareStatement(sql);
 			stmt.setString(1, idEncuesta);
@@ -110,6 +110,8 @@ public class JDBCEncuestaDAO implements IEncuestaDAO {
 			result.next();
 			res = new EncuestaImpl();
 			res.setTituloEncuesta(result.getString("nombre"));
+			res.setPreguntas(lp);
+			res.setEncuestaID(idEncuesta);
 		} catch (SQLException e) {
 			System.out.println("Message: " + e.getMessage());
 			System.out.println("SQLState: " + e.getSQLState());
