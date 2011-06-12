@@ -1,3 +1,4 @@
+<%@page import="pos.domain.UsuarioStore"%>
 <%@page import="pos.data.JDBCProyectoDAO"%>
 <%@page import="pos.data.IProyectoDAO"%>
 <%@page import="java.util.LinkedList"%>
@@ -6,6 +7,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <%@ page import="pos.domain.Usuario"%>
+<%@ page import="pos.domain.UsuarioStore"%>
 <%@ page import="pos.domain.Proyecto"%>
 <%@ page import="pos.domain.Aplicacion"%>
 <%@page import="pos.domain.ProyectoStore"%>
@@ -29,27 +31,13 @@
 		window.location = "indexProyectos.jsp";
 	}
 
-	function votarafavor() {
-		document.formulario.action = "FrontController?accion=votarAFavor";
-		document.formulario.submit();
-	}
-	function votarencontra() {
-		document.formulario.action = "FrontController?accion=votarEnContra";
-		document.formulario.submit();
-	}
-	function recuperarAplicacion(idAplicacion) {
-		document.formulario.action = "FrontController?accion=recuperarPerfilAplicacion&idAplicacion="
-				+ idAplicacion;
-		document.formulario.submit();
-
-	}
 </script>
 
 <%
 	String idProyecto = request.getParameter("idProyecto");
-	System.out.println(idProyecto);
 	ProyectoStore pstore = ProyectoStore.getInstance();
 	Proyecto p = pstore.obtenerProyectoPorID(idProyecto);
+	Usuario u = new UsuarioStore().recuperarUsuarioByIdUsuario(p.getUsuarioCreador().getIdUser());
 	Aplicacion a = pstore.obtenerAplicacionDeProyecto(p);
 %>
 
@@ -141,12 +129,12 @@
 
 			</tr>
 			<tr>
-				<td width=50% class="datos_tabla" align="left"></td>
-				<td width=50% class="datos_tabla" align="left"></td>
+				<td width=50% class="datos_tabla" align="left">Nivel Karma necesario:</td>
+				<td width=50% class="datos_tabla" align="left"><%=p.getNivelKarma() %></td>
 			</tr>
 			<tr>
-				<td width=50% class="datos_tabla" align="left"></td>
-				<td width=50% class="datos_tabla" align="left"></td>
+				<td width=50% class="datos_tabla" align="left">Usuario Creador</td>
+				<td width=50% class="datos_tabla" align="left"><%=u.getNombreUsuario() %></td>
 			</tr>
 
 			<!-- 	FALTA CREAR EL STORE DE PROYECTOS <tr> -->

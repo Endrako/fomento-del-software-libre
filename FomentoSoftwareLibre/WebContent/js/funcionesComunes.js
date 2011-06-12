@@ -16,7 +16,6 @@ function recuperarAplicacion(idAplicacion) {
 	document.formulario.submit();
 }
 
-
 function nuevaA() {
 	document.formulario.action = "FrontController?accion=nuevaAplicacion";
 	document.formulario.submit();

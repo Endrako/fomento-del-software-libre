@@ -59,59 +59,19 @@
 		</tr>
 	</table>
 	<!--  FIN TABLA CONTENEDORA DE TODAS LAS JSP / HTML -->
-
-	<form id="formulario" name="formulario" action="" method="POST">
-		<table align="center" class="borde">
-			<tr>
-				<td width="100%" class="tabla_principal" align="center" colspan="3">
-					<strong> Listas de Proyectos Existentes </strong>
-				</td>
-			</tr>
-			<tr>
-				<td width="33%" class="tabla_principal2" align="left"><strong>Nombre
-						Proyecto: </strong>
-				</td>
-				<td width="33%" class="tabla_principal2" align="left"><strong>Descripción
-						Detallada</strong>
-				</td>
-
-			</tr>
-			<%
-				ProyectoStore store = ProyectoStore.getInstance();
-				List<Proyecto> lista = store.obtenerTodosProyectos();
-				for (Proyecto p : lista) {
-					Aplicacion a = p.getAplicacion();
-			%>
-			<tr>
-				<td width="33%" class="datos_tabla" align="left"><%=p.getNombreProyecto()%>
-				</td>
-				<td width="33%" class="datos_tabla" align="left"><input
-					type="button" id="<%=p.getIDProyecto()%>"
-					name="<%=p.getIDProyecto()%>"
-					onClick="javascript:recuperarProyecto(this.id)"
-					;
-					value="Ver descripción">
-				</td>
-				<%-- <td width="33%" class="datos_tabla" align="left"><input type="button" id="<%=a.getIDAplicacion()%>"
-				name="<%=a.getNombre()%>"
-				onClick="javascript:recuperarAplicacion(this.id)";
-				value="Ver aplicación asociada";>
-				</td> --%>
-			</tr>
-			<%
-				}
-			%>
-			<tr>
-				<td width="60%" align="left" class="datos_tabla"><input
-					type="button" id="nuevoProyecto" name="nuevoProyecto"
-					value=" Nuevo Proyecto " onclick="javascript:nuevoProyecto();">
-				</td>
-				<td width="40%" align="left" class="datos_tabla"><input
-					type="button" id="atras" name="atras" value=" Atrás "
-					onclick="javascript:redirigir()">
-				</td>
-		</table>
-	</form>
+	
+	<div id="pestanas">
+		<ul>
+		<li><a href="javascript:redirigir()">Inicio</a></li>
+		<li><a title="Proyectos creados o en los que colaboras" href="proyectosUsuario.jsp">Mis Proyectos</a></li>
+		<li><a title="Muestra los proyectos existentes" href="proyectosExistentes.jsp">Todos los proyectos existentes</a></li>
+		<li><a href="proyectosUnirse.jsp">Unirse a un proyecto</a></li>
+		<li><a href="proyectosCrear.jsp">Crear un nuevo proyecto</a></li>
+		
+			
+		</ul>
+	
+	</div>
 
 </body>
 </html>
