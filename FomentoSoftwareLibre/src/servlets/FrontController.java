@@ -84,7 +84,15 @@ public class FrontController extends HttpServlet {
 			votosAplicacion(request, response);
 		} else if(accion.equals("nuevoProyecto")){
 			crearNuevoProyecto(request, response);
+		} else if(accion.equals("recuperarEncuesta")){
+			recuperarEncuesta(request,response);
 		}
+		
+	}
+
+	private void recuperarEncuesta(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		request.getRequestDispatcher("encuestaHacer.jsp").include(request, response);
 		
 	}
 
