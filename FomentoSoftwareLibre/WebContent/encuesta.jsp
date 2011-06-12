@@ -13,7 +13,7 @@
 <title>Fomento del Software Libre - Formalizar Encuesta</title>
 <%Usuario usuario = (Usuario)session.getAttribute("usuario"); %>
 </head>
-<body>
+<body background="Imagenes/fondo.jpg">
 	<div id="encabezado">
 		<table align="center">
 			<tr>
@@ -56,7 +56,6 @@
 						value="Añadir Pregunta" />
 				</div>
 			</div>
-			<hr>
 		</div>
 		<div id="preguntas">
 			<div id=preg1>
@@ -82,7 +81,6 @@
 				</div>
 			</div>
 		</div>
-		<input id=numpreg name="num"  type="hidden"/> <br>
 	</form>
 </body>
 </html>
