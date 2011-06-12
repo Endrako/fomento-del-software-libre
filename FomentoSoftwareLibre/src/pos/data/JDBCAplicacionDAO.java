@@ -77,7 +77,6 @@ public class JDBCAplicacionDAO implements IAplicacionDAO {
 		List<Tag> tags = aplicacion.getTags();
 		PreparedStatement stm = null;
 		String IDAplicacion = UIDGenerator.getInstance().getKey();
-		IDAplicacion = IDAplicacion.substring(3, 14);
 		aplicacion.setIDAplicacion(IDAplicacion);
 		String IDUsuario = usuario.getIdUser();
 		String sql = "INSERT INTO aplicaciones(IDAplicacion,idUsuarioCreador,nombre,descripcion,fechaPublicacion,URLWeb,numeroVotosAFavor,numeroVotosEnContra) VALUES (?,?,?,?,?,?,?,?)";
