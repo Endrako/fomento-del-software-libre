@@ -1,5 +1,6 @@
 package pos.domain;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -119,6 +120,16 @@ public class ProyectoStore {
 		new JDBCProyectoDAO().borrarProyecto(p);
 		new JDBCProyectoDAO().borrarAsociacionTodosUsuariosConProyecto(p);
 
+	}
+	
+	public List<String> obtenerUsuariosDeProyecto(Proyecto p){
+		List<Usuario> listaUsuarios = new JDBCProyectoDAO().obtenerUsuariosDeProyecto(p);
+		List<String> listaNombres = new ArrayList<String>();
+		for(Usuario u: listaUsuarios){
+			listaNombres.add(u.getNombreUsuario());
+		}
+		System.out.println("esto es en el Store: "+ listaNombres);
+		return listaNombres;
 	}
 
 }

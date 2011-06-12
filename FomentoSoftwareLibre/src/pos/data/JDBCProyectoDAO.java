@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -12,6 +13,7 @@ import pos.domain.AplicacionImpl;
 import pos.domain.Proyecto;
 import pos.domain.ProyectoImpl;
 import pos.domain.Usuario;
+import pos.domain.UsuarioImpl;
 import pos.utils.UIDGenerator;
 
 public class JDBCProyectoDAO implements IProyectoDAO {
@@ -56,6 +58,7 @@ public class JDBCProyectoDAO implements IProyectoDAO {
 			System.out.println("SQLState: " + e.getSQLState());
 			System.out.println("Error Code: " + e.getErrorCode());
 			System.out.println("Cause: " + e.getCause());
+			e.printStackTrace();
 		} finally {
 			try {
 				if (result != null) {
@@ -114,6 +117,7 @@ public class JDBCProyectoDAO implements IProyectoDAO {
 			System.out.println("SQLState: " + e.getSQLState());
 			System.out.println("Error Code: " + e.getErrorCode());
 			System.out.println("Cause: " + e.getCause());
+			e.printStackTrace();
 
 		} finally {
 			try {
@@ -169,6 +173,7 @@ public class JDBCProyectoDAO implements IProyectoDAO {
 			System.out.println("Error Code: " + e.getErrorCode());
 			System.out.println("SQL State: " + e.getSQLState());
 			System.out.println("Cause: " + e.getCause());
+			e.printStackTrace();
 
 		} finally {
 			try {
@@ -230,6 +235,7 @@ public class JDBCProyectoDAO implements IProyectoDAO {
 			System.out.println("SQLState: " + e.getSQLState());
 			System.out.println("Error Code: " + e.getErrorCode());
 			System.out.println("Cause: " + e.getCause());
+			e.printStackTrace();
 		} finally {
 
 			try {
@@ -285,6 +291,7 @@ public class JDBCProyectoDAO implements IProyectoDAO {
 			System.out.println("SQLState: " + e.getSQLState());
 			System.out.println("Error Code: " + e.getErrorCode());
 			System.out.println("Cause: " + e.getCause());
+			e.printStackTrace();
 		} finally {
 			try {
 				if (stmt != null) {
@@ -336,6 +343,7 @@ public class JDBCProyectoDAO implements IProyectoDAO {
 			System.out.println("SQLState: " + e.getSQLState());
 			System.out.println("Error Code: " + e.getErrorCode());
 			System.out.println("Cause: " + e.getCause());
+			e.printStackTrace();
 		} finally {
 
 			try {
@@ -372,6 +380,7 @@ public class JDBCProyectoDAO implements IProyectoDAO {
 			System.out.println("SQLState: " + e.getSQLState());
 			System.out.println("Error Code: " + e.getErrorCode());
 			System.out.println("Cause: " + e.getCause());
+			e.printStackTrace();
 		} finally {
 
 			try {
@@ -417,16 +426,17 @@ public class JDBCProyectoDAO implements IProyectoDAO {
 				a.setURLWeb(result.getString("URLWeb"));
 				a.setVotosAFavor(result.getInt("numeroVotosAFavor"));
 				a.setVotosEnContra(result.getInt("numeroVotosEnContra"));
-				a.setProyecto(this.obtenerProyectoPorID(result
-						.getString("IDProyecto")));
+				a.setProyecto(p);
 				a.setUsuarioCreador(p.getUsuarioCreador());
 			}
+			
 
 		} catch (SQLException e) {
 			System.out.println("Message: " + e.getMessage());
 			System.out.println("SQLState: " + e.getSQLState());
 			System.out.println("Error Code: " + e.getErrorCode());
 			System.out.println("Cause: " + e.getCause());
+			e.printStackTrace();
 		} finally {
 
 			try {
@@ -462,27 +472,28 @@ public class JDBCProyectoDAO implements IProyectoDAO {
 			stmt.setString(2, p.getIDProyecto());
 			result = stmt.executeQuery();
 
-			if(result.next()==false) {
+			if (result.next() == false) {
 
 				// Si uno de los dos parámetros no está en la tupla obtenida =>
 				// no existe asociación
-//				if ((result.getString("IDUsuario") != null && result
-//						.getString("IDProyecto") != null)) {
-					// || (result.getString("IDUsuario") != null && result
-					// .getString("IDProyecto") == null)
-					// || (result.getString("IDUsuario") == null && result
-					// .getString("IDProyecto") != null)) {
-					res = false;
-				} else {
-					res = true;
-				}
-		//	}
+				// if ((result.getString("IDUsuario") != null && result
+				// .getString("IDProyecto") != null)) {
+				// || (result.getString("IDUsuario") != null && result
+				// .getString("IDProyecto") == null)
+				// || (result.getString("IDUsuario") == null && result
+				// .getString("IDProyecto") != null)) {
+				res = false;
+			} else {
+				res = true;
+			}
+			// }
 
 		} catch (SQLException e) {
 			System.out.println("Message: " + e.getMessage());
 			System.out.println("SQLState: " + e.getSQLState());
 			System.out.println("Error Code: " + e.getErrorCode());
 			System.out.println("Cause: " + e.getCause());
+			e.printStackTrace();
 		} finally {
 			try {
 				if (stmt != null) {
@@ -526,6 +537,7 @@ public class JDBCProyectoDAO implements IProyectoDAO {
 			System.out.println("SQLState: " + e.getSQLState());
 			System.out.println("Error Code: " + e.getErrorCode());
 			System.out.println("Cause: " + e.getCause());
+			e.printStackTrace();
 		} finally {
 			try {
 				if (stmt != null) {
@@ -551,8 +563,8 @@ public class JDBCProyectoDAO implements IProyectoDAO {
 		String sql = "INSERT INTO colaboracionusuariosproyectos (IDUsuario,IDProyecto) VALUES (?,?)";
 
 		try {
-			
-			String proy=p.getIDProyecto();
+
+			String proy = p.getIDProyecto();
 
 			stmt = con.prepareStatement(sql);
 			stmt.setString(1, u.getIdUser());
@@ -598,6 +610,7 @@ public class JDBCProyectoDAO implements IProyectoDAO {
 			System.out.println("SQLState: " + e.getSQLState());
 			System.out.println("Error Code: " + e.getErrorCode());
 			System.out.println("Cause: " + e.getCause());
+			e.printStackTrace();
 		} finally {
 
 			try {
@@ -609,6 +622,48 @@ public class JDBCProyectoDAO implements IProyectoDAO {
 			}
 		}
 
+	}
+
+	@Override
+	public List<Usuario> obtenerUsuariosDeProyecto(Proyecto p) {
+		Connection con = ConnectionManager.getInstance().checkOut();
+
+		String sql = "SELECT * FROM colaboracionusuariosproyectos WHERE (IDProyecto = ?)";
+
+		PreparedStatement stmt = null;
+		ResultSet result = null;
+		List<Usuario> lista = new LinkedList<Usuario>();
+		try {
+			stmt = con.prepareStatement(sql);
+			stmt.setString(1, p.getIDProyecto());
+			result = stmt.executeQuery();
+
+			while (result.next()) {
+				String idUsuario = result.getString("IDUsuario");
+				Usuario u = new JDBCUsuarioDAO().recuperarUsuarioByIdUsuario(idUsuario);
+				lista.add(u);
+			}
+
+		} catch (SQLException e) {
+			System.out.println("Message: " + e.getMessage());
+			System.out.println("SQLState: " + e.getSQLState());
+			System.out.println("Error Code: " + e.getErrorCode());
+			System.out.println("Cause: " + e.getCause());
+			e.printStackTrace();
+		} finally {
+			try {
+				if (result == null) {
+					con.close();
+				}
+				if (stmt == null) {
+					con.close();
+				}
+			} catch (Exception e) {
+
+			}
+		}
+
+		return lista;
 	}
 
 }

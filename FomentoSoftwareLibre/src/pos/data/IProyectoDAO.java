@@ -20,5 +20,6 @@ public interface IProyectoDAO {
 	public boolean existeTuplaUsuarioProyecto(Proyecto p,Usuario u);
 	public void asociarProyectoAUsuario(Usuario u,Proyecto p);
 	public void borrarUnUsuarioDeProyecto(Proyecto p, Usuario u);
+	public List<Usuario> obtenerUsuariosDeProyecto (Proyecto p);
 	
 }
