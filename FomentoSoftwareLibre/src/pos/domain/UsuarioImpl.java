@@ -5,11 +5,11 @@ public class UsuarioImpl implements Usuario{
 	/**
 	 * 	Atributo que almacena el id
 	 */
-	private String idUser;
+	private String idUser = "";
 	/**
 	 *	Atributo que guarda el nombre del usuario
 	 */
-	private String nombreUsuario = null;
+	private String nombreUsuario = "";
 	
 	/**
 	 *  Atributo que guarda el email del usuario

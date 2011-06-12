@@ -59,6 +59,19 @@
 </head>
 <body background="Imagenes/fondo.jpg">
 <!--  INICIO TABLA CONTENEDORA DE TODAS LAS JSP / HTML -->
+<table align="center">
+	<tr>
+		<td width="15%" align="left">
+			<img src="Imagenes/tux.jpg">
+		</td>
+		<td class="titular" align="center" width="70%">
+			<strong>Web Del Fomento Del Sofware Libre</strong>
+		</td>
+		<td width="15%" align="right">
+			<img src="Imagenes/tux.jpg">
+		</td>
+	</tr>
+</table>
 <table border="0">
 	<tr>
 		<td width="30%" class="datos_tabla" align="left">

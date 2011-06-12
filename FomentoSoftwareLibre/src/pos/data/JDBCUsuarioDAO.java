@@ -42,9 +42,10 @@ public class JDBCUsuarioDAO implements IUsuarioDAO {
 		            stmt = conn.prepareStatement(sql);
 		            stmt.setString(1, nombreUsuario);
 		            result = stmt.executeQuery();
-		            result.next();
-		            if ( result.getString("contrasenna").equals(password) ){
-		            	res = true;
+		            if ( result.next() ){
+		            	if ( result.getString("contrasenna").equals(password) ){
+		            		res = true;
+		            	}
 		            }
 		            
 		        } catch (SQLException e) {
@@ -250,7 +251,7 @@ public class JDBCUsuarioDAO implements IUsuarioDAO {
 	public Usuario recuperarUsuarioByNick(String nick){
 		  PreparedStatement stmt = null;
 	        ResultSet result = null;
-	        UsuarioImpl u = null;
+	        Usuario u = new UsuarioImpl();
 	        String sql = "SELECT * FROM usuarios WHERE (nombreUsuario = ?) ";
 
 	        try {
@@ -258,25 +259,22 @@ public class JDBCUsuarioDAO implements IUsuarioDAO {
 	            stmt.setString(1, nick);
 	            result = stmt.executeQuery();
 
-	            result.next();
-	            u = new UsuarioImpl();
-	            u.setEmail(result.getString("email"));
-	            u.setContrasena(result.getString("contrasenna"));
-	            u.setIdUser(result.getString("IDUsuario"));
-	            u.setNombreUsuario(result.getString("nombreUsuario"));
-	            u.setKarma(result.getInt("karma"));
-	            u.setNumeroRecomendaciones(result.getInt("numeroRecomendaciones"));
-	            
-	            // Recuperamos el Perfil
-	            if ( result.getString("IDPerfil") != null && !"".equals(result.getString("IDPerfil")) ){
-		            IPerfilDAO daoP = new JDBCPerfilDAO();
-		            u.setPerfil(daoP.recuperarPerfil(result.getString("IDPerfil")));
-	            }else{
-	            	u.setPerfil(null);
+	            if ( result.next() ){
+		            u.setEmail(result.getString("email"));
+		            u.setContrasena(result.getString("contrasenna"));
+		            u.setIdUser(result.getString("IDUsuario"));
+		            u.setNombreUsuario(result.getString("nombreUsuario"));
+		            u.setKarma(result.getInt("karma"));
+		            u.setNumeroRecomendaciones(result.getInt("numeroRecomendaciones"));
+		            
+		            // Recuperamos el Perfil
+		            if ( result.getString("IDPerfil") != null && !"".equals(result.getString("IDPerfil")) ){
+			            IPerfilDAO daoP = new JDBCPerfilDAO();
+			            u.setPerfil(daoP.recuperarPerfil(result.getString("IDPerfil")));
+		            }else{
+		            	u.setPerfil(null);
+		            }
 	            }
-	           
-	            
-	           
 	        } catch (SQLException e) {
 	            System.out.println("Message: " + e.getMessage());
 	            System.out.println("SQLState: " + e.getSQLState());
