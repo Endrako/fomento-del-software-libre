@@ -92,7 +92,7 @@
 <table align="center" class="borde">
 	<tr>
 		<td width="100%" class="tabla_principal" align="center" colspan="2">
-			<strong>Aplicación</strong>
+			<strong>Aplicación <%=api.getNombre() %></strong>
 		</td>
 	</tr>
 	<tr>
@@ -157,10 +157,10 @@
 	<% if(valido){ %>
 	<tr>
 		<td width="50%" align="left" class="datos_tabla">
-			&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" id="votarAFavor" name="votarAFavor"  value=" Votar a Favor " onclick="javascript:votarafavor(<%=idAplicacion%>);">
+			&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" id="votarAFavor" name="votarAFavor"  value=" Votar a Favor " onclick="votarafavor(<%=api.getIDAplicacion()%>);">
 		</td>
 		<td width="50%" align="center" class="datos_tabla">
-			<input type="button" id="votarEnContra" name="votarEnContra" value=" Votar en Contra " onclick="javascript:votarencontra(<%=idAplicacion%>);">
+			<input type="button" id="votarEnContra" name="votarEnContra" value=" Votar en Contra " onclick="votarencontra(<%=api.getIDAplicacion()%>);">
 		</td>
 	</tr>
 	<% } %>

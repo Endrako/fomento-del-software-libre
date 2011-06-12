@@ -33,7 +33,7 @@ public class JDBCAplicacionDAO implements IAplicacionDAO {
 			stm = con.prepareStatement(sql);
 			result = stm.executeQuery();
 			//para poder acceder a los datos del ResultSet hay que hacerle el .next()
-			//si el método solo figurase dentro del while se saltaria la primera tupla
+			//si el mï¿½todo solo figurase dentro del while se saltaria la primera tupla
 			while(result.next()){
 				String IDAplicacion = result.getString("IDAplicacion");
 				String nombre = result.getString("nombre");
@@ -77,6 +77,7 @@ public class JDBCAplicacionDAO implements IAplicacionDAO {
 		List<Tag> tags = aplicacion.getTags();
 		PreparedStatement stm = null;
 		String IDAplicacion = UIDGenerator.getInstance().getKey();
+		IDAplicacion = IDAplicacion.substring(0, 9);
 		aplicacion.setIDAplicacion(IDAplicacion);
 		String IDUsuario = usuario.getIdUser();
 		String sql = "INSERT INTO aplicaciones(IDAplicacion,idUsuarioCreador,nombre,descripcion,fechaPublicacion,URLWeb,numeroVotosAFavor,numeroVotosEnContra) VALUES (?,?,?,?,?,?,?,?)";
