@@ -82,6 +82,8 @@ public class FrontController extends HttpServlet {
 			insertarEncuesta(request, response);
 		} else if (accion.equals("votosAplicacion")){
 			votosAplicacion(request, response);
+		} else if(accion.equals("nuevoProyecto")){
+			crearNuevoProyecto(request, response);
 		}
 		
 	}
@@ -198,6 +200,9 @@ public class FrontController extends HttpServlet {
 	private void votosAplicacion(HttpServletRequest request,
 			HttpServletResponse response)throws ServletException, IOException {
 		request.getRequestDispatcher("votosApli.jsp").include(request, response);
+	}
+	private void crearNuevoProyecto(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.getRequestDispatcher("nuevoProyecto.jsp").include(request, response);
 	}
 
 }
