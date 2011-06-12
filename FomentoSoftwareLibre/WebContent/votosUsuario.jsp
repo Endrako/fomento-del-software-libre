@@ -24,10 +24,6 @@
 			Usuario usuario = (Usuario)session.getAttribute("usuario");
 		%>
 
-		function recuperarAplicacion(idAplicacion){
-			document.formulario.action = "FrontController?accion=recuperarPerfilAplicacion&idAplicacion="+ idAplicacion ;
-			document.formulario.submit();
-		}
 
 		function redirigir(){
 			window.location="index2.jsp";
@@ -35,14 +31,15 @@
 		
 		function votosapli(){
 			var nombreApli = document.getElementById("nombreApli").value;
-			document.formulario.action = "FrontController?accion=votosAplicacion&nombre="+ nombreApli ;
-			document.formulario.submit();
+			if(nombreApli == "---"){
+				alert("Elige primero una aplicacion");
+			}else{
+				document.formulario.action = "FrontController?accion=votosAplicacion&nombre="+ nombreApli ;
+				document.formulario.submit();
+				
+			}
 		}
 		
-		function nuevaA(){
-			document.formulario.action = "FrontController?accion=nuevaAplicacion";
-			document.formulario.submit();
-		}
 </script>
 </head>
 <body background="Imagenes/fondo.jpg">
@@ -118,19 +115,35 @@
 		</td>
 	</tr>
 	<%} %>
+
 	<tr>
-		<td width="40%" align="left" class="datos_tabla">
-			<input type="button" id="atras" name="atras" value=" Atrás " onclick="javascript:redirigir()">
-		</td>
-	</tr>
-	<tr>
-		<td width="40%" align="left" class="datos_tabla">
-			<input type="text" id="nombreApli" name="nombreApli">
+		<td>
+			<select name="nombreApi" id="nombreApli">
+				<option selected > ---
+				<%
+				for (Voto v : lista){
+					String apli;
+					AplicacionStore astore = AplicacionStore.getInstance();
+					Aplicacion ap = astore.getAplicacion(v.getAplicacion());
+					apli = ap.getNombre();
+				
+				%>
+				<option> 
+				<%=apli %>
+				
+
+			<%} %>
+			</select>
 		</td>
 		<td width="40%" align="right" class="datos_tabla">
-			<input type="button" id="votosApli" name="votosApli" value=" Votos de la Aplicacion " onclick="javascript:votosapli(nombreApli)">
+			<input type="button" id="votosApli" name="votosApli" value=" Votos de la Aplicacion " onclick="javascript:votosapli()">
 		</td>
-	
+
+	</tr>
+		<tr>
+		<td width="40%" align="right" class="datos_tabla">
+			<input type="button" id="atras" name="atras" value=" Atrás " onclick="javascript:redirigir()">
+		</td>
 	</tr>
 </table>
 </form>
