@@ -37,12 +37,10 @@
 		function votarafavor(idAplicacion){
 			document.formulario.action = "FrontController?accion=votarAFavor&idAplicacion="+idAplicacion;
 			document.formulario.submit();
-			window.location="aplicaciones.jsp";
 		}
 		function votarencontra(idAplicacion){
 			document.formulario.action = "FrontController?accion=votarEnContra&idAplicacion="+idAplicacion;
 			document.formulario.submit();
-			window.location="aplicaciones.jsp";
 		}
 		
 
@@ -157,10 +155,10 @@
 	<% if(valido){ %>
 	<tr>
 		<td width="50%" align="left" class="datos_tabla">
-			&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" id="votarAFavor" name="votarAFavor"  value=" Votar a Favor " onclick="votarafavor(<%=api.getIDAplicacion()%>);">
+			&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" id="<%=idAplicacion %>" name="votarAFavor"  value=" Votar a Favor " onclick="votarafavor(this.id);">
 		</td>
 		<td width="50%" align="center" class="datos_tabla">
-			<input type="button" id="votarEnContra" name="votarEnContra" value=" Votar en Contra " onclick="votarencontra(<%=api.getIDAplicacion()%>);">
+			<input type="button" id="<%=idAplicacion %>" name="votarEnContra" value=" Votar en Contra " onclick="votarencontra(this.id);">
 		</td>
 	</tr>
 	<% } %>

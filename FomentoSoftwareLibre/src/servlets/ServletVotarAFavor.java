@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import pos.domain.Aplicacion;
 import pos.domain.Usuario;
+import pos.domain.UsuarioStore;
 import pos.domain.Voto;
 import pos.domain.VotoImpl;
 import pos.domain.VotoStore;
@@ -63,6 +64,12 @@ public class ServletVotarAFavor extends HttpServlet {
 		voto.setValor(valor);
 
 		store.crearVoto(voto);
+		
+		
+		UsuarioStore storeUser = new UsuarioStore();
+		Usuario userNuevo = storeUser.recuperarUsuarioByIdUsuario(user.getIdUser());
+		sesion.setAttribute("usuario", userNuevo);
+		request.getRequestDispatcher("aplicaciones.jsp").include(request,response);
 	}
 
 }

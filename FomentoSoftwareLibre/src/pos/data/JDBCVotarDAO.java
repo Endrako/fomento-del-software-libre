@@ -313,7 +313,7 @@ public class JDBCVotarDAO implements IVotarDAO {
 		try {
 
 			stmt = conn.prepareStatement(sq);
-			stmt.setInt(1, user.getKarma()+1);
+			stmt.setInt(1, user.getKarma()+5);
 			stmt.setString(2, user.getIdUser());
 
 			stmt.executeUpdate();				
