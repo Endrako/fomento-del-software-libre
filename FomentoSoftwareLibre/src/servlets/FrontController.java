@@ -86,8 +86,16 @@ public class FrontController extends HttpServlet {
 			crearNuevoProyecto(request, response);
 		} else if(accion.equals("recuperarEncuesta")){
 			recuperarEncuesta(request,response);
+		} else if(accion.equals("datosencuesta")){
+			datosEncuesta(request,response);
 		}
 		
+	}
+
+	private void datosEncuesta(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		request.getRequestDispatcher("ServletRealizarEncuesta").include(request, response);
+
 	}
 
 	private void recuperarEncuesta(HttpServletRequest request,
