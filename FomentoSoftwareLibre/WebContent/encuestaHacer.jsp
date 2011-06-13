@@ -77,7 +77,5 @@
 		%>
 		</div>
 	</div>
-
-
 </body>
 </html>
