@@ -17,9 +17,21 @@
 <%
 	Usuario usuario = (Usuario) session.getAttribute("usuario");
 %>
-<title>Insert title here</title>
+<title>Fomento del Software Libre - Realizar encuesta</title>
+<script type="text/javascript">
+
+function enviar(){
+	document.formulario.action = "FrontController?accion=datosencuesta";
+	document.formulario.submit();
+}
+
+function redirigir(){
+	window.location="encuestalistado.jsp";
+}
+
+</script>
 </head>
-<body>
+<body background="Imagenes/fondo.jpg">
 <table align="center">
 	<tr>
 		<td width="15%" align="left">
@@ -47,6 +59,7 @@
 		</td>
 	</tr>
 </table>
+<form id="formulario" name="formulario" action="" method="POST">
 	<%
 		EncuestaStore eStore = new EncuestaStore();
 		Encuesta e = eStore.obtenerEncuesta(request.getParameter("idEncuesta"));
@@ -56,13 +69,13 @@
 		<div id="titulo">
 			<h1><%=e.getTituloEncuesta()%></h1>
 		</div>
-			<h4>Encuesta creada por <i><%=us.recuperarUsuarioByIdUsuario(e.getUsuario()).getNombreUsuario()%><i></i></h4>
+			<h4>Encuesta creada por <i><%=us.recuperarUsuarioByIdUsuario(e.getUsuario()).getNombreUsuario()%></i></h4>
 		<div id="preguntas">
 			<%
 				for (int i =0; i<e.getPreguntas().size();i++) {
 			%>
 			<div id="enun">
-			<h4><%=e.getPreguntas().get(i).getEnunciado()%></h4>
+			<h4><%=i+1%>) <%=e.getPreguntas().get(i).getEnunciado()%></h4>
 			</div>
 				<%
 				for (Respuesta r : e.getPreguntas().get(i).getRespuestas()){
@@ -77,5 +90,13 @@
 		%>
 		</div>
 	</div>
+	<div id="boton">
+	 <input type="button" id="validar" name="validar" onClick="enviar();" value="Enviar datos">
+	<div id= atras>
+	<input type="button" id="atras" name="atras" value=" Atras "
+					onclick="javascript:redirigir()">
+	</div>
+	</div>
+	</form>
 </body>
 </html>

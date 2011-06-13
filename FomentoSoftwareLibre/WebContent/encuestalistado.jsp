@@ -27,7 +27,7 @@
 		
 </script>
 </head>
-<body>
+<body background="Imagenes/fondo.jpg">
 <table align="center">
 	<tr>
 		<td width="15%" align="left">
@@ -67,7 +67,7 @@
 			<strong>Encuesta: </strong>
 		</td>
 		<td width="50%" class="tabla_principal2" align="left">
-			<strong>Ver encuesta</strong>
+			<strong>Acción</strong>
 		</td>
 	</tr>
 	<%
@@ -80,7 +80,9 @@
 		</td>
 		<td width="50%" class="datos_tabla" align="left">
 			 <input type="button" id="<%=e.getEncuestaId()%>" name="<%=e.getEncuestaId()%>" onClick="recuperarEncuesta(this.id)" value="Realizar Encuesta">
+			 <input type="button" id="<%=e.getEncuestaId()%>" name="<%=e.getEncuestaId()%>" onClick="" value="Ver Resultados">
 		</td>
+		
 	</tr>
 	<%}%>
 	<tr>
