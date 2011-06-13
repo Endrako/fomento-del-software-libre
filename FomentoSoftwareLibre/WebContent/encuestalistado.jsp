@@ -21,6 +21,12 @@
 			document.formulario.submit();
 		}
 		
+		function verEncuesta(idEncuesta){
+			document.formulario.action = "FrontController?accion=verEncuesta&idEncuesta="+ idEncuesta ;
+			document.formulario.submit();
+		}
+		
+		
 		function redirigir(){
 			window.location="encuestaindex.jsp";
 		}
@@ -80,7 +86,7 @@
 		</td>
 		<td width="50%" class="datos_tabla" align="left">
 			 <input type="button" id="<%=e.getEncuestaId()%>" name="<%=e.getEncuestaId()%>" onClick="recuperarEncuesta(this.id)" value="Realizar Encuesta">
-			 <input type="button" id="<%=e.getEncuestaId()%>" name="<%=e.getEncuestaId()%>" onClick="" value="Ver Resultados">
+			 <input type="button" id="<%=e.getEncuestaId()%>" name="<%=e.getEncuestaId()%>" onClick="verEncuesta(this.id)" value="Ver Resultados">
 		</td>
 		
 	</tr>

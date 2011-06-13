@@ -62,6 +62,7 @@ public class JDBCRespuestaDAO implements IRespuestaDAO {
 				Respuesta r = new RespuestaImpl();
 				r.setIDRespuesta(result.getString("IDRespuesta"));
 				r.setDescripcion(result.getString("descripcionRespuesta"));
+				r.setNumeroVotos(result.getInt("numeroVotos"));
 				res.add(r);
 			}
 		} catch (SQLException e) {
