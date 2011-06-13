@@ -10,8 +10,8 @@ public class ProyectoImpl implements Proyecto {
 	public Date fechaInicio;
 	public Date fechaFin;
 	private Integer disponibilidad;
-	private String numeroMaximoDesarrolladores;
-	private String numeroActualDesarrolladores;
+	// private String numeroMaximoDesarrolladores;
+	// private String numeroActualDesarrolladores;
 	private Aplicacion aplicacion;
 	private Integer nivelKarma;
 	private Usuario usuarioCreador;
@@ -60,7 +60,7 @@ public class ProyectoImpl implements Proyecto {
 		this.disponibilidad = disponibilidad;
 	}
 
-	public String getNumeroMaximoDesarrolladores() {
+	/*public String getNumeroMaximoDesarrolladores() {
 		return numeroMaximoDesarrolladores;
 	}
 
@@ -76,7 +76,7 @@ public class ProyectoImpl implements Proyecto {
 	public void setNumeroActualDesarrolladores(
 			String numeroActualDesarrolladores) {
 		this.numeroActualDesarrolladores = numeroActualDesarrolladores;
-	}
+	}*/
 
 	public String getIDProyecto() {
 		return idProyecto;

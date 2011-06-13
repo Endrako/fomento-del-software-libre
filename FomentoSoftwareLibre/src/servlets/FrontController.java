@@ -210,7 +210,8 @@ public class FrontController extends HttpServlet {
 		request.getRequestDispatcher("votosApli.jsp").include(request, response);
 	}
 	private void crearNuevoProyecto(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("nuevoProyecto.jsp").include(request, response);
+		request.setAttribute("evento", "nuevoProyecto");
+		request.getRequestDispatcher("ServletProyecto").include(request, response);
 	}
 
 }

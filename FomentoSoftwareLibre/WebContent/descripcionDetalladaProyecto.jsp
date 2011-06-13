@@ -53,7 +53,7 @@
 			<td width="15%" align="left"><img src="Imagenes/tux.jpg">
 			</td>
 			<td class="titular" align="center" width="70%"><strong>Web
-					Del Fomento Del Sofware Libre</strong>
+					De Fomento Del Sofware Libre</strong>
 			</td>
 			<td width="15%" align="right"><img src="Imagenes/tux.jpg">
 			</td>
@@ -136,18 +136,6 @@
 				<td width=50% class="datos_tabla" align="left">Usuario Creador</td>
 				<td width=50% class="datos_tabla" align="left"><%=u.getNombreUsuario() %></td>
 			</tr>
-
-			<!-- 	FALTA CREAR EL STORE DE PROYECTOS <tr> -->
-			<!-- 		<td width="50%" class="datos_tabla" align="left"> -->
-			<!-- 			Proyecto al que pertenece: -->
-			<!-- 		</td> -->
-			<%-- 		<% --%>
-			<!-- 			ProyectoStore storeP =  -->
-			<!-- 		%> -->
-			<!-- 		<td width="50%" class="datos_tabla" align="left"> -->
-			<%-- 			<%=api.getVotosEnContra() %> --%>
-			<!-- 		</td> -->
-			<!-- 	</tr> -->
 			<tr>
 				<td width="50%" class="datos_tabla" align="left">Aplicación
 					asociada:</td>

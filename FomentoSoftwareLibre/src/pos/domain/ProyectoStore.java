@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+import pos.data.JDBCAplicacionDAO;
 import pos.data.JDBCProyectoDAO;
 import pos.data.JDBCUsuarioDAO;
 
@@ -70,9 +71,11 @@ public class ProyectoStore {
 		return new JDBCProyectoDAO().obtenerProyectosCreadosPorUsuario(u);
 	}
 
-	public void crearProyecto(Proyecto p, Usuario u) {
+	public boolean crearProyecto(Proyecto p, Usuario u) {
+		boolean res;
 		Boolean b = new JDBCProyectoDAO().existeProyecto(p.getNombreProyecto());
 		if (b) {
+			res = false;
 			throw new IllegalArgumentException(
 					"Ya existe un proyecto con este nombre");
 		} else {
@@ -81,11 +84,14 @@ public class ProyectoStore {
 				new JDBCProyectoDAO().crearProyecto(p, u);
 				new JDBCProyectoDAO().asociarProyectoAUsuario(u, p);
 				new JDBCUsuarioDAO().actualizaKarmaUsuario(u, 50);
+				res=true;
 			} else {
+				res=false;
 				throw new IllegalArgumentException(
 						"Karma inferior al requerido para crear proyecto");
 			}
 		}
+		return res;
 	}
 
 	public void unirUsuarioAProyecto(Proyecto p, Usuario u) {
@@ -128,7 +134,6 @@ public class ProyectoStore {
 		for(Usuario u: listaUsuarios){
 			listaNombres.add(u.getNombreUsuario());
 		}
-		System.out.println("esto es en el Store: "+ listaNombres);
 		return listaNombres;
 	}
 
