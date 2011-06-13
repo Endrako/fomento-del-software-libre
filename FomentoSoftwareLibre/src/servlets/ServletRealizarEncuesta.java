@@ -1,10 +1,14 @@
 package servlets;
 
 import java.io.IOException;
+import java.util.Enumeration;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import pos.domain.EncuestaStore;
 
 /**
  * Servlet implementation class ServletRealizarEncuesta
@@ -17,21 +21,31 @@ public class ServletRealizarEncuesta extends HttpServlet {
      */
     public ServletRealizarEncuesta() {
         super();
-        // TODO Auto-generated constructor stub
+        
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		doPost(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		EncuestaStore eStore = new EncuestaStore();
+		Enumeration<?> e=request.getParameterNames(); 
+		
+		while (e.hasMoreElements()){
+			String cad = (String) e.nextElement();
+			if (cad.contains("resp")){
+				System.out.println(request.getParameter(cad));
+			eStore.votarRespuestas(request.getParameter(cad));
+			}
+		}
+		request.getRequestDispatcher("encuestaVotarOk.jsp").include(request, response);
 	}
 
 }

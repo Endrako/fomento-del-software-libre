@@ -128,6 +128,7 @@ public class JDBCRespuestaDAO implements IRespuestaDAO {
 			result.next();
 			res.setIDRespuesta(result.getString("IDRespuesta"));
 			res.setDescripcion(result.getString("descripcionRespuesta"));
+			res.setNumeroVotos(result.getInt("numeroVotos"));
 
 		} catch (SQLException e) {
 			System.out.println("Message: " + e.getMessage());
@@ -147,5 +148,38 @@ public class JDBCRespuestaDAO implements IRespuestaDAO {
 
 		return res;
 	}
+	
+	public void votarRespuestas(String RespuestaId) {
+		String sql = "UPDATE respuestas SET respuestas.numeroVotos = ? WHERE respuestas.IDRespuesta = ?";
+		PreparedStatement stmt = null;
+		ResultSet result = null;
+		Respuesta res = new RespuestaImpl();
+
+		res = recuperarRespuesta(RespuestaId);
+		
+		try {
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, res.getNumeroVotos()+1);
+			stmt.setString(2, RespuestaId);
+			stmt.executeUpdate();
+
+		} catch (SQLException e) {
+			System.out.println("Message: " + e.getMessage());
+			System.out.println("SQLState: " + e.getSQLState());
+			System.out.println("ErrorCode: " + e.getErrorCode());
+		} finally {
+			try {
+				if (result != null) {
+					result.close();
+				}
+				if (stmt != null) {
+					stmt.close();
+				}
+			} catch (SQLException e) {
+			}
+		}
+	}
+	
+	
 
 }

@@ -88,7 +88,7 @@ public class TestEncuestaJDBC {
 		//pdao.borrar(1509550783);
 		
 		//recuperar encuesta
-		e=edao.recuperarEncuesta("1307644412417ffffffffe12762bb");
+		/*e=edao.recuperarEncuesta("1307644412417ffffffffe12762bb");
 		
 		System.out.println(e.getTituloEncuesta());
 		for (Pregunta pt : e.getPreguntas()){
@@ -96,8 +96,9 @@ public class TestEncuestaJDBC {
 			for (Respuesta rt : pt.getRespuestas()){
 				System.out.println("Respuesta"+ rt.getDescripcionRespuesta());
 			}
-		}
-		
+		}*/
+		//Votar Respuesta
+		rdao.votarRespuestas("13076444124477536d749");
 		/*
 		//lista de todas las encuestas
 		le = edao.seleccionarTodasEncuestas();

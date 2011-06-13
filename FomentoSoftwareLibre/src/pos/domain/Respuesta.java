@@ -6,6 +6,6 @@ public interface Respuesta {
 	public void setIDRespuesta(String id);
 	public String getDescripcionRespuesta();
 	public void setDescripcion(String d);
-	public String getNumeroVotos();
-	public void setNumeroVotos(String nvotos);
+	public Integer getNumeroVotos();
+	public void setNumeroVotos(Integer nvotos);
 }

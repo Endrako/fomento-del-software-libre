@@ -109,4 +109,14 @@
     <servlet-name>ServletVotarEnContra</servlet-name>
     <url-pattern>/ServletVotarEnContra</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ServletRealizarEncuesta</display-name>
+    <servlet-name>ServletRealizarEncuesta</servlet-name>
+    <servlet-class>servlets.ServletRealizarEncuesta</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletRealizarEncuesta</servlet-name>
+    <url-pattern>/ServletRealizarEncuesta</url-pattern>
+  </servlet-mapping>
 </web-app>

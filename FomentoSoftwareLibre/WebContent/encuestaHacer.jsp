@@ -81,7 +81,7 @@ function redirigir(){
 				for (Respuesta r : e.getPreguntas().get(i).getRespuestas()){
 				%>
 			<div id=res>
-			<input type="radio" name="resp<%=i%>">
+			<input type="radio" name="resp<%=i%>" value="<%=r.getIDRespuesta()%>" >
 			<%=r.getDescripcionRespuesta() %> 
 			</div>
 			<%} %>

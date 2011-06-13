@@ -3,22 +3,19 @@ package pos.domain;
 import java.util.List;
 
 import pos.data.IEncuestaDAO;
-import pos.data.IPreguntaDAO;
 import pos.data.IRespuestaDAO;
 import pos.data.JDBCEncuestaDAO;
+import pos.data.JDBCRespuestaDAO;
 
 public class EncuestaStore implements IEncuestaStore {
 	
-	private List<Encuesta> le;
-	private List<Pregunta> lp;
-	private List<Respuesta> lr;
 	private IEncuestaDAO edao;
-	private Integer encID;
-	private Integer pregID;
-	private Integer resID;
+	private IRespuestaDAO rdao;
+
 	
 	public EncuestaStore(){
 		edao = new JDBCEncuestaDAO();
+		rdao = new JDBCRespuestaDAO();
 	}
 
 	@Override
@@ -63,62 +60,14 @@ public class EncuestaStore implements IEncuestaStore {
 	}
 
 	@Override
-	public void borrarPregunta(Integer idPregunta) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void borrarRespuesta(Integer idRespuesta) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void modificarPregunta(Integer idPregunta) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void modificarRespuesta(Integer idRespuesta) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
 	public List<Encuesta> obtenerEncuestas() {
 		return edao.seleccionarTodasEncuestas();
 	}
 
 	@Override
-	public Integer obtenerIDEncuesta(Encuesta enc) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Integer obtenerIDPregunta(Pregunta preg) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Integer obtenerIDRespuesta(Respuesta res) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Pregunta> obtenerPreguntas(Integer idEncuesta) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Respuesta> obtenerRespuestas(Integer idPregunta) {
-		// TODO Auto-generated method stub
-		return null;
+	public boolean votarRespuestas(String idRespuesta) {
+		rdao.votarRespuestas(idRespuesta);
+		return false;
 	}
 
 }

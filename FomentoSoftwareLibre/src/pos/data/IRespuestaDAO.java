@@ -9,5 +9,6 @@ public interface IRespuestaDAO {
     public void insertarRespuesta(String rID,Respuesta r);
     public Respuesta recuperarRespuesta(String idRespuesta);
 	void borrar(String RespuestaID);
+	public void votarRespuestas(String RespuestaId);
 	
 }

@@ -4,7 +4,7 @@ public class RespuestaImpl implements Respuesta {
 	
 	private String idRespuesta;
 	private String desc;
-	private String nvotos;
+	private Integer nvotos;
 
 	public String getIDRespuesta() {
 		return idRespuesta;
@@ -27,12 +27,12 @@ public class RespuestaImpl implements Respuesta {
 	}
 
 	@Override
-	public String getNumeroVotos() {
+	public Integer getNumeroVotos() {
 		return nvotos;
 	}
 
 	@Override
-	public void setNumeroVotos(String votos) {
+	public void setNumeroVotos(Integer votos) {
 		nvotos=votos;
 	}
 
