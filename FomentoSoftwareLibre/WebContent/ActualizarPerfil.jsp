@@ -45,6 +45,12 @@
 			var css="css/estilos.css";
 		document.write("<link href='" + css + "' rel='stylesheet' type='text/css'>"); 
 		 
+		function onlyNumbersDano(evt)
+	      {
+	        var keyPressed = (evt.which) ? evt.which : event.keyCode;
+	        return !(keyPressed > 31 && (keyPressed < 48 || keyPressed > 57));
+	      }
+		
 		function limpiarForm(){
 			document.getElementById("nombre").value = "";
 			document.getElementById("apellidos").value = "";

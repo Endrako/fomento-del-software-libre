@@ -1,8 +1,4 @@
-function onlyNumbersDano(evt)
-      {
-        var keyPressed = (evt.which) ? evt.which : event.keyCode
-        return !(keyPressed > 31 && (keyPressed < 48 || keyPressed > 57));
-      }
+
 function recuperarProyecto(idProyecto) {
 	document.formulario.action = "FrontController?accion=recuperarPerfilProyecto&idProyecto="
 			+ idProyecto;
