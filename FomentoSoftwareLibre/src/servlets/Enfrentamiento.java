@@ -76,7 +76,6 @@ public class Enfrentamiento extends HttpServlet {
 			List<Aplicacion> aplicaciones = new ArrayList<Aplicacion>();
 			for(Aplicacion ap : aplSt.getAplicaciones()){
 				String par = request.getParameter(ap.getIDAplicacion());
-				System.out.println(par);
 				if(par !=null){
 					if((!(par=="")) && par.equals(ap.getNombre())){
 						aplicaciones.add(ap);
