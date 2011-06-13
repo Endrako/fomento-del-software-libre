@@ -74,7 +74,7 @@ public class JDBCPreguntaDAO implements IPreguntaDAO {
 				Pregunta p = new PreguntaImpl();
 				p.setIDPregunta(result.getString("IDPregunta"));
 				p.setEnunciado(result.getString("descripcionPregunta"));
-				rdao.seleccionarTodasRespuestasPorPregunta(p.getIDPregunta());
+				lr=rdao.seleccionarTodasRespuestasPorPregunta(p.getIDPregunta());
 				p.setRespuestas(lr);
 				res.add(p);
 			}

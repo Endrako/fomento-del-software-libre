@@ -109,6 +109,7 @@ public class JDBCEncuestaDAO implements IEncuestaDAO {
 
 			result.next();
 			res = new EncuestaImpl();
+			res.setUsuario(result.getString("IDUsuario"));
 			res.setTituloEncuesta(result.getString("nombre"));
 			res.setPreguntas(lp);
 			res.setEncuestaID(idEncuesta);

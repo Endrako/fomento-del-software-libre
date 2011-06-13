@@ -48,12 +48,10 @@ public class JDBCRespuestaDAO implements IRespuestaDAO {
 
 	@Override
 	public List<Respuesta> seleccionarTodasRespuestasPorPregunta(String idPregunta) {
-		//Esta mal la consulta
-		String sql = "SELECT * FROM preguntasrespuestas pr,respuestas r WHERE (pr.IDPregunta = ? ) AND pr.IDRespuesta=r.IDRespuesta";
+		String sql = "SELECT * FROM preguntasrespuestas a, respuestas r WHERE a.IDRespuesta = r.IDRespuesta AND (a.IDPregunta = ?)" ;
 		PreparedStatement stmt = null;
 		ResultSet result = null;
 		List<Respuesta> res = new LinkedList<Respuesta>();
-
 		try {
 			stmt = conn.prepareStatement(sql);
 			stmt.setString(1, idPregunta);

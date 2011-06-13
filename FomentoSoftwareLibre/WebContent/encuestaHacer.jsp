@@ -1,3 +1,4 @@
+<%@page import="pos.domain.UsuarioStore"%>
 <%@page import="pos.domain.EncuestaStore"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -48,23 +49,29 @@
 </table>
 	<%
 		EncuestaStore eStore = new EncuestaStore();
-		Encuesta e = eStore.obtenerEncuesta(request
-				.getParameter("idEncuesta"));
+		Encuesta e = eStore.obtenerEncuesta(request.getParameter("idEncuesta"));
+		UsuarioStore us = new UsuarioStore();
 	%>
 	<div id="encuesta">
 		<div id="titulo">
 			<h1><%=e.getTituloEncuesta()%></h1>
 		</div>
+			<h4>Encuesta creada por <i><%=us.recuperarUsuarioByIdUsuario(e.getUsuario()).getNombreUsuario()%><i></i></h4>
 		<div id="preguntas">
 			<%
-				for (Pregunta p : e.getPreguntas()) {
+				for (int i =0; i<e.getPreguntas().size();i++) {
 			%>
 			<div id="enun">
-			<h4><%=p.getEnunciado()%></h4>
+			<h4><%=e.getPreguntas().get(i).getEnunciado()%></h4>
 			</div>
+				<%
+				for (Respuesta r : e.getPreguntas().get(i).getRespuestas()){
+				%>
 			<div id=res>
-			<%=p.getRespuestas().get(0).getDescripcionRespuesta() %>
+			<input type="radio" name="resp<%=i%>">
+			<%=r.getDescripcionRespuesta() %> 
 			</div>
+			<%} %>
 		<%
 		}
 		%>

@@ -5,7 +5,7 @@ import java.util.List;
 public class EncuestaImpl implements Encuesta {
 	
 	private String encuestaID;
-	private String usuarioID;
+	private String usuario;
 	private String titulo;
 	private List<Pregunta> lp;
 	
@@ -38,12 +38,12 @@ public class EncuestaImpl implements Encuesta {
 
 	@Override
 	public String getUsuario() {
-		return usuarioID;
+		return usuario;
 	}
 
 	@Override
-	public void setUsuario(String IDUsuario) {
-		usuarioID=IDUsuario;
+	public void setUsuario(String user) {
+		usuario=user;
 	}
 
 }

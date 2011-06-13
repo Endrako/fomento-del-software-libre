@@ -75,7 +75,9 @@ public class TestEncuestaJDBC {
 		e.setTituloEncuesta("Encuesta sobre el sexo de los grillos");
 		e.setPreguntas(lp1);
 		e.setUsuario(idUsusario);
-		edao.insertarEncuesta(e);
+		//edao.insertarEncuesta(e);
+		
+		
 		
 		//Borrar encuesta
 		
@@ -86,9 +88,17 @@ public class TestEncuestaJDBC {
 		//pdao.borrar(1509550783);
 		
 		//recuperar encuesta
-	/*	e=edao.recuperarEncuesta(1);
-		System.out.println(e.getTituloEncuesta());
+		e=edao.recuperarEncuesta("1307644412417ffffffffe12762bb");
 		
+		System.out.println(e.getTituloEncuesta());
+		for (Pregunta pt : e.getPreguntas()){
+			System.out.println("Enunciado: "+pt.getEnunciado());
+			for (Respuesta rt : pt.getRespuestas()){
+				System.out.println("Respuesta"+ rt.getDescripcionRespuesta());
+			}
+		}
+		
+		/*
 		//lista de todas las encuestas
 		le = edao.seleccionarTodasEncuestas();
 		for (Encuesta enc :le){
