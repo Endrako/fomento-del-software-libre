@@ -113,7 +113,7 @@
 				<strong>Edad: </strong>
 			</td>
 			<td width="50%" class="datos_tabla" align="left">
-				<input type="text" id="edad" name ="edad" onKeyPress="javascript:soloNumeros(event)" value="<%=edad%>">
+				<input type="text" id="edad" name ="edad" onKeyPress="javascript:return onlyNumbersDano(event)" value="<%=edad%>">
 			</td>
 		</tr>
 		<tr>

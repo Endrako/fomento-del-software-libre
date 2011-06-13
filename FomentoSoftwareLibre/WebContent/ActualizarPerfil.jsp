@@ -44,7 +44,7 @@
 <script language="JavaScript" >
 			var css="css/estilos.css";
 		document.write("<link href='" + css + "' rel='stylesheet' type='text/css'>"); 
-		
+		 
 		function limpiarForm(){
 			document.getElementById("nombre").value = "";
 			document.getElementById("apellidos").value = "";
@@ -115,7 +115,7 @@
 				<strong>Edad: </strong>
 			</td>
 			<td width="50%" class="datos_tabla" align="left">
-				<input type="text" id="edad" name ="edad" onKeyPress="javascript:soloNumeros(event)" value="<%=edad%>">
+				<input type="text" id="edad" name ="edad" onKeyPress="javascript:return onlyNumbersDano(event)" value="<%=edad%>">
 			</td>
 		</tr>
 		<tr>

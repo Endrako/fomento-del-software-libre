@@ -1,9 +1,8 @@
-function soloNumeros(event){
-	var key=event.keyCode;
-	if (key < 48 || key > 57){
-		window.event.keyCode=0;
-	}
-}
+function onlyNumbersDano(evt)
+      {
+        var keyPressed = (evt.which) ? evt.which : event.keyCode
+        return !(keyPressed > 31 && (keyPressed < 48 || keyPressed > 57));
+      }
 function recuperarProyecto(idProyecto) {
 	document.formulario.action = "FrontController?accion=recuperarPerfilProyecto&idProyecto="
 			+ idProyecto;
