@@ -46,7 +46,6 @@ public class JDBCEnfrentamientoDAO implements IEnfrentamientoDAO {
 				Date fechaCreacion = result.getDate("fechaCreacion");
 				Date fechaFin = result.getDate("fechaFin");
 				String IDUsuario = result.getString("IDUsuario");
-				// Cuidaaaaaaaaaoooooooo!
 				Aplicacion aplicacion1 = apliDAO.selectAplicacionByID(IDapl1.toString());
 				Aplicacion aplicacion2 = apliDAO.selectAplicacionByID(IDapl2.toString());
 				enfrentamiento = new EnfrentamientoImpl(IDEnfrentamiento,aplicacion1,aplicacion2,descripcion,fechaCreacion,fechaFin,votosAply1,votosAply2,IDUsuario);
@@ -94,7 +93,6 @@ public class JDBCEnfrentamientoDAO implements IEnfrentamientoDAO {
 				Date fechaCreacion = result.getDate("fechaCreacion");
 				Date fechaFin = result.getDate("fechaFin");
 				String IDUsuario = result.getString("IDUsuario");
-				// Cuidaaaaaaaaaoooooooo!
 				Aplicacion aplicacion1 = apliDAO.selectAplicacionByID(IDapl1.toString());
 				Aplicacion aplicacion2 = apliDAO.selectAplicacionByID(IDapl2.toString());
 				enfrentamiento = new EnfrentamientoImpl(IDEnfrentamiento,aplicacion1,aplicacion2,descripcion,fechaCreacion,fechaFin,votosAply1,votosAply2,IDUsuario);
@@ -143,7 +141,6 @@ public class JDBCEnfrentamientoDAO implements IEnfrentamientoDAO {
 				Date fechaCreacion = result.getDate("fechaCreacion");
 				Date fechaFin = result.getDate("fechaFin");
 				String IDUsuario = result.getString("IDUsuario");
-				// Cuidaaaaaaaaaoooooooo!
 				Aplicacion aplicacion1 = apliDAO.selectAplicacionByID(IDapl1.toString());
 				Aplicacion aplicacion2 = apliDAO.selectAplicacionByID(IDapl2.toString());
 				enfrentamiento = new EnfrentamientoImpl(IDEnfrentamiento,aplicacion1,aplicacion2,descripcion,fechaCreacion,fechaFin,votosAply1,votosAply2,IDUsuario);
@@ -173,7 +170,7 @@ public class JDBCEnfrentamientoDAO implements IEnfrentamientoDAO {
 		Connection con = (Connection) ConnectionManager.getInstance()
 				.checkOut();
 
-		String sql = "INSERT INTO enfrentamientos (IDEnfrentamiento,IDAplicacion1,IDAplicacion2,descripcion,votosApp1,votosApp2,fechaCreacion,fechaFin,aceptado,IDUsuario,finalizado) VALUES (?,?,?,?,?,?,?,?,?,?,?) ";
+		String sql = "INSERT INTO enfrentamientos (IDEnfrentamiento,IDAplicacion1,IDAplicacion2,descripcion,votosApp1,votosApp2,fechaCreacion,fechaFin,IDUsuario,finalizado) VALUES (?,?,?,?,?,?,?,?,?,?) ";
 		PreparedStatement stm = null;
 
 		String IDEnfrentamiento = UIDGenerator.getInstance().getKey();
@@ -185,7 +182,7 @@ public class JDBCEnfrentamientoDAO implements IEnfrentamientoDAO {
 		String descripcion = enfrentamiento.getDescripcion();
 		Date fechaCreacion = enfrentamiento.getFechaCreacion();
 		Date fechaFin = enfrentamiento.getFechaFin();
-		// Votos se inicializan a 0, y aceptado a FALSE (0)
+		// Votos se inicializan a 0
 		try {
 			
 			stm = con.prepareStatement(sql);
@@ -197,9 +194,8 @@ public class JDBCEnfrentamientoDAO implements IEnfrentamientoDAO {
 			stm.setInt(6, 0);// votosApp2
 			stm.setDate(7, (java.sql.Date) fechaCreacion);
 			stm.setDate(8, (java.sql.Date) fechaFin);
-			stm.setInt(9, 0);//por defecto, aceptado = 0
-			stm.setString(10,usuario.getIdUser());
-			stm.setInt(11, 0);//por defecto, finalizado = 0
+			stm.setString(9,usuario.getIdUser());
+			stm.setInt(10, 0);//por defecto, finalizado = 0
 
 			stm.executeUpdate();
 		} catch (SQLException e) {
@@ -371,7 +367,6 @@ public class JDBCEnfrentamientoDAO implements IEnfrentamientoDAO {
 				Date fechaCreacion = result.getDate("fechaCreacion");
 				Date fechaFin = result.getDate("fechaFin");
 				String IDUsuario = result.getString("IDUsuario");
-				// Cuidaaaaaaaaaoooooooo!
 				Aplicacion aplicacion1 = apliDAO.selectAplicacionByID(IDapl1.toString());
 				Aplicacion aplicacion2 = apliDAO.selectAplicacionByID(IDapl2.toString());
 				enfrentamiento = new EnfrentamientoImpl(IDEnfrentamiento,aplicacion1,aplicacion2,descripcion,fechaCreacion,fechaFin,votosAply1,votosAply2,IDUsuario);
