@@ -3,6 +3,7 @@
 <%@ page import     = "pos.domain.Usuario" %>
 <%@ page import     = "pos.utils.FuncionesImpl" %>
 <%@ page import     = "java.util.Date" %>
+<%@ page import     = "pos.domain.UsuarioStore" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -38,14 +39,31 @@
 		</td>
 	</tr>
 </table>
-</div>
+</div><% 
+HttpSession sesion = request.getSession();
+Usuario user = (Usuario)sesion.getAttribute("usuario");
+UsuarioStore storeUser = new UsuarioStore();
+%>
 <div id="pestanas">
    <ul>
-      <li><a href="encuesta.jsp">Crear una encuesta [Necesario 100 Karma]</a></li>
+   	<%if (user.getKarma()>=100){ %>
+      <li><a href="encuesta.jsp">Crear una encuesta </a></li>
+      <%}else { %>
+          <li>Crear una encuesta [Necesario 100 Karma]</li>
+     <% }%>
       <li><a href="">Gestiona tus encuestas</a></li>
       <li><a href="encuestalistado.jsp">Ver listado de encuestas</a></li>
       <li><a href="index2.jsp">Volver a la página principal</a></li>
    </ul>
 </div>
+<input type="button" value="darKarma" onclick="<%
+storeUser.actualizaKarmaUsuario(user, 10);
+Usuario userNuevo = storeUser.recuperarUsuarioByIdUsuario(user.getIdUser());
+sesion.setAttribute("usuario", userNuevo);%>" >
+
+<input type="button" value="quitarKarma" onclick="<%
+//storeUser.actualizaKarmaUsuario(user, -10);
+//Usuario userNuevo2 = storeUser.recuperarUsuarioByIdUsuario(user.getIdUser());
+//sesion.setAttribute("usuario", userNuevo2);%>" >
 </body>
 </html>

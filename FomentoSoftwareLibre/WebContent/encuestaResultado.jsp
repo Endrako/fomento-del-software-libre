@@ -76,7 +76,7 @@ function redirigir(){
 				for (Respuesta r : e.getPreguntas().get(i).getRespuestas()){
 				%>
 			<div id=res>
-			<%=r.getDescripcionRespuesta() %> <center><b><%=r.getNumeroVotos() %></b> </center>
+			<%=r.getDescripcionRespuesta() %> <center><font color="red"><b><%=r.getNumeroVotos() %></b></font> </center>
 			</div>
 			<%} %>
 		<%
