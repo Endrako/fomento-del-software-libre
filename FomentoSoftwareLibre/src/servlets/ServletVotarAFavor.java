@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import pos.domain.Aplicacion;
 import pos.domain.Usuario;
 import pos.domain.UsuarioStore;
 import pos.domain.Voto;
@@ -68,6 +67,7 @@ public class ServletVotarAFavor extends HttpServlet {
 		
 		UsuarioStore storeUser = new UsuarioStore();
 		Usuario userNuevo = storeUser.recuperarUsuarioByIdUsuario(user.getIdUser());
+		storeUser.actualizaKarmaUsuario(user, 5);
 		sesion.setAttribute("usuario", userNuevo);
 		request.getRequestDispatcher("aplicaciones.jsp").include(request,response);
 	}

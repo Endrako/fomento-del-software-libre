@@ -8,7 +8,6 @@ import java.util.LinkedList;
 import java.util.List;
 
 import pos.domain.Aplicacion;
-import pos.domain.Usuario;
 import pos.domain.Voto;
 import pos.domain.VotoImpl;
 
@@ -16,12 +15,10 @@ public class JDBCVotarDAO implements IVotarDAO {
 
 	private Connection conn;
 	private IAplicacionDAO dapli;
-	private IUsuarioDAO duser;
 
 	public JDBCVotarDAO (){
 		conn = ConnectionManager.getInstance().checkOut();
 		dapli = new JDBCAplicacionDAO();
-		duser = new JDBCUsuarioDAO();
 	}
 
 	@Override
@@ -201,10 +198,8 @@ public class JDBCVotarDAO implements IVotarDAO {
 			stmt1.setBoolean(4, voto.getValor());
 
 			stmt1.executeUpdate();
-			Usuario user = duser.recuperarUsuarioByIdUsuario(voto.getUsuario());
 			Aplicacion apli = dapli.selectAplicacionByID(voto.getAplicacion());
 			updateAplicacion(voto, apli, 1);
-			updateUser(voto, user);
 
 
 		} catch (SQLException e) {
@@ -303,36 +298,5 @@ public class JDBCVotarDAO implements IVotarDAO {
 			} catch (SQLException e) {
 			}
 		}
-	}
-	
-	private void updateUser(Voto voto, Usuario user){
-		PreparedStatement stmt = null;
-		ResultSet result = null;
-		String sq = "UPDATE usuarios SET karma = ? WHERE usuarios.IDUsuario = ?";
-		
-		try {
-
-			stmt = conn.prepareStatement(sq);
-			stmt.setInt(1, user.getKarma()+5);
-			stmt.setString(2, user.getIdUser());
-
-			stmt.executeUpdate();				
-
-		} catch (SQLException e) {
-			System.out.println("Message: " + e.getMessage());
-			System.out.println("SQLState: " + e.getSQLState());
-			System.out.println("ErrorCode: " + e.getErrorCode());
-		} finally {
-			try {
-				if (result != null) {
-					result.close();
-				}
-				if (stmt != null) {
-					stmt.close();
-				}
-			} catch (SQLException e) {
-			}
-		}
-		
 	}
 }

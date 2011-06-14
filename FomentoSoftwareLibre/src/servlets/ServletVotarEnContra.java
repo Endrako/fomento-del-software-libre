@@ -65,6 +65,7 @@ public class ServletVotarEnContra extends HttpServlet {
 		
 		UsuarioStore storeUser = new UsuarioStore();
 		Usuario userNuevo = storeUser.recuperarUsuarioByIdUsuario(user.getIdUser());
+		storeUser.actualizaKarmaUsuario(user, 5);
 		sesion.setAttribute("usuario", userNuevo);
 		request.getRequestDispatcher("aplicaciones.jsp").include(request,response);
 		}
