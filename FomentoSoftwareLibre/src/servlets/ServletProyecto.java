@@ -118,7 +118,7 @@ public class ServletProyecto extends HttpServlet {
 			 */
 			// en jsp se comprueba que checkbox solo tenga números.
 			
-			if (dias <= 30 || nivelKarma <= 0 || u.getKarma()<200) {
+			if (nombre=="" || dias <= 30 || nivelKarma <= 0 || u.getKarma()<200) {
 				// validación de nivel mínimo de karma para crear un proyecto
 				// y que los campos meses y karma no estén en blanco.
 				request.getRequestDispatcher("proyectosError.jsp").include(request, response);

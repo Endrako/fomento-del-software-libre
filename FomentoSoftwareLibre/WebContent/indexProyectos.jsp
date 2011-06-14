@@ -76,7 +76,7 @@
 		<li><h3>En el menú de arriba a la izquierda podrás
 				seleccionar las distintas opciones de proyectos, aparecerá en todas
 				las secciones de proyectos.</h3></li>
-		<li><h3>Si quieres unirte a un proyecto, deberás tener el
+		<li><h3>Si quieres <a href="proyectosUnirse.jsp">unirte a un proyecto</a>, deberás tener el
 				mínimo de karma requerido por el proyecto. y seguir las siguientes
 				instrucciones:</h3></li>
 		<ul>
@@ -91,13 +91,14 @@
 					</h3></li>
 					<ul>
 					<li><h3>- Que obviamente no pertenezcas al proyecto o seas el creador, ya que estarás vinculado automáticamente al crearlo.</h3></li>
-					<li><h3>- Que el proyecto está disponible.</h3></li>
+					<li><h3>- Que el proyecto esté disponible.</h3></li>
 					<li><h3>- Que cumplas el mínimo de karma requerido por el proyecto.</h3></li>
 					</ul>
 
 		</ul>
-		<li><h3>En <a href="proyectosUsuario">Mis proyectos</a> aparecerán los proyectos que has creado y/o en los que colaboras</h3></li>
+		<li><h3>En <a href="proyectosUsuario.jsp">Mis proyectos</a> aparecerán los proyectos que has creado y/o en los que colaboras.</h3></li>
 		
+		<li><h3>En <a href="proyectosCrear.jsp">Crear un nuevo proyecto</a> podrás crear un nuevo proyecto.</h3></li>
 		
 	</ul>
 	
