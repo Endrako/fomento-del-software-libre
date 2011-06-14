@@ -56,10 +56,12 @@ UsuarioStore storeUser = new UsuarioStore();
       <li><a href="index2.jsp">Volver a la página principal</a></li>
    </ul>
 </div>
+
+
 <input type="button" value="darKarma" onclick="<%
-storeUser.actualizaKarmaUsuario(user, 10);
-Usuario userNuevo = storeUser.recuperarUsuarioByIdUsuario(user.getIdUser());
-sesion.setAttribute("usuario", userNuevo);%>" >
+//storeUser.actualizaKarmaUsuario(user, 10);
+//Usuario userNuevo = storeUser.recuperarUsuarioByIdUsuario(user.getIdUser());
+//sesion.setAttribute("usuario", userNuevo);%>" >
 
 <input type="button" value="quitarKarma" onclick="<%
 //storeUser.actualizaKarmaUsuario(user, -10);
