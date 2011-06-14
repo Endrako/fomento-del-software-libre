@@ -101,7 +101,7 @@ public class Enfrentamiento extends HttpServlet {
 				boolean noExiste = enfSt.crearEnfrentamiento(apli1,apli2,descripcion,hoy,fechaFin,usuario);
 				if(noExiste == true){
 					request.getSession().setAttribute("aplicaciones", aplicaciones);
-					usrSt.actualizaKarmaUsuario(usuario, 100);
+					usrSt.actualizaKarmaUsuario(usuario, 75);
 					Usuario usActualizado = usrSt.recuperarUsuarioByIdUsuario(usuario.getIdUser());
 					request.getSession().setAttribute("usuario", usActualizado);
 					request.getRequestDispatcher("crearEnfrentamientoExito.jsp").include(request, response);	
