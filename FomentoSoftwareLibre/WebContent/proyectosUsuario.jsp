@@ -1,3 +1,4 @@
+<%@page import="java.util.LinkedList"%>
 <%@page import="pos.domain.ProyectoStore"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -27,7 +28,7 @@
 <%Usuario usuario = (Usuario) session.getAttribute("usuario");%>
 
 	function redirigir() {
-		window.location = "index2.jsp";
+		window.location = "indexProyectos.jsp";
 	}
 
 </script>
@@ -62,7 +63,7 @@
 	
 	<div id="pestanas">
 		<ul>
-		<li><a href="javascript:redirigir()">Inicio</a></li>
+		<li><a href="index2.jsp">Inicio</a></li>
 		<li><a href="indexProyectos.jsp">Menú proyectos</a>
 		<li><a title="Muestra los proyectos existentes" href="proyectosExistentes.jsp">Todos los proyectos existentes</a></li>
 		<li><a href="proyectosUnirse.jsp">Unirse a un proyecto</a></li>
@@ -75,7 +76,7 @@
 		<table align="center" class="borde">
 			<tr>
 				<td width="100%" class="tabla_principal" align="center" colspan="3">
-					<strong> Lista de Proyectos Existentes </strong>
+					<strong> Proyectos en los que colaboro </strong>
 				</td>
 			</tr>
 			<tr>
@@ -89,8 +90,9 @@
 			</tr>
 			<%
 				ProyectoStore store = ProyectoStore.getInstance();
-				List<Proyecto> lista = store.obtenerTodosProyectos();
-				for(Proyecto p1: lista){
+				List<Proyecto> listaAux = store.obtenerTodosProyectos();
+				List<Proyecto> lista = new LinkedList<Proyecto>();
+				for(Proyecto p1: listaAux){
 					if(store.existeUsuarioEnProyecto(p1,usuario)){
 						lista.add(p1);
 					}
