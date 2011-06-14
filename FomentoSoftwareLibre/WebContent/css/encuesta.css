@@ -5,6 +5,12 @@ body {
 	font-weight: normal; 
 	list-style-type: disc;
 }
+.enun{
+	padding: 10px;
+	font-style: inherit;
+	font-weight: bold;	
+}
+
 
 h1{
 	 font-family: Arial, Helvetica, sans-serif; 

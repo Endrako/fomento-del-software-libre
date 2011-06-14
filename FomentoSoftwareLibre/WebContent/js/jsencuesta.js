@@ -9,29 +9,33 @@ function addRespuesta(divactual){
 	var cadena =divs[divs.length-1].id;
 	var numres = cadena[cadena.length-1];
 	var n= parseInt(numres)+1;
-	
-	var cadena2 = capa.getAttribute("id");
-	var decenas = cadena2[cadena2.length-2];
-	var unidades = cadena2[cadena2.length-1];
-	if (parseInt(decenas)<0){
-		var p= parseInt(unidades);		
+	if (n<10){
+		var cadena2 = capa.getAttribute("id");
+		var decenas = cadena2[cadena2.length-2];
+		var unidades = cadena2[cadena2.length-1];
+		if (parseInt(decenas)<0){
+			var p= parseInt(unidades);		
+		}else{
+			var npreg = unidades+decenas;
+			var p= parseInt(npreg);
+		}
+
+		var capa2 = document.createElement("div");
+		var label = document.createElement("label");
+		var texto = document.createElement("input");
+		label.innerHTML = "Respuesta "+n+" ";
+		texto.type = "text";
+		texto.name = "res0"+n+"-0"+p;
+		texto.id ="res"+p+"-"+n;
+		capa2.id = "res"+p+"-"+n;
+		capa.appendChild(capa2);
+		capa2.appendChild(label);
+		capa2.appendChild(texto);
+		capa2.innerHTML+="<br/>";
 	}else{
-		var npreg = unidades+decenas;
-		var p= parseInt(npreg);
+		alert("El número máximo de respuestas por pregunta es 9");
 	}
 	
-	var capa2 = document.createElement("div");
-	var label = document.createElement("label");
-	var texto = document.createElement("input");
-	label.innerHTML = "Respuesta "+n+" ";
-	texto.type = "text";
-	texto.name = "res0"+n+"-0"+p;
-	texto.id ="res"+p+"-"+n;
-	capa2.id = "res"+p+"-"+n;
-	capa.appendChild(capa2);
-	capa2.appendChild(label);
-	capa2.appendChild(texto);
-	capa2.innerHTML+="<br/>";	
 } 
 
 function addPregunta(){
@@ -54,13 +58,15 @@ function addPregunta(){
 	div_preg.id = "preg"+p;
 	
 	var cadena = "preg"+p;
-		
+	
 	//Enunciado preg
 	label_enun.innerHTML ="Enunciado de la pregunta "+p+": ";
 	texto_enun.id = "enun"+p;
 	texto_enun.type = "text";
 	texto_enun.name = "enunpreg0"+p;
+	texto_enun.size ="40";
 	div_enun.id= "enunpreg"+p;
+	div_enun.className= "enun";
 	div_enun.appendChild(label_enun);
 	div_enun.appendChild(texto_enun);
 	
@@ -142,5 +148,8 @@ function removePregunta(){
 function validate (){
 	document.formulario.action = "FrontController?accion=insertarEncuesta";
 	document.formulario.submit();
+}
+function redirigir(){
+	window.location="encuestaindex.jsp";
 }
 

@@ -47,6 +47,9 @@
 				type="text" size=60 />
 			<div id="submit">
 				<input type="button" value="Publicar encuesta" onclick="validate();" />
+				<div id= "atras">
+				<input type="button" value="Volver a la sección de encuestas" onclick="redirigir();" />
+				</div>
 				<div id="removepreg">
 					<input id ="quitar_pregunta" type="button" onClick="removePregunta();"name = "quitar_pregunta"
 						value="Quitar Pregunta" />
@@ -65,11 +68,11 @@
 				</div>
 				<div id=addres>
 					<input type="button" onClick="addRespuesta('preg1')"
-						value="Añadir Respuesta" />
+						value="Añadir Respuesta"/>
 				</div>
-				<div id="enunpreg1">
+				<div id="enunpreg1" class="enun">
 					<label for=enun1">Enunciado de la pregunta 1:</label> <input
-						name= "enunpreg01" id="enun1" type="text" size=40 /> <br>
+						name= "enunpreg01" id="enun1" type="text" size=40 /><br>
 				</div>
 				<div id="res1-1">
 					<label for=res1> Respuesta 1</label> <input id=res1 name="res01-01"  type="text"
