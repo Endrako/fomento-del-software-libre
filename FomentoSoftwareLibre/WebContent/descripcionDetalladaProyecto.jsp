@@ -28,11 +28,10 @@
 	function redirigir() {
 		window.location = "proyectosExistentes.jsp";
 	}
-	function borrarProyecto(idProyecto) {
-		alert("Al eliminar un proyecto desvincularás a todos los desarrolladores y se te penalizará "
-				+ "con -100 de karma");
+	function borrameproyecto(idProyecto) {
+		alert("Al desvincularte de un proyecto se te penalizará con -40 de karma");
 		// confirm("¿está seguro de borrar el proyecto?");
-		document.formulario.action = "FrontController?accion=borraProyecto&idProyecto="
+		document.formulario.action = "FrontController?accion=borrarmeDeUnProyecto&idProyecto="
 				+ idProyecto;
 		document.formulario.submit();
 	}
@@ -149,28 +148,30 @@
 				<td width=50% class="datos_tabla" align="left">Usuario Creador</td>
 				<td width=50% class="datos_tabla" align="left"><%=userProyecto.getNombreUsuario()%></td>
 			</tr>
-			
-				<tr>
+
+			<tr>
 				<td width="50%" class="datos_tabla" align="left">Aplicación
 					asociada:</td>
 				<td width="50%" class="datos_tabla" align="left"><%=a.getNombre()%>
-				<%
-				/*
-				* muestro el botón de mostar App si hay aplicación vinculada.
-				*/
-				Aplicacion aux = pstore.obtenerAplicacionDeProyecto(p);
-				if(aux.getNombre()!=null){%>
-					<input type="button" id="<%=p.getAplicacion().getIDAplicacion()%>"
+					<%
+						/*
+						 * muestro el botón de mostar App si hay aplicación vinculada.
+						 */
+						Aplicacion aux = pstore.obtenerAplicacionDeProyecto(p);
+						if (aux.getNombre() != null) {
+					%> <input type="button"
+					id="<%=p.getAplicacion().getIDAplicacion()%>"
 					name="<%=a.getNombre()%>"
 					onClick="javascript:recuperarAplicacion(this.id)"
 					;
 					value="Ver App"></td>
-					<%	}
-					%>
+				<%
+					}
+				%>
 			</tr>
-				
-		
-			
+
+
+
 			<tr>
 
 				<%
@@ -179,12 +180,17 @@
 									- Compruebo que el proyecto está disponible
 									- Compruebo que el usuario no está ya unido al proyecto
 									- Compruebo que el usuario tiene el mínimo de karma requerido
+									- Compruebo que el proyecto no está obsoleto, ha superado fechaFin
 					 */
 					// System.out.println(usuario.getIdUser() + p.getIDProyecto());
 					boolean existe = pstore.existeUsuarioEnProyecto(p, usuario);
+					java.util.Date today = new java.util.Date();
+					java.sql.Date fecha = new java.sql.Date(today.getTime());
+					Date hoy = fecha;
 					if (!existe) {
 						if (p.getDisponibilidad() == 1) {
 							if (usuario.getKarma() >= p.getNivelKarma()) {
+								if (hoy.before(p.getFechaFin())) {
 				%>
 				<td width="50%" align="center" class="datos_tabla"><input
 					type="button" id="<%=p.getIDProyecto()%>" name="unirseAlProyecto"
@@ -193,26 +199,30 @@
 
 				<%
 					} else {
-							}// TODO investigar para enviar un mensaje a pantalla aquí en medio.
+								}// TODO investigar para enviar un mensaje a pantalla aquí en medio.
+							}
 						}
 					}
 				%>
 
 				<%
-				/*
-				* Si soy el usuario creador, entonces muestro el botón para borrar el proyecto.
-				*/
-					if (usuario.getIdUser().equals(p.getUsuarioCreador().getIdUser())) {
+					/*
+					 * Si soy el usuario creador, entonces muestro el botón para borrar el proyecto.
+					 */
+					if (pstore.existeUsuarioEnProyecto(p, usuario)) {
+
 				%>
 
 				<td width="50%" align="center"></td>
 				<td width="50%" align="center" class="datos_tabla"><input
-					type="submit" id="<%=p.getIDProyecto()%>" name="borrarProyecto"
-					value=" Borrar el proyecto"
-					onClick="javascript:borrarProyecto(this.id);"> <%
- 	}
- %>
-				</td>
+					type="submit" id="<%=p.getIDProyecto()%>"
+					name="borrameproyecto" value="Borrarme del proyecto"
+					onClick="javascript:borrameproyecto(this.id);"></td>
+				<%			
+					}else {
+						
+					}
+				%>
 			</tr>
 			<tr>
 				<td width="100%" align="center" class="datos_tabla" colspan="2">

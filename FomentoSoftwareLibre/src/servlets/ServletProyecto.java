@@ -2,10 +2,8 @@ package servlets;
 
 import java.io.IOException;
 import java.sql.Date;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -48,18 +46,43 @@ public class ServletProyecto extends HttpServlet {
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 
-		if (request.getAttribute("evento").equals("borrarUnProyecto")) {
-			Usuario u = (Usuario) request.getSession().getAttribute("usuario");
+		if (request.getAttribute("evento").equals("borrarmeDeUnProyecto")) {
 
-			ProyectoStore pstore = ProyectoStore.getInstance();
-			
-			//if(u)
+			HttpSession sesion = request.getSession();
+			Usuario user = (Usuario) sesion.getAttribute("usuario");
 
+			ProyectoStore pstore1 = ProyectoStore.getInstance();
+			String idProyecto = request.getParameter("idProyecto");
+			Proyecto p1 = pstore1.obtenerProyectoPorID(idProyecto);
+
+			/*
+			 * Valido en server si estoy en el proyecto para poder borrarme.
+			 */
+			UsuarioStore ustore = new UsuarioStore();
+
+			if (pstore1.existeUsuarioEnProyecto(p1, user)) {
+				System.out.println("llega");
+				boolean borrado = pstore1.borrarUsuarioDeProyecto(p1, user);
+				if (borrado) {
+					ustore.actualizaKarmaUsuario(user, -40);
+					Usuario actual = (Usuario) ustore
+							.recuperarUsuarioByIdUsuario(user.getIdUser());
+					request.getSession().setAttribute("usuario", actual);
+					request.getRequestDispatcher("proyectosUsuario.jsp")
+							.include(request, response);
+				} else {
+					request.getRequestDispatcher("proyectosError.jsp");
+				}
+
+			} else {
+				request.getRequestDispatcher("proyectosError.jsp");
+
+			}
 
 		} else if (request.getAttribute("evento").equals("nuevoProyecto")) {
 
 			Usuario u = (Usuario) request.getSession().getAttribute("usuario");
-			if(u.getKarma()<=200){
+			if (u.getKarma() <= 200) {
 				request.getRequestDispatcher("proyectosError.jsp");
 			}
 			ProyectoStore pstore = ProyectoStore.getInstance();
@@ -68,17 +91,17 @@ public class ServletProyecto extends HttpServlet {
 			String descripcion = request.getParameter("descripcion");
 
 			String meses = request.getParameter("meses");
-			int dias=0;
+			int dias = 0;
 			java.util.Date today = new java.util.Date();
 			java.sql.Date hoy = new java.sql.Date(today.getTime());
-			Date fechaFin=hoy;
-			if(meses!=""){
-				dias = Integer.parseInt(meses) * 30;		
+			Date fechaFin = hoy;
+			if (meses != "") {
+				dias = Integer.parseInt(meses) * 30;
 				fechaFin = fechaMas(hoy, dias);
-			} else{
+			} else {
 				request.getRequestDispatcher("proyectosError.jsp");
 			}
-			
+
 			String disponible = request.getParameter("disponibilidad");
 			int disponibilidad;
 			if (disponible != "") {
@@ -86,11 +109,11 @@ public class ServletProyecto extends HttpServlet {
 			} else {
 				disponibilidad = 0;
 			}
-			
-			String karma = request.getParameter("karma");			
-			int nivelKarma=0;
-			if(karma!=""){
-			nivelKarma = Integer.parseInt(karma);
+
+			String karma = request.getParameter("karma");
+			int nivelKarma = 0;
+			if (karma != "") {
+				nivelKarma = Integer.parseInt(karma);
 			} else {
 				request.getRequestDispatcher("proyectosError.jsp");
 			}
@@ -107,20 +130,22 @@ public class ServletProyecto extends HttpServlet {
 			 * Validación en server
 			 */
 			// en jsp se comprueba que checkbox solo tenga números.
-			
-			if (nombre=="" || dias <= 30 || nivelKarma <= 0 || u.getKarma()<200) {
+
+			if (nombre == "" || dias <= 30 || nivelKarma <= 0
+					|| u.getKarma() < 200) {
 				// validación de nivel mínimo de karma para crear un proyecto
 				// y que los campos meses y karma no estén en blanco.
-				request.getRequestDispatcher("proyectosError.jsp").include(request, response);
+				request.getRequestDispatcher("proyectosError.jsp").include(
+						request, response);
 			} else {
 				boolean correcto = pstore.crearProyecto(p, u);
-System.out.println(correcto);
+				System.out.println(correcto);
 				// TODO actualizar karma en tiempo real al hacer el dispatcher
 				if (correcto) {
 					ustore.actualizaKarmaUsuario(u, 50);
 					Usuario actual = ustore.recuperarUsuarioByIdUsuario(u
 							.getIdUser());
-					request.setAttribute("usuario", actual);
+					request.getSession().setAttribute("usuario", actual);
 					request.getRequestDispatcher("proyectosCreadoExito.jsp")
 							.include(request, response);
 				} else {
@@ -139,11 +164,11 @@ System.out.println(correcto);
 
 			UsuarioStore ustore = new UsuarioStore();
 			/*
-			 * Valido en servidor que: 
-			 * - Que la persona no pertenezca ya al proyecto, esto incluye
-			 *  si es el creador del mismo, ya que al crearlo se une autom. 
-			 * - Que el proyecto está disponible
-			 * - Que el usuario tiene el nivel de karma mínimo requerido por el proyecto para unirse.
+			 * Valido en servidor que: - Que la persona no pertenezca ya al
+			 * proyecto, esto incluye si es el creador del mismo, ya que al
+			 * crearlo se une autom. - Que el proyecto está disponible - Que el
+			 * usuario tiene el nivel de karma mínimo requerido por el proyecto
+			 * para unirse.
 			 */
 			boolean estaba = pstore.existeUsuarioEnProyecto(p, u);
 			// System.out.println(estaba);
@@ -157,14 +182,16 @@ System.out.println(correcto);
 							ustore.actualizaKarmaUsuario(u, 20);
 							Usuario actual = (Usuario) ustore
 									.recuperarUsuarioByIdUsuario(u.getIdUser());
-							request.setAttribute("usuario", actual);
+							request.getSession()
+									.setAttribute("usuario", actual);
 							request.getRequestDispatcher(
 									"descripcionDetalladaProyecto.jsp")
 									.include(request, response);
 						}
 					}
 				}
-			} else { // Si no cumple alguna condición en servidor al Menú principal de proyectos:
+			} else { // Si no cumple alguna condición en servidor al Menú
+						// principal de proyectos:
 				request.getRequestDispatcher("proyectosError.jsp").include(
 						request, response);
 			}

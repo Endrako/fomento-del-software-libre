@@ -121,15 +121,18 @@ public class ProyectoStore {
 		return new JDBCProyectoDAO().existeTuplaUsuarioProyecto(p, u);
 	}
 
-	public void borrarUsuarioDeProyecto(Proyecto p, Usuario u) {
+	public boolean borrarUsuarioDeProyecto(Proyecto p, Usuario u) {
+		boolean res=false;
 		Boolean b = new JDBCProyectoDAO().existeTuplaUsuarioProyecto(p, u);
 		if (b) {
 			new JDBCProyectoDAO().borrarUnUsuarioDeProyecto(p, u);
-			new JDBCUsuarioDAO().actualizaKarmaUsuario(u, -40);
+			// new JDBCUsuarioDAO().actualizaKarmaUsuario(u, -40);
+			res=true;
 		} else {
-			throw new IllegalArgumentException(
-					"El usuario no está vinculado a este proyecto");
+		/*	throw new IllegalArgumentException(
+					"El usuario no está vinculado a este proyecto");*/
 		}
+		return res;
 	}
 
 	public void borrarProyecto(Proyecto p) {

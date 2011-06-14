@@ -71,8 +71,8 @@ public class FrontController extends HttpServlet {
 			votarEnContra(request, response);
 		} else if (accion.equals("votarEnfrentamiento")) {
 			votarEnfrentamiento(request, response);
-		} else if (accion.equals("borrarUnProyecto")) {
-			borrarUnProyecto(request, response);
+		} else if (accion.equals("borrarmeDeUnProyecto")) {
+			borrarmeDeUnProyecto(request, response);
 		} else if (accion.equals("recuperarPerfilProyecto")) {
 			recuperarPerfilProyecto(request, response);
 		} else if (accion.equals("insertarEncuesta")) {
@@ -224,9 +224,10 @@ public class FrontController extends HttpServlet {
 				response);
 	}
 
-	private void borrarUnProyecto(HttpServletRequest request,
+	private void borrarmeDeUnProyecto(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		request.setAttribute("evento", "borrarUnProyecto");
+
+		request.setAttribute("evento", "borrarmeDeUnProyecto");
 		request.getRequestDispatcher("ServletProyecto");
 	}
 
