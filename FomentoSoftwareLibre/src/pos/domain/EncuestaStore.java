@@ -69,5 +69,9 @@ public class EncuestaStore implements IEncuestaStore {
 		rdao.votarRespuestas(idRespuesta);
 		return false;
 	}
+	
+	public List<Encuesta> obtenerEncuestasDeUsuario(String IDUsuario) {
+		return edao.seleccionarTodasEncuestasdeUsuario(IDUsuario);
+	}
 
 }

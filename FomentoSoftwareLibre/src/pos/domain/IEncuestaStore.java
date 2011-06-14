@@ -9,5 +9,6 @@ public interface IEncuestaStore {
 	public List<Encuesta>  obtenerEncuestas();
 	public Encuesta obtenerEncuesta (String idEncuesta);
 	public boolean votarRespuestas(String idRespuesta);
+	public List<Encuesta> obtenerEncuestasDeUsuario(String IDUsuario);
 	
 }

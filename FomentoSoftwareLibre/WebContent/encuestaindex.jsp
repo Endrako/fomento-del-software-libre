@@ -51,14 +51,14 @@ UsuarioStore storeUser = new UsuarioStore();
       <%}else { %>
           <li>Crear una encuesta [Necesario 100 Karma]</li>
      <% }%>
-      <li><a href="">Gestiona tus encuestas</a></li>
+      <li><a href="encuestagestionar.jsp">Gestiona tus encuestas</a></li>
       <li><a href="encuestalistado.jsp">Ver listado de encuestas</a></li>
       <li><a href="index2.jsp">Volver a la página principal</a></li>
    </ul>
 </div>
 
 
-<input type="button" value="darKarma" onclick="<%
+<!--  <input type="button" value="darKarma" onclick="<%
 //storeUser.actualizaKarmaUsuario(user, 10);
 //Usuario userNuevo = storeUser.recuperarUsuarioByIdUsuario(user.getIdUser());
 //sesion.setAttribute("usuario", userNuevo);%>" >
@@ -66,6 +66,6 @@ UsuarioStore storeUser = new UsuarioStore();
 <input type="button" value="quitarKarma" onclick="<%
 //storeUser.actualizaKarmaUsuario(user, -10);
 //Usuario userNuevo2 = storeUser.recuperarUsuarioByIdUsuario(user.getIdUser());
-//sesion.setAttribute("usuario", userNuevo2);%>" >
+//sesion.setAttribute("usuario", userNuevo2);%>" > -->
 </body>
 </html>

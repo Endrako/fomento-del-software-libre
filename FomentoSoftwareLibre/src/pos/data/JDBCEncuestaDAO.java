@@ -92,7 +92,43 @@ public class JDBCEncuestaDAO implements IEncuestaDAO {
 
 		return res;
 	}
+	@Override
+	public List<Encuesta> seleccionarTodasEncuestasdeUsuario(String idUsuario) {
+		String sql = "SELECT * FROM encuestas WHERE (IDUsuario = ?)";
+		PreparedStatement stmt = null;
+		ResultSet result = null;
+		List<Encuesta> res = new LinkedList<Encuesta>();
 
+		try {
+			stmt = conn.prepareStatement(sql);
+			stmt.setString(1, idUsuario);
+			result = stmt.executeQuery();
+
+			while(result.next()){
+			Encuesta e = new EncuestaImpl();
+			e.setEncuestaID(result.getString("IDEncuesta"));
+			e.setTituloEncuesta(result.getString("nombre"));
+			res.add(e);
+			}
+		} catch (SQLException e) {
+			System.out.println("Message: " + e.getMessage());
+			System.out.println("SQLState: " + e.getSQLState());
+			System.out.println("ErrorCode: " + e.getErrorCode());
+		} finally {
+			try {
+				if (result != null) {
+					result.close();
+				}
+				if (stmt != null) {
+					stmt.close();
+				}
+			} catch (SQLException e) {
+			}
+		}
+
+		return res;
+	}
+	
 
 	@Override
 	public Encuesta recuperarEncuesta(String idEncuesta) {
