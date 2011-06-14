@@ -91,7 +91,15 @@ public class FrontController extends HttpServlet {
 			datosEncuesta(request,response);
 		} else if (accion.equals("verEncuesta")){
 			verEncuesta(request,response);
+		} else if (accion.equals("eliminarEncuesta")){
+			eliminarEncuesta(request,response);
 		}
+		
+	}
+
+	private void eliminarEncuesta(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		request.getRequestDispatcher("encuestaEliminar.jsp").include(request, response);
 		
 	}
 
