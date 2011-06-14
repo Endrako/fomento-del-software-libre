@@ -28,13 +28,6 @@
 	function redirigir() {
 		window.location = "proyectosExistentes.jsp";
 	}
-	function borrameproyecto(idProyecto) {
-		alert("Al desvincularte de un proyecto se te penalizará con -40 de karma");
-		// confirm("¿está seguro de borrar el proyecto?");
-		document.formulario.action = "FrontController?accion=borrarmeDeUnProyecto&idProyecto="
-				+ idProyecto;
-		document.formulario.submit();
-	}
 	function unirsealproyecto(idProyecto) {
 		alert("¡Bien hecho! al unirte a colaborar en un proyecto aparte de aprender recibirás 20 puntos de karma");
 		document.formulario.action = "FrontController?accion=unirseAlProyecto&idProyecto="
@@ -212,12 +205,10 @@
 					if (pstore.existeUsuarioEnProyecto(p, usuario)) {
 
 				%>
-
-				<td width="50%" align="center"></td>
+				<td width="50%"></td>
 				<td width="50%" align="center" class="datos_tabla"><input
 					type="submit" id="<%=p.getIDProyecto()%>"
-					name="borrameproyecto" value="Borrarme del proyecto"
-					onClick="javascript:borrameproyecto(this.id);"></td>
+					name="borrameproyecto" onClick="javascript:borrameproyecto(this.id);" value="Borrarme del proyecto"></td>
 				<%			
 					}else {
 						
