@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 15-06-2011 a las 19:01:16
+-- Tiempo de generación: 15-06-2011 a las 00:18:21
 -- Versión del servidor: 5.5.8
 -- Versión de PHP: 5.3.5
 
@@ -97,15 +97,19 @@ CREATE TABLE IF NOT EXISTS `comentarios` (
 CREATE TABLE IF NOT EXISTS `encuestas` (
   `OIDEncuesta` int(11) NOT NULL AUTO_INCREMENT,
   `IDEncuesta` varchar(50) COLLATE latin1_spanish_ci NOT NULL,
-  `IDUsusario` varchar(50) COLLATE latin1_spanish_ci NOT NULL,
+  `IDUsuario` varchar(50) COLLATE latin1_spanish_ci NOT NULL,
   `nombre` varchar(100) COLLATE latin1_spanish_ci NOT NULL,
   PRIMARY KEY (`OIDEncuesta`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci AUTO_INCREMENT=3 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci AUTO_INCREMENT=7 ;
 
 --
 -- Volcar la base de datos para la tabla `encuestas`
 --
 
+INSERT INTO `encuestas` (`OIDEncuesta`, `IDEncuesta`, `IDUsuario`, `nombre`) VALUES
+(4, '13080889735182639b353', '13080510052365afb1452', 'Encuesta sobre tendencias Linux'),
+(5, '1308089377584ffffffffaf697eb8', '1308050771600768973ad', 'Encuesta sobre reproductores audio/video'),
+(6, '130808964605141b9c182', '13080510052365afb1452', 'Encuesta sobre lenguajes de programaciÃ³n');
 
 -- --------------------------------------------------------
 
@@ -177,7 +181,7 @@ CREATE TABLE IF NOT EXISTS `perfiles` (
   `IDSO1` varchar(50) COLLATE latin1_spanish_ci DEFAULT NULL,
   `IDSO2` varchar(50) COLLATE latin1_spanish_ci DEFAULT NULL,
   PRIMARY KEY (`OIDPerfil`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci AUTO_INCREMENT=20 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci AUTO_INCREMENT=21 ;
 
 --
 -- Volcar la base de datos para la tabla `perfiles`
@@ -186,7 +190,8 @@ CREATE TABLE IF NOT EXISTS `perfiles` (
 INSERT INTO `perfiles` (`OIDPerfil`, `IDPerfil`, `nombre`, `apellidos`, `edad`, `IDPais`, `IDProvincia`, `IDSO1`, `IDSO2`) VALUES
 (17, '13080508494944eb3e2aa', 'Juan', 'Sanchez', 30, '1', '3', '1', '4'),
 (18, '1308050948985ffffffffe67d4f37', '', '', 0, '1', '1', '1', '4'),
-(19, '1308051008040ffffffff8416913c', '', '', 0, '1', '1', '1', '4');
+(19, '1308051008040ffffffff8416913c', '', '', 0, '1', '1', '1', '4'),
+(20, '13080890367187bfe55c9', 'Marc', 'Bayón Benegas', 23, '1', '3', '3', '4');
 
 -- --------------------------------------------------------
 
@@ -200,12 +205,29 @@ CREATE TABLE IF NOT EXISTS `preguntas` (
   `IDEncuesta` varchar(50) COLLATE latin1_spanish_ci NOT NULL,
   `descripcionPregunta` varchar(150) COLLATE latin1_spanish_ci NOT NULL,
   PRIMARY KEY (`OIDPregunta`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci AUTO_INCREMENT=3 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci AUTO_INCREMENT=20 ;
 
 --
 -- Volcar la base de datos para la tabla `preguntas`
 --
 
+INSERT INTO `preguntas` (`OIDPregunta`, `IDPregunta`, `IDEncuesta`, `descripcionPregunta`) VALUES
+(3, '1308088626344ffffffffbc7e63b1', '1308088626343ffffffffa23915d6', 'Â¿QuÃ© entorno de escritorio usas?'),
+(4, '1308088626353e88b913', '1308088626343ffffffffa23915d6', 'Â¿QuÃ© formato de video usas mÃ¡s a menudo?'),
+(5, '130808862635846a39b4c', '1308088626343ffffffffa23915d6', 'Â¿QuÃ© distribuciÃ³n de Linux tienes instalada en tu PC?'),
+(6, '130808862637033cd5b4', '1308088626343ffffffffa23915d6', 'Â¿QuÃ© tipo de sistema operativo usas mÃ¡s a menudo?'),
+(7, '1308088626377597650ec', '1308088626343ffffffffa23915d6', 'Â¿Cuantas horas dedicas al diÃ¡ a trabajar con el ordenador?'),
+(9, '13080889735183b0de1d6', '13080889735182639b353', 'Â¿QuÃ© entorno de escritorio usas?'),
+(10, '13080889735253f37b06f', '13080889735182639b353', 'Â¿QuÃ© formato de video usas mÃ¡s a menudo?'),
+(11, '1308088973530ffffffff8abcf1be', '13080889735182639b353', 'Â¿Que distrubuciÃ³n de Linux usas mÃ¡s?'),
+(12, '13080889735553e1e7d17', '13080889735182639b353', 'Â¿QuÃ© tipo de sistema operativo usas mÃ¡s a menudo?'),
+(13, '1308088973562ffffffffa0d7eeab', '13080889735182639b353', 'Â¿Cuantas horas dedicas al diÃ¡ a trabajar con el ordenador?'),
+(14, '1308089377584ffffffffa5359ddc', '1308089377584ffffffffaf697eb8', 'Â¿Que reproductor de audio usas mÃ¡s a menudo?'),
+(15, '1308089377592fffffffff45ef98d', '1308089377584ffffffffaf697eb8', 'Â¿QuÃ© reproductor de video usas mÃ¡s a menudo?'),
+(16, '13080893775984d8c9972', '1308089377584ffffffffaf697eb8', 'Â¿Que te parece openshoot?'),
+(17, '1308089646051ffffffffdc4037d8', '130808964605141b9c182', 'Â¿Eres desarrollador?'),
+(18, '1308089646055ffffffffab331784', '130808964605141b9c182', 'Â¿En que lenguajes sueles programar aplicaciones para pc?'),
+(19, '1308089646071ffffffffb65b2b94', '130808964605141b9c182', 'Â¿Que IDE usas mÃ¡s a menudo?');
 
 -- --------------------------------------------------------
 
@@ -218,12 +240,85 @@ CREATE TABLE IF NOT EXISTS `preguntasrespuestas` (
   `IDRespuesta` varchar(50) COLLATE latin1_spanish_ci NOT NULL,
   `IDPregunta` varchar(50) COLLATE latin1_spanish_ci NOT NULL,
   PRIMARY KEY (`OIDRelacion`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci AUTO_INCREMENT=75 ;
 
 --
 -- Volcar la base de datos para la tabla `preguntasrespuestas`
 --
 
+INSERT INTO `preguntasrespuestas` (`OIDRelacion`, `IDRespuesta`, `IDPregunta`) VALUES
+(1, '1308088626344633e5198', '1308088626344ffffffffbc7e63b1'),
+(2, '1308088626346ffffffffd3b83aa3', '1308088626344ffffffffbc7e63b1'),
+(3, '1308088626348ffffffffdc095f0a', '1308088626344ffffffffbc7e63b1'),
+(4, '13080886263514341a10d', '1308088626344ffffffffbc7e63b1'),
+(5, '1308088626353fffffffffbdbeb34', '1308088626353e88b913'),
+(6, '130808862635475aab537', '1308088626353e88b913'),
+(7, '13080886263566757186a', '1308088626353e88b913'),
+(8, '1308088626358ffffffffe6a8c92a', '130808862635846a39b4c'),
+(9, '1308088626360380fcc38', '130808862635846a39b4c'),
+(10, '13080886263613b533cb7', '130808862635846a39b4c'),
+(11, '1308088626362ffffffffb25a7379', '130808862635846a39b4c'),
+(12, '130808862636473e44f41', '130808862635846a39b4c'),
+(13, '1308088626366ffffffffa4958aad', '130808862635846a39b4c'),
+(14, '13080886263674af5658c', '130808862635846a39b4c'),
+(15, '1308088626368ffffffffe6ee3ef2', '130808862635846a39b4c'),
+(16, '1308088626370609cbafc', '130808862637033cd5b4'),
+(17, '13080886263725af07291', '130808862637033cd5b4'),
+(18, '13080886263743845bf44', '130808862637033cd5b4'),
+(19, '1308088626375ffffffffe877d756', '130808862637033cd5b4'),
+(20, '1308088626377ffffffffd2fc07fb', '1308088626377597650ec'),
+(21, '1308088626379ffffffff9f722bc6', '1308088626377597650ec'),
+(22, '1308088626381a2f391a', '1308088626377597650ec'),
+(23, '1308088626383689a903e', '1308088626377597650ec'),
+(24, '1308088626385ffffffffe4e77dc2', '1308088626377597650ec'),
+(28, '1308088973521fffffffffdaf0f11', '13080889735183b0de1d6'),
+(27, '1308088973519ffffffffddce08b2', '13080889735183b0de1d6'),
+(29, '1308088973522ffffffffef26665c', '13080889735183b0de1d6'),
+(30, '1308088973525ffffffff8c3ec068', '13080889735253f37b06f'),
+(31, '130808897352660b675e2', '13080889735253f37b06f'),
+(32, '130808897352825ff0117', '13080889735253f37b06f'),
+(33, '1308088973530ffffffffdbc45327', '1308088973530ffffffff8abcf1be'),
+(34, '13080889735413878cd8f', '1308088973530ffffffff8abcf1be'),
+(35, '13080889735442a083558', '1308088973530ffffffff8abcf1be'),
+(36, '13080889735461405ba23', '1308088973530ffffffff8abcf1be'),
+(37, '1308088973547ffffffffd4b48329', '1308088973530ffffffff8abcf1be'),
+(38, '1308088973549141caec2', '1308088973530ffffffff8abcf1be'),
+(39, '1308088973550ffffffffd7471316', '1308088973530ffffffff8abcf1be'),
+(40, '1308088973551ffffffff8b74bd6c', '1308088973530ffffffff8abcf1be'),
+(41, '1308088973553fffffffff137b1d8', '1308088973530ffffffff8abcf1be'),
+(42, '1308088973555ffffffff8c2a6a8e', '13080889735553e1e7d17'),
+(43, '130808897355754b41a4a', '13080889735553e1e7d17'),
+(44, '1308088973559ffffffffbba98193', '13080889735553e1e7d17'),
+(45, '1308088973560ffffffffd2e2d2f5', '13080889735553e1e7d17'),
+(46, '1308088973562ffffffffcf41177a', '1308088973562ffffffffa0d7eeab'),
+(47, '1308088973564fffffffffd7fbb1f', '1308088973562ffffffffa0d7eeab'),
+(48, '1308088973566ffffffffc7e5ec26', '1308088973562ffffffffa0d7eeab'),
+(49, '1308088973567ffffffffb0664c8e', '1308088973562ffffffffa0d7eeab'),
+(50, '13080889735698196e3d', '1308088973562ffffffffa0d7eeab'),
+(51, '1308089377584574cbc7c', '1308089377584ffffffffa5359ddc'),
+(52, '1308089377586ffffffffa4e66bf0', '1308089377584ffffffffa5359ddc'),
+(53, '1308089377587fffffffff3eda54f', '1308089377584ffffffffa5359ddc'),
+(54, '13080893775897f86bb0b', '1308089377584ffffffffa5359ddc'),
+(55, '1308089377592ffffffffa4d80866', '1308089377592fffffffff45ef98d'),
+(56, '13080893775933e40979f', '1308089377592fffffffff45ef98d'),
+(57, '1308089377595ffffffffc3da3c35', '1308089377592fffffffff45ef98d'),
+(58, '130808937759730d5404a', '1308089377592fffffffff45ef98d'),
+(59, '13080893775991e942fee', '13080893775984d8c9972'),
+(60, '1308089377600ffffffffe7b42235', '13080893775984d8c9972'),
+(61, '1308089377601ffffffffdb29c8ef', '13080893775984d8c9972'),
+(62, '13080893776045d570947', '13080893775984d8c9972'),
+(63, '13080893776053abaa6f', '13080893775984d8c9972'),
+(64, '1308089646051ffffffffc9b9a077', '1308089646051ffffffffdc4037d8'),
+(65, '13080896460522efa1a90', '1308089646051ffffffffdc4037d8'),
+(66, '13080896460557e415d97', '1308089646055ffffffffab331784'),
+(67, '1308089646056446c9f2c', '1308089646055ffffffffab331784'),
+(68, '1308089646058fffffffff5569a34', '1308089646055ffffffffab331784'),
+(69, '13080896460601cf75a8d', '1308089646055ffffffffab331784'),
+(70, '1308089646061ffffffffe1bce67e', '1308089646055ffffffffab331784'),
+(71, '13080896460633a7f8dfd', '1308089646055ffffffffab331784'),
+(72, '1308089646071ffffffffc2adc264', '1308089646071ffffffffb65b2b94'),
+(73, '1308089646073a8808b3', '1308089646071ffffffffb65b2b94'),
+(74, '1308089646074ffffffffb1c65c44', '1308089646071ffffffffb65b2b94');
 
 -- --------------------------------------------------------
 
@@ -303,12 +398,85 @@ CREATE TABLE IF NOT EXISTS `respuestas` (
   `numeroVotos` int(11) NOT NULL,
   PRIMARY KEY (`OIDRespuesta`),
   UNIQUE KEY `IDRespuesta` (`IDRespuesta`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci AUTO_INCREMENT=75 ;
 
 --
 -- Volcar la base de datos para la tabla `respuestas`
 --
 
+INSERT INTO `respuestas` (`OIDRespuesta`, `IDRespuesta`, `descripcionRespuesta`, `numeroVotos`) VALUES
+(1, '1308088626344633e5198', 'KDE', 0),
+(2, '1308088626346ffffffffd3b83aa3', 'Gnome', 0),
+(3, '1308088626348ffffffffdc095f0a', 'otro', 0),
+(4, '13080886263514341a10d', 'no uso entorno de escritorio', 0),
+(5, '1308088626353fffffffffbdbeb34', 'Divx', 0),
+(6, '130808862635475aab537', 'HD', 0),
+(7, '13080886263566757186a', 'otro', 0),
+(8, '1308088626358ffffffffe6a8c92a', 'Ubuntu', 0),
+(9, '1308088626360380fcc38', 'SuSe', 0),
+(10, '13080886263613b533cb7', 'Mandriba', 0),
+(11, '1308088626362ffffffffb25a7379', 'Fedora', 0),
+(12, '130808862636473e44f41', 'Debian', 0),
+(13, '1308088626366ffffffffa4958aad', 'Guadalinex', 0),
+(14, '13080886263674af5658c', 'uso software privativo', 0),
+(15, '1308088626368ffffffffe6ee3ef2', 'otra', 0),
+(16, '1308088626370609cbafc', 'Windows', 0),
+(17, '13080886263725af07291', 'Linux', 0),
+(18, '13080886263743845bf44', 'Mac', 0),
+(19, '1308088626375ffffffffe877d756', 'otro', 0),
+(20, '1308088626377ffffffffd2fc07fb', 'menos de 1 hora', 0),
+(21, '1308088626379ffffffff9f722bc6', '1-3 horas', 0),
+(22, '1308088626381a2f391a', '4-8 horas', 0),
+(23, '1308088626383689a903e', '8-12 horas', 0),
+(24, '1308088626385ffffffffe4e77dc2', 'mÃ¡s de 12 horas', 0),
+(27, '1308088973519ffffffffddce08b2', 'KDE', 1),
+(28, '1308088973521fffffffffdaf0f11', 'Gnome', 4),
+(29, '1308088973522ffffffffef26665c', 'otro', 1),
+(30, '1308088973525ffffffff8c3ec068', 'Divx', 1),
+(31, '130808897352660b675e2', 'HD', 4),
+(32, '130808897352825ff0117', 'Otro', 0),
+(33, '1308088973530ffffffffdbc45327', 'Ubuntu', 1),
+(34, '13080889735413878cd8f', 'Debian', 0),
+(35, '13080889735442a083558', 'Mandriba', 3),
+(36, '13080889735461405ba23', 'Fedora', 1),
+(37, '1308088973547ffffffffd4b48329', 'Suse', 0),
+(38, '1308088973549141caec2', 'Guadalinex', 0),
+(39, '1308088973550ffffffffd7471316', 'Red hat', 0),
+(40, '1308088973551ffffffff8b74bd6c', 'No uso software libre', 1),
+(41, '1308088973553fffffffff137b1d8', 'otra', 0),
+(42, '1308088973555ffffffff8c2a6a8e', 'Windows', 1),
+(43, '130808897355754b41a4a', 'Linux', 5),
+(44, '1308088973559ffffffffbba98193', 'Mac', 0),
+(45, '1308088973560ffffffffd2e2d2f5', 'otro', 0),
+(46, '1308088973562ffffffffcf41177a', 'menos de 1 hora', 5),
+(47, '1308088973564fffffffffd7fbb1f', '1-3 horas', 0),
+(48, '1308088973566ffffffffc7e5ec26', '4-8 horas', 1),
+(49, '1308088973567ffffffffb0664c8e', '8-12 horas', 0),
+(50, '13080889735698196e3d', 'mÃ¡s de 12 horas', 0),
+(51, '1308089377584574cbc7c', 'Spotify', 0),
+(52, '1308089377586ffffffffa4e66bf0', 'Banshee', 1),
+(53, '1308089377587fffffffff3eda54f', 'xmedia', 0),
+(54, '13080893775897f86bb0b', 'otro', 0),
+(55, '1308089377592ffffffffa4d80866', 'VLC', 1),
+(56, '13080893775933e40979f', 'Totem', 0),
+(57, '1308089377595ffffffffc3da3c35', 'uso youtube como proveedor de videos', 0),
+(58, '130808937759730d5404a', 'otro', 0),
+(59, '13080893775991e942fee', 'No lo sÃ©, no me suena', 1),
+(60, '1308089377600ffffffffe7b42235', 'Calidad excelente', 0),
+(61, '1308089377601ffffffffdb29c8ef', 'Dificil de manejar', 0),
+(62, '13080893776045d570947', 'Lo he bicheado pero no me apasiona', 0),
+(63, '13080893776053abaa6f', 'no me gusta la ediciÃ³n de videos', 0),
+(64, '1308089646051ffffffffc9b9a077', 'Si', 0),
+(65, '13080896460522efa1a90', 'No', 0),
+(66, '13080896460557e415d97', 'C', 0),
+(67, '1308089646056446c9f2c', 'C++', 0),
+(68, '1308089646058fffffffff5569a34', 'Java', 0),
+(69, '13080896460601cf75a8d', '.net', 0),
+(70, '1308089646061ffffffffe1bce67e', 'objetive c', 0),
+(71, '13080896460633a7f8dfd', 'otro', 0),
+(72, '1308089646071ffffffffc2adc264', 'Eclipse', 0),
+(73, '1308089646073a8808b3', 'Visual Estudio', 0),
+(74, '1308089646074ffffffffb1c65c44', 'otro', 0);
 
 -- --------------------------------------------------------
 
@@ -425,7 +593,7 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `numeroRecomendaciones` int(11) NOT NULL,
   PRIMARY KEY (`OIDUsuario`),
   UNIQUE KEY `nombreUsuario` (`nombreUsuario`,`email`,`IDPerfil`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci AUTO_INCREMENT=20 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci AUTO_INCREMENT=21 ;
 
 --
 -- Volcar la base de datos para la tabla `usuarios`
@@ -434,7 +602,8 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
 INSERT INTO `usuarios` (`OIDUsuario`, `IDUsuario`, `nombreUsuario`, `contrasenna`, `email`, `IDPerfil`, `karma`, `numeroRecomendaciones`) VALUES
 (17, '1308050771600768973ad', 'sheinx', 'sheinx', 'sheinx@test.com', '13080508494944eb3e2aa', 415, 4),
 (18, '1308050943696732e470d', 'tristan', 'tristan', 'tristan@test.com', '1308050948985ffffffffe67d4f37', 25, 0),
-(19, '13080510052365afb1452', 'marc', 'marc', 'marc@test.com', '1308051008040ffffffff8416913c', 600, 0);
+(19, '13080510052365afb1452', 'marc', 'marc', 'marc@test.com', '1308051008040ffffffff8416913c', 670, 0),
+(20, '1308089015393fffffffff964b61f', 'arundil', '1234', 'mb154@hotmail.com', '13080890367187bfe55c9', 10, 0);
 
 -- --------------------------------------------------------
 
