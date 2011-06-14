@@ -228,7 +228,7 @@ public class FrontController extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 
 		request.setAttribute("evento", "borrarmeDeUnProyecto");
-		request.getRequestDispatcher("ServletProyecto");
+		request.getRequestDispatcher("ServletProyecto").include(request, response);
 	}
 
 	private void recuperarPerfilProyecto(HttpServletRequest request,

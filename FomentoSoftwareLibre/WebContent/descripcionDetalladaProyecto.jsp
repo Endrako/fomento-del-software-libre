@@ -34,6 +34,12 @@
 				+ idProyecto;
 		document.formulario.submit();
 	}
+	function borraproyecto(idProyecto) {
+		alert("Al desvincularte de un proyecto se te penalizará con -40 de karma");
+		document.formulario.action ="FrontController?accion=borrarmeDeUnProyecto&idProyecto="+ idProyecto;
+	
+		document.formulario.submit();
+	}
 </script>
 
 <%
@@ -207,8 +213,8 @@
 				%>
 				<td width="50%"></td>
 				<td width="50%" align="center" class="datos_tabla"><input
-					type="submit" id="<%=p.getIDProyecto()%>"
-					name="borrameproyecto" onClick="javascript:borrameproyecto(this.id);" value="Borrarme del proyecto"></td>
+					type="button" id="<%=p.getIDProyecto()%>"
+					name="borrameproyecto" onClick="javascript:borraproyecto(this.id);" value="Borrarme del proyecto"></td>
 				<%			
 					}else {
 						
