@@ -14,6 +14,10 @@ function recuperarAplicacion(idAplicacion) {
 			+ idAplicacion;
 	document.formulario.submit();
 }
+function borrarProyecto(idProyecto){
+	document.formulario.action = "FrontController?accion=borrarUnProyecto&idProyecto="
+		+ idProyecto;
+}
 function nuevaA() {
 	document.formulario.action = "FrontController?accion=nuevaAplicacion";
 	document.formulario.submit();

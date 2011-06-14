@@ -98,7 +98,7 @@
 		</ul>
 		<li><h3>En <a href="proyectosUsuario.jsp">Mis proyectos</a> aparecerán los proyectos que has creado y/o en los que colaboras.</h3></li>
 		
-		<li><h3>En <a href="proyectosCrear.jsp">Crear un nuevo proyecto</a> podrás crear un nuevo proyecto.</h3></li>
+		<li><h3>En <a href="proyectosCrear.jsp">Crear un nuevo proyecto</a> podrás crear un nuevo proyecto. También tendrás botones para crear un nuevo proyecto cada vez que te aparezca un listado de proyectos.</h3></li>
 		
 	</ul>
 	

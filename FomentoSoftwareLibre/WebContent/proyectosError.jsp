@@ -72,9 +72,9 @@
 	<h2>Comprueba uno de los siguientes puntos:</h2>
 	<br>
 	<ul>
-	<li><h3> Has dejado el campo "karma" o "meses" en blanco en el
+	<li><h3> Has dejado el campo "nombre", "karma" o "meses" en blanco en el
 		formulario de crear proyectos. Bastante que no te permita meter
-		letras...este no es el caso de uso ;).</h3></li>
+		letras... no seas malo ;).</h3></li>
 	<li><h3>Has creado un proyecto con el mismo nombre que uno existente! Venga ya!
 		Ya es casualidad, tío, si pegas 2 cabezazos en el teclado y ocurre de nuevo te subo 2000 de karma! (es broma, gánatelos...).</h3></li>
 		<li><h3> Has intentado crear un proyecto y tienes menos de 200 puntos de karma, ¿no pillín? Si es que no puede ser, tanta ansia...</h3></li>

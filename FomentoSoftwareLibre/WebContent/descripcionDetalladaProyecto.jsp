@@ -149,16 +149,28 @@
 				<td width=50% class="datos_tabla" align="left">Usuario Creador</td>
 				<td width=50% class="datos_tabla" align="left"><%=userProyecto.getNombreUsuario()%></td>
 			</tr>
-			<tr>
+			
+				<tr>
 				<td width="50%" class="datos_tabla" align="left">Aplicación
 					asociada:</td>
 				<td width="50%" class="datos_tabla" align="left"><%=a.getNombre()%>
+				<%
+				/*
+				* muestro el botón de mostar App si hay aplicación vinculada.
+				*/
+				Aplicacion aux = pstore.obtenerAplicacionDeProyecto(p);
+				if(aux.getNombre()!=null){%>
 					<input type="button" id="<%=p.getAplicacion().getIDAplicacion()%>"
 					name="<%=a.getNombre()%>"
 					onClick="javascript:recuperarAplicacion(this.id)"
 					;
 					value="Ver App"></td>
+					<%	}
+					%>
 			</tr>
+				
+		
+			
 			<tr>
 
 				<%
@@ -168,7 +180,7 @@
 									- Compruebo que el usuario no está ya unido al proyecto
 									- Compruebo que el usuario tiene el mínimo de karma requerido
 					 */
-					System.out.println(usuario.getIdUser() + p.getIDProyecto());
+					// System.out.println(usuario.getIdUser() + p.getIDProyecto());
 					boolean existe = pstore.existeUsuarioEnProyecto(p, usuario);
 					if (!existe) {
 						if (p.getDisponibilidad() == 1) {
@@ -188,7 +200,7 @@
 
 				<%
 				/*
-				* Si soy el usuario creador, entonces puedo borrar el proyecto.
+				* Si soy el usuario creador, entonces muestro el botón para borrar el proyecto.
 				*/
 					if (usuario.getIdUser().equals(p.getUsuarioCreador().getIdUser())) {
 				%>

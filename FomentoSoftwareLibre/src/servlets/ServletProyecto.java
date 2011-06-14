@@ -48,23 +48,13 @@ public class ServletProyecto extends HttpServlet {
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 
-		if (request.getAttribute("evento").equals("selectProyects")) {
+		if (request.getAttribute("evento").equals("borrarUnProyecto")) {
+			Usuario u = (Usuario) request.getSession().getAttribute("usuario");
+
 			ProyectoStore pstore = ProyectoStore.getInstance();
-			List<Proyecto> list = new ArrayList<Proyecto>();
+			
+			//if(u)
 
-			for (Proyecto p : pstore.obtenerTodosProyectos()) {
-				String par = request.getParameter(p.getIDProyecto());
-				if ((par != null) && (par != "")) {
-					if (par.equals(p.getIDProyecto())) {
-						list.add(p);
-					}
-				}
-			}
-			if (list.size() <= 0) {
-				request.getRequestDispatcher("indexProyectos.jsp");
-			} else {
-
-			}
 
 		} else if (request.getAttribute("evento").equals("nuevoProyecto")) {
 
