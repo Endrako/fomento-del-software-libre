@@ -10,7 +10,7 @@ public interface IProyectoDAO {
 	
 	public List<Proyecto> obtenerTodosProyectos();
 	public List<Proyecto> obtenerProyectosAbiertos();
-	public void crearProyecto(Proyecto proyecto, Usuario u);
+	public Proyecto crearProyecto(Proyecto proyecto, Usuario u);
 	public Proyecto obtenerProyectoPorID(String idProyecto);
 	public Aplicacion obtenerAplicacionDeProyecto(Proyecto p);
 	public List<Proyecto> obtenerProyectosCreadosPorUsuario(Usuario u);

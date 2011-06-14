@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-import pos.data.JDBCAplicacionDAO;
 import pos.data.JDBCProyectoDAO;
 import pos.data.JDBCUsuarioDAO;
 
@@ -21,7 +20,7 @@ public class ProyectoStore {
 	}
 
 	public ProyectoStore() {
-		proyectos = new JDBCProyectoDAO().obtenerTodosProyectos();
+		proyectos = (new JDBCProyectoDAO()).obtenerTodosProyectos();
 	}
 
 	public List<Proyecto> obtenerTodosProyectos() {
@@ -52,7 +51,9 @@ public class ProyectoStore {
 
 		for (Proyecto p : listaAux) {
 
-			if (user.getKarma() >= p.getNivelKarma() || p.getUsuarioCreador().getNombreUsuario().equals(user.getNombreUsuario())) {
+			if (user.getKarma() >= p.getNivelKarma()
+					|| p.getUsuarioCreador().getNombreUsuario()
+							.equals(user.getNombreUsuario())) {
 				listaProyectos.add(p);
 			} // si no hay proyectos abiertos suficientes
 			else {
@@ -81,12 +82,11 @@ public class ProyectoStore {
 		} else {
 			if (u.getKarma() >= 200) { // Puede crear proyecto si nivel karma
 										// >=200
-				new JDBCProyectoDAO().crearProyecto(p, u);
-				new JDBCProyectoDAO().asociarProyectoAUsuario(u, p);
-				new JDBCUsuarioDAO().actualizaKarmaUsuario(u, 50);
-				res=true;
+				Proyecto pres = new JDBCProyectoDAO().crearProyecto(p, u);
+				new JDBCProyectoDAO().asociarProyectoAUsuario(u, pres);
+				res = true;
 			} else {
-				res=false;
+				res = false;
 				throw new IllegalArgumentException(
 						"Karma inferior al requerido para crear proyecto");
 			}
@@ -94,21 +94,31 @@ public class ProyectoStore {
 		return res;
 	}
 
-	public void unirUsuarioAProyecto(Proyecto p, Usuario u) {
+	public boolean unirUsuarioAProyecto(Proyecto p, Usuario u) {
+		boolean res = false;
 		Boolean b = new JDBCProyectoDAO().existeTuplaUsuarioProyecto(p, u);
 
 		if (!b) {// si no está ya asociado
 			if (u.getKarma() >= p.getNivelKarma()) {
 				// y su nivel de karma es igual o superior al requerido se une
 				new JDBCProyectoDAO().asociarProyectoAUsuario(u, p);
-				new JDBCUsuarioDAO().actualizaKarmaUsuario(u, 20);
+				// new JDBCUsuarioDAO().actualizaKarmaUsuario(u, 20);
+				res = true;
 			} else {
+				res = false;
 				throw new IllegalArgumentException(
 						"El karma del usuario es insuficiente");
 			}
-		} else
+		} else {
+			res = false;
 			throw new IllegalArgumentException(
 					"El usuario ya está en este proyecto");
+		}
+		return res;
+	}
+
+	public boolean existeUsuarioEnProyecto(Proyecto p, Usuario u) {
+		return new JDBCProyectoDAO().existeTuplaUsuarioProyecto(p, u);
 	}
 
 	public void borrarUsuarioDeProyecto(Proyecto p, Usuario u) {
@@ -127,11 +137,12 @@ public class ProyectoStore {
 		new JDBCProyectoDAO().borrarAsociacionTodosUsuariosConProyecto(p);
 
 	}
-	
-	public List<String> obtenerUsuariosDeProyecto(Proyecto p){
-		List<Usuario> listaUsuarios = new JDBCProyectoDAO().obtenerUsuariosDeProyecto(p);
+
+	public List<String> obtenerUsuariosDeProyecto(Proyecto p) {
+		List<Usuario> listaUsuarios = new JDBCProyectoDAO()
+				.obtenerUsuariosDeProyecto(p);
 		List<String> listaNombres = new ArrayList<String>();
-		for(Usuario u: listaUsuarios){
+		for (Usuario u : listaUsuarios) {
 			listaNombres.add(u.getNombreUsuario());
 		}
 		return listaNombres;

@@ -25,9 +25,14 @@
 	function redirigir() {
 		window.location = "indexProyectos.jsp";
 	}
+	
+	function onlyNumbersDano(evt){
+	var keyPressed = (evt.which) ? evt.which : event.keyCode;
+	return !(keyPressed > 31 && (keyPressed < 48 || keyPressed > 57));
+	}
 
 	function insertarProyecto() {
-		alert("¡Buen emprendedor! ¡Por cada proyecto creado recibes 50 puntos de karma adicionales!")
+		alert("¡Buen emprendedor! ¡Por cada proyecto creado recibes 50 puntos de karma adicionales!");
 		document.formulario.action = "FrontController?accion=nuevoProyecto";
 		document.formulario.submit();
 	}
@@ -41,8 +46,7 @@
 			<td width="15%" align="left"><img src="Imagenes/tux.jpg">
 			</td>
 			<td class="titular" align="center" width="70%"><strong>Web
-					De Fomento Del Sofware Libre</strong>
-			</td>
+					De Fomento Del Sofware Libre</strong></td>
 			<td width="15%" align="right"><img src="Imagenes/tux.jpg">
 			</td>
 		</tr>
@@ -54,25 +58,20 @@
 				href="ActualizarPerfil.jsp"><%=usuario.getNombreUsuario()%></a>, Hoy
 				es <%=FuncionesImpl.formateoFecha(new Date())%></td>
 			<td width="50%" class="datos_tabla" align="left"><a
-				href="FrontController?accion=logout">Salir</a>
-			</td>
+				href="FrontController?accion=logout">Salir</a></td>
 		</tr>
 	</table>
 <body>
 
 	<div id="pestanas">
 		<ul>
-			<li><a href="javascript:redirigir()">Inicio</a>
-			</li>
+			<li><a href="javascript:redirigir()">Inicio</a></li>
 			<li><a href="indexProyectos.jsp">Menú proyectos</a>
 			<li><a title="Proyectos creados o en los que colaboras"
-				href="proyectosUsuario.jsp">Mis Proyectos</a>
-			</li>
+				href="proyectosUsuario.jsp">Mis Proyectos</a></li>
 			<li><a title="Muestra los proyectos existentes"
-				href="proyectosExistentes.jsp">Todos los proyectos existentes</a>
-			</li>
-			<li><a href="proyectosUnirse.jsp">Unirse a un proyecto</a>
-			</li>
+				href="proyectosExistentes.jsp">Todos los proyectos existentes</a></li>
+			<li><a href="proyectosUnirse.jsp">Unirse a un proyecto</a></li>
 		</ul>
 
 	</div>
@@ -81,44 +80,48 @@
 		<table align="center" class="borde">
 			<tr>
 				<td width="100%" class="tabla_principal" align="center" colspan="2">
-					<strong>Proyecto</strong></td>
+					<strong>Proyecto</strong>
+				</td>
 			</tr>
 			<tr>
 				<td width="50%" class="datos_tabla" align="left">Nombre:</td>
 				<td width="50%" class="datos_tabla" align="left"><input
-					type="text" id="nombre" name="nombre" value=""></td>
+					type="text" id="nombre" name="nombre" value="">
+				</td>
 			</tr>
 			<tr>
 				<td width="50%" class="datos_tabla" align="left">Descripción:</td>
 				<td width="50%" class="datos_tabla" align="left"><textarea
-						id="descripcion" name="descripcion"></textarea></td>
+						id="descripcion" name="descripcion"></textarea>
+				</td>
 			</tr>
 			<tr>
 				<td width="50%" class="datos_tabla" align="left">Fecha de
 					Inicio:</td>
-				<td width="50%"
-					class="datos_tabla" align="left"><%=FuncionesImpl.formateoFecha(new Date())%>
+				<td width="50%" class="datos_tabla" align="left"><%=FuncionesImpl.formateoFecha(new Date())%>
 				</td>
 			</tr>
 			<tr>
-				<td width="50%" class="datos_tabla" align="left">Duración en meses:
-				</td>
+				<td width="50%" class="datos_tabla" align="left">Duración en
+					meses:</td>
 				<td width="50%" class="datos_tabla" align="left"><input
-					type="text" id="meses" name="meses" value="">
-				</td>
+					type="text" id="meses" name="meses" value=""
+					onKeyPress="javascript:return onlyNumbersDano(event)"></td>
 			</tr>
 			<tr>
 				<td width="50%" class="datos_tabla" align="left">Disponibilidad
 				</td>
 				<td width="50%" class="datos_tabla" align="left"><input
-					type="checkbox" id="disponibilidad"
-					name="disponibilidad" value=""></td>
+					type="checkbox" id="disponibilidad" name="disponibilidad" value="">
+				</td>
 			</tr>
 			<tr>
 				<td width="50%" class="datos_tabla" align="left">Nivel karma
 					mínimo:</td>
 				<td width="50%" class="datos_tabla" align="left"><input
-					type="text" id="karma" name="karma" value=""></td>
+					type="text" id="karma" name="karma" value=""
+					onKeyPress="javascript:return onlyNumbersDano(event)">
+				</td>
 			</tr>
 			<tr>
 				<td width="50%" align="center" class="datos_tabla"><input
@@ -127,7 +130,8 @@
 				</td>
 				<td width="50%" align="center" class="datos_tabla"><input
 					type="button" id="atras" name="atras" value=" Atrás "
-					onclick="javascript:redirigir()"></td>
+					onclick="javascript:redirigir()">
+				</td>
 			</tr>
 		</table>
 	</form>

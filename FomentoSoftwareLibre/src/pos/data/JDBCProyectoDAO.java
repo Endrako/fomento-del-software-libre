@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -13,7 +12,6 @@ import pos.domain.AplicacionImpl;
 import pos.domain.Proyecto;
 import pos.domain.ProyectoImpl;
 import pos.domain.Usuario;
-import pos.domain.UsuarioImpl;
 import pos.utils.UIDGenerator;
 
 public class JDBCProyectoDAO implements IProyectoDAO {
@@ -137,12 +135,13 @@ public class JDBCProyectoDAO implements IProyectoDAO {
 	/*
 	 * Método para insertar un nuevo proyecto en la tabla
 	 */
-	public void crearProyecto(Proyecto proyecto, Usuario u) {
+	public Proyecto crearProyecto(Proyecto proyecto, Usuario u) {
 
 		Connection con = (Connection) ConnectionManager.getInstance()
 				.checkOut();
 
 		PreparedStatement stmt = null;
+		
 
 		String IDProyecto = UIDGenerator.getInstance().getKey();
 
@@ -167,6 +166,8 @@ public class JDBCProyectoDAO implements IProyectoDAO {
 			stmt.executeUpdate();
 
 			stmt.close();
+			
+			proyecto.setIDProyecto(IDProyecto);
 
 		} catch (SQLException e) {
 			System.out.println("Message: " + e.getMessage());
@@ -184,6 +185,7 @@ public class JDBCProyectoDAO implements IProyectoDAO {
 
 			}
 		}
+		return proyecto;
 
 	}
 
@@ -471,7 +473,6 @@ public class JDBCProyectoDAO implements IProyectoDAO {
 			stmt.setString(1, u.getIdUser());
 			stmt.setString(2, p.getIDProyecto());
 			result = stmt.executeQuery();
-
 			if (result.next() == false) {
 
 				// Si uno de los dos parámetros no está en la tupla obtenida =>
@@ -570,6 +571,7 @@ public class JDBCProyectoDAO implements IProyectoDAO {
 			stmt.setString(1, u.getIdUser());
 			stmt.setString(2, proy);
 			stmt.executeUpdate();
+			stmt.close();
 
 		} catch (SQLException e) {
 			System.out.println("Message: " + e.getMessage());

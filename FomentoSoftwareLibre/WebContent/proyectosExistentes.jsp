@@ -117,7 +117,7 @@
 			<tr>
 				<td width="60%" align="left" class="datos_tabla"><input
 					type="button" id="nuevoProyecto" name="nuevoProyecto"
-					value=" Nuevo Proyecto " onclick="javascript:nuevoProyecto();">
+					value=" Nuevo Proyecto " onClick="javascript:crearProyecto()">
 				</td>
 				<td width="40%" align="left" class="datos_tabla"><input
 					type="button" id="atras" name="atras" value=" Atrás "

@@ -19,3 +19,12 @@ function nuevoProyecto() {
 	document.formulario.action = "FrontController?accion=nuevoProyecto";
 	document.formulario.submit();
 }
+function crearProyecto() {
+	document.formulario.action = "FrontController?accion=creacionProyectos";
+	document.formulario.submit();
+}
+function muestraAlert(mensaje){
+	alert(mensaje);
+}
+
+

@@ -7,9 +7,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import pos.domain.Tag;
-import pos.domain.Usuario;
-import pos.domain.UsuarioImpl;
-import pos.domain.UsuarioStore;
 
 /**
  * Servlet implementation class FrontController
@@ -86,12 +83,22 @@ public class FrontController extends HttpServlet {
 			crearNuevoProyecto(request, response);
 		} else if(accion.equals("recuperarEncuesta")){
 			recuperarEncuesta(request,response);
+		} else if(accion.equals("creacionProyectos")){
+			creacionProyectos(request, response);
+		}else if(accion.equals("unirseAlProyecto")){
+			unirseAUnProyecto(request,response);
 		} else if(accion.equals("datosencuesta")){
 			datosEncuesta(request,response);
 		} else if (accion.equals("verEncuesta")){
 			verEncuesta(request,response);
 		}
 		
+	}
+
+	private void unirseAUnProyecto(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException{
+		request.setAttribute("evento", "unirseAProyecto");
+		request.getRequestDispatcher("ServletProyecto").include(request, response);
 	}
 
 	private void verEncuesta(HttpServletRequest request,
@@ -228,6 +235,9 @@ public class FrontController extends HttpServlet {
 	private void crearNuevoProyecto(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setAttribute("evento", "nuevoProyecto");
 		request.getRequestDispatcher("ServletProyecto").include(request, response);
+	}
+	private void creacionProyectos(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.getRequestDispatcher("proyectosCrear.jsp").include(request, response);
 	}
 
 }

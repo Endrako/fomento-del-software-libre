@@ -11,9 +11,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import pos.domain.Aplicacion;
-import pos.domain.AplicacionImpl;
 import pos.domain.Proyecto;
 import pos.domain.ProyectoImpl;
 import pos.domain.ProyectoStore;
@@ -31,7 +30,6 @@ public class ServletProyecto extends HttpServlet {
 	 */
 	public ServletProyecto() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -99,30 +97,72 @@ public class ServletProyecto extends HttpServlet {
 			p.setFechaFin(fechaFin);
 			p.setNivelKarma(nivelKarma);
 			p.setDisponibilidad(disponibilidad);
+			
 
 			UsuarioStore ustore = new UsuarioStore();
 
 			/*
 			 * Validación en server
 			 */
+			// en jsp se comprueba que checkbox solo tenga números.
+			
 			if (dias <= 30 || nivelKarma <= 0 || nivelKarma >= u.getKarma()) {
 				// validación de nivel mínimo de karma para crear un proyecto en el BO (Store).
-				request.getRequestDispatcher("proyectosCrear.jsp");
+				request.getRequestDispatcher("proyectosCrear.jsp").include(request, response);
 			} else {
 
 				boolean correcto = pstore.crearProyecto(p, u);
-				Usuario actual = ustore.recuperarUsuarioByIdUsuario(u
-						.getIdUser());
+				
 
+				//TODO actualizar karma en tiempo real al hacer el dispatcher
 				if (correcto) {
+					ustore.actualizaKarmaUsuario(u, 50);
+
+					Usuario actual = ustore.recuperarUsuarioByIdUsuario(u
+							.getIdUser());
+
 					request.setAttribute("usuario", actual);
 					request.getRequestDispatcher("proyectosExistentes.jsp")
 							.include(request, response);
+				}else{
+					request.getRequestDispatcher("indexProyectos.jsp").include(request, response);
 				}
 
 			}
 
+		}else if(request.getAttribute("evento").equals("unirseAProyecto")){
+			ProyectoStore pstore = ProyectoStore.getInstance();
+			
+			HttpSession sesion = request.getSession();
+			Usuario u = (Usuario) sesion.getAttribute("usuario");
+			
+			String idProyecto = request.getParameter("idProyecto");
+			Proyecto p = pstore.obtenerProyectoPorID(idProyecto);
+			
+			UsuarioStore ustore = new UsuarioStore();
+
+
+			/*
+			 * valido en servidor que la persona no pertenezca ya al proyecto
+			 */
+			boolean estaba = pstore.existeUsuarioEnProyecto(p, u);
+			System.out.println(estaba);
+			if(!estaba){
+				boolean unido = pstore.unirUsuarioAProyecto(p, u);
+				// si se une, se suman los puntitos
+				if(unido){
+					ustore.actualizaKarmaUsuario(u,20);
+					Usuario actual = (Usuario) ustore.recuperarUsuarioByIdUsuario(u.getIdUser());
+					request.setAttribute("usuario", actual);
+					request.getRequestDispatcher("descripcionDetalladaProyecto.jsp").include(request, response);
+				}
+			}
+			else{
+				request.getRequestDispatcher("indexProyectos.jsp").include(request, response);
+			}
+
 		}
+		
 
 	}
 
