@@ -4,13 +4,16 @@ function recuperarProyecto(idProyecto) {
 			+ idProyecto;
 	document.formulario.submit();
 }
-
+function recuperarProyecto2(idProyecto) {
+	document.formulario2.action = "FrontController?accion=recuperarPerfilProyecto&idProyecto="
+			+ idProyecto;
+	document.formulario2.submit();
+}
 function recuperarAplicacion(idAplicacion) {
 	document.formulario.action = "FrontController?accion=recuperarPerfilAplicacion&idAplicacion="
 			+ idAplicacion;
 	document.formulario.submit();
 }
-
 function nuevaA() {
 	document.formulario.action = "FrontController?accion=nuevaAplicacion";
 	document.formulario.submit();

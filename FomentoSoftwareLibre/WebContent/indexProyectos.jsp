@@ -25,11 +25,9 @@
 	document
 			.write("<link href='" + css + "' rel='stylesheet' type='text/css'>");
 <%Usuario usuario = (Usuario) session.getAttribute("usuario");%>
-
 	function redirigir() {
 		window.location = "index2.jsp";
 	}
-
 </script>
 </head>
 <body background="Imagenes/fondo.jpg">
@@ -59,19 +57,50 @@
 		</tr>
 	</table>
 	<!--  FIN TABLA CONTENEDORA DE TODAS LAS JSP / HTML -->
-	
+
 	<div id="pestanas">
 		<ul>
-		<li><a href="javascript:redirigir()">Inicio</a></li>
-		<li><a title="Proyectos creados o en los que colaboras" href="proyectosUsuario.jsp">Mis Proyectos</a></li>
-		<li><a title="Muestra los proyectos existentes" href="proyectosExistentes.jsp">Todos los proyectos existentes</a></li>
-		<li><a href="proyectosUnirse.jsp">Unirse a un proyecto</a></li>
-		<li><a href="proyectosCrear.jsp">Crear un nuevo proyecto</a></li>
-		
-			
+			<li><a href="javascript:redirigir()">Inicio</a></li>
+			<li><a title="Proyectos creados o en los que colaboras"
+				href="proyectosUsuario.jsp">Mis Proyectos</a></li>
+			<li><a title="Muestra los proyectos existentes"
+				href="proyectosExistentes.jsp">Todos los proyectos existentes</a></li>
+			<li><a href="proyectosUnirse.jsp">Unirse a un proyecto</a></li>
+			<li><a href="proyectosCrear.jsp">Crear un nuevo proyecto</a></li>
 		</ul>
-	
 	</div>
+
+	<h2 align="center">A ver como te explico...Empecemos:</h2>
+	<br>
+	<ul>
+		<li><h3>En el menú de arriba a la izquierda podrás
+				seleccionar las distintas opciones de proyectos, aparecerá en todas
+				las secciones de proyectos.</h3></li>
+		<li><h3>Si quieres unirte a un proyecto, deberás tener el
+				mínimo de karma requerido por el proyecto. y seguir las siguientes
+				instrucciones:</h3></li>
+		<ul>
+			<li><h3>
+					Para ver los proyectos con los que cuenta la web, haz click en <a
+						href="proyectosExistentes.jsp">Proyectos existentes</a>.
+				</h3></li>
+			<li><h3>Una vez dentro, dando al botón "Ver descripción"
+					podrás ver una descripción detallada del proyecto.</h3></li>
+			<li><h3>Si cumples los siguientes requerimientos, aparecerá
+					el botón para poder unirte al proyecto:
+					</h3></li>
+					<ul>
+					<li><h3>- Que obviamente no pertenezcas al proyecto o seas el creador, ya que estarás vinculado automáticamente al crearlo.</h3></li>
+					<li><h3>- Que el proyecto está disponible.</h3></li>
+					<li><h3>- Que cumplas el mínimo de karma requerido por el proyecto.</h3></li>
+					</ul>
+
+		</ul>
+		<li><h3>En <a href="proyectosUsuario">Mis proyectos</a> aparecerán los proyectos que has creado y/o en los que colaboras</h3></li>
+		
+		
+	</ul>
+	
 
 </body>
 </html>

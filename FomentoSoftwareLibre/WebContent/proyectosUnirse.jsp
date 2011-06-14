@@ -71,7 +71,114 @@
 	
 	</div>
 	
+		<form id="formulario" name="formulario" action="" method="POST">
+		<table align="center" class="borde">
+			<tr>
+				<td width="950px" class="tabla_principal" align="center" colspan="3">
+					<strong> Lista de Todos los Proyectos </strong>
+				</td>
+			</tr>
+			<tr>
+				<td width="33%" class="tabla_principal2" align="left"><strong>Nombre
+						Proyecto: </strong>
+				</td>
+				<td width="33%" class="tabla_principal2" align="left"><strong>Descripción
+						Detallada</strong>
+				</td>
+
+			</tr>
+			<%
+				ProyectoStore store = ProyectoStore.getInstance();
+				List<Proyecto> lista = store.obtenerTodosProyectos();
+				for (Proyecto p : lista) {
+					Aplicacion a = p.getAplicacion();
+			%>
+			<tr>
+				<td width="33%" class="datos_tabla" align="left"><%=p.getNombreProyecto()%>
+				</td>
+				<td width="33%" class="datos_tabla" align="left"><input
+					type="button" id="<%=p.getIDProyecto()%>"
+					name="<%=p.getIDProyecto()%>"
+					onClick="javascript:recuperarProyecto(this.id)"
+					;
+					value="Ver descripción">
+				</td>
+				<%-- <td width="33%" class="datos_tabla" align="left"><input type="button" id="<%=a.getIDAplicacion()%>"
+				name="<%=a.getNombre()%>"
+				onClick="javascript:recuperarAplicacion(this.id)";
+				value="Ver aplicación asociada";>
+				</td> --%>
+			</tr>
+			<%
+				}
+			%>
+			<tr>
+				<td width="60%" align="left" class="datos_tabla"><input
+					type="button" id="nuevoProyecto" name="nuevoProyecto"
+					value=" Nuevo Proyecto " onClick="javascript:crearProyecto()">
+				</td>
+				<td width="40%" align="left" class="datos_tabla"><input
+					type="button" id="atras" name="atras" value=" Atrás "
+					onclick="javascript:redirigir()">
+				</td>
+		</table>
+	</form>
 	
+	<br><br>
+	
+	<form id="formulario2" name="formulario2" action="" method="POST">
+		<table align="center" class="borde">
+			<tr>
+				<td width="950px" class="tabla_principal" align="center" colspan="3">
+					<strong> Proyectos Disponibles por tu Karma o creados por ti </strong>
+				</td>
+			</tr>
+			<tr>
+				<td width="33%" class="tabla_principal2" align="left"><strong>Nombre
+						Proyecto: </strong>
+				</td>
+				<td width="33%" class="tabla_principal2" align="left"><strong>Descripción
+						Detallada</strong>
+				</td>
+
+			</tr>
+			<%
+				ProyectoStore store2 = ProyectoStore.getInstance();
+				List<Proyecto> lista2 = store.obtenerProyectosAbiertosPorKarma(usuario);
+				for (Proyecto p : lista2) {
+					Aplicacion a = p.getAplicacion();
+			%>
+			<tr>
+				<td width="33%" class="datos_tabla" align="left"><%=p.getNombreProyecto()%>
+				</td>
+				<td width="33%" class="datos_tabla" align="left"><input
+					type="button" id="<%=p.getIDProyecto()%>"
+					name="<%=p.getIDProyecto()%>"
+					onClick="javascript:recuperarProyecto2(this.id)"
+					;
+					value="Ver descripción">
+				</td>
+				<%-- <td width="33%" class="datos_tabla" align="left"><input type="button" id="<%=a.getIDAplicacion()%>"
+				name="<%=a.getNombre()%>"
+				onClick="javascript:recuperarAplicacion(this.id)";
+				value="Ver aplicación asociada";>
+				</td> --%>
+			</tr>
+			<%
+				}
+			%>
+			<tr>
+				<td width="60%" align="left" class="datos_tabla"><input
+					type="button" id="nuevoProyecto" name="nuevoProyecto"
+					value=" Nuevo Proyecto " onClick="javascript:crearProyecto()">
+				</td>
+					
+				<td width="40%" align="left" class="datos_tabla"><input
+					type="button" id="atras" name="atras" value=" Atrás "
+					onclick="javascript:redirigir()">
+				</td>
+		</table>
+	</form>
 
 </body>
 </html>

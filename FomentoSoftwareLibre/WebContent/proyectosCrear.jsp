@@ -65,7 +65,7 @@
 
 	<div id="pestanas">
 		<ul>
-			<li><a href="javascript:redirigir()">Inicio</a></li>
+			<li><a href="index2.jsp">Inicio</a></li>
 			<li><a href="indexProyectos.jsp">Menú proyectos</a>
 			<li><a title="Proyectos creados o en los que colaboras"
 				href="proyectosUsuario.jsp">Mis Proyectos</a></li>

@@ -28,27 +28,29 @@
 	function redirigir() {
 		window.location = "proyectosExistentes.jsp";
 	}
-	function borrarProyecto(idProyecto){
+	function borrarProyecto(idProyecto) {
 		alert("Al eliminar un proyecto desvincularás a todos los desarrolladores y se te penalizará "
-				+"con -100 de karma");
+				+ "con -100 de karma");
 		// confirm("¿está seguro de borrar el proyecto?");
-		document.formulario.action="FrontController?accion=borraProyecto&idProyecto="+idProyecto;
+		document.formulario.action = "FrontController?accion=borraProyecto&idProyecto="
+				+ idProyecto;
 		document.formulario.submit();
 	}
-	function unirseAlProyecto(idProyecto){
+	function unirsealproyecto(idProyecto) {
 		alert("¡Bien hecho! al unirte a colaborar en un proyecto aparte de aprender recibirás 20 puntos de karma");
-		document.formulario.action = "FrontController?accion=unirseAlProyecto&idProyecto="+idProyecto;
+		document.formulario.action = "FrontController?accion=unirseAlProyecto&idProyecto="
+				+ idProyecto;
 		document.formulario.submit();
 	}
-
 </script>
 
 <%
 	String idProyecto = request.getParameter("idProyecto");
 	ProyectoStore pstore = ProyectoStore.getInstance();
 	Proyecto p = pstore.obtenerProyectoPorID(idProyecto);
-	Usuario userProyecto = new UsuarioStore().recuperarUsuarioByIdUsuario(p
-			.getUsuarioCreador().getIdUser());
+	Usuario userProyecto = new UsuarioStore()
+			.recuperarUsuarioByIdUsuario(p.getUsuarioCreador()
+					.getIdUser());
 	Aplicacion a = pstore.obtenerAplicacionDeProyecto(p);
 %>
 
@@ -64,8 +66,7 @@
 			<td width="15%" align="left"><img src="Imagenes/tux.jpg">
 			</td>
 			<td class="titular" align="center" width="70%"><strong>Web
-					De Fomento Del Sofware Libre</strong>
-			</td>
+					De Fomento Del Sofware Libre</strong></td>
 			<td width="15%" align="right"><img src="Imagenes/tux.jpg">
 			</td>
 		</tr>
@@ -80,8 +81,7 @@
 			<td width="30%" class="datos_tabla" align="left">Karma
 				acumulado, <%=usuario.getKarma()%></td>
 			<td width="40%" class="datos_tabla" align="right"><a
-				href="FrontController?accion=logout">Salir</a>
-			</td>
+				href="FrontController?accion=logout">Salir</a></td>
 		</tr>
 	</table>
 	<!--  FIN TABLA CONTENEDORA DE TODAS LAS JSP / HTML -->
@@ -89,7 +89,8 @@
 		<table align="center" class="borde">
 			<tr>
 				<td width="100%" class="tabla_principal" align="center" colspan="2">
-					<strong>Proyecto</strong></td>
+					<strong>Proyecto</strong>
+				</td>
 			</tr>
 			<tr>
 				<td width="50%" class="datos_tabla" align="left">Nombre:</td>
@@ -156,53 +157,56 @@
 					name="<%=a.getNombre()%>"
 					onClick="javascript:recuperarAplicacion(this.id)"
 					;
-					value="Ver App">
-				</td>
+					value="Ver App"></td>
 			</tr>
 			<tr>
 
 				<%
 					/*
-								Validación en server para ofrecer las opciones de unirse: 
+						Condiciones para ofrecer la opción de unirse al proyecto: 
+									- Compruebo que el proyecto está disponible
 									- Compruebo que el usuario no está ya unido al proyecto
 									- Compruebo que el usuario tiene el mínimo de karma requerido
 					 */
-					 System.out.println(usuario.getIdUser() + p.getIDProyecto());
-					 boolean existe = pstore.existeUsuarioEnProyecto(p,usuario);
+					System.out.println(usuario.getIdUser() + p.getIDProyecto());
+					boolean existe = pstore.existeUsuarioEnProyecto(p, usuario);
 					if (!existe) {
-						if (usuario.getKarma() >= p.getNivelKarma()) {
-							
+						if (p.getDisponibilidad() == 1) {
+							if (usuario.getKarma() >= p.getNivelKarma()) {
 				%>
-				<td width="50%" align="center" class="datos_tabla">
-					<input type="button"
-					id="<%=p.getIDProyecto()%>" name="unirseAlProyecto"
-					onClick="javascript:unirseAlProyecto(this.id);" value=" Unirse al proyecto">
-				</td>
+				<td width="50%" align="center" class="datos_tabla"><input
+					type="button" id="<%=p.getIDProyecto()%>" name="unirseAlProyecto"
+					onClick="javascript:unirsealproyecto(this.id);"
+					value=" Unirse al proyecto"></td>
 
 				<%
-					}else {
-					}// TODO investigar para enviar un mensaje a pantalla aquí en medio.
+					} else {
+							}// TODO investigar para enviar un mensaje a pantalla aquí en medio.
+						}
 					}
-					%>
+				%>
 
 				<%
+				/*
+				* Si soy el usuario creador, entonces puedo borrar el proyecto.
+				*/
 					if (usuario.getIdUser().equals(p.getUsuarioCreador().getIdUser())) {
 				%>
 
 				<td width="50%" align="center"></td>
 				<td width="50%" align="center" class="datos_tabla"><input
 					type="submit" id="<%=p.getIDProyecto()%>" name="borrarProyecto"
-					value=" Borrar el proyecto" onClick="javascript:borrarProyecto(this.id);">
-
-					<%
-						}
-					%>
+					value=" Borrar el proyecto"
+					onClick="javascript:borrarProyecto(this.id);"> <%
+ 	}
+ %>
 				</td>
 			</tr>
 			<tr>
 				<td width="100%" align="center" class="datos_tabla" colspan="2">
 					<input type="button" id="atras" name="atras" value=" Atrás "
-					onclick="javascript:redirigir()"></td>
+					onclick="javascript:redirigir()">
+				</td>
 			</tr>
 		</table>
 	</form>

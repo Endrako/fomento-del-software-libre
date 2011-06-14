@@ -44,10 +44,10 @@ public class ProyectoStore {
 		List<Proyecto> listaAux = new JDBCProyectoDAO()
 				.obtenerProyectosAbiertos();
 
-		if (user.getKarma() < 0) {
+		/*if (user.getKarma() < 0) {
 			throw new IllegalArgumentException(
 					"El nivel de karma no puede ser nulo ni menor que 0");
-		}
+		}*/
 
 		for (Proyecto p : listaAux) {
 
@@ -56,10 +56,10 @@ public class ProyectoStore {
 							.equals(user.getNombreUsuario())) {
 				listaProyectos.add(p);
 			} // si no hay proyectos abiertos suficientes
-			else {
+			/*else {
 				throw new IllegalArgumentException(
 						"No existe ningún proyecto disponible para el karma de este usuario, ni es el creador");
-			}
+			}*/
 		}
 		return listaProyectos;
 
@@ -87,8 +87,8 @@ public class ProyectoStore {
 				res = true;
 			} else {
 				res = false;
-				throw new IllegalArgumentException(
-						"Karma inferior al requerido para crear proyecto");
+				/*throw new IllegalArgumentException(
+						"Karma inferior al requerido para crear proyecto");*/
 			}
 		}
 		return res;
@@ -125,7 +125,7 @@ public class ProyectoStore {
 		Boolean b = new JDBCProyectoDAO().existeTuplaUsuarioProyecto(p, u);
 		if (b) {
 			new JDBCProyectoDAO().borrarUnUsuarioDeProyecto(p, u);
-			new JDBCUsuarioDAO().actualizaKarmaUsuario(u, -10);
+			new JDBCUsuarioDAO().actualizaKarmaUsuario(u, -40);
 		} else {
 			throw new IllegalArgumentException(
 					"El usuario no está vinculado a este proyecto");
