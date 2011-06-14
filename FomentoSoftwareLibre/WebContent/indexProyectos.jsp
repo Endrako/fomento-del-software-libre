@@ -93,7 +93,10 @@
 					<li><h3>- Que obviamente no pertenezcas al proyecto o seas el creador, ya que estarás vinculado automáticamente al crearlo.</h3></li>
 					<li><h3>- Que el proyecto esté disponible.</h3></li>
 					<li><h3>- Que cumplas el mínimo de karma requerido por el proyecto.</h3></li>
+					<li><h3>- Que el proyecto no esté obsoleto, es decir que la fecha de hoy sea posterior a la fecha fin.</h3></li>
+					
 					</ul>
+		<li><h3>Aquí también podrás desvincularte de un proyecto clickando en "Borrarme". Este botón aparecerá siempre que pertenezcas a uno de los proyectos, se te quitará 40 puntos de karma por huir.</h3></li>
 
 		</ul>
 		<li><h3>En <a href="proyectosUsuario.jsp">Mis proyectos</a> aparecerán los proyectos que has creado y/o en los que colaboras.</h3></li>

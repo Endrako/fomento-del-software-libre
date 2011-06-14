@@ -226,7 +226,6 @@ public class FrontController extends HttpServlet {
 
 	private void borrarmeDeUnProyecto(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-
 		request.setAttribute("evento", "borrarmeDeUnProyecto");
 		request.getRequestDispatcher("ServletProyecto").include(request, response);
 	}

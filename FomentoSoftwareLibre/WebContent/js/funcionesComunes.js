@@ -14,11 +14,6 @@ function recuperarAplicacion(idAplicacion) {
 			+ idAplicacion;
 	document.formulario.submit();
 }
-function borrameproyecto(idProyecto) {
-	alert("Al desvincularte de un proyecto se te penalizará con -40 de karma");
-	document.formulario.action ="FrontController?accion=borrarmeDeUnProyecto&idProyecto="+ idProyecto;
-	document.formulario.submit();
-}
 function nuevaA() {
 	document.formulario.action = "FrontController?accion=nuevaAplicacion";
 	document.formulario.submit();

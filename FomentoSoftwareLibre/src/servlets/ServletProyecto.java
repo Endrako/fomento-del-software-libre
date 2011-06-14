@@ -47,7 +47,6 @@ public class ServletProyecto extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 
 		if (request.getAttribute("evento").equals("borrarmeDeUnProyecto")) {
-
 			HttpSession sesion = request.getSession();
 			Usuario user = (Usuario) sesion.getAttribute("usuario");
 
