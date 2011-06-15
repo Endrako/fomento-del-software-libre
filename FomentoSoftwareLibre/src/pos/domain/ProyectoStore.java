@@ -13,9 +13,8 @@ public class ProyectoStore {
 	private static ProyectoStore proyectoStore;
 
 	public static synchronized ProyectoStore getInstance() {
-		if (proyectoStore == null) {
-			proyectoStore = new ProyectoStore();
-		}
+		proyectoStore = new ProyectoStore();
+		
 		return proyectoStore;
 	}
 
@@ -25,7 +24,7 @@ public class ProyectoStore {
 
 	public List<Proyecto> obtenerTodosProyectos() {
 
-		return proyectos;
+		return (new JDBCProyectoDAO()).obtenerTodosProyectos();
 	}
 
 	public Proyecto obtenerProyectoPorID(String IDProyecto) {
