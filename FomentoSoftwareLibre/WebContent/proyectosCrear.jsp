@@ -109,7 +109,7 @@
 					onKeyPress="javascript:return onlyNumbersDano(event)"></td>
 			</tr>
 			<tr>
-				<td width="50%" class="datos_tabla" align="left">Disponibilidad
+				<td width="50%" class="datos_tabla" align="left">No disponible
 				</td>
 				<td width="50%" class="datos_tabla" align="left"><input
 					type="checkbox" id="disponibilidad" name="disponibilidad" value="">
