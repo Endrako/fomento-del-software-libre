@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 15-06-2011 a las 00:18:21
+-- Tiempo de generación: 15-06-2011 a las 18:47:39
 -- Versión del servidor: 5.5.8
 -- Versión de PHP: 5.3.5
 
@@ -61,12 +61,15 @@ CREATE TABLE IF NOT EXISTS `colaboracionusuariosproyectos` (
   `IDUsuario` varchar(50) COLLATE latin1_spanish_ci NOT NULL,
   `IDProyecto` varchar(50) COLLATE latin1_spanish_ci NOT NULL,
   PRIMARY KEY (`OIDRelacion`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci AUTO_INCREMENT=3 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci AUTO_INCREMENT=6 ;
 
 --
 -- Volcar la base de datos para la tabla `colaboracionusuariosproyectos`
 --
 
+INSERT INTO `colaboracionusuariosproyectos` (`OIDRelacion`, `IDUsuario`, `IDProyecto`) VALUES
+(3, '13080510052365afb1452', '1308156294646bf55d32'),
+(5, '13080510052365afb1452', '130815634709360d536b2');
 
 -- --------------------------------------------------------
 
@@ -360,12 +363,15 @@ CREATE TABLE IF NOT EXISTS `proyectos` (
   `disponible` tinyint(1) NOT NULL,
   `nivelKarma` int(11) NOT NULL,
   PRIMARY KEY (`OIDProyecto`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci AUTO_INCREMENT=5 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci AUTO_INCREMENT=7 ;
 
 --
 -- Volcar la base de datos para la tabla `proyectos`
 --
 
+INSERT INTO `proyectos` (`OIDProyecto`, `IDProyecto`, `IDUsuarioCreador`, `nombre`, `descripcion`, `fechaInicio`, `fechaFin`, `disponible`, `nivelKarma`) VALUES
+(5, '1308156294646bf55d32', '13080510052365afb1452', 'prueba 1', 'descp1', '2011-06-15 00:00:00', '2011-09-13 00:00:00', 0, 50),
+(6, '130815634709360d536b2', '13080510052365afb1452', 'prueba 2', 'desc 2', '2011-06-15 00:00:00', '2011-08-14 00:00:00', 1, 100);
 
 -- --------------------------------------------------------
 
@@ -602,7 +608,7 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
 INSERT INTO `usuarios` (`OIDUsuario`, `IDUsuario`, `nombreUsuario`, `contrasenna`, `email`, `IDPerfil`, `karma`, `numeroRecomendaciones`) VALUES
 (17, '1308050771600768973ad', 'sheinx', 'sheinx', 'sheinx@test.com', '13080508494944eb3e2aa', 415, 4),
 (18, '1308050943696732e470d', 'tristan', 'tristan', 'tristan@test.com', '1308050948985ffffffffe67d4f37', 25, 0),
-(19, '13080510052365afb1452', 'marc', 'marc', 'marc@test.com', '1308051008040ffffffff8416913c', 670, 0),
+(19, '13080510052365afb1452', 'marc', 'marc', 'marc@test.com', '1308051008040ffffffff8416913c', 750, 0),
 (20, '1308089015393fffffffff964b61f', 'arundil', '1234', 'mb154@hotmail.com', '13080890367187bfe55c9', 10, 0);
 
 -- --------------------------------------------------------
